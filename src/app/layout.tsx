@@ -8,10 +8,11 @@ const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").re
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "NeXora — Digital Presence Design",
-    template: "%s | NeXora",
-  },
-  description: "Индивидуальные сайты, цифровые продукты и брендинг для бизнеса: стратегия, UX/UI, Next.js / React, интеграции и запуск.",
+  default: "Создание сайтов для бизнеса в Израиле | NeXora",
+  template: "%s | NeXora",
+},
+description:
+  "Создание сайтов для бизнеса в Израиле: лендинги, бизнес-сайты, интернет-магазины и цифровые продукты. Индивидуальный UX/UI-дизайн, разработка и запуск.",
   applicationName: "NeXora",
   alternates: { canonical: "/" },
   manifest: "/manifest.webmanifest",
@@ -23,8 +24,9 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
-    title: "NeXora — Digital Presence Design",
-    description: "Сайты и цифровые продукты, которые умеют больше.",
+  title: "Создание сайтов для бизнеса в Израиле | NeXora",
+  description:
+    "Лендинги, бизнес-сайты, интернет-магазины и цифровые продукты для бизнеса. Индивидуальный дизайн, разработка и запуск.",
     url: "/",
     siteName: "NeXora",
     locale: "ru_RU",

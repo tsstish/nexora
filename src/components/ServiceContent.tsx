@@ -5,11 +5,21 @@ import { ServiceVisual } from "./ServiceVisual";
 
 export function ServiceContent({service,compact=false}:{service:Service;compact?:boolean}){
  const offer = `Здравствуйте! Меня интересует ${service.name} в NeXora. Хочу обсудить задачу и Portfolio Offer −${siteConfig.portfolioOffer.discountPercent}%.`;
+ const serviceHeadings: Record<string, string> = {
+  "mini-site": "Мини-сайт для бизнеса",
+  "landing": "Создание лендинга для бизнеса",
+  "business-site": "Создание сайта для бизнеса",
+  "ecommerce": "Создание интернет-магазина",
+  "digital-product": "Разработка MVP и веб-приложений",
+  "brand-start": "Логотип и фирменный стиль",
+};
+
+const heading = serviceHeadings[service.slug] || service.name;
  return <div className={compact?"service-detail compact":"service-detail"}>
   <section className="service-detail-hero">
     <div className="service-detail-copy">
       <div className="eyebrow">{service.index} · ФОРМАТ РАБОТЫ</div>
-      <h1>{service.name}</h1>
+      <h1>{heading}</h1>
       <p className="service-tagline">{service.tagline}</p>
       <div className="service-meta"><strong>{service.priceLabel}</strong><span>{service.duration}</span>{service.technicalNote&&<em>{service.technicalNote}</em>}</div>
       <div className="portfolio-chip">−{siteConfig.portfolioOffer.discountPercent}% · Portfolio Offer · первые {siteConfig.portfolioOffer.slots} проекта</div>

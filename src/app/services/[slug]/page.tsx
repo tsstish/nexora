@@ -7,16 +7,89 @@ import { siteConfig } from "@/data/site";
 
 export function generateStaticParams(){ return services.map(s=>({slug:s.slug})); }
 
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{
- const {slug}=await params; const service=serviceMap[slug as ServiceSlug];
- if(!service) return {};
- return {
-   title:`${service.name} в Израиле — ${service.priceLabel}`,
-   description:`${service.short} ${service.priceLabel}. Индивидуальная структура, дизайн и современная разработка NeXora.`,
-   alternates:{canonical:`/services/${service.slug}`},
-   openGraph:{title:`${service.name} — NeXora`,description:service.short,type:"website",url:`/services/${service.slug}`,images:[{url:"/opengraph-image.png",width:1200,height:630,alt:"NeXora — Digital Presence Design"}]},
-   twitter:{card:"summary_large_image",title:`${service.name} — NeXora`,description:service.short,images:["/opengraph-image.png"]}
- };
+const serviceSeo: Record<
+  ServiceSlug,
+  { title: string; description: string }
+> = {
+  "mini-site": {
+    title: "Создание мини-сайта для бизнеса в Израиле",
+    description:
+      "Компактный мини-сайт для малого бизнеса, специалиста или личного бренда в Израиле. Индивидуальный дизайн, мобильная версия, WhatsApp, аналитика и запуск.",
+  },
+
+  landing: {
+    title: "Создание лендинга в Израиле",
+    description:
+      "Разработка индивидуального лендинга для бизнеса в Израиле: структура, UX/UI-дизайн, Next.js, мобильная адаптация, базовая SEO-подготовка, аналитика и запуск.",
+  },
+
+  "business-site": {
+    title: "Создание сайта для бизнеса в Израиле",
+    description:
+      "Разработка многостраничного сайта для бизнеса в Израиле. Индивидуальная структура и UX/UI-дизайн, Next.js, мобильная адаптация, SEO-подготовка и аналитика.",
+  },
+
+  ecommerce: {
+    title: "Создание интернет-магазина в Израиле",
+    description:
+      "Разработка интернет-магазина в Израиле: каталог, карточки товаров, корзина, оформление заказа, подключение оплаты, мобильная версия и ecommerce-аналитика.",
+  },
+
+  "digital-product": {
+    title: "Разработка MVP и веб-приложений в Израиле",
+    description:
+      "Разработка MVP, личных кабинетов, внутренних систем и веб-приложений для бизнеса в Израиле. UX/UI, Next.js, база данных и индивидуальная бизнес-логика.",
+  },
+
+  "brand-start": {
+    title: "Логотип и фирменный стиль для бизнеса в Израиле",
+    description:
+      "Brand Start от NeXora: логотип, цветовая палитра, типографика и базовая визуальная система для нового или обновляемого бизнеса в Израиле.",
+  },
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const service = serviceMap[slug as ServiceSlug];
+
+  if (!service) return {};
+
+  const seo = serviceSeo[service.slug];
+
+  return {
+    title: seo.title,
+    description: seo.description,
+
+    alternates: {
+      canonical: `/services/${service.slug}`,
+    },
+
+    openGraph: {
+      title: `${seo.title} | NeXora`,
+      description: seo.description,
+      type: "website",
+      url: `/services/${service.slug}`,
+      images: [
+        {
+          url: "/opengraph-image.png",
+          width: 1200,
+          height: 630,
+          alt: `${service.name} — NeXora`,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${seo.title} | NeXora`,
+      description: seo.description,
+      images: ["/opengraph-image.png"],
+    },
+  };
 }
 
 export default async function ServicePage({params}:{params:Promise<{slug:string}>}){
