@@ -30,7 +30,7 @@ function Header(){return <header className="topbar">
     <Image src="/brand/nexora-wordmark.png" alt="NeXora" width={242} height={85} priority className="brand-wordmark"/>
     <span className="brand-rule"/><span className="brand-tag">DIGITAL<br/>PRESENCE<br/>DESIGN</span>
   </a>
-  <nav aria-label="Основная навигация"><a href="#top">Главное</a><a href="#projects">Проекты</a><a href="#process">Процесс</a><a href="#formats">Стоимость</a><a href="#contacts">Контакты</a></nav>
+  <nav aria-label="Основная навигация"><a href="#top">Главное</a><a href="#projects">Проекты</a><a href="/ready">Готовые сайты</a><a href="#process">Процесс</a><a href="#formats">Стоимость</a><a href="#contacts">Контакты</a></nav>
   <a className="cta top-cta site-desktop-cta" href="#calculator">
     Обсудить проект <span>→</span>
   </a>
