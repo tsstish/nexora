@@ -144,7 +144,9 @@ export default function ReadyPage() {
             className="brand-wordmark"
             priority
           />
+
           <span className="brand-rule" />
+
           <span className="brand-tag">
             DIGITAL
             <br />
@@ -154,15 +156,15 @@ export default function ReadyPage() {
           </span>
         </Link>
 
+
         <nav aria-label="Навигация">
-          <Link href="/">Главная</Link>
           <Link href="/#projects">Проекты</Link>
-          <Link href="/ready" aria-current="page">
-            Готовые сайты
-          </Link>
-          <Link href="/#formats">Стоимость</Link>
-          <Link href="/#contacts">Контакты</Link>
+          <Link href="/#solutions">Решения</Link>
+          <Link href="/ready" aria-current="page">Ready</Link>
+          <Link href="/#process">Процесс</Link>
+          <Link href="/services">Стоимость</Link>
         </nav>
+
 
         <a
           className="cta top-cta ready-desktop-cta"
@@ -170,8 +172,9 @@ export default function ReadyPage() {
           target="_blank"
           rel="noreferrer"
         >
-          Обсудить проект <span>→</span>
+          Обсудить адаптацию <span>→</span>
         </a>
+
 
         <details className="ready-mobile-menu">
           <summary aria-label="Открыть меню">
@@ -181,11 +184,11 @@ export default function ReadyPage() {
           </summary>
 
           <div className="ready-mobile-menu-panel">
-            <Link href="/">Главная</Link>
             <Link href="/#projects">Проекты</Link>
-            <Link href="/ready">Готовые сайты</Link>
-            <Link href="/#formats">Стоимость</Link>
-            <Link href="/#contacts">Контакты</Link>
+            <Link href="/#solutions">Решения</Link>
+            <Link href="/ready">Ready</Link>
+            <Link href="/#process">Процесс</Link>
+            <Link href="/services">Стоимость</Link>
 
             <a
               className="cta"
@@ -193,7 +196,7 @@ export default function ReadyPage() {
               target="_blank"
               rel="noreferrer"
             >
-              Обсудить проект <span>→</span>
+              Обсудить адаптацию <span>→</span>
             </a>
           </div>
         </details>
@@ -222,7 +225,7 @@ export default function ReadyPage() {
                 Смотреть коллекцию <span>↓</span>
               </a>
 
-              <Link className="text-link" href="/#formats">
+              <Link className="text-link" href="/services">
                 Индивидуальная разработка →
               </Link>
             </div>
@@ -530,7 +533,7 @@ export default function ReadyPage() {
               </small>
 
               <div className="ready-path-bottom">
-                <a href="/#formats">Смотреть форматы →</a>
+                <a href="/services">Смотреть форматы →</a>
               </div>
             </article>
           </div>
@@ -647,31 +650,43 @@ export default function ReadyPage() {
         </section>
       </main>
 
-      <footer className="footer section-shell ready-footer">
-        <div className="footer-brand">
+      <footer className="footer footer-v2 ready-footer ready-footer-v2 section-shell">
+
+        <div className="footer-brand footer-brand-v2">
           <Image
             src="/brand/nexora-wordmark.png"
             alt="NeXora"
-            width={180}
-            height={70}
+            width={160}
+            height={60}
           />
-          <span>
+
+          <span className="footer-brand-tag-v2">
             DIGITAL
             <br />
             PRESENCE
             <br />
             DESIGN
           </span>
+
+          <p>
+            Сайты и digital-продукты для бизнеса в Израиле
+          </p>
         </div>
 
-        <div className="footer-links">
-          <Link href="/">Главная</Link>
+
+        <nav
+          className="footer-links footer-links-v2"
+          aria-label="Навигация в футере"
+        >
           <Link href="/#projects">Проекты</Link>
-          <Link href="/ready">Готовые сайты</Link>
-        </div>
+          <Link href="/#solutions">Решения</Link>
+          <Link href="/ready">Ready</Link>
+          <Link href="/#process">Процесс</Link>
+          <Link href="/services">Стоимость</Link>
+        </nav>
 
-        <div className="footer-contact">
-          <a href={siteConfig.phoneHref}>{siteConfig.phoneDisplay}</a>
+
+        <div className="footer-contact footer-contact-v2">
           <a
             href={siteConfig.whatsapp}
             target="_blank"
@@ -679,14 +694,31 @@ export default function ReadyPage() {
           >
             WhatsApp
           </a>
-          <span>{siteConfig.location}</span>
+
+          <a
+            href={siteConfig.telegram}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Telegram
+          </a>
+
+          <a href={siteConfig.phoneHref}>
+            {siteConfig.phoneDisplay}
+          </a>
+
+          <small>
+            Хайфа · Работаем с бизнесом по всему Израилю и удалённо
+          </small>
         </div>
 
-        <div className="footer-legal">
+
+        <div className="footer-legal footer-legal-v2">
           <Link href="/privacy">Конфиденциальность</Link>
           <Link href="/terms">Условия</Link>
           <Link href="/accessibility">Доступность</Link>
         </div>
+
       </footer>
     </>
   );

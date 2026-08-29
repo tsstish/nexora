@@ -107,7 +107,7 @@ export default async function ServicePage({params}:{params:Promise<{slug:string}
  return <>
    <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(serviceJsonLd).replace(/</g,"\\u003c")}}/>
    <a className="skip-link" href="#service-main">Перейти к содержимому</a>
-   <header className="service-topbar"><a href="/" className="brand-lockup" aria-label="NeXora — главная"><Image src="/brand/nexora-wordmark.png" alt="NeXora" width={190} height={68}/><span className="brand-rule"/><span className="brand-tag">DIGITAL<br/>PRESENCE<br/>DESIGN</span></a><a className="service-home-link" href="/#formats">Все форматы →</a></header>
+   <header className="service-topbar"><a href="/" className="brand-lockup" aria-label="NeXora — главная"><Image src="/brand/nexora-wordmark.png" alt="NeXora" width={190} height={68}/><span className="brand-rule"/><span className="brand-tag">DIGITAL<br/>PRESENCE<br/>DESIGN</span></a><a className="service-home-link" href="/services">Все форматы →</a></header>
    <main id="service-main" className="service-page-shell"><ServiceContent service={service}/></main>
    <footer className="service-page-footer"><span>© {new Date().getFullYear()} {siteConfig.name}</span><nav aria-label="Юридическая информация"><a href="/privacy">Конфиденциальность</a><a href="/terms">Условия</a><a href="/accessibility">Доступность</a></nav></footer>
  </>

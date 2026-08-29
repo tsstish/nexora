@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { AnalyticsConsent } from "@/components/AnalyticsConsent";
+import { RouteScrollManager } from "@/components/RouteScrollManager";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
 
@@ -62,6 +63,7 @@ const organizationJsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="ru"><body>
+    <RouteScrollManager />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c") }} />
     {children}
     <AnalyticsConsent />

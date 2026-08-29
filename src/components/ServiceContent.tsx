@@ -39,6 +39,6 @@ const heading = serviceHeadings[service.slug] || service.name;
 
   <section className="service-final-cta"><div><span>Не уверены, что выбрать?</span><h2>Покажите задачу — поможем выбрать формат.</h2><p>Portfolio Offer даёт −{siteConfig.portfolioOffer.discountPercent}% на одну из первых {siteConfig.portfolioOffer.slots} работ при согласии на публикацию кейса. Проект может появиться в портфолио NeXora с активной ссылкой на ваш бизнес — это дополнительная точка контакта и ещё одно упоминание бренда.</p></div><a className="cta" href={whatsappUrl(offer)} target="_blank" rel="noreferrer">{service.cta} →</a></section>
 
-  {!compact&&<div className="service-back"><Link href="/#formats">← Вернуться к форматам работы</Link></div>}
+  {!compact&&<div className="service-back"><Link href="/services">← Вернуться ко всем услугам и стоимости</Link></div>}
  </div>
 }
