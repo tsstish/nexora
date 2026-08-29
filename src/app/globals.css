@@ -9684,3 +9684,51 @@ html{
 
 }
 
+
+/* ==========================================================
+   HOME HERO — MOBILE FINAL COMPOSITION
+   ========================================================== */
+
+@media(max-width:620px){
+
+  .home-hero-v2{
+    min-height:0;
+    padding-top:22px;
+    padding-bottom:0;
+  }
+
+  .home-hero-copy-v2{
+    width:100% !important;
+    max-width:none;
+    padding:18px 4px 0;
+  }
+
+  .home-hero-kicker{
+    margin-bottom:11px;
+  }
+
+  .home-hero-v2 h1{
+    max-width:100%;
+    font-size:39px;
+    line-height:.96;
+  }
+
+  .home-hero-v2 .hero-copy>p{
+    max-width:96%;
+    margin:16px 0 18px;
+    font-size:12px;
+    line-height:1.55;
+  }
+
+  .home-hero-v2 .hero-actions{
+    gap:16px;
+  }
+
+  .home-hero-v2 .hero-art{
+    width:122%;
+    height:300px;
+    margin:-26px 0 -8px -11%;
+  }
+
+}
+
