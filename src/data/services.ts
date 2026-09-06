@@ -23,7 +23,7 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "mini-site", index: "01", name: "Мини-сайт", shortName: "Мини-сайт", price: 1900, priceLabel: "от 1 900 ₪", duration: "5–8 рабочих дней",
+    slug: "mini-site", index: "01", name: "Компактный сайт", shortName: "Compact Site", price: 2200, priceLabel: "от 2 200 ₪", duration: "5–8 рабочих дней",
     tagline: "Когда полноценный сайт пока не нужен — но бизнесу уже нужна нормальная точка входа.",
     short: "Компактная мобильная страница для Instagram, WhatsApp, рекламы и личного бренда.",
     forWhom: ["специалистам и экспертам", "небольшим локальным бизнесам", "новым проектам", "Instagram-профилям", "тем, кому пока не нужен полноценный сайт"],
@@ -39,7 +39,7 @@ export const services: Service[] = [
     cta:"Обсудить мини-сайт", visual:"mini"
   },
   {
-    slug:"landing", index:"02", name:"Лендинг", shortName:"Лендинг", price:4900, priceLabel:"от 4 900 ₪", duration:"примерно 2–4 недели",
+    slug:"landing", index:"02", name:"Лендинг", shortName:"Лендинг", price:5500, priceLabel:"от 5 500 ₪", duration:"примерно 2–4 недели",
     tagline:"Одна задача. Один сильный сценарий. Никаких лишних страниц.",
     short:"Одна продуманная страница для услуги, рекламной кампании, мероприятия или нового бизнеса.",
     forWhom:["одной основной услуге","рекламному запуску","новому бизнесу","специалисту","отдельному направлению компании"],
@@ -55,7 +55,7 @@ export const services: Service[] = [
     cta:"Обсудить лендинг", visual:"landing"
   },
   {
-    slug:"business-site", index:"03", name:"Бизнес-сайт", shortName:"Бизнес-сайт", price:8900, priceLabel:"от 8 900 ₪", duration:"примерно 4–6 недель",
+    slug:"business-site", index:"03", name:"Бизнес-сайт", shortName:"Бизнес-сайт", price:9900, priceLabel:"от 9 900 ₪", duration:"примерно 4–6 недель",
     tagline:"Когда одной страницы уже мало, а шаблонный корпоративный сайт — слишком мало говорит о бизнесе.",
     short:"Многостраничный сайт для компании, которой важно подробно представить услуги, опыт и преимущества.",
     forWhom:["сервисным компаниям","локальному бизнесу","B2B","специалистам с несколькими направлениями","компаниям, которым одной страницы недостаточно"],
@@ -71,7 +71,7 @@ export const services: Service[] = [
     cta:"Обсудить бизнес-сайт", visual:"business", technicalNote:"Дополнительная стандартная страница — от 650 ₪."
   },
   {
-    slug:"ecommerce", index:"04", name:"Интернет-магазин", shortName:"Интернет-магазин", price:19900, priceLabel:"от 19 900 ₪", duration:"ориентировочно 8–12 недель",
+    slug:"ecommerce", index:"04", name:"Интернет-магазин", shortName:"Интернет-магазин", price:22900, priceLabel:"от 22 900 ₪", duration:"ориентировочно 8–12 недель",
     tagline:"Не просто каталог — полноценный сценарий от выбора товара до оформленного заказа.",
     short:"Современный магазин с каталогом, корзиной, оформлением заказа и подключением оплаты.",
     forWhom:["брендам и локальным магазинам","производителям","бизнесам с прямыми онлайн-продажами","проектам, которым важен индивидуальный интерфейс магазина"],
@@ -87,7 +87,7 @@ export const services: Service[] = [
     cta:"Запросить оценку магазина", visual:"shop", technicalNote:"Точная стоимость — после технической оценки."
   },
   {
-    slug:"digital-product", index:"05", name:"Цифровой продукт / MVP", shortName:"Digital Product / MVP", price:15900, priceLabel:"от 15 900 ₪", duration:"ориентировочно 6–10 недель",
+    slug:"digital-product", index:"05", name:"Цифровой продукт / MVP", shortName:"Digital Product / MVP", price:17900, priceLabel:"от 17 900 ₪", duration:"ориентировочно 6–10 недель",
     tagline:"Когда нужен уже не сайт, а рабочий цифровой инструмент под процессы бизнеса.",
     short:"Личный кабинет, внутреннее рабочее пространство, dashboard или автоматизация одного бизнес-процесса.",
     forWhom:["бизнесам с повторяющимися внутренними процессами","проектам, которым нужен личный кабинет","командам, которым не подходит готовый SaaS","идеям, которые нужно проверить через MVP"],
@@ -103,7 +103,7 @@ export const services: Service[] = [
     cta:"Обсудить MVP", visual:"product", technicalNote:"Точная стоимость — после технической оценки."
   },
   {
-    slug:"brand-start", index:"06", name:"Brand Start", shortName:"Brand Start", price:2900, priceLabel:"от 2 900 ₪", duration:"примерно 1,5–3 недели",
+    slug:"brand-start", index:"06", name:"Brand Start", shortName:"Brand Start", price:3400, priceLabel:"от 3 400 ₪", duration:"примерно 1,5–3 недели",
     tagline:"Базовая визуальная система, чтобы бизнес выглядел цельно ещё до первого экрана сайта.",
     short:"Логотип, палитра, типографика и базовые правила для нового или обновляемого бизнеса.",
     forWhom:["новым бизнесам","проектам без единого визуального стиля","тем, кто готовит новый сайт","брендам, которым нужен аккуратный визуальный старт без большого brand book"],
@@ -116,25 +116,25 @@ export const services: Service[] = [
     excludes:["нейминг","юридическая проверка товарного знака","глубокое исследование рынка","бренд-стратегия","упаковка","наружная реклама","сложный иллюстрированный логотип","большой brand book"],
     priceFactors:["сложность знака","количество дополнительных носителей","иллюстрации","расширенный brand guide","дополнительные концепции сверх согласованного процесса"],
     chooseAnother:"Если фирменный стиль уже есть и задача только в новом сайте, Brand Start не нужен — мы можем работать с существующей системой.",
-    cta:"Обсудить визуальный стиль", visual:"brand", technicalNote:"При заказе сайта — от 2 500 ₪."
+    cta:"Обсудить визуальный стиль", visual:"brand", technicalNote:"При заказе сайта — от 3 000 ₪."
   }
 ];
 
 export const serviceMap = Object.fromEntries(services.map(s => [s.slug, s])) as Record<ServiceSlug, Service>;
 
 export const addons = [
-  {id:"page", name:"Дополнительная стандартная страница", price:650, recurring:false},
-  {id:"form", name:"Дополнительная простая форма", price:450, recurring:false},
-  {id:"smart-form", name:"Умная форма или квиз", price:900, recurring:false},
-  {id:"seo", name:"Расширенная SEO-подготовка", price:1500, recurring:false},
-  {id:"integration", name:"CRM или сервисная интеграция", price:1500, recurring:false},
-  {id:"module", name:"Индивидуальный модуль", price:1500, recurring:false},
-  {id:"language", name:"Дополнительный язык", price:1200, recurring:false},
-  {id:"rtl", name:"RTL-адаптация", price:500, recurring:false},
-  {id:"brand", name:"Brand Start при заказе сайта", price:2500, recurring:false},
+  {id:"page", name:"Дополнительная стандартная страница", price:800, recurring:false},
+  {id:"form", name:"Дополнительная простая форма", price:550, recurring:false},
+  {id:"smart-form", name:"Умная форма или квиз", price:1100, recurring:false},
+  {id:"seo", name:"Расширенная SEO-подготовка", price:1800, recurring:false},
+  {id:"integration", name:"CRM или сервисная интеграция", price:1800, recurring:false},
+  {id:"module", name:"Индивидуальный модуль", price:1800, recurring:false},
+  {id:"language", name:"Дополнительный язык", price:1400, recurring:false},
+  {id:"rtl", name:"RTL-адаптация", price:600, recurring:false},
+  {id:"brand", name:"Brand Start при заказе сайта", price:3000, recurring:false},
 ] as const;
 
 export const maintenancePlans = [
-  {id:"care", name:"Care", price:390, included:["ежемесячная проверка основных страниц","проверка ссылок, WhatsApp и форм","проверка подключения аналитики","до 30 минут небольших контентных изменений","ответ в течение двух рабочих дней"]},
-  {id:"care-plus", name:"Care Plus", price:690, included:["всё из Care","до 2 часов изменений в месяц","замена текстов, цен, контактов и изображений","небольшие визуальные исправления","ответ в течение одного-двух рабочих дней"]}
+  {id:"care", name:"Care", price:450, included:["ежемесячная проверка основных страниц","проверка ссылок, WhatsApp и форм","проверка подключения аналитики","до 30 минут небольших контентных изменений","ответ в течение двух рабочих дней"]},
+  {id:"care-plus", name:"Care Plus", price:800, included:["всё из Care","до 2 часов изменений в месяц","замена текстов, цен, контактов и изображений","небольшие визуальные исправления","ответ в течение одного-двух рабочих дней"]}
 ] as const;

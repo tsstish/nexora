@@ -247,7 +247,7 @@ function ReadyTeaser(){return <section className="home-ready-teaser section-shel
     </strong>
 
     <div className="home-ready-actions">
-      <span>от <b>1 190 ₪</b></span>
+      <span>от <b>1 400 ₪</b></span>
       <a href="/ready">Открыть showroom →</a>
     </div>
   </div>
@@ -533,7 +533,7 @@ function PricingPaths(){return <section id="formats" className="home-price-note-
 
     <p>
       Нужен проект полностью с нуля?
-      <strong>от 1 900 ₪</strong>
+      <strong>от 2 200 ₪</strong>
     </p>
 
     <span>
