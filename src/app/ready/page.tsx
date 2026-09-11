@@ -341,8 +341,10 @@ export default function ReadyPage() {
 
                     <div className="eyebrow">{site.category}</div>
 
-                    <h3>{site.name}</h3>
-                    <h4>{site.title}</h4>
+                    <h3>{site.title}</h3>
+                    <h4>
+                      Концепция {site.name} · {site.formatLabel}
+                    </h4>
 
                     <p className="ready-showcase-plain">
                       Это уже разработанный сайт. Перед запуском мы
@@ -565,7 +567,7 @@ export default function ReadyPage() {
 
           <div className="ready-future-shelf">
             <article className="ready-future-card ready-future-card-a">
-              <span>02</span>
+              <span>03</span>
               <div className="ready-future-lines" aria-hidden="true">
                 <i />
                 <i />
@@ -576,7 +578,7 @@ export default function ReadyPage() {
             </article>
 
             <article className="ready-future-card ready-future-card-b">
-              <span>03</span>
+              <span>04</span>
               <div className="ready-future-window" aria-hidden="true">
                 <i />
                 <i />
@@ -587,7 +589,7 @@ export default function ReadyPage() {
             </article>
 
             <article className="ready-future-card ready-future-card-c">
-              <span>04</span>
+              <span>05</span>
               <div className="ready-future-orbit" aria-hidden="true">
                 <i />
                 <b />
