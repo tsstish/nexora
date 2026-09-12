@@ -567,7 +567,7 @@ export default function ReadyPage() {
 
           <div className="ready-future-shelf">
             <article className="ready-future-card ready-future-card-a">
-              <span>03</span>
+              <span>04</span>
               <div className="ready-future-lines" aria-hidden="true">
                 <i />
                 <i />
@@ -578,7 +578,7 @@ export default function ReadyPage() {
             </article>
 
             <article className="ready-future-card ready-future-card-b">
-              <span>04</span>
+              <span>05</span>
               <div className="ready-future-window" aria-hidden="true">
                 <i />
                 <i />
@@ -589,7 +589,7 @@ export default function ReadyPage() {
             </article>
 
             <article className="ready-future-card ready-future-card-c">
-              <span>05</span>
+              <span>06</span>
               <div className="ready-future-orbit" aria-hidden="true">
                 <i />
                 <b />
