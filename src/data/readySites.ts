@@ -1,4 +1,7 @@
+import type { MonthlyPlanId } from "./readyMonthly";
+
 export type ReadySite = {
+  monthlyPlan: MonthlyPlanId;
   slug: string;
   name: string;
   category: string;
@@ -28,6 +31,7 @@ export type ReadySite = {
 export const readySites: ReadySite[] = [
   {
     slug: "dental-clinic",
+    monthlyPlan: "business",
     name: "MIDA",
     category: "СТОМАТОЛОГИИ · ЧАСТНЫЕ КЛИНИКИ",
 
@@ -110,6 +114,7 @@ pricingBreakdown: [
   },
   {
     slug: "private-teacher",
+    monthlyPlan: "landing",
     name: "LEA NORD",
     category: "ЧАСТНОЕ ОБУЧЕНИЕ · ЗАНЯТИЯ · АВТОРСКИЕ КУРСЫ",
 
@@ -193,6 +198,7 @@ pricingBreakdown: [
 
   {
     slug: "brow-artist",
+    monthlyPlan: "compact",
     name: "FACET",
     category: "BEAUTY · БРОВИ · РЕСНИЦЫ",
 

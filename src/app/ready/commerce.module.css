@@ -1,0 +1,19 @@
+.choices {display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:20px 0 14px;}
+.choice {min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;}
+.label {display:inline-flex;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;line-height:1.3;}
+.buy {color:var(--emerald);background:rgba(131,223,200,.18);}
+.monthly {color:var(--ink);background:rgba(89,110,233,.12);}
+.price {font:clamp(21px,2vw,29px)/1.2 Georgia,serif;color:var(--ink);font-weight:400;}
+.period {font:12px/1.4 Arial,sans-serif;color:var(--muted);}
+.note {font-size:12px;line-height:1.55;color:var(--muted);margin:0;}
+.choice a {font-size:12px;line-height:1.5;font-weight:700;text-decoration:underline;text-underline-offset:4px;}
+.choice a:focus-visible,.bridge a:focus-visible {outline:2px solid var(--emerald);outline-offset:5px;border-radius:3px;}
+.comparison {display:flex;flex-wrap:wrap;gap:4px 8px;font-size:12px;line-height:1.6;color:var(--muted);margin:10px 0;}
+.comparison strong {font-weight:400;}
+.bridge {margin-top:24px;margin-bottom:36px;padding:30px 0;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.bridge h2 {font:clamp(28px,3vw,40px)/1.12 Georgia,serif;margin:0 0 12px;font-weight:400;letter-spacing:-.025em;}
+.bridge p {max-width:700px;margin:0;font-size:14px;line-height:1.65;color:var(--muted);}
+@media(max-width:700px){.bridge{grid-template-columns:1fr;padding:24px 0;}.bridge>a{justify-self:start;}.choices{gap:12px;}.price{font-size:23px;}}
+@media(max-width:350px){.choices{grid-template-columns:1fr;gap:20px;}}
+
+.planName {font-size:14px;line-height:1.4;font-weight:700;color:var(--ink);}

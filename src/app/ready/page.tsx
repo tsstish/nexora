@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { readySites } from "@/data/readySites";
+import { monthlyPlans, monthlySupport } from "@/data/readyMonthly";
+import commerce from "./commerce.module.css";
+// ready-monthly-integration-v2
 import { siteConfig, whatsappUrl } from "@/data/site";
 
 const siteUrl = (
@@ -82,6 +85,10 @@ const adaptationItems = [
 
 const faq = [
   {
+    q: "Можно ли получить Ready по подписке?",
+    a: "Да. Ready Monthly — формат с ежемесячной оплатой, хостингом, двумя пакетами правок до 90 минут суммарно в месяц и еженедельной технической проверкой. Тариф зависит от формата сайта: компактный, лендинг или бизнес-сайт. Для всех концепций одного формата цена подписки одинакова. Название подписки и цена указаны в карточке.",
+  },
+  {
     q: "Чем готовый сайт отличается от шаблона?",
     a: "Ready by NeXora — это уже спроектированный и разработанный сайт для определённого типа бизнеса. Мы не просто меняем логотип в универсальном шаблоне, а адаптируем готовую дизайн-систему, структуру и контент под конкретную компанию.",
   },
@@ -158,9 +165,10 @@ export default function ReadyPage() {
 
 
         <nav aria-label="Навигация">
-          <Link href="/#projects">Проекты</Link>
+          <Link href="/#projects">Пример работы</Link>
           <Link href="/#solutions">Решения</Link>
           <Link href="/ready" aria-current="page">Ready</Link>
+          <Link href="/ready/monthly">Monthly</Link>
           <Link href="/#process">Процесс</Link>
           <Link href="/services">Стоимость</Link>
         </nav>
@@ -184,9 +192,10 @@ export default function ReadyPage() {
           </summary>
 
           <div className="ready-mobile-menu-panel">
-            <Link href="/#projects">Проекты</Link>
+            <Link href="/#projects">Пример работы</Link>
             <Link href="/#solutions">Решения</Link>
             <Link href="/ready">Ready</Link>
+            <Link href="/ready/monthly">Monthly</Link>
             <Link href="/#process">Процесс</Link>
             <Link href="/services">Стоимость</Link>
 
@@ -249,6 +258,14 @@ export default function ReadyPage() {
 </div>
         </section>
 
+        <section className={`section-shell ${commerce.bridge}`}>
+          <div>
+            <h2>Выбранный Ready можно купить или взять по подписке</h2>
+            <p>Посмотрите концепции в коллекции и выберите удобный формат. В Ready Monthly включены хостинг, два пакета правок в месяц и еженедельная техническая проверка.</p>
+          </div>
+          <Link className="cta" href="/ready/monthly">О подписке <span>→</span></Link>
+        </section>
+
         {/* COLLECTION */}
         <section
           id="ready-collection"
@@ -269,6 +286,7 @@ export default function ReadyPage() {
 
           <div className="ready-showcase-list">
             {readySites.map((site, index) => {
+              const monthly = monthlyPlans[site.monthlyPlan];
               const difference =
                 site.individualPriceFrom - site.priceFrom;
 
@@ -364,20 +382,23 @@ export default function ReadyPage() {
                       <span>SEO</span>
                     </div>
 
-                    <div className="ready-showcase-pricing">
-                      <div>
-                        <span>Аналогичная разработка с нуля</span>
-                        <strong>
-                          от {site.individualPriceFrom.toLocaleString("ru-RU")} ₪
-                        </strong>
+                    <div className={commerce.comparison}>
+                      <span>Аналогичная разработка с нуля:</span>
+                      <strong>от {site.individualPriceFrom.toLocaleString("ru-RU")} ₪</strong>
+                    </div>
+                    <div className={commerce.choices}>
+                      <div className={commerce.choice}>
+                        <span className={`${commerce.label} ${commerce.buy}`}>Купить</span>
+                        <strong className={commerce.price}>от {site.priceFrom.toLocaleString("ru-RU")} ₪</strong>
+                        <span className={commerce.note}>Адаптация выбранной концепции</span>
                       </div>
-
-                      <div className="ready-showcase-price-main">
-                        <span>Адаптация Ready-концепции</span>
-                        <strong>
-                          от {site.priceFrom.toLocaleString("ru-RU")} ₪
-                        </strong>
-                      </div>
+                      {monthly && <div className={commerce.choice}>
+                        <span className={`${commerce.label} ${commerce.monthly}`}>По подписке</span>
+                        <span className={commerce.planName}>«{monthly.name}»</span>
+                        <strong className={commerce.price}>{monthly.price} ₪ <span className={commerce.period}>/ мес.</span></strong>
+                        <span className={commerce.note}>{monthlySupport.summary}</span>
+                        <Link href={`/ready/monthly#${site.monthlyPlan}`}>Условия Monthly →</Link>
+                      </div>}
                     </div>
 
                     <div className="ready-showcase-saving">
@@ -458,8 +479,7 @@ export default function ReadyPage() {
             <p>
               Если вам подходит готовая концепция — мы адаптируем уже
               разработанную основу. Если нужна полностью своя структура,
-              визуальный язык и логика — создаём проект с нуля. Все указанные
-              цены уже включают НДС (מע״מ).
+              визуальный язык и логика — создаём проект с нуля.
             </p>
           </div>
 
@@ -681,9 +701,10 @@ export default function ReadyPage() {
           className="footer-links footer-links-v2"
           aria-label="Навигация в футере"
         >
-          <Link href="/#projects">Проекты</Link>
+          <Link href="/#projects">Пример работы</Link>
           <Link href="/#solutions">Решения</Link>
           <Link href="/ready">Ready</Link>
+            <Link href="/ready/monthly">Monthly</Link>
           <Link href="/#process">Процесс</Link>
           <Link href="/services">Стоимость</Link>
         </nav>

@@ -5,23 +5,18 @@ export type Project = {
   tags: string[];
   url: string;
   screenshot: string;
+  estimatedPrice: number;
 };
 
 export const projects: Project[] = [
   {
     name: "MovePro Israel",
-    type: "Сервис перевозок по Израилю",
-    description: "Понятная структура, акцент на доверие и быстрый путь к обращению.",
-    tags: ["Стратегия", "UX/UI дизайн", "Разработка", "SEO"],
+    type: "Лендинг для компании по переездам",
+    description: "Услуги, география и этапы переезда — с короткой формой обращения в WhatsApp.",
+    tags: ["Индивидуальный дизайн", "Лендинг", "WhatsApp"],
     url: "https://moveproisrael.online/",
-    screenshot: "/projects/movepro.jpg"
+    screenshot: "/projects/movepro.jpg",
+    // Оценка аналогичного проекта, не фактически оплаченный счёт.
+    estimatedPrice: 5500,
   },
-  {
-    name: "NeXora Business OS",
-    type: "Внутренняя цифровая система",
-    description: "Рабочее пространство для обращений, задач, финансов и развития бизнеса.",
-    tags: ["Продукт", "UX/UI", "Next.js", "Supabase"],
-    url: "https://nexora-business-os.vercel.app/dashboard",
-    screenshot: "/projects/business-os.jpg"
-  }
 ];

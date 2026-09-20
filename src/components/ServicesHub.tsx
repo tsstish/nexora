@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import commerce from "@/app/ready/commerce.module.css";
+import { monthlyPlans } from "@/data/readyMonthly";
 import {
   services,
   addons,
@@ -116,9 +118,10 @@ export function ServicesHub() {
         </Link>
 
         <nav aria-label="Основная навигация">
-          <Link href="/#projects">Проекты</Link>
+          <Link href="/#projects">Пример работы</Link>
           <Link href="/#solutions">Решения</Link>
           <Link href="/ready">Ready</Link>
+          <Link href="/ready/monthly">Monthly</Link>
           <Link href="/#process">Процесс</Link>
           <Link href="/services" aria-current="page">
             Стоимость
@@ -137,9 +140,10 @@ export function ServicesHub() {
           </summary>
 
           <div className="site-mobile-menu-panel">
-            <Link href="/#projects">Проекты</Link>
+            <Link href="/#projects">Пример работы</Link>
             <Link href="/#solutions">Решения</Link>
             <Link href="/ready">Ready</Link>
+            <Link href="/ready/monthly">Monthly</Link>
             <Link href="/#process">Процесс</Link>
             <Link href="/services">Стоимость</Link>
 
@@ -200,10 +204,7 @@ export function ServicesHub() {
             </div>
 
             <p>
-              Стоимость указана «от». Точный объём определяется после
-              короткого брифа: учитываем структуру, контент, языки,
-              интеграции и нестандартные функции. Все указанные цены уже
-              включают НДС (מע״מ).
+              У каждого формата указан базовый состав работ и его стоимость. Дополнения можно выбрать отдельно по указанным ценам. Если задаче нужны работы сверх описанного состава, мы заранее рассчитаем и согласуем их стоимость.
             </p>
           </div>
 
@@ -332,13 +333,16 @@ export function ServicesHub() {
           </div>
 
           <p className="services-extras-note">
-            Профессиональный перевод, сторонние сервисы, домен, хостинг
-            и комиссии внешних систем оплачиваются отдельно.
-            Точная стоимость нестандартного функционала определяется
-            после технической оценки.
+            Дополнительные работы выполняются по согласованию. Профессиональный перевод, домен, платные сторонние сервисы и комиссии внешних систем оплачиваются отдельно, если не включены в выбранное предложение. Хостинг входит в Ready; в Ready Monthly — в ежемесячную стоимость. Для индивидуальных проектов условия размещения согласуем перед запуском.
           </p>
         </section>
 
+
+        <section className={`section-shell ${commerce.bridge}`}>
+          <div><h2>Готовый сайт с ежемесячной оплатой</h2>
+          <p>Ready Monthly — выбранная концепция с адаптацией под ваш бизнес. От {monthlyPlans.compact.price} ₪ в месяц: хостинг, два пакета правок и еженедельная техническая проверка включены.</p></div>
+          <Link className="cta" href="/ready/monthly">Посмотреть Monthly <span>→</span></Link>
+        </section>
 
         <section className="services-care-v2 section-shell">
           <div className="services-care-intro">
@@ -483,9 +487,7 @@ export function ServicesHub() {
             </div>
 
             <p className="services-calc-disclaimer">
-              Финальная стоимость определяется после брифа и согласования
-              точного объёма. Переводы, платные сервисы, домен, хостинг
-              и комиссии внешних систем оплачиваются отдельно.
+              Расчёт складывается из выбранного формата и дополнений. Перед началом работ фиксируем состав и итоговую стоимость. Работы сверх этого состава согласуем отдельно. Калькулятор предназначен для индивидуальных проектов; условия Ready и Ready Monthly указаны отдельно.
             </p>
 
             <a
@@ -572,9 +574,10 @@ export function ServicesHub() {
 
 
         <nav className="footer-links footer-links-v2" aria-label="Навигация в футере">
-          <Link href="/#projects">Проекты</Link>
+          <Link href="/#projects">Пример работы</Link>
           <Link href="/#solutions">Решения</Link>
           <Link href="/ready">Ready</Link>
+          <Link href="/ready/monthly">Monthly</Link>
           <Link href="/#process">Процесс</Link>
           <Link href="/services">Стоимость</Link>
         </nav>

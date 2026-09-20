@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import home from "./home.module.css";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { projects } from "@/data/projects";
 import { services as workFormats, addons, maintenancePlans, type Service, type ServiceSlug } from "@/data/services";
 import { siteConfig, whatsappUrl } from "@/data/site";
@@ -34,9 +35,10 @@ function Header(){return <header className="topbar home-topbar-v2">
   </a>
 
   <nav aria-label="Основная навигация">
-    <a href="#projects">Проекты</a>
+    <a href="#projects">Пример работы</a>
     <a href="#solutions">Решения</a>
     <a href="/ready">Ready</a>
+    <a href="/ready/monthly">Monthly</a>
     <a href="#process">Процесс</a>
     <a href="/services">Стоимость</a>
   </nav>
@@ -53,9 +55,10 @@ function Header(){return <header className="topbar home-topbar-v2">
     </summary>
 
     <div className="site-mobile-menu-panel">
-      <a href="#projects">Проекты</a>
+      <a href="#projects">Пример работы</a>
       <a href="#solutions">Решения</a>
       <a href="/ready">Ready</a>
+      <a href="/ready/monthly">Monthly</a>
       <a href="#process">Процесс</a>
       <a href="/services">Стоимость</a>
 
@@ -89,7 +92,7 @@ function Hero(){return <section id="top" className="hero home-hero-v2 section-sh
         Обсудить проект <span>→</span>
       </a>
       <a className="text-link" href="#projects">
-        Смотреть проекты ↓
+        Посмотреть пример сайта ↓
       </a>
     </div>
   </div>
@@ -133,19 +136,18 @@ function Approach(){return <section className="approach section-shell home-appro
 </section>}
 
 function Solutions(){return <section id="solutions" className="solutions-v2 section-shell">
-  <div className="solutions-head-v2">
+  <div className={`solutions-head-v2 ${home.solutionsHead}`}>
     <div>
       <div className="eyebrow">● &nbsp; ЧТО МЫ СОЗДАЁМ</div>
       <h2>
-        Сайт должен не просто быть в интернете
-        <span>Он должен объяснять, убеждать и вести к действию</span>
+        Сайт, который
+        <span>помогает бизнесу</span>
       </h2>
     </div>
 
     <p>
-      Выбираем формат не по количеству страниц, а по задаче бизнеса:
-      представить услугу, получить обращения, продавать онлайн
-      или создать полноценный цифровой инструмент.
+      Представить услуги, получать обращения, продавать онлайн
+      или упростить работу — подбираем решение под вашу задачу.
     </p>
   </div>
 
@@ -347,66 +349,32 @@ function Positioning(){return <section className="home-positioning-v2 section-sh
 </section>}
 
 function Projects(){
-  const[i,setI]=useState(0);
-  const p=projects[i];
-
-  return <section id="projects" className="project-section-v2 section-shell">
-
-    <div className="project-intro-v2">
+  const p=projects[0];
+  return <section id="projects" className={`project-section-v2 section-shell ${home.example}`} aria-labelledby="example-title">
+    <div className={`project-intro-v2 ${home.intro}`}>
       <div>
-        <div className="eyebrow">● &nbsp; SELECTED WORK · ПРОЕКТЫ</div>
-        <h2>Дизайн начинается с задачи бизнеса</h2>
+        <div className="eyebrow">НАШ ПОДХОД НА ПРАКТИКЕ</div>
+        <h2 id="example-title">От задачи бизнеса —<br />к работающему сайту</h2>
       </div>
-
-      <p>
-        Мы не собираем сайты вокруг красивого первого экрана.
-        Продумываем структуру, путь пользователя и визуальную систему так,
-        чтобы проект понятно представлял бизнес и подводил человека
-        к нужному действию.
-      </p>
+      <p>Посмотрите, как это реализовано для компании по переездам: от знакомства с услугами до обращения в WhatsApp.</p>
     </div>
-
-    <div className="project-showcase-v2">
-      <div className="project-copy project-copy-v2">
-        <span className="project-label-v2">SELECTED PROJECT</span>
-
+    <div className={`project-showcase-v2 ${home.showcase}`}>
+      <div className={`project-copy project-copy-v2 ${home.copy}`}>
+        <span className={home.status}><span aria-hidden="true" />Действующий сайт</span>
         <h3>{p.name}</h3>
-
-        <p>{p.description}</p>
-
-        <div className="tags">
-          {p.tags.map(t=><span key={t}>{t}</span>)}
+        <p className={home.format}>Лендинг для компании по переездам</p>
+        <dl className={home.details}>
+          <div><dt>Понятное предложение</dt><dd>Услуги, география, этапы переезда и ответы на вопросы — на одной странице.</dd></div>
+          <div><dt>Удобное обращение</dt><dd>Детали из короткой формы передаются в WhatsApp для обсуждения переезда.</dd></div>
+        </dl>
+        <div className={home.budget}>
+          <span>Стоимость аналогичного проекта</span>
+          <strong>{p.estimatedPrice.toLocaleString("ru-RU")} ₪</strong>
+          <small>Тексты, логотип и изображения предоставлены заказчиком</small>
         </div>
-
-        <a
-          className="text-link"
-          href={p.url}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Смотреть проект →
-        </a>
-
-        <div className="carousel-controls">
-          <button
-            onClick={()=>setI((i-1+projects.length)%projects.length)}
-            aria-label="Предыдущий проект"
-          >
-            ←
-          </button>
-
-          <span>{i+1} / {projects.length}</span>
-
-          <button
-            onClick={()=>setI((i+1)%projects.length)}
-            aria-label="Следующий проект"
-          >
-            →
-          </button>
-        </div>
+        <a className="text-link" href={p.url} target="_blank" rel="noreferrer">Открыть сайт ↗</a>
       </div>
-
-      <DevicePreview index={i}/>
+      <DevicePreview index={0}/>
     </div>
   </section>
 }
@@ -627,9 +595,10 @@ function Footer(){return <footer id="contacts" className="footer footer-v2 secti
 
 
   <nav className="footer-links footer-links-v2" aria-label="Навигация в футере">
-    <a href="#projects">Проекты</a>
+    <a href="#projects">Пример работы</a>
     <a href="#solutions">Решения</a>
     <a href="/ready">Ready</a>
+    <a href="/ready/monthly">Monthly</a>
     <a href="#process">Процесс</a>
     <a href="/services">Стоимость</a>
   </nav>
@@ -667,12 +636,5 @@ function Footer(){return <footer id="contacts" className="footer footer-v2 secti
 </footer>}
 
 export default function Page(){
-  useLayoutEffect(()=>{
-    if(typeof window==="undefined") return;
-    if("scrollRestoration" in history) history.scrollRestoration="manual";
-    const reset=()=>{document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo({top:0,left:0,behavior:"auto"})};
-    reset(); const raf=requestAnimationFrame(reset); const timer=window.setTimeout(reset,80);
-    return()=>{cancelAnimationFrame(raf);window.clearTimeout(timer)};
-  },[]);
-  return <><a className="skip-link" href="#main-content">Перейти к содержимому</a><Header/><main id="main-content"><Hero/><Positioning/><Projects/><Solutions/><ReadyTeaser/><PricingPaths/><Approach/><Process/><FinalProjectCta/></main><Footer/></>
+  return <><a className="skip-link" href="#main-content">Перейти к содержимому</a><Header/><main id="main-content"><Hero/><Positioning/><Solutions/><Projects/><ReadyTeaser/><PricingPaths/><Approach/><Process/><FinalProjectCta/></main><Footer/></>
 }
