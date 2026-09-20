@@ -1,3 +1,4 @@
+import { readyAdaptation, readyRights, clientMaterials } from "@/data/readyConditions";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -54,7 +55,7 @@ const adaptationItems = [
   {
     index: "01",
     title: "Ваш бренд",
-    text: "Меняем название, логотип и фирменные данные под вашу компанию.",
+    text: "Настраиваем цвета, размещаем ваш логотип и название компании.",
   },
   {
     index: "02",
@@ -84,6 +85,9 @@ const adaptationItems = [
 ];
 
 const faq = [
+  { q: "Что можно изменить в выбранной концепции?", a: readyAdaptation },
+  { q: "Становится ли концепция эксклюзивной после покупки?", a: readyRights },
+  { q: "Кому принадлежат материалы заказчика?", a: clientMaterials },
   {
     q: "Можно ли получить Ready по подписке?",
     a: "Да. Ready Monthly — формат с ежемесячной оплатой, хостингом, двумя пакетами правок до 90 минут суммарно в месяц и еженедельной технической проверкой. Тариф зависит от формата сайта: компактный, лендинг или бизнес-сайт. Для всех концепций одного формата цена подписки одинакова. Название подписки и цена указаны в карточке.",
@@ -283,6 +287,7 @@ export default function ReadyPage() {
             </p>
           </div>
 
+          <p className={commerce.adaptationIntro}>{readyAdaptation}</p>
           <div className="ready-showcase-list">
             {readySites.map((site, index) => {
               const monthly = monthlyPlans[site.monthlyPlan];
@@ -395,7 +400,7 @@ export default function ReadyPage() {
                         <h4>Подписка «{monthly.name}»</h4>
                         <p>Хостинг, два пакета правок до {monthlySupport.editMinutes} минут суммарно в месяц и еженедельная техническая проверка.</p>
                         <div className={commerce.comparison}><span>Аналогичная разработка с нуля:</span><strong>от {site.individualPriceFrom.toLocaleString("ru-RU")} ₪</strong></div>
-                        <p>При покупке Ready — на {difference.toLocaleString("ru-RU")} ₪ меньше: дизайн, структура и основная разработка уже готовы.</p>
+                        <p>Экономия на разработке — {difference.toLocaleString("ru-RU")} ₪ при сравнении указанных стартовых цен. Дизайн, структура и основная разработка уже готовы.</p>
                       </div>
                     </details>
                   </div>

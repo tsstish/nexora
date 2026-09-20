@@ -1,3 +1,4 @@
+import { readyAdaptation, readyRights, clientMaterials, monthlyStart, monthlyCancel, monthlyBuyout } from "@/data/readyConditions";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,7 +26,7 @@ const includes = [
   ["КАЖДЫЙ МЕСЯЦ", "Два пакета правок", `Обновляем тексты, фото, цены и контакты. До ${monthlySupport.editMinutes} минут работы суммарно в месяц.`],
   ["КАЖДУЮ НЕДЕЛЮ", "Техническая проверка", "Проверяем сайт, формы, статус индексации в Search Console и сбор данных в Google Analytics."],
   ["ВЕСЬ ПЕРИОД", "Хостинг", "Размещение сайта на весь оплаченный период подписки."],
-  ["НА СТАРТЕ", "Ваш бренд", "Адаптируем готовую концепцию под ваши услуги, материалы и контакты."],
+  ["НА СТАРТЕ", "Ваш бренд", "Настраиваем цвета, размещаем ваш логотип, фото и тексты, обновляем услуги и контакты."],
   ["НА СТАРТЕ", "Готовность к обращениям", "Настраиваем предусмотренные формы и WhatsApp, проверяем мобильную версию."],
   ["НА СТАРТЕ", "База для поиска", "Готовим метаданные, подключаем Search Console и базовую аналитику."],
 ];
@@ -47,7 +48,11 @@ const faq = [
   ["Как работают два пакета правок?", monthlySupport.editsDescription],
   ["Что входит в еженедельную проверку?", monthlySupport.checksDescription],
   ["Можно ли добавить новые страницы или функции?", "Да. Новые страницы, языки, интеграции и изменение структуры сверх выбранной концепции оцениваем отдельно до начала работ. Сначала проверяем, что уже входит в ваш Ready."],
-  ["Есть ли обязательство на год?", "Нет обязательства на год: оплата помесячная. Порядок завершения подписки и дальнейшие действия с сайтом фиксируем до начала работы. Возможность и стоимость выкупа согласуются отдельно."],
+  ["Что нужно оплатить для запуска?", monthlyStart],
+  ["Как отменить или возобновить подписку?", monthlyCancel],
+  ["Можно ли выкупить сайт?", monthlyBuyout],
+  ["Что можно изменить в концепции?", readyAdaptation],
+  ["Кому принадлежат концепция и материалы?", readyRights + " " + clientMaterials],
 ];
 
 function Extension({ id }: { id: string }) {
@@ -172,7 +177,7 @@ export default function ReadyMonthlyPage() {
           <Link href="/ready" className={styles.breadcrumb}>← Коллекция Ready</Link>
           <div className={styles.eyebrow}>READY MONTHLY · BY NEXORA</div>
           <h1>Ваш сайт<br /><em>с поддержкой<br />каждый месяц</em></h1>
-          <p className={styles.lead}>Сайт по подписке от {monthlyPlans.compact.price} ₪ в месяц. Адаптация, хостинг и регулярные правки включены.</p>
+          <p className={styles.lead}>Сайт по подписке от {monthlyPlans.compact.price} ₪ в месяц. Адаптация, хостинг и постоянная техническая поддержка включены.</p>
           <div className={styles.actions}>
             <a className="cta" href="#monthly-formats">Выбрать формат <span>↓</span></a>
             <Link className={styles.textLink} href="/ready#ready-collection">Посмотреть живые демо ↗</Link>
@@ -197,6 +202,7 @@ export default function ReadyMonthlyPage() {
             </div>
           </article>)}
         </div>
+        <p className={styles.footnote}><strong>Без стартового платежа и минимального срока подписки</strong></p>
         <p className={styles.pricePromise}><strong>Цена остаётся с вами.</strong> Новые тарифы не меняют стоимость действующей подписки.</p>
         <p className={styles.footnote}>Языки готовой концепции включены. Работы сверх её состава согласуем отдельно. <Link href="/ready#ready-collection">Смотреть концепции →</Link></p>
       </section>

@@ -1,3 +1,4 @@
+import { SiteHelper } from "@/components/SiteHelper";
 import type { Metadata, Viewport } from "next";
 import { AnalyticsConsent } from "@/components/AnalyticsConsent";
 import { RouteScrollManager } from "@/components/RouteScrollManager";
@@ -67,5 +68,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c") }} />
     {children}
     <AnalyticsConsent />
+    <SiteHelper />
   </body></html>;
 }

@@ -20,7 +20,7 @@ export const monthlyPlans = {
 } as const;
 export const monthlyPlanList = [monthlyPlans.compact, monthlyPlans.landing, monthlyPlans.business];
 export const monthlyContentPack = { name: "Content Pack", price: 390 } as const;
-export const monthlyPricePromise = "Если публичные тарифы Ready Monthly изменятся, стоимость вашей действующей подписки сохранится на уровне, зафиксированном при подключении. Новые цены применяются к новым подключениям.";
+export const monthlyPricePromise = "Если публичные тарифы Ready Monthly изменятся, стоимость вашей действующей подписки сохранится на уровне, зафиксированном при подключении. Новые цены применяются к новым подключениям, в том числе при возобновлении отменённой подписки.";
 
 // Ready Monthly support: shared by Monthly, Ready, Services and terms.
 const monthlyEditMinutes = 90;
