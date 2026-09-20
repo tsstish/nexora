@@ -1,0 +1,8 @@
+/* Keep the existing glass artwork inside its own desktop column. */
+@media(min-width:901px){
+.hero.hero{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:32px;min-height:560px;padding-block:48px}
+.hero.hero :global(.services-hub-copy){min-width:0;width:100%;max-width:none}
+.hero.hero :global(.services-hub-art-render){position:relative;inset:auto;width:100%;height:auto;min-height:400px;margin:0}
+.hero.hero :global(.services-hub-orbit-image){position:static;width:100% !important;max-width:100%;height:auto;left:auto !important;top:auto !important;transform:none !important}
+.hero.hero :global(.services-hub-actions){flex-wrap:wrap;gap:16px 24px}
+}

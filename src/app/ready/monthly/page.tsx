@@ -9,7 +9,7 @@ import styles from "./monthly.module.css";
 
 export const metadata: Metadata = {
   title: `Сайт по подписке от ${monthlyPlans.compact.price} ₪ в месяц | Ready Monthly`,
-  description: `Ready Monthly by NeXora: компактный сайт — ${monthlyPlans.compact.price} ₪/мес., лендинг — ${monthlyPlans.landing.price} ₪/мес., бизнес-сайт — ${monthlyPlans.business.price} ₪/мес. Адаптация, хостинг, два пакета правок и еженедельная техническая проверка включены.`,
+  description: `Сайт по подписке в Израиле от ${monthlyPlans.compact.price} ₪/мес. Ready Monthly: адаптация под бизнес, хостинг, два пакета правок и еженедельная техническая проверка.`,
   alternates: { canonical: "/ready/monthly" },
   openGraph: {
     title: "Ready Monthly — ваш сайт по подписке",
@@ -58,7 +58,44 @@ function Extension({ id }: { id: string }) {
 
 export default function ReadyMonthlyPage() {
   const readyMessage = "Здравствуйте! Меня интересует Ready Monthly — сайт по подписке. Хочу подобрать концепцию под мой бизнес.";
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://nexoradesign.online").replace(/\/$/, "");
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `${siteUrl}/ready/monthly#service`,
+        name: "Ready Monthly — сайт по подписке",
+        url: `${siteUrl}/ready/monthly`,
+        serviceType: "Создание и сопровождение сайта по подписке",
+        description: "Адаптация Ready-концепции, хостинг, два пакета правок в месяц и еженедельная техническая проверка.",
+        provider: { "@id": `${siteUrl}/#organization` },
+        areaServed: { "@type": "Country", name: "Israel" },
+        offers: monthlyPlanList.map(plan => ({
+          "@type": "Offer",
+          name: `Ready Monthly — ${plan.name}`,
+          url: `${siteUrl}/ready/monthly#${plan.id}`,
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: plan.price,
+            priceCurrency: "ILS",
+            unitText: "месяц",
+            referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitText: "месяц" },
+          },
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "NeXora", item: `${siteUrl}/` },
+          { "@type": "ListItem", position: 2, name: "Ready", item: `${siteUrl}/ready` },
+          { "@type": "ListItem", position: 3, name: "Ready Monthly", item: `${siteUrl}/ready/monthly` },
+        ],
+      },
+    ],
+  };
   return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
     <a className="skip-link" href="#ready-main">Перейти к содержимому</a>
     <header className="topbar ready-topbar">
         <Link href="/" className="brand-lockup" aria-label="NeXora — главная">
@@ -134,13 +171,13 @@ export default function ReadyMonthlyPage() {
         <div className={styles.heroCopy}>
           <Link href="/ready" className={styles.breadcrumb}>← Коллекция Ready</Link>
           <div className={styles.eyebrow}>READY MONTHLY · BY NEXORA</div>
-          <h1>Ваш сайт.<br /><em>По подписке.</em></h1>
-          <p className={styles.lead}>Ваш сайт на готовой основе — с адаптацией, хостингом и постоянной поддержкой.</p>
+          <h1>Ваш сайт<br /><em>с поддержкой<br />каждый месяц</em></h1>
+          <p className={styles.lead}>Сайт по подписке от {monthlyPlans.compact.price} ₪ в месяц. Адаптация, хостинг и регулярные правки включены.</p>
           <div className={styles.actions}>
             <a className="cta" href="#monthly-formats">Выбрать формат <span>↓</span></a>
             <Link className={styles.textLink} href="/ready#ready-collection">Посмотреть живые демо ↗</Link>
           </div>
-          <div className={styles.proof}><span>От {monthlyPlans.compact.price} ₪ / мес.</span><span>Правки и поддержка включены</span><span>Хостинг включён</span></div>
+          <div className={styles.proof}><span>2 пакета правок в месяц</span><span>Проверка сайта каждую неделю</span></div>
         </div>
         <div className={styles.heroArt} aria-hidden="true"><Image src="/images/monthly-glass-v4.webp" alt="" width={1536} height={1024} sizes="(max-width: 760px) 92vw, 52vw" priority /></div>
       </section>

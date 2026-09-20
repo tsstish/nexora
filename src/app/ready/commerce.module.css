@@ -17,3 +17,54 @@
 @media(max-width:350px){.choices{grid-template-columns:1fr;gap:20px;}}
 
 .planName {font-size:14px;line-height:1.4;font-weight:700;color:var(--ink);}
+
+/* Compact showroom cards: key decisions stay visible, details are opt-in. */
+.card.card{min-height:0;align-items:start;scroll-margin-top:110px}
+.card :global(.ready-showcase-info){padding:28px;justify-content:flex-start}
+.card :global(.ready-showcase-stage){align-self:start;min-height:430px;height:430px;padding:30px 24px;border-right:0}
+.card .cardMeta{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:11px;line-height:1.4}
+.card .cardMeta span:last-child{letter-spacing:.1em;white-space:nowrap;font-size:10px}
+.card .cardTitle{font:clamp(30px,3.4vw,44px)/1.1 Georgia,serif;margin:12px 0 8px;letter-spacing:-.025em}
+.card .audience{font-size:14px;line-height:1.45;margin:0;color:var(--muted)}
+.card .choices{margin:18px 0 16px;padding:16px 0;gap:18px}
+.card .choice{gap:7px}
+.card .price{white-space:nowrap;font-size:27px}
+.card .note{font-size:11px;line-height:1.45}
+.card .choice a{min-height:32px;display:inline-flex;align-items:center;font-size:11px}
+.card .actions{margin:0;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.card .actions a{min-height:44px;display:inline-flex;align-items:center;font-size:12px}
+.card .actions :global(.cta){padding:13px 18px}
+.details{width:100%;margin-top:18px;border-top:1px solid var(--line)}
+.details summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px;padding:12px 0;font-size:12px;font-weight:700;color:var(--emerald)}
+.details summary::-webkit-details-marker{display:none}
+.details summary>span{font-size:21px;font-weight:400;transition:transform .15s}
+.details[open] summary>span{transform:rotate(45deg)}
+.details summary:focus-visible{outline:2px solid var(--emerald);outline-offset:3px;border-radius:4px}
+.detailBody{padding:0 0 12px}
+.detailBody p{font-size:13px;line-height:1.6;color:var(--muted);margin:0 0 14px}
+.card .detailBody h4{font:700 13px/1.4 Arial,sans-serif;color:var(--ink);margin:18px 0 7px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+.tags span{font-size:11px;line-height:1.4;border:1px solid var(--line);border-radius:100px;padding:5px 8px}
+@media(max-width:1000px){.card :global(.ready-showcase-stage){height:360px;min-height:360px;width:100%}.card :global(.ready-showcase-devices){height:290px}.card :global(.ready-showcase-laptop){height:270px}.card :global(.ready-showcase-info){padding:24px}}
+@media(max-width:620px){
+.card :global(.ready-showcase-stage){height:250px;min-height:250px;padding:20px 12px 25px}
+.card :global(.ready-showcase-devices){height:200px}
+.card :global(.ready-showcase-laptop){height:190px}
+.card :global(.ready-showcase-phone){height:146px;width:70px;bottom:8px}
+.card :global(.ready-showcase-live){bottom:10px;font-size:8px;max-width:90%;text-align:center}
+.card :global(.ready-showcase-number){font-size:20px;top:12px;left:16px}
+.card :global(.ready-showcase-info){padding:20px 18px 10px}
+.card .cardTitle{font-size:32px;margin-top:10px}
+.card .audience{font-size:13px}
+.card .choices{grid-template-columns:1fr 1fr;gap:14px;margin:16px 0 12px;padding:14px 0}
+.card .price{font-size:24px}
+.card .label{font-size:11px;padding:5px 10px}
+.card .period{font-size:10px}
+.card .note{font-size:11px}
+.card .actions{gap:10px}
+.details{margin-top:14px}
+.bridge{padding-block:20px;margin-top:14px;margin-bottom:24px;gap:14px}
+.bridge h2{font-size:27px;margin-bottom:8px}
+.bridge p{font-size:13px;line-height:1.5}
+}
+@media(max-width:360px){.card .price{font-size:21px}.card :global(.ready-showcase-info){padding-inline:14px}.card .choices{gap:10px}}

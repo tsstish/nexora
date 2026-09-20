@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import heroStyles from "./ServiceHero.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import commerce from "@/app/ready/commerce.module.css";
@@ -156,7 +157,7 @@ export function ServicesHub() {
 
       <main id="services-main">
 
-        <section className="services-hub-hero section-shell">
+        <section className={`services-hub-hero section-shell ${heroStyles.hero}`}>
           <div className="services-hub-copy">
             <div className="eyebrow">
               УСЛУГИ · СТОИМОСТЬ · DIGITAL DEVELOPMENT

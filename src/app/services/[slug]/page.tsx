@@ -94,7 +94,7 @@ export async function generateMetadata({
 
 export default async function ServicePage({params}:{params:Promise<{slug:string}>}){
  const {slug}=await params; const service=serviceMap[slug as ServiceSlug]; if(!service) notFound();
- const siteUrl=(process.env.NEXT_PUBLIC_SITE_URL||"http://localhost:3000").replace(/\/$/,"");
+ const siteUrl=(process.env.NEXT_PUBLIC_SITE_URL||"https://nexoradesign.online").replace(/\/$/,"");
  const serviceJsonLd={
    "@context":"https://schema.org",
    "@type":"Service",

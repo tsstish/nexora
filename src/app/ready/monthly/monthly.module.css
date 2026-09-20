@@ -137,3 +137,7 @@
 .heroArt img{max-width:100%;height:auto}
 @media(max-width:1050px){.included article:nth-child(1),.included article:nth-child(2){grid-column:span 1}.included article:first-child p{max-width:none}}
 @media(max-width:760px){.included article:nth-child(1),.included article:nth-child(2){grid-column:span 2}.included article:nth-child(1) p,.included article:nth-child(2) p{max-width:94%}.heroArt{margin-block:8px 0}.includeNumber{font-size:9px}.included article:first-child:after{width:30px;height:30px;top:12px;right:14px}}
+
+/* Support-led headline: no punctuation, controlled line lengths. */
+.hero h1{font-size:clamp(42px,4.6vw,66px);line-height:1.04;letter-spacing:-.035em;margin-block:18px 22px}
+@media(max-width:760px){.hero h1{font-size:clamp(36px,9vw,52px);line-height:1.04;margin-block:14px 18px}}

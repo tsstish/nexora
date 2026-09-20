@@ -23,3 +23,13 @@
 @media(max-width:900px){.solutionsHead.solutionsHead,.example .intro{gap:16px}.example .showcase{grid-template-columns:1fr;gap:10px}.example .copy{padding:6px}.example .showcase :global(.device-stage){height:350px;min-height:0;max-width:580px;margin-inline:auto}.details{grid-template-columns:1fr 1fr;gap:24px}.budget{grid-template-columns:1fr auto;align-items:center}.budget strong{grid-column:2;grid-row:1/3}.budget small{grid-column:1}.example .intro>p{max-width:520px}}
 @media(max-width:620px){.example .showcase{padding:20px 16px;border-radius:28px}.example .copy{padding:0 2px}.details{grid-template-columns:1fr;gap:12px;margin-top:18px}.details dd{font-size:12px}.budget{margin-top:18px;padding-top:16px;gap:7px 16px}.budget>span{font-size:11px}.budget strong{font-size:30px}.budget small{font-size:10px;max-width:230px}.example .copy>a{margin-top:14px}.example .showcase :global(.device-stage){height:250px;min-height:0}.example .showcase :global(.glass-phone){width:78px;height:160px}.status{margin-bottom:14px}.example .intro h2,.solutionsHead.solutionsHead h2{font-size:34px}.example .intro>p,.solutionsHead.solutionsHead>p{font-size:13px;line-height:1.55}}
 @media(max-width:360px){.budget{grid-template-columns:1fr}.budget strong{grid-column:1;grid-row:auto}.example .showcase :global(.device-stage){height:215px}}
+
+/* Keep the desktop sculpture clear of the copy and both actions. */
+@media(min-width:901px){
+.hero.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:24px;align-items:center;min-height:580px;padding-block:48px}
+.hero.hero :global(.hero-copy){width:100%;max-width:none;padding-left:0;min-width:0}
+.hero.hero h1{font-size:clamp(44px,4.6vw,70px);line-height:1;max-width:650px}
+.hero.hero :global(.hero-art){position:relative;inset:auto;width:100%;height:clamp(350px,38vw,570px);margin:0;min-width:0}
+.hero.hero :global(.hero-render){object-position:center}
+.hero.hero :global(.hero-actions){flex-wrap:wrap;gap:16px 24px}
+}

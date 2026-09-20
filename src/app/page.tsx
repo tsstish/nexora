@@ -70,7 +70,7 @@ function Header(){return <header className="topbar home-topbar-v2">
 </header>}
 
 
-function Hero(){return <section id="top" className="hero home-hero-v2 section-shell">
+function Hero(){return <section id="top" className={`hero home-hero-v2 section-shell ${home.hero}`}>
   <div className="hero-copy home-hero-copy-v2">
     <div className="home-hero-kicker">
       DIGITAL PRESENCE · DESIGN &amp; DEVELOPMENT
@@ -104,7 +104,7 @@ function Hero(){return <section id="top" className="hero home-hero-v2 section-sh
       fill
       priority
       className="hero-render"
-      sizes="(max-width: 900px) 115vw, 90vw"
+      sizes="(max-width: 900px) 115vw, 55vw"
     />
   </div>
 </section>}

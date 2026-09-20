@@ -1,10 +1,9 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/data/services";
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://nexoradesign.online").replace(/\/$/, "");
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const staticPages = [
     { url: `${siteUrl}/`, priority: 1, changeFrequency: "weekly" as const },
     { url: `${siteUrl}/ready`, priority: 0.9, changeFrequency: "weekly" as const },
@@ -17,10 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const servicePages = services.map((service) => ({
     url: `${siteUrl}/services/${service.slug}`,
-    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
-  return [...staticPages.map((p) => ({ ...p, lastModified: now })), ...servicePages];
+  return [...staticPages, ...servicePages];
 }

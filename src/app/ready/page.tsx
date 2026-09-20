@@ -8,13 +8,13 @@ import commerce from "./commerce.module.css";
 import { siteConfig, whatsappUrl } from "@/data/site";
 
 const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://nexoradesign.online"
 ).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "Готовые сайты с адаптацией для бизнеса в Израиле",
   description:
-    "Ready by NeXora — готовые разработанные сайты, не шаблоны. Выберите концепцию, а мы адаптируем бренд, контент, языки и функции под ваш бизнес в Израиле.",
+    "Готовые сайты для бизнеса в Израиле: покупка от 1 400 ₪ или подписка от 249 ₪/мес. Выберите демо, а NeXora адаптирует сайт под ваш бренд и материалы.",
   keywords: [
     "готовые сайты для бизнеса",
     "готовый сайт Израиль",
@@ -119,8 +119,8 @@ export default function ReadyPage() {
       itemListElement: readySites.map((site, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: site.demoUrl,
-        name: site.title,
+        url: `${siteUrl}/ready#concept-${site.slug}`,
+        name: `${site.name} — ${site.title}`,
       })),
     },
   };
@@ -260,8 +260,8 @@ export default function ReadyPage() {
 
         <section className={`section-shell ${commerce.bridge}`}>
           <div>
-            <h2>Выбранный Ready можно купить или взять по подписке</h2>
-            <p>Посмотрите концепции в коллекции и выберите удобный формат. В Ready Monthly включены хостинг, два пакета правок в месяц и еженедельная техническая проверка.</p>
+            <h2>Покупка или подписка — выбираете вы</h2>
+            <p>Разовая покупка с адаптацией или ежемесячная оплата с хостингом, правками и технической поддержкой.</p>
           </div>
           <Link className="cta" href="/ready/monthly">О подписке <span>→</span></Link>
         </section>
@@ -278,15 +278,15 @@ export default function ReadyPage() {
             </div>
 
             <p>
-              Здесь не шаблоны. Каждый проект уже спроектирован,
-              оформлен и разработан как полноценный сайт для
-              определённого типа бизнеса.
+              Выберите дизайн и посмотрите демо. Перед запуском адаптируем
+              концепцию под ваш бренд, материалы и контакты.
             </p>
           </div>
 
           <div className="ready-showcase-list">
             {readySites.map((site, index) => {
               const monthly = monthlyPlans[site.monthlyPlan];
+              const audience = ({ "dental-clinic": "Для стоматологий и частных клиник", "private-teacher": "Для преподавателей и наставников", "brow-artist": "Для частных beauty-мастеров" } as Record<string, string>)[site.slug] ?? site.title;
               const difference =
                 site.individualPriceFrom - site.priceFrom;
 
@@ -294,7 +294,7 @@ export default function ReadyPage() {
                 `Здравствуйте! Меня интересует Ready-концепция ${site.name}. Хочу обсудить адаптацию под мой бизнес.`;
 
               return (
-                <article className="ready-showcase-card" key={site.slug}>
+                <article id={`concept-${site.slug}`} className={`ready-showcase-card ${commerce.card}`} key={site.slug}>
                   <div className="ready-showcase-stage">
                     <span className="ready-showcase-number">
                       {String(index + 1).padStart(2, "0")}
@@ -348,65 +348,25 @@ export default function ReadyPage() {
                   </div>
 
                   <div className="ready-showcase-info">
-                    <div className="ready-showcase-topline">
-                      <span className="ready-product-status">
-                        Доступен для адаптации
-                      </span>
-                      <span>
-                        {String(index + 1).padStart(2, "0")} / READY
-                      </span>
-                    </div>
-
-                    <div className="eyebrow">{site.category}</div>
-
-                    <h3>{site.title}</h3>
-                    <h4>
-                      Концепция {site.name} · {site.formatLabel}
-                    </h4>
-
-                    <p className="ready-showcase-plain">
-                      Это уже разработанный сайт. Перед запуском мы
-                      адаптируем его под ваш бренд: логотип и цветовую систему,
-                      материалы, услуги, цены, контакты и способы обращения.
-                    </p>
-
-                    <p className="ready-showcase-description">
-                      {site.shortDescription}
-                    </p>
-
-                    <div className="ready-product-tags">
-                      {site.languages.map((item) => (
-                        <span key={item}>{item}</span>
-                      ))}
-                      <span>Mobile</span>
-                      <span>SEO</span>
-                    </div>
-
-                    <div className={commerce.comparison}>
-                      <span>Аналогичная разработка с нуля:</span>
-                      <strong>от {site.individualPriceFrom.toLocaleString("ru-RU")} ₪</strong>
-                    </div>
+                    <div className={commerce.cardMeta}><span>{monthly.name}</span><span>{String(index + 1).padStart(2, "0")} / READY</span></div>
+                    <h3 className={commerce.cardTitle}>{site.name}</h3>
+                    <p className={commerce.audience}>{audience}</p>
                     <div className={commerce.choices}>
                       <div className={commerce.choice}>
                         <span className={`${commerce.label} ${commerce.buy}`}>Купить</span>
                         <strong className={commerce.price}>от {site.priceFrom.toLocaleString("ru-RU")} ₪</strong>
-                        <span className={commerce.note}>Адаптация выбранной концепции</span>
+                        <span className={commerce.note}>С адаптацией под вас</span>
                       </div>
                       {monthly && <div className={commerce.choice}>
                         <span className={`${commerce.label} ${commerce.monthly}`}>По подписке</span>
-                        <span className={commerce.planName}>«{monthly.name}»</span>
+                        
                         <strong className={commerce.price}>{monthly.price} ₪ <span className={commerce.period}>/ мес.</span></strong>
-                        <span className={commerce.note}>{monthlySupport.summary}</span>
+                        <span className={commerce.note}>Тариф «{monthly.name}»</span>
                         <Link href={`/ready/monthly#${site.monthlyPlan}`}>Условия Monthly →</Link>
                       </div>}
                     </div>
 
-                    <div className="ready-showcase-saving">
-                      Вы экономите от {difference.toLocaleString("ru-RU")} ₪ —
-                      дизайн, структура и основная разработка уже готовы
-                    </div>
-
-                    <div className="ready-showcase-actions">
+                    <div className={`ready-showcase-actions ${commerce.actions}`}>
                       <a
                         className="ready-demo-link"
                         href={site.demoUrl}
@@ -422,9 +382,22 @@ export default function ReadyPage() {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        Обсудить адаптацию →
+                        Обсудить →
                       </a>
                     </div>
+                    <details className={commerce.details}>
+                      <summary>О концепции и составе<span aria-hidden="true">+</span></summary>
+                      <div className={commerce.detailBody}>
+                        <p>{site.shortDescription}</p>
+                        <h4>Что адаптируем</h4>
+                        <p>Ваш бренд, тексты, изображения, услуги, цены и контакты — в рамках выбранной концепции.</p>
+                        <div className={commerce.tags}>{site.languages.map(item => <span key={item}>{item}</span>)}<span>Мобильная версия</span><span>Базовая SEO-подготовка</span></div>
+                        <h4>Подписка «{monthly.name}»</h4>
+                        <p>Хостинг, два пакета правок до {monthlySupport.editMinutes} минут суммарно в месяц и еженедельная техническая проверка.</p>
+                        <div className={commerce.comparison}><span>Аналогичная разработка с нуля:</span><strong>от {site.individualPriceFrom.toLocaleString("ru-RU")} ₪</strong></div>
+                        <p>При покупке Ready — на {difference.toLocaleString("ru-RU")} ₪ меньше: дизайн, структура и основная разработка уже готовы.</p>
+                      </div>
+                    </details>
                   </div>
                 </article>
               );
