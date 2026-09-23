@@ -42,6 +42,7 @@ export function SiteHelper() {
     document.addEventListener("click", click);
     return () => document.removeEventListener("click", click);
   }, []);
+  if (pathname.startsWith("/brief")) return null;
   const message = `Здравствуйте! Пишу с сайта Nexora. ${direction ? `Интересует: ${labels[direction]}.` : "Хочу обсудить сайт для моего бизнеса."}${goal ? ` Задача: ${goal}.` : ""}${scope ? ` Объём: ${scope}.` : ""}`;
   const store = goal === "Продавать товары онлайн";
   const ready = !store && scope !== "Особые функции";
