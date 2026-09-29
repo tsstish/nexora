@@ -377,6 +377,8 @@ export default function ReadyPage() {
                         href={site.demoUrl}
                         target="_blank"
                         rel="noreferrer"
+                        data-analytics-event="ready_demo_open"
+                        data-concept={site.slug}
                       >
                         Смотреть демо ↗
                       </a>
@@ -386,6 +388,7 @@ export default function ReadyPage() {
                         href={whatsappUrl(adaptationMessage)}
                         target="_blank"
                         rel="noreferrer"
+                        data-direction={`ready_${site.slug}`}
                       >
                         Обсудить →
                       </a>

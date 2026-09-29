@@ -31,17 +31,50 @@ export function SiteHelper() {
     return () => { document.removeEventListener("keydown", key); document.removeEventListener("pointerdown", outside); };
   }, [open]);
   // Count all WhatsApp links, not only this panel. Never send message text or phone numbers.
-  useEffect(() => {
-    function click(event: MouseEvent) {
-      const anchor = (event.target as Element)?.closest?.("a[href]") as HTMLAnchorElement | null;
-      if (!anchor) return;
-      const url = new URL(anchor.href, window.location.href);
-      if (!["wa.me", "api.whatsapp.com"].includes(url.hostname)) return;
-      trackSiteEvent("whatsapp_click", { placement: anchor.closest("[data-site-helper]") ? "helper" : anchor.closest("header") ? "header" : anchor.closest("footer") ? "footer" : "content", direction: anchor.dataset.direction || "unspecified" });
+  // Count contact and Ready demo clicks across the whole site.
+useEffect(() => {
+  function click(event: MouseEvent) {
+    const anchor = (event.target as Element)?.closest?.(
+      "a[href]"
+    ) as HTMLAnchorElement | null;
+
+    if (!anchor) return;
+
+    const url = new URL(anchor.href, window.location.href);
+
+    const placement = anchor.closest("[data-site-helper]")
+      ? "helper"
+      : anchor.closest("header")
+        ? "header"
+        : anchor.closest("footer")
+          ? "footer"
+          : "content";
+
+    if (url.protocol === "tel:") {
+      trackSiteEvent("phone_click", { placement });
+      return;
     }
-    document.addEventListener("click", click);
-    return () => document.removeEventListener("click", click);
-  }, []);
+
+    if (anchor.dataset.analyticsEvent === "ready_demo_open") {
+      trackSiteEvent("ready_demo_open", {
+        placement,
+        concept: anchor.dataset.concept || "unspecified",
+      });
+      return;
+    }
+
+    if (!["wa.me", "api.whatsapp.com"].includes(url.hostname)) return;
+
+    trackSiteEvent("whatsapp_click", {
+      placement,
+      direction: anchor.dataset.direction || "unspecified",
+    });
+  }
+
+  document.addEventListener("click", click);
+
+  return () => document.removeEventListener("click", click);
+}, []);
   if (pathname.startsWith("/brief")) return null;
   const message = `Здравствуйте! Пишу с сайта Nexora. ${direction ? `Интересует: ${labels[direction]}.` : "Хочу обсудить сайт для моего бизнеса."}${goal ? ` Задача: ${goal}.` : ""}${scope ? ` Объём: ${scope}.` : ""}`;
   const store = goal === "Продавать товары онлайн";

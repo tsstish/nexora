@@ -198,7 +198,7 @@ export default function ReadyMonthlyPage() {
             <p className={styles.offerDescription}>{plan.purpose}.</p>
             <div className={styles.offerPrice}>{plan.price} ₪ <small>/ месяц</small></div>
             <div className={styles.offerLinks}>
-              <a href={whatsappUrl(`Здравствуйте! Меня интересует подписка Ready Monthly «${plan.name}» за ${plan.price} ₪ в месяц. Хочу подобрать Ready под мой бизнес.`)} target="_blank" rel="noreferrer">Выбрать →</a>
+            <a href={whatsappUrl(`Здравствуйте! Меня интересует подписка Ready Monthly «${plan.name}» за ${plan.price} ₪ в месяц. Хочу подобрать Ready под мой бизнес.`)} target="_blank" rel="noreferrer"data-direction={`monthly_${plan.id}`}>Выбрать →</a>
             </div>
           </article>)}
         </div>

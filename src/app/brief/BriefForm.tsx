@@ -1,5 +1,6 @@
 "use client";
 
+import { trackSiteEvent } from "@/lib/analytics";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { siteConfig } from "@/data/site";
 import styles from "./brief.module.css";
@@ -177,11 +178,30 @@ export function BriefForm() {
     setStep(0);
   };
   const submit = (event: FormEvent) => {
-    event.preventDefault();
-    if (step < steps.length - 1) return next();
-    if (!data.confirmed) return;
-    window.open(`${siteConfig.whatsapp}?text=${encodeURIComponent(summary)}`, "_blank", "noopener,noreferrer");
-  };
+  event.preventDefault();
+
+  if (step < steps.length - 1) {
+    trackSiteEvent("brief_step", {
+      step: String(step + 1),
+      next_step: String(step + 2),
+    });
+
+    return next();
+  }
+
+  if (!data.confirmed) return;
+
+  trackSiteEvent("brief_complete", {
+    model: data.model || "unspecified",
+    concept_selected: data.concept ? "yes" : "no",
+  });
+
+  window.open(
+    `${siteConfig.whatsapp}?text=${encodeURIComponent(summary)}`,
+    "_blank",
+    "noopener,noreferrer"
+  );
+};
 
   return (
     <form className={styles.form} onSubmit={submit}>
