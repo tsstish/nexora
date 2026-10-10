@@ -6,7 +6,10 @@ export type EventName =
   | "phone_click"
   | "brief_step"
   | "brief_complete"
-  | "ready_demo_open";
+  | "ready_demo_open"
+  | "view_monthly"
+  | "view_pricing"
+  | "monthly_plan_select";
 
 export function trackSiteEvent(
   name: EventName,

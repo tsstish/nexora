@@ -17,6 +17,55 @@ export function SiteHelper() {
   const trigger = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   useEffect(() => { setOpen(false); setDirection(null); setGoal(""); setScope(""); }, [pathname]);
+    useEffect(() => {
+    if (pathname !== "/ready/monthly") return;
+
+    let observer: IntersectionObserver | null = null;
+    let started = false;
+
+    const startMonthlyTracking = () => {
+      if (
+        started ||
+        window.localStorage.getItem("nexora_analytics_consent") !== "granted" ||
+        typeof window.gtag !== "function"
+      ) {
+        return;
+      }
+
+      started = true;
+      trackSiteEvent("view_monthly");
+
+      const pricing = document.getElementById("monthly-formats");
+      if (!pricing) return;
+
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+
+          trackSiteEvent("view_pricing");
+          observer?.disconnect();
+        },
+        { threshold: 0.15 }
+      );
+
+      observer.observe(pricing);
+    };
+
+    startMonthlyTracking();
+    window.addEventListener(
+      "nexora:analytics-ready",
+      startMonthlyTracking
+    );
+
+    return () => {
+      window.removeEventListener(
+        "nexora:analytics-ready",
+        startMonthlyTracking
+      );
+      observer?.disconnect();
+    };
+  }, [pathname]);
+
   useEffect(() => {
     if (!open) return;
     panel.current?.focus();
@@ -61,6 +110,13 @@ useEffect(() => {
         concept: anchor.dataset.concept || "unspecified",
       });
       return;
+    }
+
+    if (anchor.dataset.analyticsEvent === "monthly_plan_select") {
+      trackSiteEvent("monthly_plan_select", {
+        placement,
+        plan: anchor.dataset.plan || "unspecified",
+      });
     }
 
     if (!["wa.me", "api.whatsapp.com"].includes(url.hostname)) return;
