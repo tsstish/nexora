@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { readySites } from "@/data/readySites";
 import { monthlyPlans } from "@/data/readyMonthly";
 import { services } from "@/data/services";
-import { siteConfig, whatsappUrl } from "@/data/site";
+import { whatsappUrl } from "@/data/site";
 import { MockupHeader } from "./MockupHeader";
 import { MockupFooter } from "./MockupFooter";
 import styles from "./mockup.module.css";
@@ -28,7 +28,7 @@ export default function StoreMockupPage() {
         <div className={styles.heroCopy}>
           <span className={styles.eyebrow}>READY · КОЛЛЕКЦИЯ САЙТОВ NEXORA</span>
           <h1>Сайт для вашего бизнеса. <em>Уже есть основа.</em></h1>
-          <p className={styles.heroText}>Выберите готовую концепцию, а мы адаптируем её под ваш бренд, услуги и клиентов. Посмотрите демо и решите, что подходит: разовая покупка или подписка с поддержкой.</p>
+          <p className={styles.heroText}>Выберите готовую концепцию, а мы адаптируем её под ваш бренд, услуги и клиентов. Изучите структуру и решите, что подходит: разовая покупка или подписка с поддержкой.</p>
           <div className={styles.heroActions}>
             <a className={styles.buttonPrimary} href="#catalog">Смотреть концепции <span>↓</span></a>
             <Link className={styles.buttonText} href="#custom">Нужен сайт с нуля? ↗</Link>
@@ -53,9 +53,7 @@ export default function StoreMockupPage() {
               const plan = monthlyPlans[site.monthlyPlan];
               return <article className={styles.product} key={site.slug}>
                 <Link className={styles.preview} href={`/mockup/concept/${site.slug}`} aria-label={`Детали концепции ${site.name}`}>
-                  <div className={styles.previewChrome}><span className={styles.dots}><i /><i /><i /></span><span className={styles.previewName}>{site.name} · LIVE PREVIEW</span></div>
-                  <iframe src={site.demoUrl} title={`Превью сайта ${site.name}`} loading="lazy" tabIndex={-1} />
-                  <span className={styles.previewLabel}>ОТКРЫТЬ КОНЦЕПЦИЮ ↗</span>
+                  <Image className={styles.placeholder} src="/ready/site-screenshot-placeholder.svg" alt="Скриншот сайта будет здесь" fill sizes="(max-width: 640px) 100vw, 50vw" />
                 </Link>
                 <div className={styles.productBody}>
                   <div className={styles.productTop}><span>{site.formatLabel}</span><span>№ {String(index + 1).padStart(2,"0")}</span></div>
@@ -75,27 +73,29 @@ export default function StoreMockupPage() {
       </section>
 
       <section className={`${styles.container} ${styles.options}`} id="options">
-        <div className={styles.optionsHead}><span className={styles.eyebrow}>ДВА СПОСОБА НАЧАТЬ</span><h2 className={styles.sectionTitle}>Покупка или <em>подписка?</em></h2><p>В любом варианте мы адаптируем выбранную концепцию под ваш бизнес и подготовим её к публикации. Оплата оформляется после обсуждения заявки.</p></div>
+        <div className={styles.optionsHead}><span className={styles.eyebrow}>ДВА СПОСОБА НАЧАТЬ</span><h2 className={styles.sectionTitle}>Покупка или <em>подписка?</em></h2><p>Обе модели включают адаптацию сайта. Заявку оставляете напрямую — онлайн-оплаты нет.</p></div>
         <div className={styles.optionsGrid}>
           <article className={styles.option}>
             <span className={styles.optionMeta}>01 · ПОКУПКА</span><h3>Оплатить один раз</h3>
-            <p>Вы оплачиваете адаптацию выбранного Ready-сайта. Стоимость зависит от концепции. Хостинг включён в условия предложения; дальнейшую поддержку можно подключить отдельно.</p>
-            <ul className={styles.optionList}><li>Разовая оплата — цена показана в карточке</li><li>Бренд, материалы и контакты под ваш бизнес</li><li>Техническая подготовка и запуск сайта</li></ul>
+            <p>Оплачиваете адаптацию готовой концепции один раз. Цена указана в карточке сайта.</p>
+            <ul className={styles.optionList}><li>Ваш бренд, тексты и материалы</li><li>Подготовка и запуск сайта</li></ul>
             <a className={styles.optionLink} href={whatsappUrl("Здравствуйте! Расскажите, пожалуйста, подробнее о покупке Ready-сайта.")} target="_blank" rel="noreferrer">Спросить о покупке ↗</a>
           </article>
           <article className={styles.option}>
             <span className={styles.optionMeta}>02 · READY MONTHLY</span><h3>Адаптация и поддержка ежемесячно</h3>
-            <p>Подписка включает хостинг, еженедельную техническую проверку и два пакета контентных правок общей длительностью до 90 минут в месяц.</p>
-            <ul className={styles.optionList}><li>Компактный сайт — 249 ₪ / месяц</li><li>Лендинг — 299 ₪ / месяц</li><li>Бизнес-сайт — 399 ₪ / месяц</li></ul>
-            <a className={styles.optionLink} href="/ready/monthly">Посмотреть все условия Monthly ↗</a>
+            <p>Хостинг, еженедельная проверка и до 90 минут контентных правок в месяц.</p>
+            <div className={styles.optionPrices}><div>Компактный <b>249 ₪</b><span>/ мес.</span></div><div>Лендинг <b>299 ₪</b><span>/ мес.</span></div><div>Бизнес <b>399 ₪</b><span>/ мес.</span></div></div>
+            <a className={styles.optionLink} href="#monthly-terms">Условия подписки ↗</a>
           </article>
         </div>
       </section>
 
+      <section className={styles.monthlyTerms} id="monthly-terms"><div className={styles.container}><span className={styles.eyebrow}>READY MONTHLY · КРАТКО</span><p>Отменить можно в любой момент: сайт работает до конца оплаченного месяца. Включены хостинг, еженедельная техническая проверка и два пакета правок общим объёмом до 90 минут. Базовая SEO-подготовка — при запуске; постоянное SEO-продвижение подключается отдельно.</p><a href={whatsappUrl("Здравствуйте! Хочу узнать подробнее об условиях Ready Monthly.")} target="_blank" rel="noreferrer">Обсудить подписку ↗</a></div></section>
+
       <section className={styles.process} id="how">
         <div className={`${styles.container} ${styles.processGrid}`}>
           <div><span className={styles.eyebrow}>КАК ЭТО РАБОТАЕТ</span><h2 className={styles.processTitle}>От выбора<br />до запуска</h2></div>
-          <ol className={styles.steps}><li><span>01</span><h3>Вы выбираете</h3><p>Смотрите живое демо и детали концепции.</p></li><li><span>02</span><h3>Оставляете заявку</h3><p>Обсуждаем бизнес, наполнение и формат.</p></li><li><span>03</span><h3>Согласуем адаптацию</h3><p>Меняем бренд, тексты, визуалы и детали.</p></li><li><span>04</span><h3>Публикуем</h3><p>Проверяем сайт и запускаем на вашем домене.</p></li></ol>
+          <ol className={styles.steps}><li><span>01</span><h3>Вы выбираете</h3><p>Изучаете назначение и состав концепции.</p></li><li><span>02</span><h3>Оставляете заявку</h3><p>Обсуждаем бизнес, наполнение и формат.</p></li><li><span>03</span><h3>Согласуем адаптацию</h3><p>Меняем бренд, тексты, визуалы и детали.</p></li><li><span>04</span><h3>Публикуем</h3><p>Проверяем сайт и запускаем на вашем домене.</p></li></ol>
         </div>
       </section>
 

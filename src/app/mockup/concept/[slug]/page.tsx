@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -62,10 +63,7 @@ export default async function MockupConceptPage({ params }: { params: Promise<Pa
           <div className={styles.detailPrice}><div><small>Покупка</small><strong>от {site.priceFrom.toLocaleString("ru-RU")} ₪</strong></div><div><small>Подписка Ready Monthly</small><strong>{plan.price} ₪ / мес.</strong></div></div>
           <div className={styles.detailActions}><a className={styles.buttonPrimary} href={whatsappUrl(buyMessage)} target="_blank" rel="noreferrer">Заявка на покупку ↗</a><a className={styles.buttonText} href={whatsappUrl(monthlyMessage)} target="_blank" rel="noreferrer">Заявка на подписку ↗</a></div>
         </div>
-        <div className={styles.detailMedia}>
-          <div className={styles.previewChrome}><span className={styles.dots}><i /><i /><i /></span><span className={styles.previewName}>{site.name} · LIVE DEMO</span></div>
-          <iframe src={site.demoUrl} title={`Демо-концепция ${site.name}`} loading="lazy" tabIndex={-1} />
-        </div>
+        <div className={styles.detailMedia}><Image src="/ready/site-screenshot-placeholder.svg" alt={`Здесь будет скриншот концепции ${site.name}`} fill sizes="(max-width: 640px) 100vw, 50vw" /></div>
       </section>
 
       <section className={styles.detailSections}>
@@ -93,7 +91,7 @@ export default async function MockupConceptPage({ params }: { params: Promise<Pa
 
       <section className={`${styles.container} ${styles.custom}`}>
         <div><span className={styles.eyebrow}>ВЫБРАТЬ ФОРМАТ</span><h2>Покупка или подписка</h2><p>Покупка — разовая оплата адаптации. Подписка — ежемесячный платёж за сайт, хостинг и поддержку по условиям Ready Monthly. Постоянное SEO-продвижение подключается отдельно.</p></div>
-        <div className={styles.customFormats}><div><span>Купить {site.name}</span><b>от {site.priceFrom.toLocaleString("ru-RU")} ₪</b></div><div><span>Ready Monthly · {plan.name}</span><b>{plan.price} ₪ / мес.</b></div><a href="/mockup#options">Все условия подписки ↗</a></div>
+        <div className={styles.customFormats}><div><span>Купить {site.name}</span><b>от {site.priceFrom.toLocaleString("ru-RU")} ₪</b></div><div><span>Ready Monthly · {plan.name}</span><b>{plan.price} ₪ / мес.</b></div><a href="/mockup#monthly-terms">Условия подписки ↗</a></div>
       </section>
     </main>
     <MockupFooter />
