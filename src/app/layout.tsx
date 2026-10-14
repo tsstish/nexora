@@ -4,6 +4,7 @@ import { AnalyticsConsent } from "@/components/AnalyticsConsent";
 import { RouteScrollManager } from "@/components/RouteScrollManager";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
+import "./store-shared.css";
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://nexoradesign.online").replace(/\/$/, "");
 
