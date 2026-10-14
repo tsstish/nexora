@@ -5,6 +5,7 @@ import { monthlyPlans } from "@/data/readyMonthly";
 import { readyProductPath, readyCategory } from "@/data/readyProduct";
 import { ReadyHeader, ReadyFooter } from "@/components/ReadyShell";
 import { ReadyPreview } from "@/components/ReadyPreview";
+import { ReadyHeroArtwork } from "@/components/ReadyHeroArtwork";
 import styles from "./shop.module.css";
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://nexoradesign.online").replace(/\/$/, "");
@@ -15,6 +16,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/ready" },
   openGraph: { title: "Готовые сайты с адаптацией | Ready by NeXora", description: "Ваш логотип, фотографии и тексты. Выберите готовый сайт и закажите адаптацию — покупка или подписка.", url: "/ready", type: "website" },
 };
+
+function FeatureIcon({ kind }: { kind: "logo" | "photo" | "text" | "cart" }) {
+  const common = { width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  if (kind === "logo") return <svg {...common} aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 8h8M8 12h4M8 16h6" /></svg>;
+  if (kind === "photo") return <svg {...common} aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="m21 16-5-5L5 21" /></svg>;
+  if (kind === "text") return <svg {...common} aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 8h8M8 12h8M8 16h5" /></svg>;
+  return <svg {...common} aria-hidden="true"><circle cx="9" cy="20" r="1" /><circle cx="18" cy="20" r="1" /><path d="M2 3h2l3.2 13h12L22 7H5" /></svg>;
+}
 
 export default function ReadyPage() {
   const schema = {
@@ -32,20 +41,22 @@ export default function ReadyPage() {
     <ReadyHeader />
     <main id="ready-main">
       <section className={styles.shopHero}>
-        <div>
-          <div className={styles.kicker}>READY BY NEXORA / ВЫБЕРИТЕ СВОЙ САЙТ</div>
-          <h1>Готовые сайты.<br /><em>Под ваш бизнес.</em></h1>
-          <p>Выбираете понравившийся дизайн. Мы адаптируем его под ваш бренд, тексты, фото и услуги — и подготовим к запуску.</p>
-          <div className={styles.shopActions}>
-            <a href="#ready-collection" className={styles.glassButton}>Смотреть сайты <span>↓</span></a>
-            <Link href="/services" className={styles.glassOutline}>Индивидуальный сайт ↗</Link>
+        <div className={styles.heroText}>
+          <div className={styles.kicker}>READY / КАТАЛОГ</div>
+          <h1>Готовые сайты<br /><em>с адаптацией под ваш бизнес</em></h1>
+          <p>Вы выбираете основу, а мы адаптируем сайт под ваш бренд, тексты и задачи.</p>
+          <div className={styles.heroFeatures}>
+            <span><FeatureIcon kind="logo" />Ваш логотип</span>
+            <span><FeatureIcon kind="photo" />Ваши фото</span>
+            <span><FeatureIcon kind="text" />Ваш текст</span>
+            <span><FeatureIcon kind="cart" />Купить или Monthly</span>
           </div>
-          <div className={styles.quickProof}><span>Ваш логотип и фотографии</span><span>Покупка или Monthly</span><span>С запуском и поддержкой</span></div>
+          <div className={styles.shopActions}>
+            <a href="#ready-collection" className={styles.glassButton}>Смотреть каталог <span>→</span></a>
+            <Link href="/services" className={styles.glassOutline}>Индивидуальная разработка</Link>
+          </div>
         </div>
-        <div className={styles.heroSample} aria-label="Превью коллекции MIDA и FACET">
-          <ReadyPreview site={readySites[0]} />
-          <ReadyPreview site={readySites[2]} />
-        </div>
+        <ReadyHeroArtwork />
       </section>
       <section className={styles.catalog} id="ready-collection">
         <div className={styles.catalogTop}><div><span className={styles.kicker}>READY / КОЛЛЕКЦИЯ</span><h2>Выберите свой сайт</h2></div><p>Откройте понравившийся вариант, посмотрите демо, стоимость и условия.</p></div>
@@ -57,7 +68,7 @@ export default function ReadyPage() {
               <div className={styles.productTop}><span>READY / {String(index + 1).padStart(3, "0")}</span><span>{site.formatLabel}</span></div>
               <Link href={url} aria-label={"Подробнее о сайте " + site.name}><ReadyPreview site={site} /></Link>
               <div className={styles.productBottom}>
-                <div className={styles.productHead}><div><h3>{site.name}</h3><p>{readyCategory(site)}</p></div></div>
+                <div className={styles.productHead}><div><h3>{site.name}</h3><p>{readyCategory(site)}</p><small>{site.name === "MIDA" ? "Сайт для стоматологической клиники" : site.name === "LEA NORD" ? "Сайт для преподавателя и частных занятий" : site.name === "FACET" ? "Сайт для beauty-мастера" : "Интерактивный сайт для автора контента"}</small></div></div>
                 <div className={styles.priceRow}>
                   <span>Купить <strong>от {site.priceFrom.toLocaleString("ru-RU")} ₪</strong></span>
                   <span>Monthly <strong>{monthly.price} ₪/мес.</strong></span>
