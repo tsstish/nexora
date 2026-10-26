@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import styles from "./page.module.css";
+import { CurrencyPrice } from "./CurrencyControl";
 
 type Concept = {
   slug: string;
@@ -113,7 +114,7 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
 
   const active = concepts[activeIndex] ?? concepts[0];
   const number = String(activeIndex + 1).padStart(2, "0");
-  const fmt = (v: number) => new Intl.NumberFormat("ru-RU").format(v);
+
 
   function move(step: number) { setActiveIndex((prev) => (prev + step + total) % total); }
 
@@ -150,16 +151,16 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
             <div className={styles.monthlyOffer}>
               <div>
                 <span className={styles.offerLabel}>Сайт по подписке · хостинг и поддержка</span>
-                <strong>{fmt(active.monthlyPrice)} ₪ <small>/ мес.</small></strong>
+                <strong><CurrencyPrice group="monthly" priceId={active.monthlyPlan} ils={active.monthlyPrice} perMonth /></strong>
               </div>
-              <a href={`/ready/monthly#${active.monthlyPlan}`}>Условия подписки ↗</a>
+              <a href={`/building-preview/ready/${active.slug}#monthly`}>Условия подписки ↗</a>
             </div>
             <div className={styles.buyOffer}>
               <div>
                 <span className={styles.offerLabel}>Покупка готового сайта с адаптацией</span>
-                <strong>от {fmt(active.priceFrom)} ₪</strong>
+                <strong><CurrencyPrice group="ready" priceId={active.slug} ils={active.priceFrom} prefix="от " /></strong>
               </div>
-              <a href={`/ready#concept-${active.slug}`}>Условия покупки ↗</a>
+              <a href={`/building-preview/ready/${active.slug}#purchase`}>Условия покупки ↗</a>
             </div>
           </div>
 
