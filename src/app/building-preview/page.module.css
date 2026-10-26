@@ -439,3 +439,72 @@
   .offers { grid-template-columns: 1fr; }
   .monthlyOffer, .buyOffer { gap: 5px; }
 }
+
+
+/* Separate pricing route — same NeXora editorial system */
+.pricingPage {
+  min-height: 100svh;
+  background: radial-gradient(ellipse at 86% 3%,rgba(121,93,64,.22),transparent 35%),linear-gradient(150deg,#172b25 0%,#101c19 65%,#0e1716);
+  color: #f3ece2;
+  font-family: Arial,Helvetica,sans-serif;
+}
+.pricingPage * { box-sizing: border-box; }
+.pricingPage a { color: inherit; text-decoration: none; }
+.pricingPage a:focus-visible { outline: 2px solid #eac99d; outline-offset: 5px; }
+.pricingShell { width: min(1340px,calc(100% - 76px)); margin: 0 auto; }
+.pricingHeader { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(244,225,201,.24); padding: 19px 0; }
+.pricingBrand { display: block; width: 142px; line-height: 0; }
+.pricingBrand img { display: block; width: 100%; height: auto; }
+.pricingBack { font-size: 11px; letter-spacing: .09em; color: #e1cfb1 !important; }
+.pricingHero { padding: clamp(55px,8vw,115px) 0 clamp(55px,7vw,90px); border-bottom: 1px solid rgba(244,225,201,.24); }
+.pricingHero h1 { font: 400 clamp(48px,7vw,102px)/1 Georgia,serif; letter-spacing: -.05em; margin: 20px 0 27px; }
+.pricingHero h1 em { font-style: normal; color: #d5b88a; }
+.pricingHero p { max-width: 600px; line-height: 1.65; font-size: 15px; color: #c5cbc1; }
+.pricingSection { padding: 55px 0 68px; border-bottom: 1px solid rgba(244,225,201,.2); }
+.pricingTitle span { letter-spacing: .18em; font-size: 10px; color: #d2b78f; }
+.pricingTitle h2 { font: 400 clamp(32px,3.9vw,54px)/1.1 Georgia,serif; margin: 14px 0 30px; }
+.servicePriceGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.servicePriceCard { display: flex; flex-direction: column; justify-content: space-between; gap: 20px; min-height: 270px; padding: clamp(20px,2.4vw,34px); background: linear-gradient(145deg,rgba(84,102,85,.26),rgba(23,46,39,.58)); border: 1px solid rgba(218,189,149,.28); }
+.serviceNumber { font: 29px Georgia,serif; color: #d6be94; }
+.servicePriceCard h3 { font: 400 27px Georgia,serif; margin: 0 0 11px; }
+.servicePriceCard p { font-size: 12px; line-height: 1.55; color: #ccd0c5; margin: 0; }
+.servicePriceBottom { border-top: 1px solid rgba(222,195,156,.3); padding-top: 13px; display: flex; gap: 5px; flex-direction: column; }
+.servicePriceBottom strong { font: 400 23px Georgia,serif; color: #ead4b4; }
+.servicePriceBottom span { font-size: 10px; color: #bfc5bb; }
+.pricingFinePrint { font-size: 11px; color: #aeb8ad; line-height: 1.7; max-width: 790px; margin: 20px 0 0; }
+.planPriceGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.planPriceCard { min-height: 175px; padding: 24px; border: 1px solid rgba(226,196,149,.34); background: rgba(50,72,58,.26); }
+.planPriceCard span { display: block; font-size: 12px; margin-bottom: 14px; }
+.planPriceCard strong { display: block; font: 400 34px Georgia,serif; color: #ead2a8; white-space: nowrap; }
+.planPriceCard strong small { font: 12px Arial,sans-serif; color: #ccd1c7; }
+.planPriceCard p { font-size: 11px; line-height: 1.5; color: #c2cbbf; margin: 14px 0 0; }
+.pricingTextLink { display: inline-block; font-size: 12px; color: #e7cc9f !important; border-bottom: 1px solid #d4b58a; padding: 8px 0; margin-top: 12px; }
+.extraPriceList { border-top: 1px solid rgba(240,216,184,.27); }
+.extraPriceRow { display: grid; grid-template-columns: 55px 1fr auto; gap: 12px; align-items: center; padding: 18px 6px; border-bottom: 1px solid rgba(240,216,184,.2); }
+.extraPriceRow span:first-child { color: #b9a181; font: 20px Georgia,serif; }
+.extraPriceRow span:nth-child(2) { font-size: 14px; }
+.extraPriceRow strong { color: #ead2ad; font: 21px Georgia,serif; white-space: nowrap; }
+.pricingFooter { padding: 65px 0 90px; display: flex; justify-content: space-between; gap: 30px; align-items: center; }
+.pricingFooter h2 { margin: 0; font: 400 clamp(31px,4vw,53px) Georgia,serif; }
+.pricingFooter a { display: inline-flex; border: 1px solid rgba(232,204,169,.65); padding: 16px 23px; border-radius: 50px; font-size: 12px; white-space: nowrap; }
+@media(max-width:900px) {
+  .servicePriceGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .planPriceGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:620px) {
+  .pricingShell { width: calc(100% - 34px); }
+  .pricingBrand { width: 118px; }
+  .pricingBack { font-size: 10px; }
+  .pricingHero { padding: 70px 0 55px; }
+  .pricingHero h1 { font-size: clamp(40px,10vw,61px); }
+  .pricingHero p { font-size: 13px; }
+  .pricingSection { padding: 40px 0 50px; }
+  .pricingTitle h2 { font-size: 34px; }
+  .servicePriceGrid, .planPriceGrid { grid-template-columns: 1fr; gap: 9px; }
+  .servicePriceCard { min-height: 210px; padding: 23px; }
+  .planPriceCard { min-height: 140px; }
+  .extraPriceRow { grid-template-columns: 28px 1fr auto; gap: 8px; }
+  .extraPriceRow span:nth-child(2) { font-size: 12px; }
+  .extraPriceRow strong { font-size: 16px; }
+  .pricingFooter { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
