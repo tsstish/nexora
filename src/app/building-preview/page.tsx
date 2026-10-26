@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { readySites } from "@/data/readySites";
+import { monthlyPlans } from "@/data/readyMonthly";
 import { FeaturedGallery } from "./FeaturedGallery";
 import styles from "./page.module.css";
 
@@ -24,6 +25,8 @@ export default function BuildingPreview() {
     description: site.shortDescription,
     formatLabel: site.formatLabel,
     priceFrom: site.priceFrom,
+    monthlyPrice: monthlyPlans[site.monthlyPlan].price,
+    monthlyPlan: site.monthlyPlan,
     features: site.features.slice(0, 3),
     demoUrl: site.demoUrl,
   }));
@@ -39,7 +42,8 @@ export default function BuildingPreview() {
           <nav className={styles.nav} aria-label="Меню">
             <a href="#collection">Готовые сайты</a>
             <a href="/services">Услуги</a>
-            <a href="/ready/monthly">Как это работает</a>
+            <a href="/building-preview/pricing">Стоимость</a>
+            <a href="/ready/monthly">Подписка</a>
           </nav>
           <a href="/#start-project" className={styles.headerCta}>Обсудить проект <span aria-hidden="true">↗</span></a>
         </header>
@@ -69,6 +73,7 @@ export default function BuildingPreview() {
           <div className={styles.catalogIntroCopy}>
             <p>Каждая концепция уже разработана на кодовой базе. Мы адаптируем её под бизнес, бренд и задачи.</p>
             <a href="/ready">Смотреть все готовые сайты <span aria-hidden="true">↗</span></a>
+            <a className={styles.pricingNav} href="/building-preview/pricing">Индивидуальная разработка и услуги ↗</a>
           </div>
         </div>
       </section>
