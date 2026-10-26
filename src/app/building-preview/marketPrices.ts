@@ -20,8 +20,8 @@ export const priceProposal = {
     "mini-site": { USD: 590, RUB: 49000 },
     landing: { USD: 1490, RUB: 119000 },
     "business-site": { USD: 2690, RUB: 219000 },
-    ecommerce: { USD: 3490, RUB: 279000 },
-    "digital-product": { USD: 3900, RUB: 309000 },
+    ecommerce: { USD: 5900, RUB: 489000 },
+    "digital-product": { USD: 4790, RUB: 379000 },
     "brand-start": { USD: 950, RUB: 79000 },
   },
   addon: {
@@ -45,7 +45,7 @@ export type PriceGroup = keyof typeof priceProposal;
 
 export function localizedPrice(group: PriceGroup, key: string, originalIls: number, currency: Currency) {
   if (currency === "ILS") return originalIls;
-  const groupPrices = priceProposal[group] as Record<string, Record<"USD" | "RUB", number>>;
+  const groupPrices = priceProposal[group] as unknown as Record<string, Record<"USD" | "RUB", number>>;
   return groupPrices[key]?.[currency] ?? null;
 }
 
