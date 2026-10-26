@@ -1,0 +1,7 @@
+.loft-currency-control{display:flex;gap:2px;align-items:center;border:1px solid rgba(239,225,202,.55);border-radius:50px;padding:3px;background:rgba(14,29,26,.18);backdrop-filter:blur(5px)}
+.loft-currency-control button{border:0;background:transparent;color:#fff8e7;min-width:31px;height:29px;display:grid;place-items:center;border-radius:22px;font:600 13px Arial,sans-serif;cursor:pointer}
+.loft-currency-control button.is-active{color:#162c24;background:#ead2a8}
+.loft-currency-control button:focus-visible{outline:2px solid #efd3a8;outline-offset:2px}
+.loft-price-unit{font:12px Arial,sans-serif;color:inherit;opacity:.8}
+.loft-draft-price{font:9px Arial,sans-serif;letter-spacing:.01em;color:#f1d2a1;display:block;margin-top:3px;font-weight:400}
+@media(max-width:600px){.loft-currency-control button{min-width:27px;height:27px;font-size:12px}}
