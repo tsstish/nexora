@@ -3,11 +3,15 @@ import type { Metadata } from "next";
 import { readySites } from "@/data/readySites";
 import { monthlyPlans } from "@/data/readyMonthly";
 import { FeaturedGallery } from "./FeaturedGallery";
+import { CurrencySelector } from "./CurrencyControl";
+import { whatsappUrl } from "@/data/site";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "NeXora / новая главная — витрина концепций",
   robots: { index: false, follow: false },
+  alternates: { canonical: "/building-preview" },
+  description: "Экспериментальная витрина готовых сайтов NeXora.",
 };
 
 const categoryNames: Record<string, string> = {
@@ -41,11 +45,14 @@ export default function BuildingPreview() {
           </a>
           <nav className={styles.nav} aria-label="Меню">
             <a href="#collection">Готовые сайты</a>
-            <a href="/services">Услуги</a>
+            <a href="/building-preview/pricing#individual">Услуги</a>
             <a href="/building-preview/pricing">Стоимость</a>
-            <a href="/ready/monthly">Подписка</a>
+            <a href="/building-preview/pricing#monthly">Подписка</a>
           </nav>
-          <a href="/#start-project" className={styles.headerCta}>Обсудить проект <span aria-hidden="true">↗</span></a>
+          <div className={styles.headerActions}>
+            <CurrencySelector />
+            <a href={whatsappUrl("Здравствуйте! Хочу обсудить сайт NeXora.")} target="_blank" rel="noopener noreferrer" className={styles.headerCta}>Обсудить проект <span aria-hidden="true">↗</span></a>
+          </div>
         </header>
 
         <section className={styles.hero} aria-labelledby="loft-title">
@@ -72,8 +79,8 @@ export default function BuildingPreview() {
           </div>
           <div className={styles.catalogIntroCopy}>
             <p>Каждая концепция уже разработана на кодовой базе. Мы адаптируем её под бизнес, бренд и задачи.</p>
-            <a href="/ready">Смотреть все готовые сайты <span aria-hidden="true">↗</span></a>
-            <a className={styles.pricingNav} href="/building-preview/pricing">Индивидуальная разработка и услуги ↗</a>
+            <a href="#collection">Вернуться к коллекции <span aria-hidden="true">↗</span></a>
+            <a className={styles.pricingNav} href="/building-preview/pricing#individual">Индивидуальная разработка и услуги ↗</a>
           </div>
         </div>
       </section>
