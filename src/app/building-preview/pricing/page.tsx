@@ -94,6 +94,7 @@ export default function LoftPricing() {
               <p>Вы выбираете готовую концепцию, мы адаптируем её под бизнес. Хостинг и техническая поддержка включены</p>
             </div>
           </header>
+          <p className={styles.mobileSwipe}>Тарифы — листайте в сторону →</p>
           <div className={styles.planGrid}>
             {monthlyPlanList.map((plan, index) => (
               <article key={plan.id} className={`${styles.plan} ${index === 0 ? styles.featuredPlan : ""}`}>
@@ -181,6 +182,25 @@ export default function LoftPricing() {
                   ))}
                 </div>
               </article>
+            ))}
+          </div>
+          <div className={styles.mobileAddonGroups}>
+            {addonGroups.map((group, i) => (
+              <details key={group.number} open={i === 0}>
+                <summary>
+                  <span className={styles.addonMobileNumber}>{group.number}</span>
+                  <span><strong>{group.title}</strong><small>{group.caption}</small></span>
+                  <span className={styles.addonMobilePlus} aria-hidden="true">+</span>
+                </summary>
+                <div className={styles.mobileAddonItems}>
+                  {addons.filter((addon) => group.ids.includes(addon.id)).map((addon) => (
+                    <div key={addon.id}>
+                      <span>{addon.name}</span>
+                      <strong><CurrencyPrice group="addon" priceId={addon.id} ils={addon.price} prefix="от " /></strong>
+                    </div>
+                  ))}
+                </div>
+              </details>
             ))}
           </div>
         </div>
