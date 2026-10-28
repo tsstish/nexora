@@ -131,7 +131,8 @@ useEffect(() => {
 
   return () => document.removeEventListener("click", click);
 }, []);
-  if (pathname.startsWith("/brief")) return null;
+  // The new NeXora experience has its own clear CTAs: no overlapping floating helper.
+  if (pathname.startsWith("/brief") || pathname.startsWith("/building-preview")) return null;
   const message = `Здравствуйте! Пишу с сайта Nexora. ${direction ? `Интересует: ${labels[direction]}.` : "Хочу обсудить сайт для моего бизнеса."}${goal ? ` Задача: ${goal}.` : ""}${scope ? ` Объём: ${scope}.` : ""}`;
   const store = goal === "Продавать товары онлайн";
   const ready = !store && scope !== "Особые функции";
