@@ -36,3 +36,8 @@
    url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=1900&q=82") center 42%/cover no-repeat;
  opacity:.7;pointer-events:none
 }
+
+/* Ready details share the master morning image instead of cropping their own copy. */
+.root::before{content:none!important}
+.panel{border-color:var(--nx-glass-border)}
+@media(max-width:800px){.root::before{content:none!important}}
