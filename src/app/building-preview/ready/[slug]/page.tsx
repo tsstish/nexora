@@ -7,6 +7,7 @@ import { readyAdaptation, readyRights, monthlyStart, monthlyCancel, monthlyBuyou
 import { whatsappUrl } from "@/data/site";
 import { CurrencyPrice } from "../../CurrencyControl";
 import { StudioHeader } from "../../StudioHeader";
+import { CityBackdrop } from "../../CityBackdrop";
 import styles from "./product.module.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -31,7 +32,8 @@ export default async function ReadyConcept({ params }: Props) {
   const monthly = monthlyPlans[site.monthlyPlan];
 
   return (
-    <main className={styles.root}>
+    <main className={`${styles.root} nx-city-stage`}>
+      <CityBackdrop time="morning" />
       <StudioHeader />
       <div className={styles.shell}>
 
@@ -44,7 +46,7 @@ export default async function ReadyConcept({ params }: Props) {
             <p>{site.shortDescription}</p>
             <a className={`${styles.demoLink} nx-action nx-action--outline`} href={site.demoUrl} target="_blank" rel="noopener noreferrer">Открыть оригинальное демо ↗</a>
           </div>
-          <div className={styles.panel}>
+          <div className={`${styles.panel} nx-glass`}>
             <span className={styles.panelLabel}>01 / READY PRODUCT</span>
             <strong>{site.name}</strong>
             <span>{site.formatLabel}</span>
