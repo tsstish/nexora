@@ -74,8 +74,13 @@ export default async function ReadyConcept({ params }: Props) {
           </article>
         </section>
 
+        <details className={styles.mobileFeatures}>
+          <summary>Что уже есть в этой концепции <span aria-hidden="true">+</span></summary>
+          <ul>{site.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+        </details>
+
         <section className={styles.editorial}>
-          <div><span className={styles.kicker}>03 / THE DETAILS</span><h2>Что уже продумано.</h2></div>
+          <div><span className={styles.kicker}>03 / THE DETAILS</span><h2>Что уже продумано</h2></div>
           <div className={styles.included}>
             {site.features.map((feature, i) => (
               <div key={feature}><span>{String(i + 1).padStart(2, "0")}</span><p>{feature}</p></div>
@@ -85,8 +90,8 @@ export default async function ReadyConcept({ params }: Props) {
 
         <section className={styles.conditions}>
           <span className={styles.kicker}>04 / УСЛОВИЯ И СОСТАВ УСЛУГ</span>
-          <h2>Без скрытых допущений.</h2>
-          <details open>
+          <h2>Условия и детали</h2>
+          <details>
             <summary>Что включено в адаптацию</summary>
             <p>{readyAdaptation}</p>
           </details>
