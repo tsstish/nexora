@@ -29,7 +29,7 @@ export function StudioFooter() {
             <span className={styles.eyebrow}>NEXORA / DIGITAL PRESENCE DESIGN</span>
             <h2>Расскажите о задаче</h2>
             <p>Готовые сайты и индивидуальная разработка для бизнеса</p>
-            <a className={styles.cta}
+            <a className={`${styles.cta} nx-action nx-action--primary`}
                href={whatsappUrl("Здравствуйте! Хочу обсудить разработку сайта NeXora.")}
                target="_blank" rel="noopener noreferrer">
               Обсудить разработку сайта <span aria-hidden="true">↗</span>
