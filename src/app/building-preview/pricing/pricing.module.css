@@ -20,13 +20,7 @@
   align-items:end;padding:clamp(55px,7vw,100px) 0 42px;
   position:relative;
 }
-.hero::before{
-  content:"";position:absolute;inset:0 -10vw -12px;z-index:-1;pointer-events:none;
-  background:linear-gradient(90deg,rgba(16,30,26,.94) 8%,rgba(16,30,26,.54) 60%,rgba(16,30,26,.8)),
-    linear-gradient(0deg,#12241e 0%,transparent 65%),
-    url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=1800&q=80") center 38%/cover no-repeat;
-  opacity:.67;
-}
+
 .heroCopy h1{font:400 clamp(54px,6.1vw,88px)/1.01 Georgia,"Times New Roman",serif;letter-spacing:-.055em;margin:20px 0 20px}
 .heroCopy h1 em{font-style:normal;color:var(--gold)}
 .heroCopy p{max-width:500px;margin:0;font-size:15px;line-height:1.55;color:#ecebe3}
@@ -69,17 +63,6 @@
 .disclosureBody h3{font:400 21px Georgia,serif;margin:0 0 7px}
 .disclosureBody p{font-size:12px;line-height:1.7;color:#cfd7c9;margin:0 0 9px}
 .finePrint{font-size:10px;color:#c1c9ba;line-height:1.55;margin:14px 0 0}
-.architecturalBreak{
-  position:relative;display:flex;justify-content:space-between;align-items:center;min-height:220px;
-  padding:20px clamp(24px,4vw,60px);overflow:hidden;isolation:isolate;
-  border-top:1px solid rgba(236,209,169,.42);border-bottom:1px solid rgba(236,209,169,.42);
-  background:linear-gradient(90deg,rgba(9,25,22,.90),rgba(12,27,25,.12) 62%,rgba(12,30,25,.54)),
-    url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=1900&q=80") 70% 71%/cover no-repeat;
-}
-.architectureCaption{align-self:flex-start;color:#e4d2b4;font-size:10px;letter-spacing:.16em;font-weight:700;z-index:1}
-.architectureLetter{position:absolute;left:45%;transform:translateX(-50%);top:50%;translate:0 -50%;font:400 clamp(100px,14vw,215px)/1 Georgia,serif;letter-spacing:-.11em;color:rgba(244,225,193,.69);text-shadow:0 9px 40px rgba(0,0,0,.4)}
-.architectureLetter span{color:#c3a47a}
-.architectureSide{align-self:end;color:#e7d9c1;font-size:10px;letter-spacing:.17em;font-weight:600;z-index:1}
 .individualSection{color:#26352b;padding-top:clamp(65px,7vw,95px);padding-bottom:clamp(65px,7vw,100px)}
 .individualSection::before{
   content:"";position:absolute;z-index:-1;left:50%;top:0;bottom:0;width:100vw;transform:translateX(-50%);
@@ -180,3 +163,35 @@
 @media(prefers-reduced-motion:reduce){
   .pathSummaryItem,.expandMark,.disclosurePlus{transition:none}
 }
+
+/* One urban photograph, daylight treatment: brighter city, readable editorial surfaces. */
+.dayScene{position:relative;isolation:isolate;overflow:hidden;background:#42554c;padding-bottom:clamp(25px,4vw,60px)}
+.dayScene::before{content:"";position:absolute;inset:0;z-index:-2;
+  background:url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=2400&q=82") center 43%/cover no-repeat;
+  filter:brightness(1.20) saturate(.79) contrast(.92)}
+.dayScene::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 76% 12%,rgba(255,230,177,.25),transparent 49%),
+    linear-gradient(180deg,rgba(13,30,26,.26) 0%,rgba(12,33,28,.53) 25%,rgba(13,32,27,.83) 73%,#12251f 100%)}
+.dayScene .heroIndex{background:rgba(16,31,27,.58);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.dayScene .monthlyCard{background:linear-gradient(125deg,rgba(22,49,39,.83),rgba(20,45,35,.7))}
+.dayScene .disclosure{background:rgba(17,42,33,.72)}
+/* A lighter paper-like chapter with a discreet architectural imprint. */
+.individualSection::before{
+  background:
+    linear-gradient(90deg,rgba(226,214,192,.97) 0%,rgba(230,221,201,.94) 62%,rgba(219,207,187,.83) 100%),
+    url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=1600&q=78") right 47%/cover no-repeat;
+}
+/* The same city returns as an atmospheric silhouette, not another card background. */
+.extrasSection::before{
+  background:
+    linear-gradient(90deg,rgba(16,34,27,.97),rgba(14,30,26,.89) 65%,rgba(12,25,23,.72)),
+    url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=1700&q=80") right 58%/cover no-repeat;
+}
+.supportSection::before{
+  background:
+    radial-gradient(ellipse at 10% 80%,rgba(145,166,112,.16),transparent 56%),
+    linear-gradient(120deg,rgba(19,43,33,.94),rgba(15,32,27,.82)),
+    url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=1600&q=80") center 75%/cover no-repeat;
+}
+@media(max-width:730px){.dayScene::before{background-position:49% 50%}.dayScene::after{background:linear-gradient(180deg,rgba(16,31,26,.40),rgba(13,33,27,.81) 56%,#12251f)}}
