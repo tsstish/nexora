@@ -108,7 +108,7 @@ export default async function ReadyConcept({ params }: Props) {
           <p className={styles.notice}>Все цены и условия в ILS взяты из действующей версии NeXora. USD/RUB — предварительные коммерческие предложения для обсуждения, не утверждённый публичный прайс.</p>
         </section>
 
-        <footer className={styles.footer}><Link href="/building-preview#collection">← Вернуться к коллекции</Link><Link href="/building-preview/pricing">Вся стоимость и услуги ↗</Link></footer>
+
       </div>
     </main>
   );
