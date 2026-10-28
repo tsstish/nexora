@@ -41,3 +41,18 @@
 .root::before{content:none!important}
 .panel{border-color:var(--nx-glass-border)}
 @media(max-width:800px){.root::before{content:none!important}}
+
+
+/* The customer must not mistake a demo brand for the final website. */
+.customBrandNote{
+  display:block;
+  max-width:550px;
+  border-left:2px solid #e0c08e;
+  margin:15px 0 18px;
+  padding:10px 0 10px 16px;
+  background:linear-gradient(90deg,rgba(17,45,35,.64),transparent);
+  color:#f3e2c8!important;
+  font-size:13px!important;
+  line-height:1.55!important;
+}
+@media(max-width:800px){.customBrandNote{font-size:12px!important;margin:10px 0 17px}}
