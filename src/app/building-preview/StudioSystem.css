@@ -1,7 +1,7 @@
 /* NeXora Loft / one cross-page interface system.
    Core scene geometry remains exactly the same on every route. */
 :root {
-  --nx-city-stage-height: 850px;
+  --nx-city-stage-height: 790px;
   --nx-glass-fill: rgba(12,32,27,.86);
   --nx-glass-border: rgba(239,215,182,.48);
   --nx-glass-blur: 12px;
@@ -38,7 +38,7 @@
   outline:2px solid #ffd49e;outline-offset:4px
 }
 .nx-action[aria-disabled="true"]{opacity:.5;pointer-events:none}
-@media(max-width:700px){:root{--nx-city-stage-height:760px;--nx-glass-fill:rgba(12,32,27,.88)}}
+@media(max-width:700px){:root{--nx-city-stage-height:730px;--nx-glass-fill:rgba(12,32,27,.88)}}
 @media(prefers-reduced-motion:reduce){.nx-action{transition:none}}
 
 
