@@ -535,3 +535,9 @@
   .headerCta { font-size:0;min-width:37px;padding:9px 10px; }
   .headerCta span { font-size:16px; }
 }
+
+
+/* With the redundant collection CTA removed, keep the left hero optically balanced. */
+.glassPanel p { margin-bottom: 0; }
+.glassPanel .facts { margin-top: clamp(26px, 3vw, 40px); }
+@media(max-width:700px){.glassPanel .facts{margin-top:25px}}
