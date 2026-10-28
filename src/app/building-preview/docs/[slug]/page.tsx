@@ -39,10 +39,7 @@ export default async function DocumentPreview({ params }: Props) {
         </div>
       </div>
       <div className={styles.body}><Component /></div>
-      <footer className={styles.footer}>
-        <Link href="/building-preview/contacts">Контакты ↗</Link>
-        <Link href="/building-preview">Готовые сайты ↗</Link>
-      </footer>
+
     </div>
   );
 }
