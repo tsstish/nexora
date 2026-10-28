@@ -156,14 +156,14 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
           <div className={styles.offers}>
             <div className={styles.monthlyOffer}>
               <div>
-                <span className={styles.offerLabel}>Сайт по подписке · хостинг и поддержка</span>
+                <span className={styles.offerLabel}><span className={styles.desktopOfferLabel}>Сайт по подписке · хостинг и поддержка</span><span className={styles.mobileOfferLabel}>Подписка</span></span>
                 <strong><CurrencyPrice group="monthly" priceId={active.monthlyPlan} ils={active.monthlyPrice} perMonth /></strong>
               </div>
               <a href={`/building-preview/ready/${active.slug}#monthly`}>Условия подписки ↗</a>
             </div>
             <div className={styles.buyOffer}>
               <div>
-                <span className={styles.offerLabel}>Покупка готового сайта с адаптацией</span>
+                <span className={styles.offerLabel}><span className={styles.desktopOfferLabel}>Покупка готового сайта с адаптацией</span><span className={styles.mobileOfferLabel}>Покупка сайта</span></span>
                 <strong><CurrencyPrice group="ready" priceId={active.slug} ils={active.priceFrom} prefix="от " /></strong>
               </div>
               <a href={`/building-preview/ready/${active.slug}#purchase`}>Условия покупки ↗</a>
@@ -186,6 +186,7 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
             <button type="button" onClick={() => move(1)} aria-label="Следующая концепция">→</button>
           </div>
         </div>
+        <span className={styles.mobileTabHint}>Листайте направления →</span>
         <div className={styles.tabRail} role="tablist" aria-label="Готовые концепции NeXora">
           {concepts.map((site, index) => (
             <button key={site.slug}
