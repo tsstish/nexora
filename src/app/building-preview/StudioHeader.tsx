@@ -16,7 +16,7 @@ const menu = [
 export function StudioHeader() {
   const pathname = usePathname();
   const section = pathname.startsWith("/building-preview/pricing") ? "pricing"
-    : pathname.startsWith("/building-preview/contacts") ? "contacts"
+    : (pathname.startsWith("/building-preview/contacts") || pathname.startsWith("/building-preview/docs/")) ? "contacts"
     : "ready";
 
   return (
