@@ -57,11 +57,10 @@ export default function BuildingPreview() {
         <div className={styles.catalogIntroInner}>
           <div>
             <span className={styles.eyebrow}>THE READY COLLECTION</span>
-            <h2>Больше, чем<br />готовый шаблон.</h2>
+            <h2>Больше, чем<br />готовый шаблон</h2>
           </div>
           <div className={styles.catalogIntroCopy}>
             <p>Каждая концепция уже разработана на кодовой базе. Мы адаптируем её под бизнес, бренд и задачи.</p>
-            <a href="#collection">Вернуться к коллекции <span aria-hidden="true">↗</span></a>
             <a className={styles.pricingNav} href="/building-preview/pricing#individual">Индивидуальная разработка и услуги ↗</a>
           </div>
         </div>
