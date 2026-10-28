@@ -129,3 +129,143 @@
   .footer{align-items:start;flex-direction:column;padding:63px 0}.footer h2{font-size:43px}
 }
 @media(prefers-reduced-motion:reduce){.readyRow{transition:none}}
+
+
+/* 2026-10-28 editorial pass: mixed materials and pricing entry points. */
+.hero { padding-bottom: 42px; }
+.pathSummary {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  border-top: 1px solid rgba(231,208,174,.48);
+  border-bottom: 1px solid rgba(231,208,174,.48);
+  background: linear-gradient(103deg,rgba(51,75,61,.31),rgba(19,41,33,.08));
+}
+.pathSummaryItem {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 13px;
+  padding: 24px clamp(17px,2.4vw,35px) 22px;
+  transition: background .25s ease;
+}
+.pathSummaryItem + .pathSummaryItem { border-left: 1px solid rgba(231,208,174,.26); }
+.pathSummaryItem:hover, .pathSummaryItem:focus-visible { background:rgba(215,192,145,.10); }
+.pathSummaryItem > span:first-child {
+  color: #e1c59e; font-size: 10px; font-weight: 700; letter-spacing: .09em; line-height: 1.4;
+}
+.pathSummaryItem strong { font:400 clamp(27px,2.6vw,39px)/1.1 Georgia,serif; letter-spacing:-.025em; color:#f3e4cb; }
+.pathSummaryAction { font-size:11px;color:#d2d6c8; }
+.monthlySection { padding-bottom: 42px; }
+.monthlyExplanation {
+  display:grid;
+  grid-template-columns: .64fr 1fr;
+  gap: clamp(20px,4vw,70px);
+  margin-top: 55px;
+  scroll-margin-top: 35px;
+  padding: clamp(24px,4vw,50px);
+  border-top: 1px solid rgba(236,207,165,.57);
+  border-bottom: 1px solid rgba(236,207,165,.34);
+  background:
+    radial-gradient(ellipse at 12% 23%,rgba(202,170,113,.11),transparent 53%),
+    linear-gradient(125deg,rgba(40,65,51,.74),rgba(20,42,34,.15));
+}
+.explanationHeading h3 {
+  font:400 clamp(31px,3.6vw,53px)/1.08 Georgia,serif;
+  letter-spacing:-.04em;
+  margin:18px 0 20px;
+}
+.explanationHeading p { font-size:13px;color:#d3d7cd;line-height:1.7;max-width:365px;margin:0; }
+.explanationList { border-top:1px solid rgba(235,213,179,.33); }
+.explanationList > div {
+  display:grid;grid-template-columns:35px 1fr;gap:16px;
+  border-bottom:1px solid rgba(235,213,179,.27);padding:17px 0;
+}
+.explanationList > div:last-child { border-bottom:0; }
+.explanationList > div > span { font:400 22px Georgia,serif;color:#e1c398; }
+.explanationList strong { font:400 22px Georgia,serif; }
+.explanationList p { font-size:12px;line-height:1.7;color:#cdd5c9;margin:8px 0 0; }
+
+/* Warm architectural-paper interlude: deliberate contrast to dark home page. */
+.section { position:relative; isolation:isolate; }
+.individualSection {
+  color:#202c27;
+  padding-top: clamp(70px,8vw,110px);
+  padding-bottom: clamp(65px,7vw,100px);
+  border-top: 0;
+}
+.individualSection::before {
+  content:"";
+  position:absolute;
+  left:50%;top:0;bottom:0;width:100vw;
+  transform:translateX(-50%);
+  z-index:-1;
+  background:
+    linear-gradient(0deg,rgba(118,83,51,.055) 1px,transparent 1px) 0 0/100% 63px,
+    radial-gradient(ellipse at 88% 9%,rgba(255,249,231,.90),transparent 49%),
+    linear-gradient(112deg,#d1c2a9,#e8dec9 56%,#cdbb9f);
+}
+.individualSection .overline { color:#70573b; }
+.individualSection .sectionHeading p { color:#475249; }
+.individualSection .sectionHeading h2 em { color:#806146; }
+.individualSection .customList { border-top:1px solid rgba(47,65,50,.45); }
+.individualSection .customRow { border-bottom:1px solid rgba(47,65,50,.3); }
+.individualSection .customRow h3 { color:#1b2d24; }
+.individualSection .customRow p, .individualSection .duration { color:#45584a; }
+.individualSection .customRow .rowNumber { color:#82603d; }
+.individualSection .customRow > strong { color:#20392b; }
+.individualSection :global(.loft-draft-price) { color:#77593c; }
+
+/* Slightly illuminated services ledger rather than a long flat green strip. */
+.extrasSection {
+  padding-top: clamp(75px,9vw,125px);
+  padding-bottom: clamp(75px,8vw,120px);
+}
+.extrasSection::before {
+  content:"";
+  position:absolute;
+  left:50%;top:0;bottom:0;width:100vw;
+  transform:translateX(-50%);
+  z-index:-1;
+  background:
+    radial-gradient(ellipse at 79% 29%,rgba(162,115,75,.24),transparent 37%),
+    repeating-linear-gradient(90deg,transparent 0,transparent calc(25% - 1px),rgba(234,205,166,.035) 25%),
+    linear-gradient(135deg,#1c2b27,#111b1a 60%,#26251f);
+}
+.extrasSection .extrasGrid { border-top:1px solid rgba(238,209,165,.55); }
+.extrasSection .extraRow { padding-block:22px; }
+
+/* A quieter, separate last chapter. */
+.supportSection { padding-top:clamp(72px,7vw,100px); }
+.supportSection::before {
+  content:"";
+  position:absolute;
+  left:50%;top:0;bottom:0;width:100vw;
+  transform:translateX(-50%);
+  z-index:-1;
+  background:
+    radial-gradient(ellipse at 0% 100%,rgba(143,177,126,.18),transparent 52%),
+    linear-gradient(160deg,#13251f,#172d25 78%,#13201c);
+}
+.supportSection .supportGrid article:first-child { border-top:3px solid #b6a788; }
+.supportSection .supportGrid article:nth-child(2) { border-top:3px solid #789b83; }
+@media(max-width:850px){
+  .pathSummaryItem { padding:18px 13px; }
+  .pathSummaryItem strong { font-size:clamp(24px,3.4vw,32px); }
+  .pathSummaryItem > span:first-child { font-size:9px; }
+  .monthlyExplanation { grid-template-columns:1fr;gap:22px; }
+}
+@media(max-width:730px){
+  .hero { padding-bottom:30px; }
+  .pathSummary { grid-template-columns:1fr; }
+  .pathSummaryItem { padding:17px 10px;gap:8px; }
+  .pathSummaryItem + .pathSummaryItem { border-left:0;border-top:1px solid rgba(231,208,174,.26); }
+  .pathSummaryItem strong { font-size:31px; }
+  .monthlyExplanation { margin-top:32px;padding:25px 18px; }
+  .explanationHeading h3 { font-size:36px; }
+  .explanationList strong { font-size:20px; }
+  .explanationList p { font-size:12px; }
+  .individualSection { padding-top:67px; }
+  .extrasSection,.supportSection { padding-top:67px;padding-bottom:75px; }
+}
+@media(prefers-reduced-motion:reduce){.pathSummaryItem{transition:none}}
