@@ -12,3 +12,8 @@
 .bottom nav{display:flex;flex-wrap:wrap;gap:12px 24px}.bottom a{color:#c8d0c5}
 @media(max-width:760px){.inner,.bottom{width:calc(100% - 34px)}.inner{grid-template-columns:1fr;gap:34px;padding:42px 0}.navigation{padding-top:0;gap:17px}.bottom{flex-direction:column;align-items:flex-start;gap:15px}.bottom nav{gap:10px 18px}}
 @media(prefers-reduced-motion:reduce){.cta{transition:none}}
+
+/* Secondary pages keep only the necessary legal and contact row. */
+.compact{border-top:1px solid rgba(231,199,157,.28)}
+.compact .bottom{border-top:none;padding-top:19px;padding-bottom:20px}
+@media(max-width:760px){.compact .bottom{padding-top:16px;padding-bottom:20px}}
