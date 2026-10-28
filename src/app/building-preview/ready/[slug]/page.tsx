@@ -41,16 +41,17 @@ export default async function ReadyConcept({ params }: Props) {
         <section className={styles.hero}>
           <div className={styles.heading}>
             <span className={styles.kicker}>NEXORA / READY COLLECTION / {site.name}</span>
-            <span className={styles.conceptName}>Разработанная концепция: {site.name}</span>
+            <span className={styles.conceptName}>{site.name} — демонстрационный бренд, который заменим вашим</span>
             <h1>{site.title}</h1>
             <p>{site.shortDescription}</p>
-            <a className={`${styles.demoLink} nx-action nx-action--outline`} href={site.demoUrl} target="_blank" rel="noopener noreferrer">Открыть оригинальное демо ↗</a>
+            <p className={styles.customBrandNote}>Сайт уже разработан. Перед запуском адаптируем логотип, цвета, фотографии, тексты и контакты под ваш бизнес</p>
+            <a className={`${styles.demoLink} nx-action nx-action--outline`} href={site.demoUrl} target="_blank" rel="noopener noreferrer">Посмотреть работающий демо-сайт ↗</a>
           </div>
           <div className={`${styles.panel} nx-glass`}>
-            <span className={styles.panelLabel}>01 / READY PRODUCT</span>
+            <span className={styles.panelLabel}>01 / ДЕМОНСТРАЦИОННЫЙ САЙТ</span>
             <strong>{site.name}</strong>
             <span>{site.formatLabel}</span>
-            <div className={styles.detailsBar}><i /> <span>Разработано на кодовой базе — не конструктор</span></div>
+            <div className={styles.detailsBar}><i /> <span>Ваша версия — с вашим брендом и материалами</span></div>
           </div>
         </section>
 
