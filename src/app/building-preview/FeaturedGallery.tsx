@@ -164,7 +164,7 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
             </div>
           </div>
 
-          <a className={styles.demoButton} href={active.demoUrl} target="_blank" rel="noopener noreferrer"
+          <a className={`${styles.demoButton} nx-action nx-action--primary`} href={active.demoUrl} target="_blank" rel="noopener noreferrer"
             data-analytics-event="ready_demo_open" data-concept={active.slug}>
             Смотреть демо <span aria-hidden="true">↗</span>
           </a>
@@ -172,7 +172,7 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
         <SitePreview name={active.name} slug={active.slug} url={active.demoUrl} />
       </section>
 
-      <div className={styles.selector} id="collection">
+      <div className={`${styles.selector} nx-glass`} id="collection">
         <div className={styles.selectorHeading}>
           <div><span className={styles.selectorEyebrow}>THE READY COLLECTION</span><h3>Выберите направление</h3></div>
           <div className={styles.arrowControls}>
