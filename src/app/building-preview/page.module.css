@@ -380,3 +380,97 @@
  .tab:hover{transform:none}
  .demoButton:hover span{transform:none}
 }
+
+
+/* Clarity pass: what the customer receives versus the sample brand. */
+.glassPanel .adaptationNote{
+  width:100%;
+  margin-top:21px;
+  padding:13px 15px 12px;
+  border-left:2px solid #e9bd85;
+  background:rgba(10,28,24,.57);
+}
+.adaptationEyebrow{
+  display:block;
+  color:#efca9b;
+  font-size:10px;
+  line-height:1.45;
+  letter-spacing:.035em;
+  font-weight:700;
+}
+.glassPanel .adaptationNote strong{
+  display:block;
+  color:#fff0dc;
+  font-size:clamp(13px,1.15vw,15px);
+  font-weight:600;
+  line-height:1.45;
+  margin-top:5px;
+}
+.glassPanel .adaptationNote small{
+  display:block;
+  color:#d5d8ca;
+  font-size:10px;
+  line-height:1.45;
+  margin-top:5px;
+}
+.glassPanel .facts{margin-top:24px}
+.glassPanel .facts b{
+  font:700 11px Arial,Helvetica,sans-serif;
+  width:31px;height:31px;
+}
+.glassPanel>small{font-size:10px;line-height:1.5}
+.brandTransformation{
+  align-self:stretch;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 19px minmax(0,1fr);
+  gap:8px;
+  align-items:center;
+  border-top:1px solid rgba(226,203,162,.36);
+  border-bottom:1px solid rgba(226,203,162,.36);
+  padding:10px 0;
+  margin-bottom:7px;
+}
+.brandTransformation>span{min-width:0}
+.brandTransformation small{
+  display:block;
+  color:#d6c4a8;
+  font-size:9px;
+  line-height:1.3;
+  letter-spacing:.04em;
+  margin-bottom:4px;
+}
+.brandTransformation strong{
+  display:block;
+  color:#f8ecdc;
+  font:400 clamp(14px,1.45vw,19px)/1.2 Georgia,serif;
+  overflow-wrap:anywhere;
+}
+.brandTransformation>span:last-child strong{color:#f0cd96}
+.brandTransformation>b{
+  display:block;
+  font:400 20px Georgia,serif;
+  color:#e8bc83;
+  text-align:center;
+}
+.brandExplanation{
+  color:#d7dfd2;
+  font-size:11px;
+  line-height:1.5;
+  margin:0 0 12px;
+}
+.activeDetails .featureList{margin-bottom:10px}
+.activeDetails .conceptKicker{margin-top:9px}
+.activeDetails h2{margin:9px 0 10px}
+.activeDetails .activeDescription{margin-bottom:10px}
+@media(max-width:1120px){
+  .glassPanel .adaptationNote{margin-top:18px}
+  .glassPanel .facts{margin-top:18px}
+  .brandTransformation strong{font-size:18px}
+}
+@media(max-width:700px){
+  .glassPanel .adaptationNote{margin-top:16px;padding:12px 13px}
+  .glassPanel .adaptationNote strong{font-size:14px}
+  .glassPanel .facts{margin-top:17px}
+  .brandTransformation{padding:11px 0}
+  .brandExplanation{font-size:11px}
+}
