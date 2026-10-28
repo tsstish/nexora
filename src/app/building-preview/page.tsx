@@ -46,6 +46,7 @@ export default function BuildingPreview() {
             <h1 id="loft-title">Готовые сайты<br />для реального<br />бизнеса</h1>
             <p className={styles.heroDescription}>Это уже работающие сайты, а не макеты. Вы выбираете подходящий пример — мы превращаем его в сайт вашего бизнеса.</p>
             <p className={styles.mobileDescription}>Выберите готовый работающий сайт — мы адаптируем его под ваш бизнес</p>
+            <p className={styles.mobileBrandLine}>Логотип · цвета · фотографии · тексты — ваши</p>
             <details className={styles.mobileAdapt}>
               <summary>Как готовый сайт станет вашим <span aria-hidden="true">+</span></summary>
               <p>Заменим логотип, цвета, фотографии, тексты и контакты. Изменения в рамках концепции; дополнительные функции согласуем отдельно</p>
