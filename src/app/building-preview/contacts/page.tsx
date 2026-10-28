@@ -3,6 +3,7 @@ import Link from "next/link";
 import { siteConfig, whatsappUrl } from "@/data/site";
 import { CityBackdrop } from "../CityBackdrop";
 import { StudioHeader } from "../StudioHeader";
+import { ProjectBrief } from "./ProjectBrief";
 import styles from "./contacts.module.css";
 
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ export default function ContactsPage() {
             <a href={siteConfig.phoneHref}><span>01 / ТЕЛЕФОН</span><strong>{siteConfig.phoneDisplay}</strong><b aria-hidden="true">↗</b></a>
             <a href={siteConfig.telegram} target="_blank" rel="noopener noreferrer"><span>02 / TELEGRAM</span><strong>{siteConfig.telegramDisplay}</strong><b aria-hidden="true">↗</b></a>
             <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer"><span>03 / WHATSAPP</span><strong>Начать разговор</strong><b aria-hidden="true">↗</b></a>
+            <ProjectBrief />
             <p>NeXora · {siteConfig.location}</p>
           </div>
         </section>
