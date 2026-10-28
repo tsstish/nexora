@@ -44,13 +44,18 @@ export default function BuildingPreview() {
           <div className={`${styles.glassPanel} nx-glass`}>
             <span className={styles.eyebrow}>NEXORA / READY COLLECTION</span>
             <h1 id="loft-title">Готовые сайты<br />для реального<br />бизнеса</h1>
-            <p>Каждая концепция уже разработана на кодовой базе — не конструкторе. Вы выбираете готовый сайт, а мы адаптируем его под ваш бизнес, бренд и задачи.</p>
-            <div className={styles.facts}>
-              <div><b aria-hidden="true">◇</b><span>Готовые<br />концепции</span></div>
-              <div><b aria-hidden="true">✳</b><span>Адаптация<br />под ваш бизнес</span></div>
-              <div><b aria-hidden="true">↗</b><span>Запуск до<br />7 рабочих дней*</span></div>
+            <p>Это уже работающие сайты, а не макеты. Вы выбираете подходящий пример — мы превращаем его в сайт вашего бизнеса.</p>
+            <div className={styles.adaptationNote}>
+              <span className={styles.adaptationEyebrow}>Вместо демонстрационного бренда — ваш</span>
+              <strong>Ваш логотип, цвета, фотографии, тексты и контакты</strong>
+              <small>Оформление адаптируем в рамках выбранной концепции</small>
             </div>
-            <small>* После получения всех материалов. Срок зависит от продукта.</small>
+            <div className={styles.facts} aria-label="Как вы получаете сайт">
+              <div><b aria-hidden="true">01</b><span>Выбираете<br />готовый сайт</span></div>
+              <div><b aria-hidden="true">02</b><span>Мы адаптируем<br />под вас</span></div>
+              <div><b aria-hidden="true">03</b><span>Запускаем<br />ваш сайт*</span></div>
+            </div>
+            <small>* Адаптация — до 7 рабочих дней после получения материалов, в зависимости от продукта. Сайт разработан на кодовой базе, не в конструкторе.</small>
           </div>
           <FeaturedGallery concepts={concepts} />
         </section>
