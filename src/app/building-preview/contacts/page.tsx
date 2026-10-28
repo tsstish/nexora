@@ -45,9 +45,9 @@ export default function ContactsPage() {
       <section className={styles.documents} id="documents" aria-labelledby="docs-title">
         <div className={styles.documentsInner}>
           <div className={styles.documentsIntro}>
-            <span className={styles.eyebrow}>DOCUMENT LIBRARY / NEXORA</span>
-            <h2 id="docs-title">Всё важное.<br /><em>Без мелкого шрифта.</em></h2>
-            <p>Основные юридические документы студии. Их содержание берём из действующей версии сайта и не переписываем ради нового дизайна.</p>
+            <span className={styles.eyebrow}>ДОКУМЕНТЫ NEXORA</span>
+            <h2 id="docs-title">Всё важное<br /><em>в одном месте</em></h2>
+            <p>Условия работы, конфиденциальность и доступность — в одном разделе.</p>
           </div>
           <div className={styles.documentList}>
             {docs.map((doc) => (
@@ -60,10 +60,7 @@ export default function ContactsPage() {
           </div>
         </div>
       </section>
-      <footer className={styles.footer}>
-        <Link href="/building-preview">← Готовые сайты</Link>
-        <Link href="/building-preview/pricing">Услуги и стоимость ↗</Link>
-      </footer>
+
     </main>
   );
 }
