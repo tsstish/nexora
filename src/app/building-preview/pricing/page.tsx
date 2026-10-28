@@ -4,7 +4,6 @@ import { addons, maintenancePlans, services } from "@/data/services";
 import { monthlyPlanList, monthlySupport } from "@/data/readyMonthly";
 import { readySites } from "@/data/readySites";
 import { monthlyStart, monthlyCancel, monthlyBuyout } from "@/data/readyConditions";
-import { whatsappUrl } from "@/data/site";
 import { CurrencyPrice } from "../CurrencyControl";
 import { StudioHeader } from "../StudioHeader";
 import styles from "./pricing.module.css";
@@ -40,7 +39,6 @@ export default function LoftPricing() {
             <span className={styles.overline}>NEXORA / FORMATS & PRICING</span>
             <h1 id="pricing-title">У каждого проекта<br /><em>своя форма.</em></h1>
             <p>Готовый сайт по подписке, выкуп с адаптацией или индивидуальная разработка.</p>
-            <span className={styles.currentNote}>₪ — действующие цены. $ и ₽ — предварительный прайс для согласования.</span>
           </div>
           <nav className={styles.heroIndex} aria-label="Разделы стоимости">
             <div className={styles.indexHead}><span>PRICE INDEX</span><span>01 — 04</span></div>
@@ -179,10 +177,7 @@ export default function LoftPricing() {
           </div>
         </section>
 
-        <footer className={styles.footer}>
-          <div><span className={styles.overline}>NEXORA / LET'S TALK</span><h2>Расскажите о задаче.</h2></div>
-          <a href={whatsappUrl("Здравствуйте! Хочу обсудить стоимость проекта NeXora.")} target="_blank" rel="noopener noreferrer">Обсудить проект ↗</a>
-        </footer>
+
       </div>
     </main>
   );
