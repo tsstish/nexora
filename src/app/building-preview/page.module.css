@@ -563,3 +563,19 @@
 .catalogIntroCopy p {font-size:14px;line-height:1.7;color:#e4e5d8;max-width:470px;margin-bottom:18px}
 .catalogIntroCopy .pricingNav {margin:0;display:inline-flex;font-size:12px;font-weight:700;color:#f0d7b3;border-bottom:1px solid #e1bd8c;text-shadow:0 2px 7px rgba(0,0,0,.5)}
 @media(max-width:700px){.catalogIntro{padding:35px 18px 42px}.catalogIntroCopy p{font-size:13px}}
+
+
+/* Consolidated design-system pass: image now belongs to CityBackdrop. */
+.scene{background:#11251e}
+.scene::before,.scene::after{content:none!important}
+.glassPanel{min-height:0}
+.galleryHeading{font-size:11px;letter-spacing:.12em}
+.galleryCount{font-size:21px}
+.gallery .activePanel{border-color:rgba(235,210,177,.48)}
+.selector{border-color:rgba(235,210,177,.48)}
+.tabActive{box-shadow:inset 0 3px var(--nx-active)!important;border-color:rgba(239,211,167,.75)}
+.tabActive .tabNumber{color:#fff4e4}
+.arrowControls button{width:40px;height:40px;min-width:40px}
+.previewModes button{min-height:32px}
+.previewActions .previewExplore{min-height:38px;border-radius:999px}
+@media(max-width:700px){.scene::before,.scene::after{content:none!important}.galleryHeading{font-size:10px}}
