@@ -1,0 +1,31 @@
+.brief{border-top:1px solid rgba(231,204,169,.34);margin-top:7px;color:#f1e8d9;scroll-margin-top:20px}
+.brief summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 0;list-style:none;cursor:pointer}
+.brief summary::-webkit-details-marker{display:none}
+.brief summary>span:first-child{display:grid;gap:5px}
+.brief summary strong{font:400 21px/1.15 Georgia,serif}
+.brief summary small{color:#c9cfc5;font:11px/1.4 Arial,sans-serif}
+.mark{color:#edc993;font:25px Georgia,serif;transition:transform .18s ease}
+.brief[open] .mark{transform:rotate(45deg)}
+.fields{display:flex;flex-direction:column;align-items:stretch;gap:9px;padding:5px 0 21px}
+.fields label{font:700 11px/1.4 Arial,sans-serif;color:#ebd9bc}
+.fields label span{font-weight:400;color:#c4d0c5}
+.fields select,.fields textarea{
+  box-sizing:border-box;width:100%;min-height:44px;padding:11px 12px;
+  border:1px solid rgba(236,213,178,.44);border-radius:5px;
+  color:#f5eee4;background:#152f28;
+  font:13px/1.5 Arial,sans-serif;outline-offset:3px
+}
+.fields select{cursor:pointer}
+.fields textarea{resize:vertical;min-height:90px}
+.fields textarea::placeholder{color:#b2bfb2}
+.fields select:focus-visible,.fields textarea:focus-visible{outline:2px solid #eecb99;border-color:#eecb99}
+.send{
+  display:flex;justify-content:space-between;align-items:center;gap:15px;
+  min-height:44px;padding:12px 15px;margin-top:7px;border-radius:99px;
+  background:#155640;color:#fff7e9!important;border:1px solid rgba(236,206,162,.72);
+  text-decoration:none;font:700 12px/1.4 Arial,sans-serif;
+  transition:background .18s ease
+}
+.send:hover{background:#207457}
+.note{font:11px/1.55 Arial,sans-serif!important;color:#cbd3c8!important;margin:3px 0 0!important}
+@media(prefers-reduced-motion:reduce){.mark,.send{transition:none}}
