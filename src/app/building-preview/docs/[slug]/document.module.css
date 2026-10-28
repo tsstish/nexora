@@ -21,3 +21,6 @@
 .footer{width:calc(100% - 80px);max-width:1150px;margin:0 auto;padding:26px 0 50px;display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(230,209,178,.2)}
 .footer>a{color:#e6c99e;text-decoration:none;font-size:12px}
 @media(max-width:560px){.heading,.body,.footer{width:calc(100% - 34px)}.heading{padding:50px 0}.body :global(.legal){padding-top:25px}.body :global(.legal-rich h1){font-size:35px}.footer{padding-bottom:38px}}
+
+/* The full document text stays intact; its original page title is replaced visually by the sunset header title. */
+.body :global(.legal-rich h1),.body :global(.legal-rich .legal-kicker){display:none}
