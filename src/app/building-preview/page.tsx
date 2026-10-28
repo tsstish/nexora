@@ -60,7 +60,6 @@ export default function BuildingPreview() {
             <span className={styles.eyebrow}>NEXORA / READY COLLECTION</span>
             <h1 id="loft-title">Готовые сайты<br />для реального<br />бизнеса</h1>
             <p>Вы выбираете концепцию — мы адаптируем её под ваш бизнес.</p>
-            <a href="#collection" className={styles.cta}>Смотреть коллекцию <span aria-hidden="true">↗</span></a>
             <div className={styles.facts}>
               <div><b aria-hidden="true">◇</b><span>Готовые<br />концепции</span></div>
               <div><b aria-hidden="true">✳</b><span>Адаптация<br />под ваш бизнес</span></div>
