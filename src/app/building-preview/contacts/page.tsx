@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig, whatsappUrl } from "@/data/site";
+import { CityBackdrop } from "../CityBackdrop";
 import { StudioHeader } from "../StudioHeader";
 import styles from "./contacts.module.css";
 
@@ -20,18 +21,19 @@ const docs = [
 export default function ContactsPage() {
   return (
     <main className={styles.page}>
-      <div className={styles.sunsetScene}>
+      <div className={`${styles.sunsetScene} nx-city-stage`}>
+        <CityBackdrop time="sunset" />
         <StudioHeader />
         <section className={styles.hero} aria-labelledby="contacts-title">
           <div className={styles.intro}>
             <span className={styles.eyebrow}>NEXORA / GET IN TOUCH</span>
             <h1 id="contacts-title">Есть идея?<br /><em>Давайте обсудим.</em></h1>
             <p>Расскажите о бизнесе и задаче. Мы поможем выбрать готовую концепцию или определить формат индивидуальной разработки.</p>
-            <a className={styles.primary} href={whatsappUrl("Здравствуйте! Хочу обсудить проект NeXora.")} target="_blank" rel="noopener noreferrer">
+            <a className={`${styles.primary} nx-action nx-action--primary`} href={whatsappUrl("Здравствуйте! Хочу обсудить проект NeXora.")} target="_blank" rel="noopener noreferrer">
               Написать в WhatsApp <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <div className={styles.contactBoard}>
+          <div className={`${styles.contactBoard} nx-glass`}>
             <span className={styles.boardEyebrow}>DIRECT CONTACT / ISRAEL</span>
             <a href={siteConfig.phoneHref}><span>01 / ТЕЛЕФОН</span><strong>{siteConfig.phoneDisplay}</strong><b aria-hidden="true">↗</b></a>
             <a href={siteConfig.telegram} target="_blank" rel="noopener noreferrer"><span>02 / TELEGRAM</span><strong>{siteConfig.telegramDisplay}</strong><b aria-hidden="true">↗</b></a>
