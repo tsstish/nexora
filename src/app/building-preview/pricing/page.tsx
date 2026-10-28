@@ -4,6 +4,7 @@ import { addons, maintenancePlans, services } from "@/data/services";
 import { monthlyPlanList, monthlySupport } from "@/data/readyMonthly";
 import { readySites } from "@/data/readySites";
 import { monthlyStart, monthlyCancel, monthlyBuyout } from "@/data/readyConditions";
+import { whatsappUrl } from "@/data/site";
 import { CurrencyPrice } from "../CurrencyControl";
 import { StudioHeader } from "../StudioHeader";
 import styles from "./pricing.module.css";
