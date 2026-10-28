@@ -27,9 +27,11 @@
 .contactBoard>p{margin:15px 0 0;color:#bfc8bd;font-size:11px}
 .sunsetCaption{display:flex;justify-content:space-between;gap:15px;padding:0 max(40px,calc((100% - 1470px)/2)) 25px;color:#debe9e;font:9px Arial,sans-serif;letter-spacing:.17em}
 .documents{position:relative;isolation:isolate;padding:90px 0 105px;background:linear-gradient(140deg,#142923,#11211c 62%,#222b26)}
-.documents::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.18;
-  background:linear-gradient(100deg,rgba(16,36,27,.9),rgba(14,32,26,.68)),
-  url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=1600&q=80") 70% 73%/cover no-repeat}
+.documents::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(226,196,146,.07) 1px,transparent 1px) 0 0/25% 100%,
+    radial-gradient(ellipse at 90% 6%,rgba(208,134,92,.12),transparent 46%),
+    linear-gradient(145deg,#1c2e29 0%,#172620 58%,#233129 100%)}
 .documentsInner{width:min(1320px,calc(100% - 80px));margin:0 auto;display:grid;grid-template-columns:.72fr 1fr;gap:clamp(35px,6vw,100px)}
 .documentsIntro h2{font:400 clamp(36px,4.6vw,63px)/1.08 Georgia,serif;letter-spacing:-.05em;margin:20px 0}
 .documentsIntro h2 em{font-style:normal;color:#e1c194}
@@ -45,3 +47,13 @@
 @media(max-width:820px){.hero{grid-template-columns:1fr;padding:55px 0;gap:30px}.documentsInner{grid-template-columns:1fr;gap:22px}.documents{padding:65px 0 75px}}
 @media(max-width:560px){.sunsetScene{min-height:0}.hero,.documentsInner,.footer{width:calc(100% - 34px)}.hero{padding:50px 0 45px}.intro h1{font-size:clamp(45px,11vw,65px)}.intro>p{font-size:13px}.contactBoard{padding:19px}.sunsetCaption{padding:0 17px 20px;font-size:8px}.sunsetCaption span:last-child{display:none}.documentsIntro h2{font-size:40px}.doc{grid-template-columns:32px 1fr 20px}.doc strong{font-size:19px}.doc small{font-size:10px}.footer{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.doc{transition:none}}
+
+
+/* Continuation of the city story in material, not another copy of the photograph. */
+.documents {padding:clamp(58px,7vw,90px) 0 clamp(65px,7vw,95px);border-top:1px solid rgba(218,169,112,.38)}
+.documentsIntro h2 {font-size:clamp(36px,4.6vw,60px);line-height:1.12}
+.documentsIntro h2 em {color:#e4bf95}
+.documentsIntro p {color:#dae0d4;font-size:13px}
+.documentList {border-top:1px solid rgba(233,200,157,.55)}
+.doc {padding:21px 0}
+@media(max-width:560px){.documents{padding:46px 0 55px}}
