@@ -45,7 +45,7 @@ function SitePreview({ name, slug, url }: { name: string; slug: string; url: str
     <div className={styles.liveArea}>
       <div className={styles.liveLabel}>
         <span className={styles.liveIndicator} aria-hidden="true" />
-        <span>LIVE / {name}</span>
+        <span>ДЕМО-САЙТ / {name}</span>
         <div className={styles.previewModes} role="group" aria-label="Вид сайта">
           <button
             type="button"
@@ -81,7 +81,7 @@ function SitePreview({ name, slug, url }: { name: string; slug: string; url: str
           }}
         />
         {!interactive && (
-          <span className={styles.previewHint}>Реальный сайт · {mode === "desktop" ? "широкий экран" : "мобильный вид"}</span>
+          <span className={styles.previewHint}>Работающее демо · {mode === "desktop" ? "десктоп" : "телефон"}</span>
         )}
       </div>
       <div className={styles.previewActions}>
@@ -133,16 +133,22 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
   return (
     <div className={styles.gallery}>
       <div className={styles.galleryHeading}>
-        <span>READY COLLECTION / ВЫБРАННАЯ КОНЦЕПЦИЯ</span>
+        <span>ГОТОВЫЕ САЙТЫ / ВЫБЕРИТЕ ПРИМЕР</span>
         <span className={styles.galleryCount}>{number} <i>/</i> {String(total).padStart(2, "0")}</span>
       </div>
 
       <section id="feature-panel" role="tabpanel" aria-labelledby={`concept-tab-${active.slug}`} className={styles.activePanel}>
         <div className={styles.activeDetails}>
           <span className={styles.activeIndex}>{number} / READY</span>
-          <p className={styles.conceptKicker}>Готовая концепция для бизнеса</p>
+          <p className={styles.conceptKicker}>Готовый сайт для бизнеса</p>
           <h2>{active.heading}</h2>
           <p className={styles.activeDescription}>{active.description}</p>
+          <div className={styles.brandTransformation} aria-label="Как мы адаптируем выбранный сайт">
+            <span><small>В демо</small><strong>{active.name}</strong></span>
+            <b aria-hidden="true">→</b>
+            <span><small>После адаптации</small><strong>Ваш бренд</strong></span>
+          </div>
+          <p className={styles.brandExplanation}>Заменим логотип, цвета, фото, тексты и контакты на ваши</p>
           <div className={styles.featureList}>
             {active.features.slice(0, 2).map((feature) => <span key={feature}>{feature}</span>)}
           </div>
@@ -166,7 +172,7 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
 
           <a className={`${styles.demoButton} nx-action nx-action--primary`} href={active.demoUrl} target="_blank" rel="noopener noreferrer"
             data-analytics-event="ready_demo_open" data-concept={active.slug}>
-            Смотреть демо <span aria-hidden="true">↗</span>
+            Открыть готовый сайт <span aria-hidden="true">↗</span>
           </a>
         </div>
         <SitePreview name={active.name} slug={active.slug} url={active.demoUrl} />
