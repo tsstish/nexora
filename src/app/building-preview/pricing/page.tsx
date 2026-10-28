@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { addons, maintenancePlans, services } from "@/data/services";
@@ -6,7 +5,8 @@ import { monthlyPlanList, monthlySupport } from "@/data/readyMonthly";
 import { readySites } from "@/data/readySites";
 import { monthlyStart, monthlyCancel, monthlyBuyout } from "@/data/readyConditions";
 import { whatsappUrl } from "@/data/site";
-import { CurrencyPrice, CurrencySelector } from "../CurrencyControl";
+import { CurrencyPrice } from "../CurrencyControl";
+import { StudioHeader } from "../StudioHeader";
 import styles from "./pricing.module.css";
 
 export const metadata: Metadata = {
@@ -30,16 +30,10 @@ const minimumMonthly = monthlyPlanList.reduce((a, b) => (a.price < b.price ? a :
 export default function LoftPricing() {
   return (
     <main className={styles.page}>
-      <div className={styles.shell}>
-        <header className={styles.header}>
-          <Link href="/building-preview" className={styles.brand} aria-label="NeXora — главная">
-            <Image src="/brand/nexora-wordmark.png" alt="NeXora" width={1254} height={439} priority />
-          </Link>
-          <div className={styles.headerLinks}>
-            <CurrencySelector />
-            <Link href="/building-preview#collection">К коллекции ↗</Link>
-          </div>
-        </header>
+      <div className={styles.dayScene}>
+        <StudioHeader />
+        <div className={styles.shell}>
+
 
         <section className={styles.hero} aria-labelledby="pricing-title">
           <div className={styles.heroCopy}>
@@ -113,11 +107,9 @@ export default function LoftPricing() {
           <p className={styles.finePrint}>* После отмены сайт работает до конца оплаченного месяца, затем отключается. Выкуп возможен отдельно.</p>
         </section>
 
-        <div className={styles.architecturalBreak} aria-hidden="true">
-          <div className={styles.architectureCaption}>NEXORA / CUSTOM PROJECTS</div>
-          <div className={styles.architectureLetter}>N<span>/</span></div>
-          <span className={styles.architectureSide}>DESIGN · DEVELOPMENT</span>
-        </div>
+      </div>
+      </div>
+      <div className={styles.shell}>
 
         <section id="individual" className={`${styles.section} ${styles.individualSection}`}>
           <div className={styles.sectionHeading}>
