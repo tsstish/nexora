@@ -39,7 +39,7 @@ export default function ContactsPage() {
             <p>NeXora · {siteConfig.location}</p>
           </div>
         </section>
-        <div className={styles.sunsetCaption} aria-hidden="true"><span>AFTER HOURS / SAME CITY, DIFFERENT LIGHT</span><span>31° / NEXORA</span></div>
+        <div className={styles.sunsetCaption} aria-hidden="true"><span>AFTER HOURS / SAME CITY, DIFFERENT LIGHT</span><span>HAIFA / NEXORA</span></div>
       </div>
 
       <section className={styles.documents} id="documents" aria-labelledby="docs-title">
