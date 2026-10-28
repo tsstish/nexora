@@ -365,3 +365,13 @@
   .servicePlus{grid-column:3;grid-row:1/3}
 }
 @media(prefers-reduced-motion:reduce){.entry{transition:none}}
+
+
+/* Daylight is controlled by CityBackdrop. The geometry is identical to home and contacts. */
+.dayScene{background:#11251e}
+.dayScene::before,.dayScene::after{content:none!important}
+.heroGlass{border-color:var(--nx-glass-border)}
+.entryStrip{background:rgba(12,32,27,.86);border-color:var(--nx-glass-border);backdrop-filter:blur(var(--nx-glass-blur))}
+.entry:focus-visible,.service summary:focus-visible,.supportOption summary:focus-visible{outline:2px solid #efce9d;outline-offset:3px}
+.addonItem strong{font-size:clamp(22px,2vw,27px)}
+@media(max-width:640px){.dayScene::before,.dayScene::after{content:none!important}}
