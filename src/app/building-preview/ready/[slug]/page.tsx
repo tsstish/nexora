@@ -42,7 +42,7 @@ export default async function ReadyConcept({ params }: Props) {
             <span className={styles.conceptName}>Разработанная концепция: {site.name}</span>
             <h1>{site.title}</h1>
             <p>{site.shortDescription}</p>
-            <a className={styles.demoLink} href={site.demoUrl} target="_blank" rel="noopener noreferrer">Открыть оригинальное демо ↗</a>
+            <a className={`${styles.demoLink} nx-action nx-action--outline`} href={site.demoUrl} target="_blank" rel="noopener noreferrer">Открыть оригинальное демо ↗</a>
           </div>
           <div className={styles.panel}>
             <span className={styles.panelLabel}>01 / READY PRODUCT</span>
@@ -59,7 +59,7 @@ export default async function ReadyConcept({ params }: Props) {
             <p>Адаптируем выбранную концепцию под ваш бизнес. Стартового платежа нет.</p>
             <div className={styles.price}><CurrencyPrice group="monthly" priceId={site.monthlyPlan} ils={monthly.price} perMonth /></div>
             <div className={styles.support}>{monthlySupport.summary}</div>
-            <a href={whatsappUrl(`Здравствуйте! Интересует подписка на ${site.name}.`)} target="_blank" rel="noopener noreferrer" className={styles.action}>Обсудить подписку ↗</a>
+            <a href={whatsappUrl(`Здравствуйте! Интересует подписка на ${site.name}.`)} target="_blank" rel="noopener noreferrer" className={`${styles.action} nx-action nx-action--primary`}>Обсудить подписку ↗</a>
           </article>
           <article id="purchase" className={styles.buyCard}>
             <span className={styles.number}>02 / READY PURCHASE</span>
