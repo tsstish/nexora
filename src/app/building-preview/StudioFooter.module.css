@@ -17,3 +17,10 @@
 .compact{border-top:1px solid rgba(231,199,157,.28)}
 .compact .bottom{border-top:none;padding-top:19px;padding-bottom:20px}
 @media(max-width:760px){.compact .bottom{padding-top:16px;padding-bottom:20px}}
+
+
+/* Legal bar only: no deep spacer or tall double footer on showroom/pricing. */
+.compact{background:#101c19}
+.compact .bottom{padding-top:13px;padding-bottom:15px;min-height:51px}
+.compact .bottom nav a{display:inline-flex;align-items:center;min-height:30px}
+@media(max-width:760px){.compact .bottom{padding-top:11px;padding-bottom:14px}}
