@@ -26,3 +26,13 @@
 .notice{font-size:11px!important;line-height:1.7!important;color:#c5aa82!important;margin-top:30px}
 .footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(220,194,159,.3);padding:35px 0 65px;font-size:12px;color:#e1c6a1}
 @media(max-width:800px){.shell{width:calc(100% - 32px)}.logo{width:110px}.headActions{gap:13px}.headActions>a{font-size:10px}.hero{grid-template-columns:1fr;gap:25px;padding:50px 0}.panel{min-height:240px}.purchaseGrid{grid-template-columns:1fr;gap:12px}.monthlyCard,.buyCard{min-height:310px}.editorial{grid-template-columns:1fr;gap:12px;margin-top:45px;padding-top:44px}.included{grid-template-columns:1fr}.conditions{margin:48px 0;padding-top:40px}}
+
+/* Ready product pages belong to the morning showroom rather than a fourth visual world. */
+.root{position:relative;isolation:isolate;overflow-x:clip}
+.root::before{
+ content:"";position:absolute;z-index:-1;left:0;right:0;top:0;height:min(1040px,75%);
+ background:
+   linear-gradient(180deg,rgba(12,29,24,.55),rgba(13,30,24,.88) 63%,#101c19 100%),
+   url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=1900&q=82") center 42%/cover no-repeat;
+ opacity:.7;pointer-events:none
+}
