@@ -474,3 +474,102 @@
   .brandTransformation{padding:11px 0}
   .brandExplanation{font-size:11px}
 }
+
+
+/* MOBILE-FIRST SHOWROOM v2 — a deliberate composition, not vertically stacked desktop cards. */
+.mobileDescription,.mobileAdapt{display:none}
+@media(max-width:700px){
+  .page .hero{display:flex;flex-direction:column;width:calc(100% - 32px);gap:0;min-height:0}
+  .page .glassPanel{
+    padding:27px 20px 20px;min-height:0;justify-content:flex-start;
+    background:rgba(12,32,27,.86);border:1px solid rgba(239,215,182,.28);
+    border-bottom:0;
+  }
+  .glassPanel .eyebrow{font-size:10px;letter-spacing:.12em}
+  .glassPanel h1{
+    font-size:clamp(34px,9.5vw,47px);line-height:1.04;
+    margin:12px 0 12px;max-width:340px;
+  }
+  .glassPanel .heroDescription,.glassPanel .adaptationNote,.glassPanel .facts,.glassPanel>small{display:none}
+  .glassPanel .mobileDescription{
+    display:block;max-width:390px;
+    color:#f1ebde;font-size:14px;line-height:1.5;margin:0 0 10px;
+  }
+  .mobileAdapt{
+    display:block;align-self:stretch;border-top:1px solid rgba(232,208,172,.32);
+    margin-top:6px;color:#f3dfc0;
+  }
+  .mobileAdapt summary{
+    list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+    gap:16px;min-height:43px;font-size:12px;font-weight:700;padding:8px 0;
+  }
+  .mobileAdapt summary::-webkit-details-marker{display:none}
+  .mobileAdapt summary span{font:22px Georgia,serif}
+  .mobileAdapt[open] summary span{transform:rotate(45deg)}
+  .glassPanel .mobileAdapt p{
+    max-width:none;margin:0 0 6px;color:#e2e0d5;display:block;
+    font-size:12px;line-height:1.55;
+  }
+  .mobileAdapt small{display:block;color:#cdc8ba;font-size:11px;line-height:1.5;padding-bottom:12px}
+  .gallery{padding:6px 0 19px;gap:9px;display:flex;flex-direction:column}
+  .galleryHeading{order:0;padding:0 4px;gap:9px;font-size:10px}
+  .galleryHeading>span:first-child{font-size:10px}
+  .galleryCount{font-size:18px;flex:none}
+  .selector{
+    order:1;padding:10px 10px 12px;margin:0;
+    background:rgba(13,34,28,.89)!important;
+  }
+  .selectorHeading{margin-bottom:9px}
+  .selector h3{font:400 21px/1.18 Georgia,serif;margin:5px 0 0}
+  .selectorEyebrow{font-size:9px}
+  .arrowControls button{width:42px;height:42px;min-width:42px}
+  .tabRail{display:flex;overflow-x:auto;overflow-y:hidden;gap:7px;padding:0 0 7px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .tab{
+    flex:0 0 clamp(126px,38vw,165px);
+    min-height:76px;padding:10px 11px;
+    scroll-snap-align:start;transform:none!important;
+  }
+  .tabNumber{font-size:12px}
+  .tabName{font-size:11px;line-height:1.3;min-height:0;overflow-wrap:anywhere}
+  .tabArrow{font-size:13px}
+  .activePanel{order:2;display:flex;flex-direction:column;min-height:0;box-shadow:none}
+  .activeDetails{order:0;align-self:stretch;padding:18px 17px 16px;gap:0}
+  .activeDetails .activeIndex,.activeDetails .conceptKicker,.activeDescription,
+  .activeDetails .featureList,.activeDetails .brandTransformation,.activeDetails .brandExplanation{
+    display:none;
+  }
+  .activeDetails h2{
+    font:400 clamp(24px,7vw,32px)/1.11 Georgia,serif;
+    margin:0 0 13px;letter-spacing:-.025em;
+  }
+  .offers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%;margin:0 0 14px}
+  .monthlyOffer,.buyOffer{min-width:0;padding:10px 10px 9px;gap:5px;box-shadow:none;align-items:flex-start}
+  .offerLabel{font-size:11px;line-height:1.35;min-height:40px;color:#f2e6d3}
+  .monthlyOffer strong,.buyOffer strong{
+    font:400 clamp(18px,5.5vw,24px)/1.12 Georgia,serif;white-space:normal;
+  }
+  .monthlyOffer strong small,.buyOffer strong small{font-size:10px}
+  .offers a{font-size:11px;line-height:1.25;padding:6px 0;min-height:28px}
+  .demoButton{align-self:stretch;width:100%;min-height:44px!important}
+  .liveArea{order:1;min-height:0;height:260px;padding:12px;gap:0}
+  .liveLabel{margin:0 0 8px;gap:5px}
+  .liveLabel>span:nth-child(2){font-size:10px}
+  .previewModes button{min-height:34px;padding:6px 10px;font-size:11px}
+  .liveViewport{flex:1;min-height:0}
+  .previewHint{font-size:9px;max-width:70%}
+  .previewActions{margin-top:8px}
+  .previewActions a{font-size:11px}
+  .previewActions .previewExplore{min-height:38px;padding:7px 11px;font-size:11px}
+}
+@media(max-width:370px){
+  .page .glassPanel{padding:23px 16px 16px}
+  .glassPanel h1{font-size:34px}
+  .activeDetails{padding:15px 12px}
+  .offerLabel{font-size:10px}
+  .offers{gap:6px}
+  .monthlyOffer,.buyOffer{padding:9px 8px}
+  .offers a{font-size:10px}
+  .liveArea{height:243px}
+}
+@media(prefers-reduced-motion:reduce){.mobileAdapt summary span{transition:none}}
