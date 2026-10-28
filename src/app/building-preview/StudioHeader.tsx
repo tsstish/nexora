@@ -36,7 +36,7 @@ export function StudioHeader() {
       </nav>
       <div className={styles.actions}>
         <CurrencySelector />
-        <a className={styles.contact} href={whatsappUrl("Здравствуйте! Хочу обсудить проект NeXora.")}
+        <a className={`${styles.contact} nx-action nx-action--outline`} href={whatsappUrl("Здравствуйте! Хочу обсудить проект NeXora.")}
            target="_blank" rel="noopener noreferrer">
           <span>Обсудить проект</span><span aria-hidden="true">↗</span>
         </a>
