@@ -18,28 +18,6 @@
   isolation: isolate;
   background: #24302e;
 }
-.scene::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    linear-gradient(90deg, rgba(8,20,18,.38), rgba(8,20,18,.04) 60%, rgba(8,20,18,.38)),
-    linear-gradient(0deg, rgba(5,16,14,.8), transparent 70%),
-    url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=2400&q=82");
-  background-size: cover;
-  background-position: center, center, center 47%;
-  background-repeat: no-repeat;
-  filter: saturate(.82);
-}
-.scene::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(180deg, rgba(10,14,14,.04),rgba(7,14,13,.2));
-  pointer-events: none;
-}
 .hero {
   width: min(1470px, calc(100% - 80px));
   margin: 0 auto;
@@ -155,7 +133,6 @@
   .activeDetails h2 { font-size: clamp(26px,3.5vw,38px); }
 }
 @media(max-width:700px) {
-  .scene::before { background-position: center, center, 50% top; }
   .hero { width: calc(100% - 30px); }
   .glassPanel { min-height: 370px; padding: 34px 22px 24px; background: linear-gradient(105deg,rgba(9,24,22,.92),rgba(9,24,22,.6)); }
   .glassPanel h1 { font-size: clamp(42px,10.3vw,60px); margin: 18px 0; }
@@ -375,7 +352,6 @@
 
 /* Consolidated design-system pass: image now belongs to CityBackdrop. */
 .scene{background:#11251e}
-.scene::before,.scene::after{content:none!important}
 .glassPanel{min-height:0}
 .galleryHeading{font-size:11px;letter-spacing:.12em}
 .galleryCount{font-size:21px}
@@ -386,4 +362,4 @@
 .arrowControls button{width:40px;height:40px;min-width:40px}
 .previewModes button{min-height:32px}
 .previewActions .previewExplore{min-height:38px;border-radius:999px}
-@media(max-width:700px){.scene::before,.scene::after{content:none!important}.galleryHeading{font-size:10px}}
+@media(max-width:700px){.galleryHeading{font-size:10px}}
