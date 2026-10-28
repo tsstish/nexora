@@ -1,0 +1,42 @@
+/* NeXora Loft / one cross-page interface system.
+   Core scene geometry remains exactly the same on every route. */
+:root {
+  --nx-city-stage-height: 850px;
+  --nx-glass-fill: rgba(12,32,27,.86);
+  --nx-glass-border: rgba(239,215,182,.48);
+  --nx-glass-blur: 12px;
+  --nx-action-fill: #145844;
+  --nx-action-hover: #206d54;
+  --nx-action-text: #faf4e8;
+  --nx-action-outline: rgba(239,212,176,.72);
+  --nx-active: #ff735f;
+  --nx-content-max: 1470px;
+}
+.nx-city-stage{position:relative;isolation:isolate;min-height:var(--nx-city-stage-height);overflow:hidden}
+.nx-city-stage > :not(.nx-city-backdrop){position:relative;z-index:1}
+.nx-city-stage .nx-glass{
+  background:var(--nx-glass-fill)!important;
+  border-color:var(--nx-glass-border);
+  -webkit-backdrop-filter:blur(var(--nx-glass-blur));
+  backdrop-filter:blur(var(--nx-glass-blur));
+}
+.nx-action{
+  display:inline-flex;align-items:center;justify-content:center;gap:18px;
+  min-height:44px;padding:12px 19px;
+  border-radius:999px;
+  border:1px solid var(--nx-action-outline);
+  font:700 12px/1.4 Arial,Helvetica,sans-serif;
+  letter-spacing:.015em;text-decoration:none;
+  transition:background-color .18s,color .18s,border-color .18s,transform .18s;
+  cursor:pointer;
+}
+.nx-action--primary{background:var(--nx-action-fill)!important;color:var(--nx-action-text)!important}
+.nx-action--primary:hover{background:var(--nx-action-hover)!important}
+.nx-action--outline{background:rgba(12,32,27,.45)!important;color:#fff1da!important}
+.nx-action--outline:hover{background:rgba(27,68,51,.79)!important}
+.nx-action:focus-visible,.nx-city-stage a:focus-visible,.nx-city-stage button:focus-visible{
+  outline:2px solid #ffd49e;outline-offset:4px
+}
+.nx-action[aria-disabled="true"]{opacity:.5;pointer-events:none}
+@media(max-width:700px){:root{--nx-city-stage-height:760px;--nx-glass-fill:rgba(12,32,27,.88)}}
+@media(prefers-reduced-motion:reduce){.nx-action{transition:none}}
