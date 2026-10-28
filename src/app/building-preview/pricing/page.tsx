@@ -4,31 +4,28 @@ import type { Metadata } from "next";
 import { addons, maintenancePlans, services } from "@/data/services";
 import { monthlyPlanList, monthlySupport } from "@/data/readyMonthly";
 import { readySites } from "@/data/readySites";
+import { monthlyStart, monthlyCancel, monthlyBuyout } from "@/data/readyConditions";
 import { whatsappUrl } from "@/data/site";
 import { CurrencyPrice, CurrencySelector } from "../CurrencyControl";
 import styles from "./pricing.module.css";
 
 export const metadata: Metadata = {
   title: { absolute: "Стоимость сайтов и разработки | NeXora" },
-  description: "Форматы работы NeXora: сайты по подписке, готовые решения с адаптацией, индивидуальная разработка, дополнительные услуги и поддержка.",
+  description: "Форматы работы NeXora: сайты по подписке, покупка готового сайта с адаптацией, индивидуальная разработка, дополнительные услуги и поддержка.",
   robots: { index: false, follow: false },
   alternates: { canonical: "/building-preview/pricing" },
 };
 
-const siteCategory: Record<string, string> = {
-  "dental-clinic": "Клиники и стоматологии",
-  "private-teacher": "Образование и эксперты",
-  "brow-artist": "Beauty-мастера",
-  "media-kit": "Блогеры и авторы",
-};
-
 const nav = [
-  { id: "monthly", label: "Подписка", number: "01" },
-  { id: "ready", label: "Покупка готового сайта", number: "02" },
-  { id: "individual", label: "Индивидуальная разработка", number: "03" },
-  { id: "extras", label: "Дополнительные услуги", number: "04" },
-  { id: "support", label: "Поддержка", number: "05" },
+  { id: "monthly", label: "Подписка и что в неё входит", number: "01" },
+  { id: "individual", label: "Индивидуальная разработка", number: "02" },
+  { id: "extras", label: "Дополнительные услуги", number: "03" },
+  { id: "support", label: "Поддержка", number: "04" },
 ];
+
+const minimumReadyPrice = Math.min(...readySites.map((site) => site.priceFrom));
+const minimumServicePrice = Math.min(...services.map((service) => service.price));
+const minimumMonthlyPrice = Math.min(...monthlyPlanList.map((plan) => plan.price));
 
 export default function LoftPricing() {
   return (
@@ -48,11 +45,11 @@ export default function LoftPricing() {
           <div className={styles.heroCopy}>
             <span className={styles.overline}>NEXORA / FORMATS & PRICING</span>
             <h1>У каждого проекта<br /><em>своя форма.</em></h1>
-            <p>Готовая концепция, подписка или сайт с нуля. Показываем, из чего складывается стоимость — без бесконечных одинаковых пакетов.</p>
-            <span className={styles.currentNote}>₪ — действующие цены. $ и ₽ — предварительные предложения для согласования.</span>
+            <p>Подписка, готовый сайт с адаптацией или индивидуальная разработка. Выбирайте формат под задачу, а не под красивое название тарифа.</p>
+            <span className={styles.currentNote}>₪ — действующий прайс. $ и ₽ — предварительные цены для согласования, не конвертация по курсу.</span>
           </div>
           <nav className={styles.heroIndex} aria-label="Разделы стоимости">
-            <div className={styles.indexHead}><span>THE INDEX</span><span>01—05</span></div>
+            <div className={styles.indexHead}><span>THE INDEX</span><span>01—04</span></div>
             {nav.map((item) => (
               <a key={item.id} href={`#${item.id}`} className={styles.indexRow}>
                 <span>{item.number}</span><span>{item.label}</span><span aria-hidden="true">↘</span>
@@ -61,49 +58,62 @@ export default function LoftPricing() {
           </nav>
         </section>
 
-        <section id="monthly" className={styles.section}>
+        <section aria-label="Три способа получить сайт" className={styles.pathSummary}>
+          <a href="#monthly" className={styles.pathSummaryItem}>
+            <span>01 / САЙТ ПО ПОДПИСКЕ</span>
+            <strong><CurrencyPrice group="monthly" priceId="compact" ils={minimumMonthlyPrice} prefix="от " perMonth /></strong>
+            <span className={styles.pathSummaryAction}>С поддержкой и хостингом ↗</span>
+          </a>
+          <Link href="/building-preview#collection" className={styles.pathSummaryItem}>
+            <span>02 / ГОТОВЫЙ САЙТ С АДАПТАЦИЕЙ</span>
+            <strong><CurrencyPrice group="ready" priceId="brow-artist" ils={minimumReadyPrice} prefix="от " /></strong>
+            <span className={styles.pathSummaryAction}>Выбрать концепцию ↗</span>
+          </Link>
+          <a href="#individual" className={styles.pathSummaryItem}>
+            <span>03 / ИНДИВИДУАЛЬНАЯ РАЗРАБОТКА</span>
+            <strong><CurrencyPrice group="service" priceId="mini-site" ils={minimumServicePrice} prefix="от " /></strong>
+            <span className={styles.pathSummaryAction}>Посмотреть форматы ↗</span>
+          </a>
+        </section>
+
+        <section id="monthly" className={`${styles.section} ${styles.monthlySection}`}>
           <div className={styles.sectionHeading}>
             <span className={styles.overline}>01 / READY MONTHLY</span>
             <h2>Сайт работает.<br /><em>Вы занимаетесь бизнесом.</em></h2>
-            <p>Без стартового платежа. Хостинг, поддержка, два пакета правок и еженедельная техническая проверка включены.</p>
-            <Link className={styles.underlineLink} href="/building-preview/ready/brow-artist#monthly">Как работает подписка ↗</Link>
+            <p>Без стартового платежа. Хостинг, два пакета правок и еженедельная техническая проверка включены.</p>
+            <a className={styles.underlineLink} href="#how-monthly">Как работает подписка ↓</a>
           </div>
           <div className={styles.monthlyGrid}>
             {monthlyPlanList.map((plan, index) => (
               <article key={plan.id} className={styles.monthlyCard}>
-                <span className={styles.cardIndex}>{String(index + 1).padStart(2,"0")} / PLAN</span>
+                <span className={styles.cardIndex}>{String(index + 1).padStart(2, "0")} / PLAN</span>
                 <h3>{plan.name}</h3>
                 <p>{plan.purpose}</p>
                 <strong className={styles.bigPrice}><CurrencyPrice group="monthly" priceId={plan.id} ils={plan.price} perMonth /></strong>
               </article>
             ))}
           </div>
-          <p className={styles.finePrint}>{monthlySupport.summary}. Дополнительные работы согласуются отдельно.</p>
-        </section>
 
-        <section id="ready" className={styles.section}>
-          <div className={styles.sectionHeading}>
-            <span className={styles.overline}>02 / READY PURCHASE</span>
-            <h2>Выберите готовое.<br /><em>Сделаем вашим.</em></h2>
-            <p>Покупка уже разработанного сайта с адаптацией под бренд, тексты, фотографии и способы связи.</p>
-          </div>
-          <div className={styles.readyList}>
-            {readySites.map((site, index) => (
-              <Link key={site.slug} href={`/building-preview/ready/${site.slug}#purchase`} className={styles.readyRow}>
-                <span className={styles.rowNumber}>{String(index + 1).padStart(2,"0")}</span>
-                <span><strong>{siteCategory[site.slug] ?? site.title}</strong><small>{site.name} / {site.formatLabel}</small></span>
-                <span className={styles.readyPrice}><CurrencyPrice group="ready" priceId={site.slug} ils={site.priceFrom} prefix="от " /></span>
-                <span className={styles.rowArrow} aria-hidden="true">↗</span>
-              </Link>
-            ))}
+          <div id="how-monthly" className={styles.monthlyExplanation}>
+            <div className={styles.explanationHeading}>
+              <span className={styles.overline}>READY MONTHLY / КАК ЭТО РАБОТАЕТ</span>
+              <h3>Сайт — ваш.<br />Заботы — наши.</h3>
+              <p>Выбираете готовую концепцию, мы адаптируем её под материалы и задачи вашего бизнеса. Дальше сайт работает по ежемесячной подписке.</p>
+            </div>
+            <div className={styles.explanationList}>
+              <div><span>01</span><div><strong>Без стартового платежа</strong><p>{monthlyStart}</p></div></div>
+              <div><span>02</span><div><strong>Хостинг и технический контроль</strong><p>Хостинг включён на весь оплаченный период. {monthlySupport.checksDescription}</p></div></div>
+              <div><span>03</span><div><strong>Два пакета правок в месяц</strong><p>{monthlySupport.editsDescription}</p></div></div>
+              <div><span>04</span><div><strong>Отмена и выкуп</strong><p>{monthlyCancel}</p><p>{monthlyBuyout}</p></div></div>
+            </div>
           </div>
         </section>
 
-        <section id="individual" className={styles.section}>
+        <section id="individual" className={`${styles.section} ${styles.individualSection}`}>
           <div className={styles.sectionHeading}>
-            <span className={styles.overline}>03 / CUSTOM DEVELOPMENT</span>
+            <span className={styles.overline}>02 / CUSTOM DEVELOPMENT</span>
             <h2>Когда готового<br /><em>недостаточно.</em></h2>
-            <p>Индивидуальная структура, визуальная система и разработка под задачу. Цена начинается с конкретного объёма работ, а не с красивой упаковки.</p>
+            <p>Индивидуальная структура, визуальная система и разработка под задачу. Стоимость зависит от объёма работ и согласованных функций.</p>
           </div>
           <div className={styles.customList}>
             {services.map((service) => (
@@ -117,16 +127,16 @@ export default function LoftPricing() {
           </div>
         </section>
 
-        <section id="extras" className={styles.section}>
+        <section id="extras" className={`${styles.section} ${styles.extrasSection}`}>
           <div className={styles.sectionHeading}>
-            <span className={styles.overline}>04 / ADDITIONAL WORK</span>
+            <span className={styles.overline}>03 / ADDITIONAL WORK</span>
             <h2>Тонкая настройка.</h2>
-            <p>Дополнительные страницы, функции, интеграции и языки — отдельные работы с прозрачной стартовой стоимостью.</p>
+            <p>Дополнительные страницы, функции, интеграции и языки — отдельные работы с согласованным объёмом.</p>
           </div>
           <div className={styles.extrasGrid}>
             {addons.map((addon, index) => (
               <div key={addon.id} className={styles.extraRow}>
-                <span>{String(index + 1).padStart(2,"0")}</span>
+                <span>{String(index + 1).padStart(2, "0")}</span>
                 <span>{addon.name}</span>
                 <strong><CurrencyPrice group="addon" priceId={addon.id} ils={addon.price} prefix="от " /></strong>
               </div>
@@ -134,9 +144,9 @@ export default function LoftPricing() {
           </div>
         </section>
 
-        <section id="support" className={styles.section}>
+        <section id="support" className={`${styles.section} ${styles.supportSection}`}>
           <div className={styles.sectionHeading}>
-            <span className={styles.overline}>05 / MAINTENANCE</span>
+            <span className={styles.overline}>04 / MAINTENANCE</span>
             <h2>Сайт живёт<br /><em>после запуска.</em></h2>
             <p>Отдельные программы обслуживания для сайтов, которым требуется постоянная поддержка.</p>
           </div>
