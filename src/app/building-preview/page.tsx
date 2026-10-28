@@ -1,10 +1,8 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import { readySites } from "@/data/readySites";
 import { monthlyPlans } from "@/data/readyMonthly";
 import { FeaturedGallery } from "./FeaturedGallery";
-import { CurrencySelector } from "./CurrencyControl";
-import { whatsappUrl } from "@/data/site";
+import { StudioHeader } from "./StudioHeader";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -38,22 +36,7 @@ export default function BuildingPreview() {
   return (
     <main className={styles.page} id="loft-preview">
       <div className={styles.scene}>
-        <header className={styles.header}>
-          <a href="/building-preview" className={styles.logo} aria-label="NeXora — главная">
-            <Image src="/brand/nexora-wordmark.png" width={1254} height={439} alt="NeXora" priority />
-            <span>DIGITAL PRESENCE DESIGN</span>
-          </a>
-          <nav className={styles.nav} aria-label="Меню">
-            <a href="#collection">Готовые сайты</a>
-            <a href="/building-preview/pricing#individual">Услуги</a>
-            <a href="/building-preview/pricing">Стоимость</a>
-            <a href="/building-preview/pricing#monthly">Подписка</a>
-          </nav>
-          <div className={styles.headerActions}>
-            <CurrencySelector />
-            <a href={whatsappUrl("Здравствуйте! Хочу обсудить сайт NeXora.")} target="_blank" rel="noopener noreferrer" className={styles.headerCta}>Обсудить проект <span aria-hidden="true">↗</span></a>
-          </div>
-        </header>
+        <StudioHeader />
 
         <section className={styles.hero} aria-labelledby="loft-title">
           <div className={styles.glassPanel}>
