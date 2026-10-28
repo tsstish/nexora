@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { readySites } from "@/data/readySites";
 import { monthlyPlans } from "@/data/readyMonthly";
 import { FeaturedGallery } from "./FeaturedGallery";
+import { CityBackdrop } from "./CityBackdrop";
 import { StudioHeader } from "./StudioHeader";
 import styles from "./page.module.css";
 
@@ -35,11 +36,12 @@ export default function BuildingPreview() {
 
   return (
     <main className={styles.page} id="loft-preview">
-      <div className={styles.scene}>
+      <div className={`${styles.scene} nx-city-stage`}>
+        <CityBackdrop time="morning" />
         <StudioHeader />
 
         <section className={styles.hero} aria-labelledby="loft-title">
-          <div className={styles.glassPanel}>
+          <div className={`${styles.glassPanel} nx-glass`}>
             <span className={styles.eyebrow}>NEXORA / READY COLLECTION</span>
             <h1 id="loft-title">Готовые сайты<br />для реального<br />бизнеса</h1>
             <p>Каждая концепция уже разработана на кодовой базе — не конструкторе. Вы выбираете готовый сайт, а мы адаптируем его под ваш бизнес, бренд и задачи.</p>
