@@ -42,7 +42,7 @@ export default function BuildingPreview() {
           <div className={styles.glassPanel}>
             <span className={styles.eyebrow}>NEXORA / READY COLLECTION</span>
             <h1 id="loft-title">Готовые сайты<br />для реального<br />бизнеса</h1>
-            <p>Вы выбираете концепцию — мы адаптируем её под ваш бизнес.</p>
+            <p>Каждая концепция уже разработана на кодовой базе — не конструкторе. Вы выбираете готовый сайт, а мы адаптируем его под ваш бизнес, бренд и задачи.</p>
             <div className={styles.facts}>
               <div><b aria-hidden="true">◇</b><span>Готовые<br />концепции</span></div>
               <div><b aria-hidden="true">✳</b><span>Адаптация<br />под ваш бизнес</span></div>
@@ -53,18 +53,7 @@ export default function BuildingPreview() {
           <FeaturedGallery concepts={concepts} />
         </section>
       </div>
-      <section className={styles.catalogIntro}>
-        <div className={styles.catalogIntroInner}>
-          <div>
-            <span className={styles.eyebrow}>THE READY COLLECTION</span>
-            <h2>Больше, чем<br />готовый шаблон</h2>
-          </div>
-          <div className={styles.catalogIntroCopy}>
-            <p>Каждая концепция уже разработана на кодовой базе. Мы адаптируем её под бизнес, бренд и задачи.</p>
-            <a className={styles.pricingNav} href="/building-preview/pricing#individual">Индивидуальная разработка и услуги ↗</a>
-          </div>
-        </div>
-      </section>
+
     </main>
   );
 }
