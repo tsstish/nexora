@@ -26,17 +26,6 @@
   text-transform: uppercase;
 }
 .dayScene { position: relative; isolation: isolate; overflow: hidden; background: #253c32; }
-.dayScene::before {
-  content: ""; position: absolute; inset: 0; z-index: -2;
-  background: url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=2400&q=85") 50% 42% / cover no-repeat;
-  filter: brightness(1.1) saturate(.88) contrast(1.04);
-}
-.dayScene::after {
-  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(12,29,25,.32), rgba(12,29,25,.04) 68%, rgba(12,29,25,.08)),
-    linear-gradient(180deg, rgba(15,29,25,.06) 5%, transparent 42%, rgba(10,26,22,.42) 70%, #10241d 100%);
-}
 .hero {
   min-height: clamp(435px, 39vw, 575px);
   display: flex;
@@ -317,7 +306,6 @@
 }
 @media(max-width:640px) {
   .shell{width:calc(100% - 32px)}
-  .dayScene::before{background-position:49% 38%;filter:brightness(1.02) saturate(.84)}
   .hero{min-height:0;padding:38px 0 24px}
   .heroGlass{width:100%;padding:27px 23px;background:rgba(12,32,26,.91)}
   .heroGlass h1{font-size:clamp(42px,10.5vw,57px);margin:16px 0 17px}
@@ -369,9 +357,8 @@
 
 /* Daylight is controlled by CityBackdrop. The geometry is identical to home and contacts. */
 .dayScene{background:#11251e}
-.dayScene::before,.dayScene::after{content:none!important}
 .heroGlass{border-color:var(--nx-glass-border)}
 .entryStrip{background:rgba(12,32,27,.86);border-color:var(--nx-glass-border);backdrop-filter:blur(var(--nx-glass-blur))}
 .entry:focus-visible,.service summary:focus-visible,.supportOption summary:focus-visible{outline:2px solid #efce9d;outline-offset:3px}
 .addonItem strong{font-size:clamp(22px,2vw,27px)}
-@media(max-width:640px){.dayScene::before,.dayScene::after{content:none!important}}
+@media(max-width:640px){}
