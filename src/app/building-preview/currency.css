@@ -5,3 +5,6 @@
 .loft-price-unit{font:12px Arial,sans-serif;color:inherit;opacity:.8}
 .loft-draft-price{font:9px Arial,sans-serif;letter-spacing:.01em;color:#f1d2a1;display:block;margin-top:3px;font-weight:400}
 @media(max-width:600px){.loft-currency-control button{min-width:27px;height:27px;font-size:12px}}
+/* Controls are never reduced to tiny 24px targets on mobile. */
+.loft-currency-control button{min-height:34px;min-width:34px}
+@media(max-width:600px){.loft-currency-control button{min-height:34px;min-width:34px}}
