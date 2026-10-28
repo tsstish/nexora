@@ -41,3 +41,16 @@ Audit date: 28 October 2026. Scope: `/building-preview` and its pricing, contact
 - Squarespace Circle 2026 editorial/material and motion narratives: https://pros.squarespace.com/blog/design-trends
 - Baymard Institute product list visuals: https://baymard.com/research-articles/secondary-hover-information
 - W3C WCAG 2.2 contrast, focus and target size: https://www.w3.org/TR/WCAG22/
+
+
+## Polish + conversion pass (28 October 2026, evening)
+
+- **Removed redundant dark strip** on the Ready home route: the city stage no longer reserves unused minimum-height space after its actual contents. Compact legal footer row tightened.
+- **Removed overlapping legacy helper** on all `/building-preview` routes with a route guard inside `SiteHelper.tsx`. Existing legacy site helper remains unaffected.
+- **Micro-interactions:** nav indicator animates by a short, restrained underline; active Ready concept gains a tiny coral marker; demo arrow responds to hover. `prefers-reduced-motion` disables these motion details. No scroll-jacking, fake clock, autoplay or decorative 3D.
+- **Project enquiry:** optional collapsible 2-field mini-brief in the contact panel. Choice of project type plus optional short task description. Opens a prefilled WhatsApp message; the site neither transmits nor stores these fields and never claims a request was sent.
+- **Conversion path:** primary header CTA goes directly to WhatsApp; mobile still has a tappable control. Visitors who prefer more structured enquiries can use the contact-page brief instead.
+- **Form design criteria:** native accessible labels, 44px interactive elements, keyboard focus indication, user-driven submission via WhatsApp, no forced name/phone/budget fields.
+- **Next technical QA:** test Safari at 320, 390, 768 and 1440 widths; verify bottom space remains removed, footer links unobscured, links to WhatsApp on iOS and Android, and accordion input at 200% zoom.
+
+References: https://www.netguru.com/blog/modern-web-design-trends ; https://baymard.com/research-articles/checkout-flow-average-form-fields ; https://www.w3.org/TR/WCAG22/
