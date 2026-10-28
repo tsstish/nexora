@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -6,7 +5,8 @@ import { readySites } from "@/data/readySites";
 import { monthlyPlans, monthlySupport } from "@/data/readyMonthly";
 import { readyAdaptation, readyRights, monthlyStart, monthlyCancel, monthlyBuyout } from "@/data/readyConditions";
 import { whatsappUrl } from "@/data/site";
-import { CurrencyPrice, CurrencySelector } from "../../CurrencyControl";
+import { CurrencyPrice } from "../../CurrencyControl";
+import { StudioHeader } from "../../StudioHeader";
 import styles from "./product.module.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -32,16 +32,9 @@ export default async function ReadyConcept({ params }: Props) {
 
   return (
     <main className={styles.root}>
+      <StudioHeader />
       <div className={styles.shell}>
-        <header className={styles.head}>
-          <Link href="/building-preview" className={styles.logo}>
-            <Image src="/brand/nexora-wordmark.png" alt="NeXora" width={1254} height={439} priority />
-          </Link>
-          <nav className={styles.headActions}>
-            <CurrencySelector />
-            <Link href="/building-preview#collection">← К коллекции</Link>
-          </nav>
-        </header>
+
 
         <section className={styles.hero}>
           <div className={styles.heading}>
