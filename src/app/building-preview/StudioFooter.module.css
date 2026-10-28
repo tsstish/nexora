@@ -1,0 +1,14 @@
+.footer{position:relative;isolation:isolate;background:#101c19;color:#f4eadc;font-family:Arial,Helvetica,sans-serif;border-top:1px solid rgba(231,199,157,.37)}
+.footer::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 8% 0%,rgba(138,125,94,.14),transparent 48%),linear-gradient(110deg,rgba(45,67,50,.17),transparent 75%)}
+.footer *{box-sizing:border-box}.footer a{color:inherit;text-decoration:none}.footer a:focus-visible{outline:2px solid #e7bc84;outline-offset:4px}
+.inner,.bottom{width:min(1320px,calc(100% - 80px));margin:0 auto}.inner{padding:55px 0 52px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(25px,7vw,120px)}
+.intro h2{font:400 clamp(32px,3.8vw,55px)/1.09 Georgia,serif;letter-spacing:-.035em;max-width:520px;margin:15px 0}
+.intro p{font-size:13px;color:#bdc8bd;margin:0 0 26px;line-height:1.5}.eyebrow,.columnLabel{display:block;color:#d5b88b;font-size:10px;letter-spacing:.15em;font-weight:700}
+.cta{display:inline-flex;align-items:center;gap:26px;border:1px solid rgba(220,191,147,.7);padding:15px 20px;border-radius:35px;font-size:12px;transition:background .2s}.cta:hover{background:rgba(55,96,69,.4)}
+.navigation{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-content:start;padding-top:13px}
+.navigation nav,.navigation>div{display:flex;flex-direction:column;align-items:flex-start;gap:14px}.navigation nav{margin-top:4px}
+.navigation a{font-size:13px;line-height:1.35;color:#e0e3d7}.navigation a:hover,.bottom a:hover{color:#ebc892}
+.bottom{border-top:1px solid rgba(225,196,158,.21);padding:22px 0 30px;display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:11px;color:#afbaaE}
+.bottom nav{display:flex;flex-wrap:wrap;gap:12px 24px}.bottom a{color:#c8d0c5}
+@media(max-width:760px){.inner,.bottom{width:calc(100% - 34px)}.inner{grid-template-columns:1fr;gap:34px;padding:42px 0}.navigation{padding-top:0;gap:17px}.bottom{flex-direction:column;align-items:flex-start;gap:15px}.bottom nav{gap:10px 18px}}
+@media(prefers-reduced-motion:reduce){.cta{transition:none}}
