@@ -57,3 +57,13 @@
 .documentList {border-top:1px solid rgba(233,200,157,.55)}
 .doc {padding:21px 0}
 @media(max-width:560px){.documents{padding:46px 0 55px}}
+
+
+/* The evening scene is the SAME composition, not an independently cropped photo. */
+.sunsetScene{background:#11251e}
+.sunsetScene::before,.sunsetScene::after{content:none!important}
+.contactBoard{border-color:var(--nx-glass-border)}
+.contactBoard>a{min-height:71px}
+.documents{background:#162a22}
+.documents::before{background:radial-gradient(ellipse at 85% 0%,rgba(191,135,97,.14),transparent 43%),linear-gradient(125deg,#1b2e27,#15271f)!important}
+@media(max-width:560px){.sunsetScene::before,.sunsetScene::after{content:none!important}}
