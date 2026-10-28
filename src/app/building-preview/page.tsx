@@ -44,7 +44,13 @@ export default function BuildingPreview() {
           <div className={`${styles.glassPanel} nx-glass`}>
             <span className={styles.eyebrow}>NEXORA / READY COLLECTION</span>
             <h1 id="loft-title">Готовые сайты<br />для реального<br />бизнеса</h1>
-            <p>Это уже работающие сайты, а не макеты. Вы выбираете подходящий пример — мы превращаем его в сайт вашего бизнеса.</p>
+            <p className={styles.heroDescription}>Это уже работающие сайты, а не макеты. Вы выбираете подходящий пример — мы превращаем его в сайт вашего бизнеса.</p>
+            <p className={styles.mobileDescription}>Выберите готовый работающий сайт — мы адаптируем его под ваш бизнес</p>
+            <details className={styles.mobileAdapt}>
+              <summary>Как готовый сайт станет вашим <span aria-hidden="true">+</span></summary>
+              <p>Заменим логотип, цвета, фотографии, тексты и контакты. Изменения в рамках концепции; дополнительные функции согласуем отдельно</p>
+              <small>Адаптация — до 7 рабочих дней после получения материалов, в зависимости от продукта</small>
+            </details>
             <div className={styles.adaptationNote}>
               <span className={styles.adaptationEyebrow}>Вместо демонстрационного бренда — ваш</span>
               <strong>Ваш логотип, цвета, фотографии, тексты и контакты</strong>
