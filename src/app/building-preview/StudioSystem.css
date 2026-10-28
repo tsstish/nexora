@@ -40,3 +40,10 @@
 .nx-action[aria-disabled="true"]{opacity:.5;pointer-events:none}
 @media(max-width:700px){:root{--nx-city-stage-height:760px;--nx-glass-fill:rgba(12,32,27,.88)}}
 @media(prefers-reduced-motion:reduce){.nx-action{transition:none}}
+
+
+/* Controls use the same 44px action height, radius, outline and focus appearance. */
+.nx-action{border-radius:999px!important;min-height:44px!important;border:1px solid var(--nx-action-outline)!important;padding:12px 19px!important}
+.nx-city-stage .nx-glass{box-shadow:0 17px 50px rgba(5,17,13,.23)}
+.nx-city-stage .nx-glass:focus-within{border-color:rgba(255,222,174,.78)}
+.nx-active-mark{background:var(--nx-active)}
