@@ -193,3 +193,97 @@
     url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=1600&q=80") center 75%/cover no-repeat;
 }
 @media(max-width:730px){.dayScene::before{background-position:49% 50%}.dayScene::after{background:linear-gradient(180deg,rgba(16,31,26,.40),rgba(13,33,27,.81) 56%,#12251f)}}
+
+
+/* October 28 design audit: one city image only, distinct material for each chapter. */
+.dayScene .overline, .dayScene .indexHead, .dayScene .indexRow,
+.dayScene .pathSummaryItem > span:first-child {
+  text-shadow:0 2px 8px rgba(0,0,0,.9),0 0 14px rgba(0,0,0,.55);
+}
+.dayScene .heroCopy h1, .dayScene .heroCopy p {
+  text-shadow:0 3px 15px rgba(0,0,0,.64);
+}
+/* Cream section: textured architectural paper, no second copy of skyline. */
+.individualSection {
+  padding-top:clamp(38px,4.5vw,62px);
+  padding-bottom:clamp(40px,5vw,64px);
+}
+.individualSection::before {
+  background:
+    linear-gradient(90deg,rgba(42,56,45,.07) 1px,transparent 1px) 0 0/88px 100%,
+    linear-gradient(0deg,rgba(46,63,50,.07) 1px,transparent 1px) 0 0/100% 74px,
+    radial-gradient(ellipse at 83% 7%,rgba(255,250,234,.82),transparent 49%),
+    linear-gradient(110deg,#d1c2a9,#eee5d4 56%,#d8cbb6);
+}
+.individualSection .sectionHeading {margin-bottom:18px}
+.individualSection .sectionHeading h2 {margin:12px 0 8px}
+.individualSection .serviceEntry .customRow {min-height:62px;padding-block:9px}
+.individualSection .serviceEntry .serviceBody {padding-bottom:17px}
+.individualSection .noteOnLight {margin-top:12px}
+
+/* ADDITIONAL WORK: ink-on-copper technical ledger, no duplicate image. */
+.extrasSection {
+  padding-top:clamp(54px,5.5vw,77px);
+  padding-bottom:clamp(57px,6vw,78px);
+}
+.extrasSection::before {
+  background:
+    radial-gradient(ellipse at 88% 13%,rgba(191,136,89,.24),transparent 47%),
+    repeating-linear-gradient(90deg,transparent 0,transparent calc(25% - 1px),rgba(230,189,143,.055) calc(25% - 1px),rgba(230,189,143,.055) 25%),
+    linear-gradient(122deg,#272b25 0%,#343028 47%,#1a2723 100%);
+}
+.extrasSection::after {
+  content:"03";position:absolute;right:-.045em;top:-.20em;z-index:-1;
+  font:400 clamp(180px,28vw,410px)/1 Georgia,serif;
+  letter-spacing:-.09em;color:rgba(229,189,137,.075);
+  pointer-events:none;
+}
+.extrasSection .sectionHeading {margin-bottom:24px}
+.extrasSection .sectionHeading h2 {color:#f4e6d3}
+.extrasSection .extraRow {
+  padding-block:clamp(13px,1.6vw,19px);
+  border-bottom:1px solid rgba(233,203,167,.32);
+  transition:background .18s;
+}
+.extrasSection .extraRow:hover {background:rgba(255,245,226,.045)}
+
+/* SUPPORT: sage-grey daylight paper, light cards with typographic contrast. */
+.supportSection {
+  color:#1c362a;
+  padding-top:clamp(51px,5.5vw,72px);
+  padding-bottom:clamp(60px,6vw,83px);
+}
+.supportSection::before {
+  background:
+    repeating-linear-gradient(0deg,transparent 0,transparent 81px,rgba(37,67,50,.058) 82px),
+    radial-gradient(ellipse at 7% 75%,rgba(250,248,232,.68),transparent 57%),
+    linear-gradient(126deg,#b7c7b8,#dce3d7 57%,#bdcebf);
+}
+.supportSection .overline {color:#5c725f}
+.supportSection .sectionHeading h2 {color:#1d3829}
+.supportSection .sectionHeading p {color:#4b6050}
+.supportSection .supportGrid article {
+  background:rgba(249,250,240,.57);
+  border:1px solid rgba(30,67,47,.32);
+  border-top:3px solid #8d8666;
+  color:#20382c;
+  box-shadow:0 16px 32px rgba(28,54,38,.055);
+}
+.supportSection .supportGrid article:nth-child(2) {
+  border-top-color:#376d57;background:rgba(229,238,225,.7)
+}
+.supportSection .supportGrid h3 {color:#173529}
+.supportSection .supportGrid article>strong {color:#2b5641}
+.supportSection .supportGrid li {color:#3c5144}
+.supportSection .supportGrid li::before {color:#608769}
+.supportSection .supportDisclosure {border-color:rgba(35,79,55,.24)}
+.supportSection .supportDisclosure summary {color:#1f5039}
+.supportSection :global(.loft-draft-price) {color:#49684f}
+@media(max-width:730px){
+ .individualSection{padding-top:39px;padding-bottom:44px}
+ .extrasSection{padding-top:50px;padding-bottom:56px}
+ .supportSection{padding-top:46px;padding-bottom:62px}
+ .extrasSection::after{font-size:165px;top:0;right:0}
+ .supportSection .supportGrid article{box-shadow:none}
+}
+@media(prefers-reduced-motion:reduce){.extrasSection .extraRow{transition:none}}
