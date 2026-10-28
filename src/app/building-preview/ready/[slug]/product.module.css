@@ -56,3 +56,43 @@
   line-height:1.55!important;
 }
 @media(max-width:800px){.customBrandNote{font-size:12px!important;margin:10px 0 17px}}
+
+
+/* Focused Ready detail on mobile; desktop page retains its original editorial layout. */
+.mobileFeatures{display:none}
+@media(max-width:700px){
+  .root .shell{width:calc(100% - 32px)}
+  .root .hero{display:block;padding:27px 0 16px;gap:0}
+  .root .heading h1{font-size:clamp(32px,9vw,45px);line-height:1.08;margin:12px 0 15px;letter-spacing:-.04em}
+  .root .kicker{font-size:10px;line-height:1.5}
+  .root .conceptName{font-size:11px;line-height:1.4;margin:13px 0 8px}
+  .root .heading>p{font-size:13px;line-height:1.48;margin:0 0 9px}
+  .root .heading .customBrandNote{font-size:12px!important;margin:12px 0 15px;padding:9px 11px}
+  .root .demoLink{display:inline-flex;min-height:44px;width:100%;font-size:12px;text-align:center;margin-top:7px}
+  .root .panel{display:none}
+  .root .purchaseGrid{display:grid;grid-template-columns:1fr;gap:9px;margin:0}
+  .root .monthlyCard,.root .buyCard{
+    min-height:0;padding:18px 17px;box-shadow:none;
+  }
+  .root .number{font-size:10px;line-height:1.4}
+  .root .monthlyCard h2,.root .buyCard h2{font-size:26px;margin:10px 0 8px}
+  .root .monthlyCard p,.root .buyCard p{font-size:12px;line-height:1.45;margin:0 0 8px}
+  .root .price{font-size:30px;margin-top:6px}
+  .root .support{font-size:11px;line-height:1.4;margin-top:7px}
+  .root .action{align-self:stretch;display:flex;justify-content:center;margin-top:14px;min-height:44px!important;text-align:center}
+  .root .editorial{display:none}
+  .mobileFeatures{display:block;border-top:1px solid rgba(239,207,166,.4);border-bottom:1px solid rgba(239,207,166,.4);margin:24px 0 0}
+  .mobileFeatures summary{min-height:51px;display:flex;align-items:center;justify-content:space-between;
+    gap:12px;cursor:pointer;list-style:none;color:#ead9bc;font-size:13px;font-weight:700;padding:9px 0}
+  .mobileFeatures summary::-webkit-details-marker{display:none}
+  .mobileFeatures summary span{font:24px Georgia,serif}
+  .mobileFeatures[open] summary span{transform:rotate(45deg)}
+  .mobileFeatures ul{list-style:none;padding:0 0 13px;margin:0}
+  .mobileFeatures li{border-top:1px solid rgba(221,197,161,.18);padding:10px 0;color:#dee3d7;font-size:12px;line-height:1.5}
+  .root .conditions{margin:24px 0 30px;padding-top:27px;max-width:none}
+  .root .conditions h2{font-size:31px;line-height:1.12;margin:11px 0 14px}
+  .root .conditions details{padding:15px 0}
+  .root .conditions summary{font-size:13px;line-height:1.45}
+  .root .conditions details p{font-size:12px;line-height:1.65}
+  .root .notice{font-size:10px!important;margin-top:19px}
+}
