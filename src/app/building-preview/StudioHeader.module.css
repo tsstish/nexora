@@ -15,3 +15,13 @@
 
 /* A consistent tap target without changing the original logo. */
 @media(max-width:560px){.contact{width:44px;min-width:44px;height:44px}}
+
+
+/* Understated refinement: crisp active indicator and functional hover feedback. */
+.nav a{position:relative;border-bottom-color:transparent!important;transition:color .18s}
+.nav a::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:#e8c99c;transform:scaleX(0);transform-origin:center;transition:transform .24s ease}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.contact span:last-child{display:inline-block;transition:transform .2s}
+.contact:hover span:last-child{transform:translate(2px,-2px)}
+@media(max-width:560px){.contact span:last-child{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.nav a,.nav a::after,.contact span:last-child{transition:none}.contact:hover span:last-child{transform:none}}
