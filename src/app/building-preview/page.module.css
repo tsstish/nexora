@@ -363,3 +363,20 @@
 .previewModes button{min-height:32px}
 .previewActions .previewExplore{min-height:38px;border-radius:999px}
 @media(max-width:700px){.galleryHeading{font-size:10px}}
+
+
+/* Final audit: remove unintentional empty 790px stage tail above the legal footer.
+   Keep the same sky photograph size and crop inside CityBackdrop itself. */
+.page .scene{min-height:0;background:#101c19}
+.gallery .activePanel{transition:border-color .24s ease,box-shadow .24s ease}
+.gallery .activePanel:focus-within{border-color:rgba(242,204,153,.7)}
+.tab{position:relative;transition:background .18s ease,border-color .18s ease,transform .18s ease}
+.tab:hover{background:rgba(69,93,74,.89);transform:translateY(-2px)}
+.tabActive::after{content:"";position:absolute;top:0;right:0;width:6px;height:6px;border-radius:50%;background:var(--nx-active);box-shadow:0 0 0 3px rgba(255,115,95,.13);transform:translate(30%,-35%)}
+.demoButton span{transition:transform .2s}
+.demoButton:hover span{transform:translate(3px,-3px)}
+@media(prefers-reduced-motion:reduce){
+ .tab,.gallery .activePanel,.demoButton span{transition:none}
+ .tab:hover{transform:none}
+ .demoButton:hover span{transform:none}
+}
