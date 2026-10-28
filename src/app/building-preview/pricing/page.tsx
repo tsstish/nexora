@@ -6,6 +6,7 @@ import { readySites } from "@/data/readySites";
 import { monthlyStart, monthlyCancel, monthlyBuyout } from "@/data/readyConditions";
 import { whatsappUrl } from "@/data/site";
 import { CurrencyPrice } from "../CurrencyControl";
+import { CityBackdrop } from "../CityBackdrop";
 import { StudioHeader } from "../StudioHeader";
 import styles from "./pricing.module.css";
 
@@ -47,15 +48,16 @@ const addonGroups: { number: string; title: string; caption: string; ids: string
 export default function LoftPricing() {
   return (
     <main className={styles.page}>
-      <div className={styles.dayScene}>
+      <div className={`${styles.dayScene} nx-city-stage`}>
+        <CityBackdrop time="day" />
         <StudioHeader />
         <div className={styles.shell}>
           <section className={styles.hero} aria-labelledby="pricing-title">
-            <div className={styles.heroGlass}>
+            <div className={`${styles.heroGlass} nx-glass`}>
               <span className={styles.overline}>NEXORA / УСЛУГИ И СТОИМОСТЬ</span>
               <h1 id="pricing-title">Сайты под бизнес — <em>цены по делу</em></h1>
               <p>Готовая концепция по подписке, покупка сайта с адаптацией или разработка под вашу задачу</p>
-              <a className={styles.heroLink} href="#monthly">Посмотреть форматы <span aria-hidden="true">↘</span></a>
+              <a className={`${styles.heroLink} nx-action nx-action--outline`} href="#monthly">Посмотреть форматы <span aria-hidden="true">↘</span></a>
             </div>
             <div className={styles.citySignature} aria-hidden="true">
               <span>NEXORA / DIGITAL PRESENCE DESIGN</span>
@@ -218,7 +220,7 @@ export default function LoftPricing() {
           <div className={styles.endCtaRow}>
             <h2>Расскажите, какой сайт вам нужен</h2>
             <a href={whatsappUrl("Здравствуйте! Хочу обсудить стоимость сайта NeXora.")}
-              target="_blank" rel="noopener noreferrer">Обсудить сайт для бизнеса <span aria-hidden="true">↗</span></a>
+              target="_blank" rel="noopener noreferrer" className="nx-action nx-action--primary">Обсудить сайт для бизнеса <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
