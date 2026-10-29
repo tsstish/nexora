@@ -85,7 +85,7 @@ export default async function ReadyStoryPage({ params }: Props) {
             </div>
             <a className={styles.primaryAction}
                href={whatsappUrl(`Здравствуйте! Интересует готовый сайт ${site.name}. Хочу выбрать формат: подписка или покупка с адаптацией.`)}
-               target="_blank" rel="noopener noreferrer">Обсудить этот Ready <span aria-hidden="true">↗</span></a>
+               target="_blank" rel="noopener noreferrer">Хочу такой сайт <span aria-hidden="true">↗</span></a>
             <div className={styles.purchaseNote}>Сроки и стоимость дополнительных изменений согласовываются до начала работы</div>
           </aside>
         </div>
