@@ -11,9 +11,17 @@ export function ReadyDemo({ name, url }: { name: string; url: string }) {
   const [loaded, setLoaded] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
 
-  // Show the actual responsive site on narrow screens instead of a scaled-down desktop page.
+  // Crossing the mobile breakpoint switches to the actual responsive site.
+  // A manual choice stays selected until the viewport crosses the breakpoint again.
   useEffect(() => {
-    if (window.matchMedia("(max-width: 700px)").matches) setMode("mobile");
+    const media = window.matchMedia("(max-width: 700px)");
+    setMode(media.matches ? "mobile" : "desktop");
+    const onBreakpoint = (event: MediaQueryListEvent) => {
+      setMode(event.matches ? "mobile" : "desktop");
+      setLoaded(false);
+    };
+    media.addEventListener("change", onBreakpoint);
+    return () => media.removeEventListener("change", onBreakpoint);
   }, []);
 
   useEffect(() => {
