@@ -26,7 +26,7 @@ export default function ContactsPage() {
         <CityBackdrop time="sunset" />
         <StudioHeader />
         <section className={styles.hero} aria-labelledby="contacts-title">
-          <div className={styles.intro}>
+          <div className={`${styles.intro} nx-hero-copy`}>
             <span className={styles.eyebrow}>NEXORA / GET IN TOUCH</span>
             <h1 id="contacts-title">Есть идея?<br /><em>Давайте обсудим.</em></h1>
             <p>Расскажите о бизнесе и задаче. Мы поможем выбрать готовую концепцию или определить формат индивидуальной разработки.</p>
