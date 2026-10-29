@@ -42,7 +42,8 @@ export default async function ReadyStoryPage({ params }: Props) {
         <CityBackdrop time="morning" />
         <StudioHeader />
         <div className={`${styles.heroContent} nx-hero-copy`}>
-          <Link href="/building-preview#collection" className={styles.back}>← Вернуться к коллекции</Link>
+          <Link href="/building-preview#collection" className={`${styles.back} ${styles.backDesktop}`}>← Вернуться к коллекции</Link>
+          <Link href="/building-preview#mobile-collection" className={`${styles.back} ${styles.backMobile}`}>← Вернуться к коллекции</Link>
           <div className={styles.heroEyebrow}>NEXORA / READY COLLECTION · {site.formatLabel}</div>
           <h1>{story.headline}</h1>
           <p>{story.lead}</p>
