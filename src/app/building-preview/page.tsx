@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { readySites } from "@/data/readySites";
 import { monthlyPlans } from "@/data/readyMonthly";
 import { FeaturedGallery } from "./FeaturedGallery";
+import { MobileShowroom } from "./MobileShowroom";
 import { CityBackdrop } from "./CityBackdrop";
 import { StudioHeader } from "./StudioHeader";
 import styles from "./page.module.css";
@@ -40,6 +41,7 @@ export default function BuildingPreview() {
         <CityBackdrop time="morning" />
         <StudioHeader />
 
+        <div className={styles.desktopShowroom}>
         <section className={styles.hero} aria-labelledby="loft-title">
           <div className={`${styles.glassPanel} nx-glass`}>
             <span className={styles.eyebrow}>NEXORA / READY COLLECTION</span>
@@ -66,6 +68,8 @@ export default function BuildingPreview() {
           </div>
           <FeaturedGallery concepts={concepts} />
         </section>
+        </div>
+        <MobileShowroom concepts={concepts} />
       </div>
 
     </main>
