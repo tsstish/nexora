@@ -61,3 +61,21 @@ Figma 2026 design trends: https://www.figma.com/resource-library/web-design-tren
 Baymard product media: https://baymard.com/research-articles/product-images-descriptive-text
 Baymard multiple product images: https://baymard.com/research-articles/secondary-hover-information
 Netguru trend tradeoffs: https://www.netguru.com/blog/modern-web-design-trends
+
+
+## Product-story preview created (2026-10-29)
+The 4 product narratives are stored in `src/data/readyStories.ts`. These do NOT replace the existing Ready detail pages.
+
+Standalone routes for review:
+- `/building-preview/ready/dental-clinic/story`
+- `/building-preview/ready/private-teacher/story`
+- `/building-preview/ready/brow-artist/story`
+- `/building-preview/ready/media-kit/story`
+
+Story architecture: emotional commercial headline → real live demo on desktop and full demo link on mobile → concrete service problem → three specific, feature-backed reasons → visitor path (explicitly not a performance guarantee) → rebranding/adaptation scope → clearly sourced subscription & purchase prices → expandable legal details. Light editorial content and a green pricing footer distinguish it from the dark old product detail.
+
+Scope and honesty:
+- Demo sites are fictional illustrative brand presentations, never client portfolios. Real outcomes and endorsements are not fabricated.
+- Current live iframe depends on browser embed permission and third-party demo availability; it is NOT an authored image. For release, replace the main product media with original full-width screenshots and link to the live demo as secondary proof. Small iframe is intentionally suppressed on mobile.
+- The current storefront and original `/ready/[slug]` details are intentionally untouched until visual sign-off.
+- Before release: check `npm run build`, Safari/Chrome responsive layouts and keyboard, currency exchange display, route navigation, demo iframe fallback and source content/legal scope.
