@@ -1,14 +1,13 @@
 "use client";
 
-import { CITY_ASSETS, CITY_OPTIONS, DAY_PHASE_LABELS, type CityId, type DayPhase } from "../cityAtmospheres";
+import { CITY_ASSETS, CITY_OPTIONS, DAY_PHASE_LABELS, type DayPhase } from "../cityAtmospheres";
 import { useCityAtmosphere } from "../CityAtmosphereProvider";
 import styles from "./atmospheres.module.css";
 
 const phases: DayPhase[] = ["morning","day","sunset","night"];
 
 export function AtmosphereControls() {
-  const { city, phase, hydrated, manualPhase, chooseCity, previewPhase } = useCityAtmosphere();
-  const localHour = new Date().getHours();
+  const { city, phase, manualPhase, chooseCity, previewPhase } = useCityAtmosphere();
   return (
     <div className={styles.controls}>
       <div className={styles.controlHeader}>
