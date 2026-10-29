@@ -66,3 +66,20 @@
 }
 @media(max-width:360px){.mobile{width:calc(100% - 22px)}.formats{padding:17px 10px}.formatTabs button{padding:10px 6px}.formatTabs button small{font-size:9px}.priceRow{grid-template-columns:minmax(0,1fr) minmax(86px,auto)}.priceRow .amount{font-size:19px}}
 @media(min-width:1025px){.mobile{display:none}}
+
+
+/* Give the skyline a deliberate breathing space before the pricing interface.
+   First 20% of the cream panel's background remains translucent to the photo,
+   fading into a solid reading surface instead of a hard block at the text. */
+@media(max-width:1024px){
+ .mobile .formats{
+   position:relative;
+   margin-top:clamp(76px,11vw,110px);
+   background:linear-gradient(180deg,
+     rgba(229,218,198,.80) 0%,
+     rgba(229,218,198,.94) 100px,
+     #e5dac6 190px);
+   border-top:1px solid rgba(255,246,222,.45);
+   box-shadow:0 15px 36px rgba(12,28,24,.14);
+ }
+}
