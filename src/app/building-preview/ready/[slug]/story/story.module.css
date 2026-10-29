@@ -150,3 +150,8 @@
  .keyPointThesis{font-size:23px;margin:6px 0}
  .keyPointMeta{font-size:10px}
 }
+
+
+/* Back to the catalog must land on the visible mobile selector. */
+.backMobile{display:none}
+@media(max-width:1024px){.backDesktop{display:none}.backMobile{display:inline-block}}
