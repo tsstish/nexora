@@ -1,0 +1,52 @@
+.header{position:relative;z-index:10;width:min(1470px,calc(100% - 80px));margin:0 auto;padding:16px 0;display:grid;grid-template-columns:170px minmax(0,1fr) auto;align-items:center;gap:clamp(15px,2vw,32px);border-bottom:1px solid rgba(251,239,218,.25);color:#f6f0e4;font-family:Arial,Helvetica,sans-serif}
+.logo{display:flex;flex-direction:column;align-items:flex-start;width:145px;line-height:0;text-decoration:none;filter:drop-shadow(0 3px 8px rgba(5,14,13,.72))}
+.logo img{display:block;width:100%;height:auto}
+.logo>span{color:#f1eadc;margin-left:4px;font:7px/1.5 Arial,Helvetica,sans-serif;letter-spacing:.18em;text-shadow:0 2px 5px rgba(0,0,0,.7)}
+.nav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,2.7vw,45px);min-width:0}
+.nav a{color:#fff7e7;text-shadow:0 2px 8px rgba(2,10,8,.95);font:700 11px/1.4 Arial,Helvetica,sans-serif;letter-spacing:.045em;white-space:nowrap;text-decoration:none;border-bottom:1px solid transparent;padding:7px 0}
+.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:#e1c394;color:#f1d5a8}
+.actions{display:flex;gap:12px;align-items:center;justify-content:flex-end}
+.contact{display:flex;align-items:center;gap:15px;color:#f8f0e3!important;border:1px solid rgba(236,224,199,.65);border-radius:40px;white-space:nowrap;padding:13px 17px;font:700 10px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.06em;text-decoration:none;background:rgba(15,33,27,.18);text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.contact:hover{background:rgba(24,54,42,.55)}
+.header a:focus-visible{outline:2px solid #efce95;outline-offset:5px}
+@media(max-width:1120px){.header{grid-template-columns:130px minmax(0,1fr) auto;width:calc(100% - 40px);gap:13px}.logo{width:118px}.nav{gap:15px}.nav a{font-size:10px;letter-spacing:.01em}.contact{gap:7px;padding:11px 12px;font-size:9px}.actions{gap:8px}}
+@media(max-width:860px){.header{grid-template-columns:1fr auto;row-gap:6px}.nav{grid-column:1/-1;grid-row:2;justify-content:space-between;border-top:1px solid rgba(245,225,190,.16);padding-top:8px}.nav a{font-size:10px}.actions{grid-column:2;grid-row:1}}
+@media(max-width:560px){.header{width:calc(100% - 30px);padding:10px 0 8px;gap:6px}.logo{width:103px}.actions{gap:5px}.contact{width:35px;height:35px;min-width:35px;justify-content:center;padding:0;font-size:15px}.contact span:first-child{display:none}.nav{gap:12px}.nav a{font-size:10px;letter-spacing:0;white-space:normal;text-align:center;padding:5px 0}}
+
+/* A consistent tap target without changing the original logo. */
+@media(max-width:560px){.contact{width:44px;min-width:44px;height:44px}}
+
+
+/* Understated refinement: crisp active indicator and functional hover feedback. */
+.nav a{position:relative;border-bottom-color:transparent!important;transition:color .18s}
+.nav a::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:#e8c99c;transform:scaleX(0);transform-origin:center;transition:transform .24s ease}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+@media(prefers-reduced-motion:reduce){.nav a,.nav a::after{transition:none}}
+
+
+/* Larger, more widely distributed navigation on desktop; mobile unchanged. */
+@media(min-width:1121px){
+ .header{column-gap:clamp(24px,3vw,52px)}
+ .nav{
+   width:min(100%,680px);max-width:680px;margin:0 auto;
+   justify-content:space-between;gap:clamp(18px,2vw,36px);
+ }
+ .nav a{font-size:12px;letter-spacing:.03em}
+}
+@media(min-width:861px) and (max-width:1120px){
+ .nav{justify-content:space-between;gap:clamp(8px,1vw,16px)}
+ .nav a{font-size:10.5px}
+}
+
+
+/* The header contact action is WhatsApp, never an unexplained arrow.
+   Preserve the original NeXora dark/emerald/brass visual language. */
+.contact{gap:10px}
+.whatsappIcon{display:block;flex:none;width:20px;height:20px;color:#96eac4;filter:drop-shadow(0 1px 5px rgba(0,0,0,.35));transition:transform .18s ease}
+.contact:hover .whatsappIcon{transform:scale(1.08)}
+@media(max-width:560px){
+ .contact{width:44px;min-width:44px;height:44px;border-color:rgba(159,232,196,.72);background:rgba(14,60,45,.56);color:#fff9ed!important}
+ .contactLabel{display:none}
+ .whatsappIcon{width:23px;height:23px;color:#abf4ce}
+}
+@media(prefers-reduced-motion:reduce){.whatsappIcon{transition:none}.contact:hover .whatsappIcon{transform:none}}

@@ -1,0 +1,26 @@
+.page{background:#15251f;color:#f3ebde;font-family:Arial,Helvetica,sans-serif;min-height:100svh}
+.page *{box-sizing:border-box}
+.page a:focus-visible{outline:2px solid #daba88;outline-offset:4px}
+.sunsetTop{position:relative;isolation:isolate;overflow:hidden;background:#132621}
+.sunsetTop::before{content:"";position:absolute;inset:0;z-index:-2;background:url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=2000&q=80") center 51%/cover;filter:brightness(.58) saturate(1.15) sepia(.12)}
+.sunsetTop::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 70% 30%,rgba(219,137,86,.3),transparent 44%),linear-gradient(180deg,rgba(12,28,29,.54),rgba(14,31,26,.92))}
+.heading{max-width:1150px;width:calc(100% - 80px);margin:0 auto;padding:70px 0 64px}
+.heading>span{color:#e6bd8d;font:700 11px Arial,sans-serif;letter-spacing:.16em}
+.heading h1{font:400 clamp(41px,5vw,70px)/1.05 Georgia,serif;letter-spacing:-.035em;max-width:850px;margin:22px 0}
+.heading>a{color:#e8cb9f;font-size:12px;text-decoration:none;border-bottom:1px solid #deb987;padding:5px 0}
+.body{max-width:1150px;width:calc(100% - 80px);margin:0 auto}
+.body :global(.legal){min-height:0;padding:50px 0 70px;background:none!important;color:#ebe6dc!important}
+.body :global(.legal-rich .legal-kicker){color:#d3b68b!important}
+.body :global(.legal-rich h1){font-size:clamp(35px,4vw,52px);color:#eae2d2!important}
+.body :global(.legal-rich .legal-lead){color:#dfdbcf!important}
+.body :global(.legal-rich section){border-top:1px solid rgba(234,207,175,.35)}
+.body :global(.legal-rich section h2){color:#f3dfc1!important;font-size:26px}
+.body :global(.legal-rich section p),.body :global(.legal-rich li){color:#ccd2c6!important;font-size:13px}
+.body :global(.legal-rich .legal-note){background:rgba(44,68,54,.55);color:#d8d9cb;border-color:rgba(216,191,157,.25)}
+.body :global(.legal-rich a){color:#e2bf90!important}
+.footer{width:calc(100% - 80px);max-width:1150px;margin:0 auto;padding:26px 0 50px;display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(230,209,178,.2)}
+.footer>a{color:#e6c99e;text-decoration:none;font-size:12px}
+@media(max-width:560px){.heading,.body,.footer{width:calc(100% - 34px)}.heading{padding:50px 0}.body :global(.legal){padding-top:25px}.body :global(.legal-rich h1){font-size:35px}.footer{padding-bottom:38px}}
+
+/* The full document text stays intact; its original page title is replaced visually by the sunset header title. */
+.body :global(.legal-rich h1),.body :global(.legal-rich .legal-kicker){display:none}

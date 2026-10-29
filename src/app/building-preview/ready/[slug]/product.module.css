@@ -1,0 +1,128 @@
+.root{background:radial-gradient(ellipse at 78% 4%,rgba(168,120,72,.17),transparent 44%),#101c19;color:#f4efe4;font-family:Arial,Helvetica,sans-serif;min-height:100svh}
+.root *{box-sizing:border-box}.root a{color:inherit;text-decoration:none}.root a:focus-visible{outline:2px solid #e7c798;outline-offset:4px}
+.shell{width:min(1330px,calc(100% - 70px));margin:0 auto}.head{border-bottom:1px solid rgba(236,206,166,.25);padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{display:block;width:144px;line-height:0}.logo img{width:100%;height:auto}.headActions{display:flex;align-items:center;gap:25px}.headActions>a{font-size:11px;letter-spacing:.05em}
+.hero{display:grid;grid-template-columns:1.1fr .8fr;gap:clamp(25px,6vw,110px);align-items:stretch;padding:clamp(52px,7vw,112px) 0}
+.kicker{color:#d9b88b;font-size:10px;letter-spacing:.17em;font-weight:700}.conceptName{display:block;color:#9bad9c;font-size:13px;margin:28px 0 8px}
+.heading h1{font:400 clamp(43px,5.6vw,78px)/1.04 Georgia,serif;letter-spacing:-.04em;margin:13px 0 24px;max-width:720px}
+.heading p{color:#c9cec3;font-size:16px;line-height:1.6;max-width:520px}.demoLink{display:inline-flex;margin-top:22px;padding:12px 0;border-bottom:1px solid #bd9870;font-size:12px}
+.panel{min-height:300px;border:1px solid rgba(215,184,137,.42);padding:30px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(135deg,rgba(127,103,73,.26),rgba(36,61,49,.3)),repeating-linear-gradient(0deg,transparent,transparent 44px,rgba(225,207,166,.04) 45px)}
+.panelLabel{color:#d9bc92;font-size:11px;letter-spacing:.17em}.panel strong{font:400 clamp(60px,7vw,116px)/1 Georgia,serif;letter-spacing:-.04em}.panel>span:nth-of-type(2){font:19px Georgia,serif;color:#ebcfaa}
+.detailsBar{border-top:1px solid rgba(230,197,150,.3);display:flex;align-items:center;gap:11px;padding-top:15px;font-size:11px;color:#e8d7bd}.detailsBar i{background:#e0c08e;border-radius:50%;width:7px;height:7px;flex:none}
+.purchaseGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.monthlyCard,.buyCard{display:flex;flex-direction:column;min-height:375px;border:1px solid rgba(218,188,139,.45);padding:clamp(22px,3vw,40px)}
+.monthlyCard{background:linear-gradient(115deg,rgba(66,91,66,.55),rgba(30,55,42,.78));box-shadow:inset 5px 0 #d9b88a}
+.buyCard{background:rgba(22,42,36,.75)}.number{font:12px Georgia,serif;color:#d9b78d}
+.monthlyCard h2,.buyCard h2{font:400 clamp(28px,3vw,42px) Georgia,serif;margin:20px 0 12px}.monthlyCard p,.buyCard p{color:#cbd3c7;font-size:14px;line-height:1.55;margin:0 0 22px}
+.price{font:400 clamp(30px,3vw,44px) Georgia,serif;color:#f0d7b1;margin-top:auto}
+.support{font-size:11px;color:#c7c9bd;margin-top:15px}.action{display:inline-flex;align-self:flex-start;background:#d3b58b;color:#172923!important;padding:13px 18px;margin-top:20px;font-size:12px;font-weight:700}
+.editorial{display:grid;grid-template-columns:.75fr 1fr;gap:50px;border-top:1px solid rgba(220,194,159,.3);margin-top:75px;padding-top:65px}
+.editorial h2,.conditions h2{font:400 clamp(35px,4.4vw,58px) Georgia,serif;letter-spacing:-.035em;margin:14px 0}
+.included{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
+.included>div{display:flex;gap:12px;border-bottom:1px solid rgba(221,197,161,.2);padding:15px 0}
+.included span{font:19px Georgia,serif;color:#d2b083}.included p{margin:0;color:#d2d6cc;font-size:13px;line-height:1.5}
+.conditions{max-width:880px;margin:80px auto;padding:55px 0;border-top:1px solid rgba(220,194,159,.3)}
+.conditions details{border-bottom:1px solid rgba(220,194,159,.27);padding:20px 0}.conditions summary{cursor:pointer;font-size:16px;font-weight:600;list-style:revert}.conditions details p{color:#c9cec4;font-size:13px;line-height:1.8;max-width:770px}
+.notice{font-size:11px!important;line-height:1.7!important;color:#c5aa82!important;margin-top:30px}
+.footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(220,194,159,.3);padding:35px 0 65px;font-size:12px;color:#e1c6a1}
+@media(max-width:800px){.shell{width:calc(100% - 32px)}.logo{width:110px}.headActions{gap:13px}.headActions>a{font-size:10px}.hero{grid-template-columns:1fr;gap:25px;padding:50px 0}.panel{min-height:240px}.purchaseGrid{grid-template-columns:1fr;gap:12px}.monthlyCard,.buyCard{min-height:310px}.editorial{grid-template-columns:1fr;gap:12px;margin-top:45px;padding-top:44px}.included{grid-template-columns:1fr}.conditions{margin:48px 0;padding-top:40px}}
+
+/* Ready product pages belong to the morning showroom rather than a fourth visual world. */
+.root{position:relative;isolation:isolate;overflow-x:clip}
+.root::before{
+ content:"";position:absolute;z-index:-1;left:0;right:0;top:0;height:min(1040px,75%);
+ background:
+   linear-gradient(180deg,rgba(12,29,24,.55),rgba(13,30,24,.88) 63%,#101c19 100%),
+   url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=1900&q=82") center 42%/cover no-repeat;
+ opacity:.7;pointer-events:none
+}
+
+/* Ready details share the master morning image instead of cropping their own copy. */
+.root::before{content:none!important}
+.panel{border-color:var(--nx-glass-border)}
+@media(max-width:800px){.root::before{content:none!important}}
+
+
+/* The customer must not mistake a demo brand for the final website. */
+.customBrandNote{
+  display:block;
+  max-width:550px;
+  border-left:2px solid #e0c08e;
+  margin:15px 0 18px;
+  padding:10px 0 10px 16px;
+  background:linear-gradient(90deg,rgba(17,45,35,.64),transparent);
+  color:#f3e2c8!important;
+  font-size:13px!important;
+  line-height:1.55!important;
+}
+@media(max-width:800px){.customBrandNote{font-size:12px!important;margin:10px 0 17px}}
+
+
+/* Focused Ready detail on mobile; desktop page retains its original editorial layout. */
+.mobileFeatures{display:none}
+@media(max-width:700px){
+  .root .shell{width:calc(100% - 32px)}
+  .root .hero{display:block;padding:27px 0 16px;gap:0}
+  .root .heading h1{font-size:clamp(32px,9vw,45px);line-height:1.08;margin:12px 0 15px;letter-spacing:-.04em}
+  .root .kicker{font-size:10px;line-height:1.5}
+  .root .conceptName{font-size:11px;line-height:1.4;margin:13px 0 8px}
+  .root .heading>p{font-size:13px;line-height:1.48;margin:0 0 9px}
+  .root .heading .customBrandNote{font-size:12px!important;margin:12px 0 15px;padding:9px 11px}
+  .root .demoLink{display:inline-flex;min-height:44px;width:100%;font-size:12px;text-align:center;margin-top:7px}
+  .root .panel{display:none}
+  .root .purchaseGrid{display:grid;grid-template-columns:1fr;gap:9px;margin:0}
+  .root .monthlyCard,.root .buyCard{
+    min-height:0;padding:18px 17px;box-shadow:none;
+  }
+  .root .number{font-size:10px;line-height:1.4}
+  .root .monthlyCard h2,.root .buyCard h2{font-size:26px;margin:10px 0 8px}
+  .root .monthlyCard p,.root .buyCard p{font-size:12px;line-height:1.45;margin:0 0 8px}
+  .root .price{font-size:30px;margin-top:6px}
+  .root .support{font-size:11px;line-height:1.4;margin-top:7px}
+  .root .action{align-self:stretch;display:flex;justify-content:center;margin-top:14px;min-height:44px!important;text-align:center}
+  .root .editorial{display:none}
+  .mobileFeatures{display:block;border-top:1px solid rgba(239,207,166,.4);border-bottom:1px solid rgba(239,207,166,.4);margin:24px 0 0}
+  .mobileFeatures summary{min-height:51px;display:flex;align-items:center;justify-content:space-between;
+    gap:12px;cursor:pointer;list-style:none;color:#ead9bc;font-size:13px;font-weight:700;padding:9px 0}
+  .mobileFeatures summary::-webkit-details-marker{display:none}
+  .mobileFeatures summary span{font:24px Georgia,serif}
+  .mobileFeatures[open] summary span{transform:rotate(45deg)}
+  .mobileFeatures ul{list-style:none;padding:0 0 13px;margin:0}
+  .mobileFeatures li{border-top:1px solid rgba(221,197,161,.18);padding:10px 0;color:#dee3d7;font-size:12px;line-height:1.5}
+  .root .conditions{margin:24px 0 30px;padding-top:27px;max-width:none}
+  .root .conditions h2{font-size:31px;line-height:1.12;margin:11px 0 14px}
+  .root .conditions details{padding:15px 0}
+  .root .conditions summary{font-size:13px;line-height:1.45}
+  .root .conditions details p{font-size:12px;line-height:1.65}
+  .root .notice{font-size:10px!important;margin-top:19px}
+}
+
+/* Legacy Ready detail routes share the same unboxed skyline presentation.
+   Avoid a second independent photograph beneath CityBackdrop. */
+.root::before{content:none!important}
+.root .hero{display:block;max-width:780px;min-height:0;padding:clamp(55px,7vw,100px) 0 clamp(62px,8vw,105px)}
+.root .heading{max-width:750px}
+.backToCollection{display:inline-block!important;margin-bottom:23px;padding:0 0 7px;border-bottom:1px solid rgba(246,218,181,.65);color:#f8e5c5!important;font-size:12px;font-weight:700;line-height:1.4}
+.root .heading .conceptName{color:#f4d4a9}
+@media(max-width:700px){
+ .root .hero{display:block;padding:32px 0 38px}
+ .root .backToCollection{margin-bottom:19px}
+}
+
+
+/* Adaptation copy belongs to the photograph, not to a rectangular inset. */
+.root .heading .customBrandNote{border:0!important;background:transparent!important;padding:0!important;color:#f6e9d4!important}
+.backMobile{display:none!important}
+@media(max-width:1024px){.backDesktop{display:none!important}.backMobile{display:inline-block!important}}
+
+
+/* Hero reading order: back control on its own line, then eyebrow, then content.
+   Previously the inline link touched 'NEXORA / READY COLLECTION'. */
+.backToCollection{display:block!important;width:max-content;max-width:100%;margin:0 0 31px!important}
+.root .heading .kicker{display:block;clear:both;line-height:1.6}
+.backMobile{display:none!important}
+@media(max-width:1024px){
+ .backDesktop{display:none!important}
+ .backMobile{display:block!important}
+}
+@media(max-width:700px){.backToCollection{margin-bottom:24px!important}}
