@@ -101,7 +101,7 @@ function SitePreview({ name, slug, url }: { name: string; slug: string; url: str
           data-concept={slug}
         >Открыть демо ↗</a>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -131,7 +131,8 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
   }
 
   return (
-    <div className={styles.gallery}>
+    <>
+      <div className={styles.gallery}>
       <div className={styles.galleryHeading}>
         <span>ГОТОВЫЕ САЙТЫ / ВЫБЕРИТЕ ПРИМЕР</span>
         <span className={styles.galleryCount}>{number} <i>/</i> {String(total).padStart(2, "0")}</span>
@@ -178,7 +179,8 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
         <SitePreview name={active.name} slug={active.slug} url={active.demoUrl} />
       </section>
 
-      <div className={`${styles.selector} nx-glass`} id="collection">
+      </div>
+      <div className={styles.selector} id="collection">
         <div className={styles.selectorHeading}>
           <div><span className={styles.selectorEyebrow}>THE READY COLLECTION</span><h3>Выберите направление</h3></div>
           <div className={styles.arrowControls}>
