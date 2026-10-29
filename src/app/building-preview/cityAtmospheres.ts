@@ -20,7 +20,7 @@ export const CITY_ASSETS: Record<CityId, {
     label: "Нью-Йорк",
     day: "https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=2400&q=85",
     night: "https://images.unsplash.com/photo-1554313553-41415c102e98?auto=format&fit=crop&w=2400&q=85",
-    daySource: "https://unsplash.com/photos/6d0AJwfpD1Y",
+    daySource: "https://images.unsplash.com/photo-1767749505538-23e71d1af2c5",
     nightSource: "https://unsplash.com/photos/cityscape-photo-at-night-6d0AJwfpD1Y",
     focalDesktop: "50% 43%",
     focalMobile: "50% 43%",
