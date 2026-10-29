@@ -21,7 +21,7 @@ export function MobilePricing() {
   const [format, setFormat] = useState<Format>("monthly");
   return (
     <div className={styles.mobile}>
-      <section className={styles.hero} aria-labelledby="mobile-pricing-title">
+      <section className={`${styles.hero} nx-hero-copy`} aria-labelledby="mobile-pricing-title">
         <span className={styles.eyebrow}>NEXORA / УСЛУГИ И СТОИМОСТЬ</span>
         <h1 id="mobile-pricing-title">Сайт под задачу.<br/><em>Цена по делу</em></h1>
         <p>Три формата — выберите подходящий и сразу посмотрите стоимость</p>
