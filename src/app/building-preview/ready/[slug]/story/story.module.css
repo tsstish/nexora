@@ -7,7 +7,6 @@
 .cityHero{position:relative;isolation:isolate;min-height:var(--nx-city-stage-height);background:#132f26;overflow:hidden}
 .cityHero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(9,28,23,.6),rgba(9,28,23,.04) 65%,transparent),linear-gradient(180deg,rgba(10,25,23,.07),transparent 60%,rgba(11,27,22,.12))}
 .cityHero :global(.nx-city-backdrop){position:absolute!important;inset:0 0 auto;height:var(--nx-city-stage-height);z-index:0!important}
-.cityHero> :not(:global(.nx-city-backdrop)){position:relative;z-index:1}
 .heroContent{width:min(1400px,calc(100% - 80px));margin:0 auto;padding:clamp(65px,6vw,104px) 0 0;color:#f9f2e8;text-shadow:0 3px 18px rgba(5,22,16,.6)}
 .back{display:inline-block;border-bottom:1px solid rgba(246,227,200,.8);padding-bottom:8px;font-size:12px;font-weight:700;color:#f9e4c4!important;margin-bottom:40px}
 .heroEyebrow{font-size:11px;letter-spacing:.14em;font-weight:700;color:#fff0d7;margin-bottom:17px}
