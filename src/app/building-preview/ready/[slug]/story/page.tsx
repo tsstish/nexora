@@ -65,12 +65,9 @@ export default async function ReadyStoryPage({ params }: Props) {
             <p className={styles.purchaseLead}>Не придётся собирать страницы с нуля. Заменим демонстрационный бренд, цвета, фотографии, тексты и контакты на ваши</p>
 
             <div className={styles.keyPoints}>
-              {story.advantages.map((item, index) => (
-                <div key={item.label}>
-                  <span>0{index + 1}</span>
-                  <strong>{item.heading}</strong>
-                </div>
-              ))}
+              <span className={styles.keyPointLabel}>ГЛАВНАЯ ИДЕЯ КОНЦЕПЦИИ</span>
+              <p className={styles.keyPointThesis}>{story.thesis}</p>
+              <span className={styles.keyPointMeta}>{site.formatLabel} · {site.languages.join(" · ")}</span>
             </div>
 
             <div className={styles.prices} id="ready-prices">
@@ -120,6 +117,10 @@ export default async function ReadyStoryPage({ params }: Props) {
             <summary>Что входит в адаптацию <span aria-hidden="true">+</span></summary>
             <ul>{site.adaptationIncludes.map(item => <li key={item}>{item}</li>)}</ul>
             <p>{readyAdaptation}</p>
+          </details>
+          <details>
+            <summary>Для каких задач подходит этот сайт <span aria-hidden="true">+</span></summary>
+            <p>{story.audience}</p>
             <p>{story.boundaries}</p>
           </details>
           <details>
