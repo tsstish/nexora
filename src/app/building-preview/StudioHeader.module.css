@@ -40,3 +40,16 @@
  .nav{justify-content:space-between;gap:clamp(8px,1vw,16px)}
  .nav a{font-size:10.5px}
 }
+
+
+/* The header contact action is WhatsApp, never an unexplained arrow.
+   Preserve the original NeXora dark/emerald/brass visual language. */
+.contact{gap:10px}
+.whatsappIcon{display:block;flex:none;width:20px;height:20px;color:#96eac4;filter:drop-shadow(0 1px 5px rgba(0,0,0,.35));transition:transform .18s ease}
+.contact:hover .whatsappIcon{transform:scale(1.08)}
+@media(max-width:560px){
+ .contact{width:44px;min-width:44px;height:44px;border-color:rgba(159,232,196,.72);background:rgba(14,60,45,.56);color:#fff9ed!important}
+ .contactLabel{display:none}
+ .whatsappIcon{width:23px;height:23px;color:#abf4ce}
+}
+@media(prefers-reduced-motion:reduce){.whatsappIcon{transition:none}.contact:hover .whatsappIcon{transform:none}}
