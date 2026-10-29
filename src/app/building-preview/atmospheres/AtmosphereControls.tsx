@@ -1,0 +1,48 @@
+"use client";
+
+import { CITY_ASSETS, CITY_OPTIONS, DAY_PHASE_LABELS, type CityId, type DayPhase } from "../cityAtmospheres";
+import { useCityAtmosphere } from "../CityAtmosphereProvider";
+import styles from "./atmospheres.module.css";
+
+const phases: DayPhase[] = ["morning","day","sunset","night"];
+
+export function AtmosphereControls() {
+  const { city, phase, hydrated, manualPhase, chooseCity, previewPhase } = useCityAtmosphere();
+  const localHour = new Date().getHours();
+  return (
+    <div className={styles.controls}>
+      <div className={styles.controlHeader}>
+        <div><span className={styles.eyebrow}>NEXORA / ATMOSPHERES LAB</span><h1>Один город. Разный свет</h1></div>
+        <p>Здесь меняется настоящая фотография, а не только подпись. В рабочем режиме освещение определяется часами вашего устройства. Этот экран нужен для сравнения кадров.</p>
+      </div>
+      <div className={styles.controlColumns}>
+        <div>
+          <span className={styles.label}>Выберите город для этой вкладки</span>
+          <div className={styles.buttons}>
+            {CITY_OPTIONS.map(id => <button key={id} type="button"
+              onClick={() => chooseCity(id)} aria-pressed={city===id}>{CITY_ASSETS[id].label}</button>)}
+          </div>
+        </div>
+        <div>
+          <span className={styles.label}>Посмотрите освещение</span>
+          <div className={styles.buttons}>
+            {phases.map(id => <button key={id} type="button"
+              onClick={() => previewPhase(id)} aria-pressed={phase===id}>{DAY_PHASE_LABELS[id]}</button>)}
+          </div>
+        </div>
+      </div>
+      <div className={styles.debugBar}>
+        <span>Город: <strong>{CITY_ASSETS[city].label}</strong></span>
+        <span>Свет: <strong>{DAY_PHASE_LABELS[phase]}</strong></span>
+        <span>Режим: <strong>{manualPhase ? "Ручная проверка" : "По часам устройства"}</strong></span>
+        <button type="button" onClick={() => previewPhase(null)}>Вернуться к реальному времени</button>
+      </div>
+      <p className={styles.note}>Сейчас для каждого города используются два разных реальных кадра: дневной и ночной. Утро и закат — тонкая цветовая обработка дневного кадра. Для эффекта уровня Apple Watch нужны съёмки из одной точки в разные часы; текущие фотографии отличаются ракурсом. Это прототип механики, не финально утверждённая коллекция изображений.</p>
+      <div className={styles.links}>
+        <a href="/building-preview">Главная ↗</a>
+        <a href="/building-preview/pricing">Стоимость ↗</a>
+        <a href="/building-preview/contacts">Контакты ↗</a>
+      </div>
+    </div>
+  );
+}
