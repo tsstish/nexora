@@ -1,12 +1,47 @@
-.backdrop{position:absolute;inset:0 0 auto;height:var(--nx-city-stage-height);z-index:0;pointer-events:none;overflow:hidden}
-.image{position:absolute;inset:0;background-image:url("https://images.unsplash.com/photo-1767749505538-23e71d1af2c5?auto=format&fit=crop&w=2400&q=85");background-size:cover;background-position:50% 43%;background-repeat:no-repeat;transform:translateZ(0)}
+.backdrop{
+ position:absolute;inset:0 0 auto;height:var(--nx-city-stage-height);
+ z-index:0;pointer-events:none;overflow:hidden;isolation:isolate;
+ background:#10271f;opacity:0;transition:opacity .75s ease;
+}
+.ready{opacity:1}
+.dayImage,.nightImage{
+ position:absolute;inset:0;
+ background-repeat:no-repeat;
+ background-size:cover;
+ background-position:var(--city-pos-desktop,50% 43%);
+ transform:translateZ(0);
+ transition:opacity 1.25s ease,filter 1.25s ease;
+}
+.dayImage{opacity:1}
+.nightImage{opacity:0}
+.morning .dayImage{filter:brightness(.87) saturate(.87) contrast(1.04)}
+.day .dayImage{filter:brightness(.97) saturate(.94) contrast(1.03)}
+.sunset .dayImage{filter:brightness(.78) saturate(1.1) sepia(.12)}
+.night .dayImage{opacity:0}
+.night .nightImage{opacity:1;filter:brightness(.91) saturate(.9)}
 .light,.vignette{position:absolute;inset:0}
-.morning .image{filter:brightness(.87) saturate(.86)}
-.morning .light{background:radial-gradient(ellipse at 75% 17%,rgba(255,202,150,.18),transparent 45%),linear-gradient(90deg,rgba(11,25,22,.23),rgba(11,25,22,.04) 60%,rgba(11,25,22,.17))}
-.day .image{filter:brightness(1.13) contrast(1.03) saturate(.92)}
-.day .light{background:radial-gradient(ellipse at 74% 18%,rgba(255,240,195,.17),transparent 50%),linear-gradient(90deg,rgba(11,26,21,.16),rgba(11,26,21,0) 70%,rgba(11,26,21,.11))}
-.sunset .image{filter:brightness(.71) saturate(1.08) sepia(.09)}
-.sunset .light{background:radial-gradient(ellipse at 75% 27%,rgba(244,145,100,.24),transparent 46%),linear-gradient(90deg,rgba(12,23,28,.28),rgba(12,23,28,.08) 65%,rgba(12,23,28,.18))}
-.vignette{background:linear-gradient(90deg,rgba(4,20,15,.36) 0%,rgba(4,18,16,.13) 44%,transparent 82%),linear-gradient(180deg,rgba(8,19,17,.20) 0%,transparent 37%,rgba(11,29,23,.13) 64%,#11251e 100%)}
-.sunset .vignette{background:linear-gradient(90deg,rgba(5,18,16,.34),rgba(5,18,16,.12) 51%,transparent 85%),linear-gradient(180deg,rgba(8,20,24,.25),transparent 38%,rgba(11,27,29,.24) 62%,#11251e 100%)}
-@media(max-width:700px){.image{background-position:50% 43%}.vignette{background:linear-gradient(90deg,rgba(5,19,16,.39) 0%,rgba(5,19,16,.15) 72%,transparent),linear-gradient(180deg,rgba(8,19,17,.14),rgba(10,27,22,.15) 32%,#11251e 100%)}}
+.light{transition:background 1.25s ease}
+.morning .light{background:radial-gradient(ellipse at 72% 22%,rgba(255,205,161,.16),transparent 55%)}
+.day .light{background:radial-gradient(ellipse at 72% 17%,rgba(255,230,195,.08),transparent 60%)}
+.sunset .light{background:linear-gradient(105deg,rgba(47,31,39,.05),rgba(225,129,82,.16) 68%,rgba(255,177,128,.11))}
+.night .light{background:linear-gradient(180deg,rgba(10,28,37,.11),rgba(5,21,29,.17))}
+.vignette{
+ background:
+  linear-gradient(90deg,rgba(4,20,15,.38) 0%,rgba(4,18,16,.10) 52%,transparent 85%),
+  linear-gradient(180deg,rgba(8,19,17,.20) 0%,transparent 36%,rgba(11,29,23,.10) 66%,#11251e 100%);
+}
+.night .vignette{
+ background:
+  linear-gradient(90deg,rgba(4,14,19,.42),rgba(4,15,17,.10) 53%,transparent 86%),
+  linear-gradient(180deg,rgba(8,19,22,.14),transparent 35%,rgba(10,28,25,.14) 66%,#11251e 100%);
+}
+@media(max-width:700px){
+ .dayImage,.nightImage{background-position:var(--city-pos-mobile,50% 43%)}
+ .vignette{
+  background:linear-gradient(90deg,rgba(5,19,16,.40),rgba(5,19,16,.1) 75%,transparent),
+             linear-gradient(180deg,rgba(8,19,17,.16),rgba(10,27,22,.1) 30%,#11251e 100%);
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ .backdrop,.dayImage,.nightImage,.light{transition:none}
+}
