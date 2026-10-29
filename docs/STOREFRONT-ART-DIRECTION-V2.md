@@ -95,3 +95,16 @@ The initial editorial preview failed on mobile: a tall opaque text slab hid the 
 - Browser/embed checks outstanding: some browsers or remote sites can restrict iframe embedding; full-screen original demo link is always provided. Native Next build and responsive Safari tests were not available here.
 
 The primary NeXora homepage and original `/ready/[slug]` routes are not overwritten.
+
+
+## Product story v4: after failed iframe / skyline / text review (2026-10-29)
+
+The prior v3 story is superseded.
+
+- Shared CityBackdrop remains at exact `--nx-city-stage-height` (790px desktop / 730px mobile) and original photographic crop. The product viewer *overlaps lower skyline*, so product presentation begins before scrolling far down, while upper skyline remains visible.
+- Actual iframes for all 4 demos are now managed by `ReadyDemo.tsx`: mode switch Desktop (1280px virtual view, measured scaling) vs Mobile (responsive native width). On narrow devices mobile view is selected by default. An external demo link is always offered.
+- The remote demo response headers and embeddability are **not verified**, so if the iframe stays blank in Safari, check CSP frame-ancestors / X-Frame-Options and DNS before considering embedding solved. No fabricated screenshots are used.
+- A conversion-oriented one-screen product grid follows: 1 big working preview, 3 concise business benefits, 2 actual prices, one primary “Хочу такой сайт” CTA.
+- Longer generic «why / journey / advantages / conversion» prose is removed. The three specific capability proofs are editorial cards, horizontally navigable on mobile. Adaptation and commercial terms are optional details.
+- Main ready detail route `/building-preview/ready/[slug]` still remains unchanged. Test `/building-preview/ready/[slug]/story` first.
+- No native Safari build/render was performed. Check 375/390/768/1440, working iframe and inner scrolling, selected mode, buy CTA, and actual shared building spire framing.
