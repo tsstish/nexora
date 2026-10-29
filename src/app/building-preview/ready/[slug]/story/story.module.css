@@ -33,8 +33,8 @@
 .priceRow>strong{font:400 clamp(20px,2.4vw,31px)/1.14 Georgia,serif;color:#19563b;text-align:right;min-width:115px;overflow-wrap:anywhere}
 .priceRow :global(.loft-price-unit){font-size:10px}
 .priceRow :global(.loft-draft-price){font-size:10px;line-height:1.35;color:#55735e;display:block;margin-top:4px}
-.primaryAction{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:47px;padding:12px 17px;border-radius:999px;background:#135b42;color:#fff5e7!important;border:1px solid #174a35;font-size:12px;font-weight:700;margin-top:23px}
-.primaryAction:hover{background:#207b57}
+.primaryAction{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:47px;padding:12px 17px;border-radius:999px;background:var(--nx-action-fill,#145844);color:var(--nx-action-text,#faf4e8)!important;border:1px solid var(--nx-action-outline,rgba(239,212,176,.72));font-size:12px;font-weight:700;margin-top:23px}
+.primaryAction:hover{background:var(--nx-action-hover,#206d54)}
 .primaryAction span{font-size:18px;font-weight:400}
 .purchaseNote{font-size:10px;line-height:1.5;color:#687567;margin-top:12px}
 
@@ -136,3 +136,17 @@
  .keyPoints>div:last-child{grid-column:auto}
 }
 @media(prefers-reduced-motion:reduce){.primaryAction{transition:none}.benefitCards{scroll-snap-type:none}}
+
+
+/* Unified Ready proof rail: one product-specific idea instead of repeating
+   the same three benefit headlines above and below the fold. */
+.keyPoints{display:block;padding:16px 0 18px}
+.keyPointLabel{display:block!important;font:700 10px/1.45 Arial,Helvetica,sans-serif!important;letter-spacing:.11em;color:#906a43!important}
+.keyPointThesis{font:400 clamp(23px,2.2vw,30px)/1.18 Georgia,serif;color:#24543a;margin:9px 0 10px;letter-spacing:-.03em}
+.keyPointMeta{display:block;font-size:11px;line-height:1.45;color:#617466}
+@media(max-width:800px){.keyPoints{display:block;grid-template-columns:none}}
+@media(max-width:700px){
+ .keyPoints{display:block;grid-template-columns:none;padding:11px 0 12px}
+ .keyPointThesis{font-size:23px;margin:6px 0}
+ .keyPointMeta{font-size:10px}
+}
