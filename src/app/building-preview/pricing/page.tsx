@@ -8,6 +8,7 @@ import { whatsappUrl } from "@/data/site";
 import { CurrencyPrice } from "../CurrencyControl";
 import { CityBackdrop } from "../CityBackdrop";
 import { StudioHeader } from "../StudioHeader";
+import { MobilePricing } from "./MobilePricing";
 import styles from "./pricing.module.css";
 
 export const metadata: Metadata = {
@@ -51,6 +52,7 @@ export default function LoftPricing() {
       <div className={`${styles.dayScene} nx-city-stage`}>
         <CityBackdrop time="day" />
         <StudioHeader />
+        <div className={styles.desktopOpening}>
         <div className={styles.shell}>
           <section className={styles.hero} aria-labelledby="pricing-title">
             <div className={`${styles.heroGlass} nx-glass`}>
@@ -83,6 +85,8 @@ export default function LoftPricing() {
             </a>
           </nav>
         </div>
+        </div>
+        <MobilePricing />
       </div>
 
       <section id="monthly" className={`${styles.chapter} ${styles.monthlyChapter}`}>
