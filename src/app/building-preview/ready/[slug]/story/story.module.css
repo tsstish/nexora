@@ -5,14 +5,14 @@
 .page a{color:inherit;text-decoration:none}
 .page a:focus-visible,.page summary:focus-visible{outline:2px solid #ffad72;outline-offset:4px}
 .cityHero{position:relative;isolation:isolate;min-height:var(--nx-city-stage-height);background:#132f26;overflow:hidden}
-.cityHero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(9,28,23,.6),rgba(9,28,23,.04) 65%,transparent),linear-gradient(180deg,rgba(10,25,23,.07),transparent 60%,rgba(11,27,22,.12))}
+.cityHero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(9,28,23,.28),transparent 70%)}
 .cityHero :global(.nx-city-backdrop){position:absolute!important;inset:0 0 auto;height:var(--nx-city-stage-height);z-index:0!important}
-.heroContent{width:min(1400px,calc(100% - 80px));margin:0 auto;padding:clamp(65px,6vw,104px) 0 0;color:#f9f2e8;text-shadow:0 3px 18px rgba(5,22,16,.6)}
-.back{display:inline-block;border-bottom:1px solid rgba(246,227,200,.8);padding-bottom:8px;font-size:12px;font-weight:700;color:#f9e4c4!important;margin-bottom:40px}
+.heroContent{width:min(1400px,calc(100% - 80px));margin:0 auto;padding:clamp(42px,4vw,65px) 0 0;color:#f9f2e8;text-shadow:0 3px 18px rgba(5,22,16,.6)}
+.back{display:inline-block;border-bottom:1px solid rgba(246,227,200,.8);padding-bottom:8px;font-size:12px;font-weight:700;color:#f9e4c4!important;margin-bottom:23px}
 .heroEyebrow{font-size:11px;letter-spacing:.14em;font-weight:700;color:#fff0d7;margin-bottom:17px}
 .heroContent h1{font:400 clamp(45px,5.5vw,78px)/1.025 Georgia,"Times New Roman",serif;letter-spacing:-.045em;max-width:780px;margin:0 0 20px;text-wrap:balance}
 .heroContent p{max-width:520px;font-size:15px;line-height:1.58;color:#fff1e0;margin:0}
-.productStage{position:relative;z-index:2;margin:-320px auto 0;width:min(1450px,calc(100% - 60px));padding:0 0 53px}
+.productStage{position:relative;z-index:2;margin:-155px auto 0;width:min(1450px,calc(100% - 60px));padding:0 0 53px}
 .productGrid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(340px,.65fr);align-items:stretch;gap:0;background:#f6f1e8;box-shadow:0 24px 65px rgba(23,31,22,.21);border:1px solid rgba(37,61,42,.15)}
 .previewArea{min-width:0;padding:22px;background:#eee9dd}
 .previewTop{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:13px;color:#74654f;font-size:11px;font-weight:700;letter-spacing:.07em}
@@ -77,7 +77,7 @@
  .cityHero{height:var(--nx-city-stage-height);min-height:var(--nx-city-stage-height)}
  .heroContent{padding:42px 0 0}
  .heroContent h1{font-size:clamp(41px,7vw,58px);max-width:590px}
- .productStage{margin-top:-275px}
+ .productStage{margin-top:-155px}
  .productGrid{display:flex;flex-direction:column}
  .previewArea{padding:15px}
  .purchase{padding:25px 24px;border-left:0;border-top:1px solid rgba(53,78,55,.17)}
@@ -90,13 +90,13 @@
 }
 @media(max-width:700px){
  .cityHero{height:var(--nx-city-stage-height);min-height:var(--nx-city-stage-height)}
- .cityHero::after{background:linear-gradient(90deg,rgba(11,27,22,.46),rgba(11,27,22,.06) 86%),linear-gradient(180deg,rgba(10,24,20,.04),transparent 55%,rgba(10,27,22,.13))}
- .heroContent{width:calc(100% - 32px);padding:36px 0 0}
- .back{font-size:11px;margin-bottom:27px}
+ .cityHero::after{background:linear-gradient(90deg,rgba(11,27,22,.27),transparent 88%)}
+ .heroContent{width:calc(100% - 32px);padding:24px 0 0}
+ .back{font-size:11px;margin-bottom:17px}
  .heroEyebrow{font-size:9px;letter-spacing:.11em;max-width:345px}
  .heroContent h1{font-size:clamp(34px,9vw,48px);max-width:435px;line-height:1.04;margin:10px 0}
  .heroContent p{font-size:12px;line-height:1.45;max-width:420px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
- .productStage{width:calc(100% - 20px);margin-top:-365px;padding-bottom:22px}
+ .productStage{width:calc(100% - 20px);margin-top:-175px;padding-bottom:22px}
  .previewTop{font-size:10px;letter-spacing:0}
  .previewArea{padding:10px}
  .purchase{padding:22px 18px}
@@ -131,7 +131,7 @@
  .heroContent{width:calc(100% - 24px)}
  .heroContent h1{font-size:32px}
  .heroContent p{-webkit-line-clamp:2}
- .productStage{margin-top:-345px}
+ .productStage{margin-top:-155px}
  .keyPoints{grid-template-columns:1fr}
  .keyPoints>div:last-child{grid-column:auto}
 }
