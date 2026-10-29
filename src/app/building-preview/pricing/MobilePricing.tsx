@@ -34,9 +34,17 @@ export function MobilePricing() {
           {formats.map(item => (
             <button type="button" role="tab" key={item.id} id={`mobile-format-tab-${item.id}`}
               aria-controls="mobile-format-panel" aria-selected={format === item.id}
-              tabIndex={format === item.id ? 0 : -1}
               className={format === item.id ? styles.selected : ""}
               onClick={() => setFormat(item.id)}
+              onKeyDown={(event) => {
+                if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+                event.preventDefault();
+                const index = formats.findIndex(x => x.id === item.id);
+                const next = (index + (event.key === "ArrowRight" ? 1 : -1) + formats.length) % formats.length;
+                setFormat(formats[next].id);
+                const buttons = event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('button[role="tab"]');
+                buttons?.[next]?.focus();
+              }}
             ><strong>{item.title}</strong><small>{item.caption}</small></button>
           ))}
         </div>
