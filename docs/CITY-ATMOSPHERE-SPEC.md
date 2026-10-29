@@ -35,3 +35,27 @@ The same visitor sees one architecturally coherent city on **every** NeXora prev
 4. Enable across remaining pages only after visual QA.
 
 Sources: MDN sessionStorage, MDN Date.getHours, Next.js App Router Client Components.
+
+
+## First approved-candidate shortlist (research, not asset approval)
+
+1. **New York — existing default:** vertical skyline and familiar spire; keep original existing photo and its current crop as fallback. Best: morning / golden hour.
+2. **Tokyo — Marunouchi/Tokyo Station or layered skyline:** premium contrast of historic red brick, glass towers and warm architectural lights. Avoid cheap tourist neon / giant readable advertisements. Best: blue hour and night. Photography research: https://unsplash.com/photos/a-view-of-a-city-at-night-with-tall-buildings-ywIGo_5c7O4 and https://unsplash.com/photos/illuminated-historic-building-surrounded-by-modern-skyscrapers-at-night-jFV2EMJl5Hg
+3. **Chicago — Chicago River / Loop bridges:** warm window lighting, textured stone and steel, reflective water. Best: blue hour/sunset. Research: https://unsplash.com/photos/a-view-of-a-city-at-night-from-a-river-hTxtGBUqfJU and https://unsplash.com/photos/a-view-of-a-city-from-a-bridge-nsAn3nSW5T0
+4. **Paris — Haussmann rooftops (optional alternate to Chicago):** warm historic façades; visual tone softer than NY/Tokyo. Good for golden hour, but harder to create a distinctive night scene in the same framing. Research: https://unsplash.com/photos/paris-rooftops-and-buildings-at-twilight-l5XSqzQgaK0 and https://unsplash.com/photos/aerial-view-of-paris-with-arc-de-triomphe-ZtRU5xSkknw
+5. **Hong Kong — Victoria Harbour (future experiment):** dramatic night skyline, but signage and busy illuminated windows can harm reading contrast and become generic tourist scenery. Do not start with it unless crop works.
+
+Shortlist **recommendation: NY + Tokyo + Chicago**, not yet final photograph selections. Preserve locations as editorial city identities, not geographically accurate weather/sunrise views.
+
+### Image sourcing & licensing
+- Use licensed original photos from Unsplash/Pexels or paid architectural photographers; retain source photo URL, author, retrieval date and license in `public/city/CREDITS.md`.
+- Pexels license: https://www.pexels.com/license/; Unsplash license: https://unsplash.com/license.
+- No Getty/iStock/watermarked previews in the build without an appropriate paid license.
+- Each candidate must pass 2 compositions: desktop wide (around 16:9 and up) and portrait 390px mobile without cropping critical buildings/text. At least one genuinely lit dusk/night photo is needed.
+- Creative accept criteria: left-side negative space for white heading, sky and architecture balance, lights readable, texture sharp at 200% zoom, no obvious logos. Test selected scenes under the shared shadow typography.
+
+### A/B design decision
+The current NeXora effect is a single photo plus CSS brightness/saturation overlays. For the final premium version, **prefer 2 genuine photo captures per city (day and illuminated blue-hour/night)**, then apply modest colour temperature overlays for morning and golden-hour transitions. Four independent photos per city without matching viewpoints would make buildings jump whenever local time changes. A truly identical framing across day and night requires photographer-provided matched captures or a carefully constructed composite; do not claim it is automatic.
+
+### Visitor clock accuracy
+On the client `new Date().getHours()` uses the visitor's device time zone without geolocation. Fixed time windows are a design convention; they do **not** reflect actual sunrise/sunset or current weather. To match astronomical dawn/dusk requires additional location context or permission; do not collect exact coordinates by default.
