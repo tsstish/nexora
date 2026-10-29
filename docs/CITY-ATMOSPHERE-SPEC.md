@@ -59,3 +59,25 @@ The current NeXora effect is a single photo plus CSS brightness/saturation overl
 
 ### Visitor clock accuracy
 On the client `new Date().getHours()` uses the visitor's device time zone without geolocation. Fixed time windows are a design convention; they do **not** reflect actual sunrise/sunset or current weather. To match astronomical dawn/dusk requires additional location context or permission; do not collect exact coordinates by default.
+
+
+## Implemented proof of concept (29 October 2026)
+
+- **Working source route:** `/building-preview/atmospheres` (only in `feature/city-atmospheres`, not in production).
+- Implemented: `CityAtmosphereProvider.tsx` persisted under `nexora:city:v1` in browser `sessionStorage`. Selected city is shared across all nested Next.js routes. Visitor local browser time controls automatic morning/day/sunset/night phases.
+- Implemented: `CityBackdrop.tsx` now uses genuinely different daylight vs night photographs for the same chosen city; translucent lighting overlays only adjust morning/sunset. Day/night images are **not** identical.
+- Implemented: manual city/phase controls in the lab; do not confuse these debugging controls with the production UX. Debug phase is cleared when navigating away from the lab.
+- **Current two cities:** New York (existing day photo + separate night photo); Tokyo (daytime skyline with Tokyo Tower + separate night skyline). Chicago remains a shortlisted city pending a verified pair of visually matched, licensable photographs.
+- **Critical limitation:** existing day and night photographs for a city are NOT the same camera position. They demonstrate automatic selection and image switching but still make an architectural “jump”. The true Apple Watch quality requires matched-camera 24-hour footage or a professionally edited matched sequence. Do not ship the unapproved asset set as a finished premium design.
+- Main approved release branch `release/new-york-loft-approved-2026-10-29` is not changed by this experiment; the primary `main` branch remains unchanged.
+- The first release-approved change to the commercial gallery is a single “Стоимость и условия” link to the pricing page top, implemented in both approved release and experiment branches.
+
+### Prototype image sources
+- New York original day: existing `images.unsplash.com/photo-1767749505538-23e71d1af2c5`, already used in NeXora before this work. Exact photographer attribution to verify before publishing city mode.
+- New York evening/night: `images.unsplash.com/photo-1554313553-41415c102e98`, https://unsplash.com/photos/cityscape-photo-at-night-6d0AJwfpD1Y.
+- Tokyo daytime: `images.unsplash.com/photo-1591194233688-dca69d406068`, https://unsplash.com/photos/a-view-of-a-large-city-with-tall-buildings-dyF1Q8kc0Fw.
+- Tokyo night: `images.unsplash.com/photo-1575669103814-1df2dab97b79`, https://unsplash.com/photos/photography-of-high-rise-buildings-during-nighttime-tawcVvhXDjE.
+- Check each Unsplash photographer, license, crop and image availability. Current remote background images are NOT bundled optimized site assets.
+
+### Release-specific QA still required
+Test image network availability in Safari, city selection in new/reloaded tabs, client hydration on first visit, phase changes, memory/storage restrictions, 320/375/390/768/1440 crops, slow networks and largest contentful paint. All four times of day must remain readable without glass panels.
