@@ -86,7 +86,7 @@ export default async function ProductStoryPreview({ params }: Props) {
           <div className={styles.benefitsHeading}>
             <div>
               <span className={styles.eyebrow}>ПОЧЕМУ ЭТОТ READY</span>
-              <h2 id="benefits-title">Не просто красивый сайт</h2>
+              <h2 id="benefits-title">{story.thesis}</h2>
             </div>
             <p>{story.tension}</p>
           </div>
@@ -108,7 +108,7 @@ export default async function ProductStoryPreview({ params }: Props) {
           <div className={styles.convertIntro}>
             <div>
               <span className={styles.eyebrow}>АДАПТАЦИЯ ПОД ВАШ БИЗНЕС</span>
-              <h2 id="conversion-title">Этот дизайн.<br/><em>Ваше имя</em></h2>
+              <h2 id="conversion-title">Готовый сайт<br/><em>с вашим брендом</em></h2>
             </div>
             <div className={styles.convertInfo}>
               <p>Вместо {site.name} — ваш логотип, цвета, фотографии, тексты и контакты. Основа уже готова, а содержание будет вашим</p>
