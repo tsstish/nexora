@@ -96,3 +96,15 @@
   .root .conditions details p{font-size:12px;line-height:1.65}
   .root .notice{font-size:10px!important;margin-top:19px}
 }
+
+/* Legacy Ready detail routes share the same unboxed skyline presentation.
+   Avoid a second independent photograph beneath CityBackdrop. */
+.root::before{content:none!important}
+.root .hero{display:block;max-width:780px;min-height:0;padding:clamp(55px,7vw,100px) 0 clamp(62px,8vw,105px)}
+.root .heading{max-width:750px}
+.backToCollection{display:inline-block!important;margin-bottom:23px;padding:0 0 7px;border-bottom:1px solid rgba(246,218,181,.65);color:#f8e5c5!important;font-size:12px;font-weight:700;line-height:1.4}
+.root .heading .conceptName{color:#f4d4a9}
+@media(max-width:700px){
+ .root .hero{display:block;padding:32px 0 38px}
+ .root .backToCollection{margin-bottom:19px}
+}
