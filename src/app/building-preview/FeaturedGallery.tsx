@@ -160,16 +160,15 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
                 <span className={styles.offerLabel}><span className={styles.desktopOfferLabel}>Сайт по подписке · хостинг и поддержка</span><span className={styles.mobileOfferLabel}>Подписка</span></span>
                 <strong><CurrencyPrice group="monthly" priceId={active.monthlyPlan} ils={active.monthlyPrice} perMonth /></strong>
               </div>
-              <a href={`/building-preview/ready/${active.slug}#monthly`}>Условия подписки ↗</a>
             </div>
             <div className={styles.buyOffer}>
               <div>
                 <span className={styles.offerLabel}><span className={styles.desktopOfferLabel}>Покупка готового сайта с адаптацией</span><span className={styles.mobileOfferLabel}>Покупка сайта</span></span>
                 <strong><CurrencyPrice group="ready" priceId={active.slug} ils={active.priceFrom} prefix="от " /></strong>
               </div>
-              <a href={`/building-preview/ready/${active.slug}#purchase`}>Условия покупки ↗</a>
             </div>
           </div>
+          <a className={styles.conditionsLink} href="/building-preview/pricing">Стоимость и условия <span aria-hidden="true">↗</span></a>
 
           <a className={`${styles.demoButton} nx-action nx-action--primary`} href={active.demoUrl} target="_blank" rel="noopener noreferrer"
             data-analytics-event="ready_demo_open" data-concept={active.slug}>
