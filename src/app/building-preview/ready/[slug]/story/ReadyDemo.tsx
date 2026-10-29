@@ -29,7 +29,7 @@ export function ReadyDemo({ name, url }: { name: string; url: string }) {
   }, [mode]);
 
   return (
-    <div className={styles.viewer} aria-label={`Демо готового сайта ${name}`}>
+    <div className={`${styles.viewer} ${mode === "mobile" ? styles.phoneViewer : ""}`} aria-label={`Демо готового сайта ${name}`}>
       <div className={styles.toolbar}>
         <div className={styles.live}><span aria-hidden="true" /> Работающий сайт <b>{name}</b></div>
         <div className={styles.modes} role="group" aria-label="Размер экрана демо">
