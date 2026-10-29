@@ -25,3 +25,18 @@
 .contact:hover span:last-child{transform:translate(2px,-2px)}
 @media(max-width:560px){.contact span:last-child{font-size:16px}}
 @media(prefers-reduced-motion:reduce){.nav a,.nav a::after,.contact span:last-child{transition:none}.contact:hover span:last-child{transform:none}}
+
+
+/* Larger, more widely distributed navigation on desktop; mobile unchanged. */
+@media(min-width:1121px){
+ .header{column-gap:clamp(24px,3vw,52px)}
+ .nav{
+   width:min(100%,680px);max-width:680px;margin:0 auto;
+   justify-content:space-between;gap:clamp(18px,2vw,36px);
+ }
+ .nav a{font-size:12px;letter-spacing:.03em}
+}
+@media(min-width:861px) and (max-width:1120px){
+ .nav{justify-content:space-between;gap:clamp(8px,1vw,16px)}
+ .nav a{font-size:10.5px}
+}
