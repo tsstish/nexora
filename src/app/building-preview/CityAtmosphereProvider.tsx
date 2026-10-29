@@ -39,7 +39,7 @@ export function CityAtmosphereProvider({ children }: { children: ReactNode }) {
     setLocalPhase(phaseForVisitorClock(new Date()));
     setHydrated(true);
 
-    const refresh = () => setLocalPhase(phaseForLocalHour(new Date().getHours()));
+    const refresh = () => setLocalPhase(phaseForVisitorClock(new Date()));
     const interval = window.setInterval(refresh, 60_000);
     document.addEventListener("visibilitychange", refresh);
     return () => {
