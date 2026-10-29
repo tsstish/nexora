@@ -587,3 +587,50 @@
 /* Independent mobile composition: legacy desktop gallery must never render simultaneously. */
 .desktopShowroom{display:block;position:relative;z-index:2}
 @media(max-width:1024px){.desktopShowroom{display:none!important}}
+
+
+/* 2026-10-29 / Desktop showroom: the collection is a full-width architectural
+   shelf, not a cramped child of the right-side product preview.
+   Image bottom and scene background now match without a hard green seam. */
+@media(min-width:1025px){
+ .page .scene{background:#11251e!important}
+ .page .hero{
+   display:grid;
+   grid-template-columns:minmax(320px,.38fr) minmax(0,.62fr);
+   grid-template-rows:auto auto;
+   column-gap:clamp(18px,2.8vw,42px);
+   row-gap:clamp(18px,2.3vw,34px);
+   align-items:stretch;
+   min-height:0;
+   padding-bottom:clamp(30px,4vw,65px);
+ }
+ .page .hero>.glassPanel{
+   grid-column:1;grid-row:1;align-self:start;
+   min-height:0;padding-top:clamp(64px,6.3vw,105px)!important;
+ }
+ .page .hero>.gallery{
+   grid-column:2;grid-row:1;min-width:0;
+   padding:clamp(20px,2vw,32px) 0 0;
+ }
+ .page .hero>.selector{
+   grid-column:1/-1;grid-row:2;
+   width:100%;min-width:0;margin:0;
+   padding:clamp(19px,2.2vw,32px) clamp(21px,2.8vw,44px);
+   background:linear-gradient(100deg,rgba(14,35,30,.54),rgba(15,36,30,.32) 65%,rgba(15,36,30,.42));
+   border:1px solid rgba(226,205,174,.30);
+   -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+   box-shadow:0 12px 32px rgba(7,22,19,.10);
+ }
+ .page .galleryHeading{
+   padding:11px 13px;
+   background:rgba(17,45,35,.10);
+   border:1px solid rgba(231,208,173,.12);
+   border-bottom:0;
+   margin:0;
+ }
+ .page .selectorHeading{margin-bottom:17px}
+ .page .selector h3{font-size:clamp(25px,2.3vw,32px)}
+ .page .tabRail{gap:12px}
+ .page .tab{padding:16px 18px;min-height:98px}
+ .page .tabName{font-size:12px}
+}
