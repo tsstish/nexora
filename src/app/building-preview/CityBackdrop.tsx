@@ -27,7 +27,7 @@ export function CityBackdrop({ time: _legacyTime }: { time?: CityTime }) {
           style={{backgroundImage:`url("${scene[state]}")`}}
         />
       ))}
-      <div className={`${styles.cloudMask} ${phase==="night" ? styles.cloudNight : ""}`}>
+      <div className={styles.cloudMask}>
         <div className={`${styles.cloud} ${styles.cloudA}`} />
         <div className={`${styles.cloud} ${styles.cloudB}`} />
       </div>
