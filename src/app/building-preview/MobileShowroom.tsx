@@ -25,7 +25,7 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
 
   return (
     <div className={styles.mobile}>
-      <section className={styles.intro} aria-labelledby="mobile-showroom-title">
+      <section className={`${styles.intro} nx-hero-copy`} aria-labelledby="mobile-showroom-title">
         <span className={styles.eyebrow}>NEXORA / READY COLLECTION</span>
         <h1 id="mobile-showroom-title">Готовый сайт.<br/><em>Ваш бренд</em></h1>
         <p>Выберите работающий сайт — мы заменим логотип, цвета, фотографии и тексты под ваш бизнес</p>
