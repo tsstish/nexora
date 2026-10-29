@@ -585,5 +585,5 @@
 }
 
 /* Independent mobile composition: legacy desktop gallery must never render simultaneously. */
-.desktopShowroom{display:contents}
+.desktopShowroom{display:block;position:relative;z-index:2}
 @media(max-width:1024px){.desktopShowroom{display:none!important}}
