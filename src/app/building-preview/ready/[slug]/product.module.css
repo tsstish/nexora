@@ -108,3 +108,9 @@
  .root .hero{display:block;padding:32px 0 38px}
  .root .backToCollection{margin-bottom:19px}
 }
+
+
+/* Adaptation copy belongs to the photograph, not to a rectangular inset. */
+.root .heading .customBrandNote{border:0!important;background:transparent!important;padding:0!important;color:#f6e9d4!important}
+.backMobile{display:none!important}
+@media(max-width:1024px){.backDesktop{display:none!important}.backMobile{display:inline-block!important}}
