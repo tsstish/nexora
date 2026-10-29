@@ -13,6 +13,9 @@
  transform:translateZ(0);
 }
 .imageActive{opacity:1}
+/* Real sky-mask remains aligned with the stationary photographs.
+   Cloud art is a SINGLE oversized transparent sheet (never a repeat-x tile).
+   Soft alpha falloff around its edges makes horizontal motion seam-free. */
 .cloudMask{
  position:absolute;inset:0;z-index:1;pointer-events:none;
  -webkit-mask-image:url("/cities/new-york/sky-mask.png");
@@ -21,19 +24,48 @@
  -webkit-mask-position:var(--city-pos-desktop,50% 43%);
  mask-position:var(--city-pos-desktop,50% 43%);
  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
- opacity:.7;
+ opacity:.9;
+ transition:opacity .8s ease;
 }
 .cloud{
- position:absolute;top:-8%;left:-16%;width:132%;height:70%;
+ position:absolute;
+ top:-9%;left:-35%;width:170%;height:74%;
  background-image:url("/cities/new-york/cloud-wisps.webp");
- background-repeat:repeat-x;background-size:70% 100%;
+ background-repeat:no-repeat;
+ background-position:center center;
+ background-size:100% 100%;
+ /* The previous repeating cloud texture caused the vertical seam.
+    Feather all 4 edges of a single oversized cloud sheet instead. */
+ -webkit-mask-image:radial-gradient(ellipse 67% 72% at 50% 46%,#000 22%,rgba(0,0,0,.95) 55%,transparent 100%);
+ mask-image:radial-gradient(ellipse 67% 72% at 50% 46%,#000 22%,rgba(0,0,0,.95) 55%,transparent 100%);
+ -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
  will-change:transform;
 }
-.cloudA{opacity:.33;animation:cloudDriftA 52s linear infinite alternate}
-.cloudB{opacity:.2;top:3%;filter:blur(9px);animation:cloudDriftB 75s linear infinite alternate}
-.cloudNight{opacity:.23}
-@keyframes cloudDriftA{from{transform:translate3d(-5%,0,0)}to{transform:translate3d(9%,0,0)}}
-@keyframes cloudDriftB{from{transform:translate3d(6%,0,0)}to{transform:translate3d(-10%,0,0)}}
+.cloudA{
+ opacity:.83;
+ filter:drop-shadow(0 4px 3px rgba(36,67,88,.25));
+ animation:cloudDriftA 56s ease-in-out infinite alternate;
+}
+.cloudB{
+ top:0%;
+ opacity:.52;
+ filter:blur(5px) drop-shadow(0 6px 5px rgba(35,59,80,.22));
+ animation:cloudDriftB 71s ease-in-out infinite alternate;
+}
+/* Visible, but restrained, in every period. Daylight needs more contrast;
+   at night clouds should not turn into bright, distracting white streaks. */
+.backdrop[data-phase="morning"] .cloudMask{opacity:.85}
+.backdrop[data-phase="day"] .cloudMask{opacity:.96}
+.backdrop[data-phase="sunset"] .cloudMask{opacity:.73}
+.backdrop[data-phase="night"] .cloudMask{opacity:.42}
+@keyframes cloudDriftA{
+ from{transform:translate3d(-6%,0,0)}
+ to{transform:translate3d(6%,0,0)}
+}
+@keyframes cloudDriftB{
+ from{transform:translate3d(5%,0,0)}
+ to{transform:translate3d(-6%,0,0)}
+}
 .light,.vignette{position:absolute;inset:0;pointer-events:none}
 .light{z-index:2;background:linear-gradient(90deg,rgba(9,24,21,.04),transparent 78%)}
 .vignette{
@@ -48,7 +80,7 @@
   -webkit-mask-position:var(--city-pos-mobile,50% 43%);
   mask-position:var(--city-pos-mobile,50% 43%);
  }
- .cloud{height:56%}
+ .cloud{height:65%;top:-6%}
  .vignette{
   background:
   linear-gradient(90deg,rgba(5,19,16,.38),rgba(5,19,16,.09) 72%,transparent),
@@ -58,4 +90,5 @@
 @media(prefers-reduced-motion:reduce){
  .backdrop,.image{transition:none}
  .cloudA,.cloudB{animation:none;will-change:auto}
+ .cloudMask{transition:none}
 }
