@@ -8,7 +8,7 @@ import { CurrencySelector } from "./CurrencyControl";
 import styles from "./StudioHeader.module.css";
 
 const menu = [
-  { label: "Готовые сайты", href: "/building-preview#collection", section: "ready" },
+  { label: "Готовые сайты", href: "/building-preview", section: "ready" },
   { label: "Услуги и стоимость", href: "/building-preview/pricing", section: "pricing" },
   { label: "Контакты", href: "/building-preview/contacts", section: "contacts" },
 ] as const;
