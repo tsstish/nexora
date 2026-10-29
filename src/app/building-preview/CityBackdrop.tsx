@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { CITY_ASSETS } from "./cityAtmospheres";
 import { useCityAtmosphere } from "./CityAtmosphereProvider";
 import styles from "./CityBackdrop.module.css";
@@ -15,12 +16,12 @@ export function CityBackdrop({ time: _legacyTime }: { time?: CityTime }) {
 
   return (
     <div className={`nx-city-backdrop ${styles.backdrop} ${styles[phase]} ${hydrated ? styles.ready : ""}`}
-         data-city={city} data-phase={phase} aria-hidden="true">
-      <div className={styles.dayImage} style={{backgroundImage: `url("${scene.day}")`, backgroundPosition: scene.focalDesktop }} />
-      <div className={styles.nightImage} style={{backgroundImage: `url("${scene.night}")`, backgroundPosition: scene.focalDesktop }} />
+         data-city={city} data-phase={phase} aria-hidden="true"
+         style={{"--city-pos-desktop": scene.focalDesktop, "--city-pos-mobile": scene.focalMobile} as CSSProperties}>
+      <div className={styles.dayImage} style={{backgroundImage: `url("${scene.day}")` }} />
+      <div className={styles.nightImage} style={{backgroundImage: `url("${scene.night}")` }} />
       <div className={styles.light} />
       <div className={styles.vignette} />
-      <style>{`@media(max-width:700px){[data-city="${city}"] .${styles.dayImage},[data-city="${city}"] .${styles.nightImage}{background-position:${scene.focalMobile}!important}}`}</style>
     </div>
   );
 }
