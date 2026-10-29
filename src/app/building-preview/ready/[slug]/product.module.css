@@ -114,3 +114,15 @@
 .root .heading .customBrandNote{border:0!important;background:transparent!important;padding:0!important;color:#f6e9d4!important}
 .backMobile{display:none!important}
 @media(max-width:1024px){.backDesktop{display:none!important}.backMobile{display:inline-block!important}}
+
+
+/* Hero reading order: back control on its own line, then eyebrow, then content.
+   Previously the inline link touched 'NEXORA / READY COLLECTION'. */
+.backToCollection{display:block!important;width:max-content;max-width:100%;margin:0 0 31px!important}
+.root .heading .kicker{display:block;clear:both;line-height:1.6}
+.backMobile{display:none!important}
+@media(max-width:1024px){
+ .backDesktop{display:none!important}
+ .backMobile{display:block!important}
+}
+@media(max-width:700px){.backToCollection{margin-bottom:24px!important}}
