@@ -43,28 +43,10 @@ export default function BuildingPreview() {
 
         <div className={styles.desktopShowroom}>
         <section className={styles.hero} aria-labelledby="loft-title">
-          <div className={`${styles.glassPanel} nx-glass`}>
+          <div className={`${styles.glassPanel} nx-hero-copy`}>
             <span className={styles.eyebrow}>NEXORA / READY COLLECTION</span>
             <h1 id="loft-title">Готовые сайты<br />для реального<br />бизнеса</h1>
             <p className={styles.heroDescription}>Это уже работающие сайты, а не макеты. Вы выбираете подходящий пример — мы превращаем его в сайт вашего бизнеса.</p>
-            <p className={styles.mobileDescription}>Выберите готовый работающий сайт — мы адаптируем его под ваш бизнес</p>
-            <p className={styles.mobileBrandLine}>Логотип · цвета · фотографии · тексты — ваши</p>
-            <details className={styles.mobileAdapt}>
-              <summary>Как готовый сайт станет вашим <span aria-hidden="true">+</span></summary>
-              <p>Заменим логотип, цвета, фотографии, тексты и контакты. Изменения в рамках концепции; дополнительные функции согласуем отдельно</p>
-              <small>Адаптация — до 7 рабочих дней после получения материалов, в зависимости от продукта</small>
-            </details>
-            <div className={styles.adaptationNote}>
-              <span className={styles.adaptationEyebrow}>Вместо демонстрационного бренда — ваш</span>
-              <strong>Ваш логотип, цвета, фотографии, тексты и контакты</strong>
-              <small>Оформление адаптируем в рамках выбранной концепции</small>
-            </div>
-            <div className={styles.facts} aria-label="Как вы получаете сайт">
-              <div><b aria-hidden="true">01</b><span>Выбираете<br />готовый сайт</span></div>
-              <div><b aria-hidden="true">02</b><span>Мы адаптируем<br />под вас</span></div>
-              <div><b aria-hidden="true">03</b><span>Запускаем<br />ваш сайт*</span></div>
-            </div>
-            <small>* Адаптация — до 7 рабочих дней после получения материалов, в зависимости от продукта. Сайт разработан на кодовой базе, не в конструкторе.</small>
           </div>
           <FeaturedGallery concepts={concepts} />
         </section>
