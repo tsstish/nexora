@@ -2,9 +2,9 @@
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { CITY_ASSETS, CITY_OPTIONS, phaseForLocalHour, type CityId, type DayPhase } from "./cityAtmospheres";
+import { CITY_ASSETS, phaseForVisitorClock, type CityId, type DayPhase } from "./cityAtmospheres";
 
-const STORAGE_KEY = "nexora:city:v1";
+const STORAGE_KEY = "nexora:city:v2";
 type CityAtmosphere = {
   city: CityId;
   phase: DayPhase;
@@ -32,11 +32,11 @@ export function CityAtmosphereProvider({ children }: { children: ReactNode }) {
     let chosen: CityId | null = null;
     try { chosen = safeCity(window.sessionStorage.getItem(STORAGE_KEY)); } catch { /* private mode */ }
     if (!chosen) {
-      chosen = CITY_OPTIONS[Math.floor(Math.random() * CITY_OPTIONS.length)];
+      chosen = "new-york";
       try { window.sessionStorage.setItem(STORAGE_KEY, chosen); } catch { /* storage disabled */ }
     }
     setCity(chosen);
-    setLocalPhase(phaseForLocalHour(new Date().getHours()));
+    setLocalPhase(phaseForVisitorClock(new Date()));
     setHydrated(true);
 
     const refresh = () => setLocalPhase(phaseForLocalHour(new Date().getHours()));
