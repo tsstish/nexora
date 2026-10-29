@@ -1,47 +1,61 @@
+/* New York four-phase atmosphere. All 4 stills preserve the exact frame. */
 .backdrop{
  position:absolute;inset:0 0 auto;height:var(--nx-city-stage-height);
- z-index:0;pointer-events:none;overflow:hidden;isolation:isolate;
- background:#10271f;opacity:0;transition:opacity .75s ease;
+ pointer-events:none;z-index:0;overflow:hidden;isolation:isolate;
+ background:#11251e;opacity:0;transition:opacity .55s ease;
 }
 .ready{opacity:1}
-.dayImage,.nightImage{
- position:absolute;inset:0;
- background-repeat:no-repeat;
- background-size:cover;
+.image{
+ position:absolute;inset:0;z-index:0;opacity:0;
  background-position:var(--city-pos-desktop,50% 43%);
+ background-size:cover;background-repeat:no-repeat;
+ transition:opacity 1.65s ease-in-out;
  transform:translateZ(0);
- transition:opacity 1.25s ease,filter 1.25s ease;
 }
-.dayImage{opacity:1}
-.nightImage{opacity:0}
-.morning .dayImage{filter:brightness(.87) saturate(.87) contrast(1.04)}
-.day .dayImage{filter:brightness(.97) saturate(.94) contrast(1.03)}
-.sunset .dayImage{filter:brightness(.78) saturate(1.1) sepia(.12)}
-.night .dayImage{opacity:0}
-.night .nightImage{opacity:1;filter:brightness(.91) saturate(.9)}
-.light,.vignette{position:absolute;inset:0}
-.light{transition:background 1.25s ease}
-.morning .light{background:radial-gradient(ellipse at 72% 22%,rgba(255,205,161,.16),transparent 55%)}
-.day .light{background:radial-gradient(ellipse at 72% 17%,rgba(255,230,195,.08),transparent 60%)}
-.sunset .light{background:linear-gradient(105deg,rgba(47,31,39,.05),rgba(225,129,82,.16) 68%,rgba(255,177,128,.11))}
-.night .light{background:linear-gradient(180deg,rgba(10,28,37,.11),rgba(5,21,29,.17))}
+.imageActive{opacity:1}
+.cloudMask{
+ position:absolute;inset:0;z-index:1;pointer-events:none;
+ -webkit-mask-image:url("/cities/new-york/sky-mask.png");
+ mask-image:url("/cities/new-york/sky-mask.png");
+ -webkit-mask-size:cover;mask-size:cover;
+ -webkit-mask-position:var(--city-pos-desktop,50% 43%);
+ mask-position:var(--city-pos-desktop,50% 43%);
+ -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+ opacity:.7;
+}
+.cloud{
+ position:absolute;top:-8%;left:-16%;width:132%;height:70%;
+ background-image:url("/cities/new-york/cloud-wisps.webp");
+ background-repeat:repeat-x;background-size:70% 100%;
+ will-change:transform;
+}
+.cloudA{opacity:.33;animation:cloudDriftA 52s linear infinite alternate}
+.cloudB{opacity:.2;top:3%;filter:blur(9px);animation:cloudDriftB 75s linear infinite alternate}
+.cloudNight{opacity:.23}
+@keyframes cloudDriftA{from{transform:translate3d(-5%,0,0)}to{transform:translate3d(9%,0,0)}}
+@keyframes cloudDriftB{from{transform:translate3d(6%,0,0)}to{transform:translate3d(-10%,0,0)}}
+.light,.vignette{position:absolute;inset:0;pointer-events:none}
+.light{z-index:2;background:linear-gradient(90deg,rgba(9,24,21,.04),transparent 78%)}
 .vignette{
+ z-index:3;
  background:
-  linear-gradient(90deg,rgba(4,20,15,.38) 0%,rgba(4,18,16,.10) 52%,transparent 85%),
-  linear-gradient(180deg,rgba(8,19,17,.20) 0%,transparent 36%,rgba(11,29,23,.10) 66%,#11251e 100%);
-}
-.night .vignette{
- background:
-  linear-gradient(90deg,rgba(4,14,19,.42),rgba(4,15,17,.10) 53%,transparent 86%),
-  linear-gradient(180deg,rgba(8,19,22,.14),transparent 35%,rgba(10,28,25,.14) 66%,#11251e 100%);
+ linear-gradient(90deg,rgba(4,20,15,.34) 0%,rgba(4,18,16,.12) 44%,transparent 83%),
+ linear-gradient(180deg,rgba(8,19,17,.16) 0%,transparent 32%,rgba(11,29,23,.08) 62%,#11251e 100%);
 }
 @media(max-width:700px){
- .dayImage,.nightImage{background-position:var(--city-pos-mobile,50% 43%)}
+ .image{background-position:var(--city-pos-mobile,50% 43%)}
+ .cloudMask{
+  -webkit-mask-position:var(--city-pos-mobile,50% 43%);
+  mask-position:var(--city-pos-mobile,50% 43%);
+ }
+ .cloud{height:56%}
  .vignette{
-  background:linear-gradient(90deg,rgba(5,19,16,.40),rgba(5,19,16,.1) 75%,transparent),
-             linear-gradient(180deg,rgba(8,19,17,.16),rgba(10,27,22,.1) 30%,#11251e 100%);
+  background:
+  linear-gradient(90deg,rgba(5,19,16,.38),rgba(5,19,16,.09) 72%,transparent),
+  linear-gradient(180deg,rgba(8,19,17,.15),rgba(10,27,22,.08) 30%,#11251e 100%);
  }
 }
 @media(prefers-reduced-motion:reduce){
- .backdrop,.dayImage,.nightImage,.light{transition:none}
+ .backdrop,.image{transition:none}
+ .cloudA,.cloudB{animation:none;will-change:auto}
 }
