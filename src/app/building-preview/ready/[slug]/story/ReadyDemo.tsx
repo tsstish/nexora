@@ -11,6 +11,11 @@ export function ReadyDemo({ name, url }: { name: string; url: string }) {
   const [loaded, setLoaded] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
 
+  // Show the actual responsive site on narrow screens instead of a scaled-down desktop page.
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 700px)").matches) setMode("mobile");
+  }, []);
+
   useEffect(() => {
     if (mode !== "desktop" || !canvasRef.current) return;
     const measure = () => {
