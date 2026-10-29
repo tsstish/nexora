@@ -634,3 +634,7 @@
  .page .tab{padding:16px 18px;min-height:98px}
  .page .tabName{font-size:12px}
 }
+
+/* One clear route to all commercial conditions instead of two tiny links. */
+.conditionsLink{display:inline-flex;align-items:center;gap:12px;align-self:flex-start;margin:13px 0 15px;min-height:38px;padding:6px 0;border-bottom:1px solid rgba(240,210,159,.7);font-size:12px;font-weight:700;color:#f2d1a0!important;text-decoration:none}
+.conditionsLink:hover{color:#fff5de!important}
