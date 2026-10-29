@@ -79,3 +79,19 @@ Scope and honesty:
 - Current live iframe depends on browser embed permission and third-party demo availability; it is NOT an authored image. For release, replace the main product media with original full-width screenshots and link to the live demo as secondary proof. Small iframe is intentionally suppressed on mobile.
 - The current storefront and original `/ready/[slug]` details are intentionally untouched until visual sign-off.
 - Before release: check `npm run build`, Safari/Chrome responsive layouts and keyboard, currency exchange display, route navigation, demo iframe fallback and source content/legal scope.
+
+
+## Product story v3: correction after screenshot feedback (2026-10-29)
+
+The initial editorial preview failed on mobile: a tall opaque text slab hid the city, the iframe disappeared completely at <=700px, and 5 text-heavy sections followed. Do not restore that design.
+
+**Implemented in `ready/[slug]/story`, still separate from production Ready details:**
+- New CityBackdrop masthead only 165–205px tall on mobile, 220–305px on desktop; city is no longer behind the product's text panel.
+- An ivory product-first editorial split below the city: short actual product headline on one side, a *large live iframe* on the other.
+- Mobile: same real iframe is **visible**, 310–425px tall, touch navigation stays on outer page, and an explicit full-site demo link opens the interactive site. No invented fake screenshot.
+- Benefits distilled into 3 specific feature-backed statements; separate "customer journey" and lengthy problem text sections were removed.
+- An adaptation note with the client's branding, 2 actual pricing options, and detailed terms in optional disclosures. Story-specific benefit heading instead of generic cliché.
+- The current repository has **no** `public/ready/mida-cover.jpg` despite a metadata reference; 3 other concepts point at one generic `ready-hero.png`. We must not present those placeholders as unique product screenshots. Real authored full-length captures are still needed for a durable production gallery.
+- Browser/embed checks outstanding: some browsers or remote sites can restrict iframe embedding; full-screen original demo link is always provided. Native Next build and responsive Safari tests were not available here.
+
+The primary NeXora homepage and original `/ready/[slug]` routes are not overwritten.
