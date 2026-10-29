@@ -55,15 +55,11 @@ export default function LoftPricing() {
         <div className={styles.desktopOpening}>
         <div className={styles.shell}>
           <section className={styles.hero} aria-labelledby="pricing-title">
-            <div className={`${styles.heroGlass} nx-glass`}>
+            <div className={`${styles.heroGlass} nx-hero-copy`}>
               <span className={styles.overline}>NEXORA / УСЛУГИ И СТОИМОСТЬ</span>
               <h1 id="pricing-title">Сайты под бизнес — <em>цены по делу</em></h1>
               <p>Готовая концепция по подписке, покупка сайта с адаптацией или разработка под вашу задачу</p>
               <a className={`${styles.heroLink} nx-action nx-action--outline`} href="#monthly">Посмотреть форматы <span aria-hidden="true">↘</span></a>
-            </div>
-            <div className={styles.citySignature} aria-hidden="true">
-              <span>NEXORA / DIGITAL PRESENCE DESIGN</span>
-              <span>01 — 04 / SERVICES</span>
             </div>
           </section>
 
