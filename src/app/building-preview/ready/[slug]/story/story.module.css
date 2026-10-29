@@ -82,7 +82,7 @@
 }
 @media(max-width:700px){
   .content{width:calc(100% - 30px)}
-  .cityScene{height:clamp(165px,35vw,205px);min-height:0!important}
+  .cityScene{height:clamp(235px,54vw,280px);min-height:0!important}
   .sceneNote{left:15px;right:15px;bottom:12px;font-size:9px;gap:8px;letter-spacing:.05em}
   .sceneNote span:last-child{display:none}
   .product{padding:22px 0 37px}
