@@ -4,11 +4,12 @@ import type { Metadata } from "next";
 import { readySites } from "@/data/readySites";
 import { readyStories } from "@/data/readyStories";
 import { monthlyPlans, monthlySupport } from "@/data/readyMonthly";
-import { readyAdaptation, readyRights, monthlyStart, monthlyCancel, monthlyBuyout } from "@/data/readyConditions";
+import { monthlyStart, monthlyCancel, monthlyBuyout, readyAdaptation, readyRights } from "@/data/readyConditions";
 import { whatsappUrl } from "@/data/site";
 import { CurrencyPrice } from "../../../CurrencyControl";
 import { StudioHeader } from "../../../StudioHeader";
 import { CityBackdrop } from "../../../CityBackdrop";
+import { ReadyDemo } from "./ReadyDemo";
 import styles from "./story.module.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -22,139 +23,112 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const story = readyStories[slug];
   if (!story) return { title: "Концепция не найдена", robots: { index: false } };
   return {
-    title: `${story.headline} | Ready by NeXora`,
+    title: `${story.headline} | Готовый сайт NeXora`,
     description: story.lead,
     robots: { index: false, follow: false },
   };
 }
 
-export default async function ProductStoryPreview({ params }: Props) {
+export default async function ReadyStoryPage({ params }: Props) {
   const { slug } = await params;
-  const site = readySites.find((item) => item.slug === slug);
+  const site = readySites.find(item => item.slug === slug);
   const story = readyStories[slug];
   if (!site || !story) notFound();
   const monthly = monthlyPlans[site.monthlyPlan];
 
   return (
     <main className={styles.page}>
-      <div className={`${styles.cityScene} nx-city-stage`}>
+      <div className={`${styles.cityHero} nx-city-stage`}>
         <CityBackdrop time="morning" />
         <StudioHeader />
-        <div className={styles.sceneNote}>
-          <span>NEXORA / READY COLLECTION</span>
-          <span>ГОТОВЫЙ САЙТ № {String(readySites.findIndex(item => item.slug === slug) + 1).padStart(2, "0")}</span>
+        <div className={styles.heroContent}>
+          <Link href="/building-preview#collection" className={styles.back}>← Готовые сайты</Link>
+          <div className={styles.heroEyebrow}>NEXORA / READY COLLECTION · {site.formatLabel}</div>
+          <h1>{story.headline}</h1>
+          <p>{story.lead}</p>
         </div>
       </div>
 
-      <section className={styles.product} aria-labelledby="product-title">
-        <div className={styles.content}>
-          <div className={styles.productIntro}>
-            <Link className={styles.back} href="/building-preview#collection">← Все готовые сайты</Link>
-            <span className={styles.eyebrow}>ГОТОВЫЙ ПРОДУКТ / {site.formatLabel}</span>
-            <h1 id="product-title">{story.headline}</h1>
-            <p className={styles.lead}>{story.lead}</p>
-            <div className={styles.quickProof}>
-              <span>Уже разработан на кодовой базе</span>
-              <span>Адаптируем под ваш бренд</span>
+      <section className={styles.productStage} aria-label={`Готовый сайт ${site.name}`}>
+        <div className={styles.productGrid}>
+          <div className={styles.previewArea}>
+            <div className={styles.previewTop}>
+              <span>01 / СМОТРИТЕ САМИ</span>
+              <span>Демо: {site.name}</span>
             </div>
+            <ReadyDemo name={site.name} url={site.demoUrl} />
           </div>
 
-          <div className={styles.demo} aria-label={`Демонстрация сайта ${site.name}`}>
-            <div className={styles.demoToolbar}>
-              <span><i aria-hidden="true" /> ЖИВОЙ ПРИМЕР / {site.name}</span>
-              <span>Ваш бренд будет вместо демонстрационного</span>
+          <aside className={styles.purchase} aria-labelledby="purchase-title">
+            <span className={styles.eyebrow}>УЖЕ РАЗРАБОТАН · ГОТОВ К АДАПТАЦИИ</span>
+            <h2 id="purchase-title">Этот сайт может стать вашим</h2>
+            <p className={styles.purchaseLead}>Не придётся собирать страницы с нуля. Заменим демонстрационный бренд, цвета, фотографии, тексты и контакты на ваши</p>
+
+            <div className={styles.keyPoints}>
+              {story.advantages.map((item, index) => (
+                <div key={item.label}>
+                  <span>0{index + 1}</span>
+                  <strong>{item.heading}</strong>
+                </div>
+              ))}
             </div>
-            <div className={styles.demoViewport}>
-              <iframe
-                src={site.demoUrl}
-                title={`Работающий демо-сайт ${site.name}`}
-                loading="lazy"
-                tabIndex={-1}
-                scrolling="no"
-              />
+
+            <div className={styles.prices} id="ready-prices">
+              <div className={styles.priceRow}>
+                <div><span>По подписке</span><small>Хостинг и поддержка включены</small></div>
+                <strong><CurrencyPrice group="monthly" priceId={site.monthlyPlan} ils={monthly.price} perMonth /></strong>
+              </div>
+              <div className={styles.priceRow}>
+                <div><span>Купить с адаптацией</span><small>Разовая стоимость от</small></div>
+                <strong><CurrencyPrice group="ready" priceId={site.slug} ils={site.priceFrom} prefix="от " /></strong>
+              </div>
             </div>
-            <div className={styles.demoBottom}>
-              <span>Реальный сайт, не макет</span>
-              <a href={site.demoUrl} target="_blank" rel="noopener noreferrer">Открыть демо на весь экран ↗</a>
-            </div>
-          </div>
+            <a className={styles.primaryAction}
+               href={whatsappUrl(`Здравствуйте! Интересует готовый сайт ${site.name}. Хочу выбрать формат: подписка или покупка с адаптацией.`)}
+               target="_blank" rel="noopener noreferrer">Обсудить этот Ready <span aria-hidden="true">↗</span></a>
+            <div className={styles.purchaseNote}>Сроки и стоимость дополнительных изменений согласовываются до начала работы</div>
+          </aside>
         </div>
       </section>
 
-      <section className={styles.benefits} aria-labelledby="benefits-title">
-        <div className={styles.content}>
-          <div className={styles.benefitsHeading}>
-            <div>
-              <span className={styles.eyebrow}>ПОЧЕМУ ЭТОТ READY</span>
-              <h2 id="benefits-title">{story.thesis}</h2>
-            </div>
-            <p>{story.tension}</p>
-          </div>
-          <div className={styles.benefitGrid}>
-            {story.advantages.map((benefit, index) => (
-              <article key={benefit.label}>
-                <span className={styles.benefitNumber}>0{index + 1}</span>
-                <h3>{benefit.heading}</h3>
-                <p>{benefit.explanation}</p>
-                <small>{benefit.proof}</small>
-              </article>
-            ))}
-          </div>
+      <section className={styles.detailsSection} aria-labelledby="details-title">
+        <div className={styles.detailsIntro}>
+          <span className={styles.eyebrow}>02 / ЧТО ВНУТРИ</span>
+          <h2 id="details-title">Продумано под конкретную задачу</h2>
+          <p>{story.resolution}</p>
+        </div>
+        <div className={styles.benefitCards} aria-label="Возможности этого Ready">
+          {story.advantages.map((item, index) => (
+            <article key={item.label}>
+              <span>0{index + 1} / {item.label.split("/").slice(-1)[0].trim()}</span>
+              <h3>{item.heading}</h3>
+              <p>{item.explanation}</p>
+              <small>{item.proof}</small>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className={styles.conversion} aria-labelledby="conversion-title">
-        <div className={styles.content}>
-          <div className={styles.convertIntro}>
-            <div>
-              <span className={styles.eyebrow}>АДАПТАЦИЯ ПОД ВАШ БИЗНЕС</span>
-              <h2 id="conversion-title">Готовый сайт<br/><em>с вашим брендом</em></h2>
-            </div>
-            <div className={styles.convertInfo}>
-              <p>Вместо {site.name} — ваш логотип, цвета, фотографии, тексты и контакты. Основа уже готова, а содержание будет вашим</p>
-              <details>
-                <summary>Что входит в адаптацию <span aria-hidden="true">+</span></summary>
-                <ul>{site.adaptationIncludes.map(item => <li key={item}>{item}</li>)}</ul>
-                <p>{readyAdaptation}</p>
-                <p>{story.boundaries}</p>
-              </details>
-            </div>
-          </div>
-
-          <div className={styles.priceHeading}>
-            <span className={styles.eyebrow}>ВАРИАНТЫ ПРИОБРЕТЕНИЯ</span>
-            <h2>Как получить этот сайт</h2>
-          </div>
-          <div className={styles.priceGrid}>
-            <article>
-              <span>01 / ПОДПИСКА</span>
-              <h3>Сайт по подписке</h3>
-              <div className={styles.price}><CurrencyPrice group="monthly" priceId={site.monthlyPlan} ils={monthly.price} perMonth /></div>
-              <p>Без стартового взноса. Хостинг и поддержка включены</p>
-              <a href={whatsappUrl(`Здравствуйте! Хочу сайт ${site.name} по подписке.`)}
-                target="_blank" rel="noopener noreferrer">Обсудить подписку ↗</a>
-            </article>
-            <article>
-              <span>02 / ПОКУПКА</span>
-              <h3>Купить с адаптацией</h3>
-              <div className={styles.price}><CurrencyPrice group="ready" priceId={site.slug} ils={site.priceFrom} prefix="от " /></div>
-              <p>Разовая покупка готовой концепции с адаптацией под ваш бизнес</p>
-              <a href={whatsappUrl(`Здравствуйте! Хочу купить сайт ${site.name} с адаптацией.`)}
-                target="_blank" rel="noopener noreferrer">Обсудить покупку ↗</a>
-            </article>
-          </div>
-          <details className={styles.legal}>
-            <summary>Подробные условия оплаты, поддержки и выкупа <span aria-hidden="true">+</span></summary>
-            <div>
-              <p>{monthlyStart}</p>
-              <p>{monthlySupport.editsDescription}</p>
-              <p>{monthlySupport.checksDescription}</p>
-              <p>{monthlyCancel}</p>
-              <p>{monthlyBuyout}</p>
-              <p>{readyRights}</p>
-            </div>
+      <section className={styles.adaptation} aria-labelledby="adaptation-title">
+        <div className={styles.adaptationMain}>
+          <span className={styles.eyebrow}>03 / АДАПТАЦИЯ ПОД БРЕНД</span>
+          <h2 id="adaptation-title"><span>{site.name}</span><b aria-hidden="true">→</b><em>Ваш бренд</em></h2>
+          <p>Сохраняем продуманную структуру концепции и адаптируем оформление под ваш бизнес</p>
+        </div>
+        <div className={styles.extraDetails}>
+          <details>
+            <summary>Что входит в адаптацию <span aria-hidden="true">+</span></summary>
+            <ul>{site.adaptationIncludes.map(item => <li key={item}>{item}</li>)}</ul>
+            <p>{readyAdaptation}</p>
+            <p>{story.boundaries}</p>
           </details>
-          <p className={styles.demoNote}>В демонстрации используются примерные бренды и материалы. Конечный состав работ согласовываем до запуска</p>
+          <details>
+            <summary>Условия подписки, покупки и поддержки <span aria-hidden="true">+</span></summary>
+            <p>{monthlyStart}</p><p>{monthlySupport.editsDescription}</p>
+            <p>{monthlySupport.checksDescription}</p><p>{monthlyCancel}</p>
+            <p>{monthlyBuyout}</p><p>{readyRights}</p>
+          </details>
+          <p className={styles.disclaimer}>Название {site.name}, изображения и примеры в демо — демонстрационные материалы. Реальные данные предоставляет заказчик</p>
         </div>
       </section>
     </main>
