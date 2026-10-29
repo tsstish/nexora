@@ -59,3 +59,7 @@
 .documents{background:#162a22}
 .documents::before{background:radial-gradient(ellipse at 85% 0%,rgba(191,135,97,.14),transparent 43%),linear-gradient(125deg,#1b2e27,#15271f)!important}
 @media(max-width:560px){}
+
+
+/* All pages use the shared city image stage height and crop. */
+.sunsetScene{min-height:var(--nx-city-stage-height)}
