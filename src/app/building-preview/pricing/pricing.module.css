@@ -460,7 +460,7 @@
 
 
 /* Mobile pricing is an independent conversion flow, not a duplicate of desktop chapters. */
-.desktopOpening{display:contents}
+.desktopOpening{display:block;position:relative;z-index:2}
 @media(max-width:1024px){
  .desktopOpening{display:none!important}
  .monthlyChapter,.customChapter,.addonsChapter,.supportChapter,.endCta{display:none!important}
