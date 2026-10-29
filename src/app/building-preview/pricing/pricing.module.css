@@ -457,3 +457,12 @@
   .serviceTitle{font-size:17px}
   .service summary strong{font-size:16px}
 }
+
+
+/* Mobile pricing is an independent conversion flow, not a duplicate of desktop chapters. */
+.desktopOpening{display:contents}
+@media(max-width:1024px){
+ .desktopOpening{display:none!important}
+ .monthlyChapter,.customChapter,.addonsChapter,.supportChapter,.endCta{display:none!important}
+ .dayScene{--nx-city-stage-height:420px;min-height:0!important}
+}
