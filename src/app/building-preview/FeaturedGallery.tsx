@@ -101,7 +101,7 @@ function SitePreview({ name, slug, url }: { name: string; slug: string; url: str
           data-concept={slug}
         >Открыть демо ↗</a>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -206,6 +206,6 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
