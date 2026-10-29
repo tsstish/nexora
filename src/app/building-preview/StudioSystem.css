@@ -49,8 +49,23 @@
 .nx-active-mark{background:var(--nx-active)}
 
 /* 2026-10-29 / Shared NeXora skyline typography.
-   Hero descriptions have no floating glass/opaque rectangular panel.
-   A subtle *image-wide* vignette belongs to CityBackdrop instead. */
+   No rectangular backdrop: discreet volumetric lettering and a restrained
+   image-wide vignette keep the skyline visible, even against bright skies. */
+:root{
+  --nx-city-title-shadow:
+    0 1px 0 rgba(1,14,12,.91),
+    0 2px 3px rgba(1,14,12,.94),
+    0 5px 12px rgba(1,14,12,.88),
+    0 12px 31px rgba(1,14,12,.73);
+  --nx-city-copy-shadow:
+    0 1px 2px rgba(1,13,12,.98),
+    0 2px 7px rgba(1,13,12,.94),
+    0 5px 16px rgba(1,13,12,.84);
+  --nx-city-accent-shadow:
+    0 1px 1px rgba(1,14,12,.95),
+    0 3px 8px rgba(1,14,12,.88),
+    0 9px 24px rgba(1,14,12,.77);
+}
 .nx-city-stage .nx-hero-copy{
   background:transparent!important;
   background-image:none!important;
@@ -60,29 +75,26 @@
   -webkit-backdrop-filter:none!important;
   backdrop-filter:none!important;
   padding:0!important;
+  color:#fff7ed;
+  text-shadow:var(--nx-city-copy-shadow);
 }
 .nx-city-stage .nx-hero-copy :is(h1,h2){
-  color:#fff5e8;
-  text-shadow:
-    0 1px 0 rgba(6,17,16,.82),
-    0 3px 8px rgba(3,18,16,.72),
-    0 8px 24px rgba(2,12,12,.68);
+  color:#fff8ed;
+  text-shadow:var(--nx-city-title-shadow)!important;
+  -webkit-text-stroke:.25px rgba(255,247,233,.38);
 }
 .nx-city-stage .nx-hero-copy :is(h1,h2) em{
-  color:#f0cc9e;
-  text-shadow:
-    0 1px 1px rgba(5,16,13,.88),
-    0 3px 9px rgba(3,14,13,.72),
-    0 10px 24px rgba(2,12,12,.55);
+  color:#f5c998;
+  text-shadow:var(--nx-city-accent-shadow)!important;
 }
-.nx-city-stage .nx-hero-copy :is(p,small,span,a){
-  text-shadow:0 2px 6px rgba(2,12,12,.85),0 4px 14px rgba(2,12,12,.7);
+.nx-city-stage .nx-hero-copy :is(p,small,span,a,strong,div){
+  text-shadow:var(--nx-city-copy-shadow);
 }
 .nx-city-stage .nx-hero-copy :is(.nx-hero-eyebrow){
-  color:#ffe0ae;
+  color:#ffe1b4;
 }
 @media(max-width:700px){
- .nx-city-stage .nx-hero-copy :is(h1,h2){
-   text-shadow:0 1px 1px rgba(3,15,13,.88),0 3px 9px rgba(2,13,12,.8),0 8px 23px rgba(2,12,12,.65);
- }
+  .nx-city-stage .nx-hero-copy :is(h1,h2){
+    text-shadow:var(--nx-city-title-shadow)!important;
+  }
 }
