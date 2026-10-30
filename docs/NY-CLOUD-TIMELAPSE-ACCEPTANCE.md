@@ -39,3 +39,18 @@ Add small, realistic, clearly moving clouds to the existing four aligned New Yor
 
 ## Release gate
 Visual QA in Safari is not performed by GitHub static inspection or a successful Vercel build. Do not label the effect polished/production-ready until the user has visually accepted the updated city scene in both day and night.
+
+
+## Revision v4 — 30 October 2026 (supersedes previous small-sprite/SVG artwork)
+
+User rejected both the small moving cloudlets and later vector-stroke SVG cloud strips because of apparent tile edges, cartoon-like brush marks and low daytime visibility.
+
+Implemented:
+- Four **new** semi-transparent 2048 × 260 PNG alpha panoramas: `real-cirrus-{top,upper,middle,lower}.png`, committed to `public/cities/new-york/`. These are procedurally textured, not genuine cloud photographs; they deliberately avoid distinct little blob silhouettes and rectangular feathered artwork.
+- The leftmost/rightmost samples are periodic, making the 2-panel `translate3d(-50%,0,0)` horizontal loop continuous with no apparent image seam.
+- Variable vertical density: top track 0–19%, second 8–24%, middle 18–31%, lower 28–38%; lower bands are deliberately less opaque.
+- Independent loop lengths: 37, 46, 54, 61 seconds. All travel one direction, without bounce.
+- Light alpha wisps on all 4 lighting states, with strongest visibility in daytime and restrained nighttime overlay.
+- Retain `sky-mask.png` for city silhouette protection and `prefers-reduced-motion` support; no alterations to NeXora approved site, original NYC daycycle or text.
+- The old `cirrus-*.svg` files are not referenced by the component CSS; they remain only as historical repository assets and may be cleaned up after design acceptance.
+- Production acceptance remains **visual**: build success confirms only code integration, not that the effect passes the user's standards. Review in real Safari at desktop and mobile widths.
