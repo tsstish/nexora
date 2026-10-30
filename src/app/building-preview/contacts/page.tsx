@@ -9,14 +9,13 @@ import styles from "./contacts.module.css";
 export const metadata: Metadata = {
   title: { absolute: "Контакты и документы | NeXora" },
   description: "Связаться с NeXora: WhatsApp, Telegram, телефон. Информация о работе студии и юридические документы.",
-  robots: { index: false, follow: false },
-  alternates: { canonical: "/building-preview/contacts" },
+  alternates: { canonical: "/contacts" },
 };
 
 const docs = [
-  { number: "01", name: "Условия использования", note: "Порядок работы, предварительные цены и условия", href: "/building-preview/docs/terms" },
-  { number: "02", name: "Конфиденциальность", note: "Обработка персональных данных и способы связи", href: "/building-preview/docs/privacy" },
-  { number: "03", name: "Доступность сайта", note: "Веб-доступность и обратная связь", href: "/building-preview/docs/accessibility" },
+  { number: "01", name: "Условия использования", note: "Порядок работы, предварительные цены и условия", href: "/docs/terms" },
+  { number: "02", name: "Конфиденциальность", note: "Обработка персональных данных и способы связи", href: "/docs/privacy" },
+  { number: "03", name: "Доступность сайта", note: "Веб-доступность и обратная связь", href: "/docs/accessibility" },
 ];
 
 export default function ContactsPage() {
