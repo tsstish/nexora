@@ -38,9 +38,9 @@ export function AtmosphereControls() {
       </div>
       <p className={styles.note}>Сейчас используются четыре согласованных кадра Нью-Йорка: утро, день, закат и ночь. Облака — отдельные бесшовные слои, движущиеся только в пределах неба; вверху они плотнее, у горизонта прозрачнее. Это тестовая страница; основные тексты NeXora не изменены.</p>
       <div className={styles.links}>
-        <a href="/building-preview">Главная ↗</a>
-        <a href="/building-preview/pricing">Стоимость ↗</a>
-        <a href="/building-preview/contacts">Контакты ↗</a>
+        <a href="/">Главная ↗</a>
+        <a href="/pricing">Стоимость ↗</a>
+        <a href="/contacts">Контакты ↗</a>
       </div>
     </div>
   );
