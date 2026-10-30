@@ -16,7 +16,7 @@ export function AtmosphereControls() {
       </div>
       <div className={styles.controlColumns}>
         <div>
-          <span className={styles.label}>Выберите город для этой вкладки</span>
+          <span className={styles.label}>Город этой версии</span>
           <div className={styles.buttons}>
             {CITY_OPTIONS.map(id => <button key={id} type="button"
               onClick={() => chooseCity(id)} aria-pressed={city===id}>{CITY_ASSETS[id].label}</button>)}
@@ -36,7 +36,7 @@ export function AtmosphereControls() {
         <span>Режим: <strong>{manualPhase ? "Ручная проверка" : "По часам устройства"}</strong></span>
         <button type="button" onClick={() => previewPhase(null)}>Вернуться к реальному времени</button>
       </div>
-      <p className={styles.note}>Сейчас для каждого города используются два разных реальных кадра: дневной и ночной. Утро и закат — тонкая цветовая обработка дневного кадра. Для эффекта уровня Apple Watch нужны съёмки из одной точки в разные часы; текущие фотографии отличаются ракурсом. Это прототип механики, не финально утверждённая коллекция изображений.</p>
+      <p className={styles.note}>Сейчас используются четыре согласованных кадра Нью-Йорка: утро, день, закат и ночь. Облака — отдельные бесшовные слои, движущиеся только в пределах неба; вверху они плотнее, у горизонта прозрачнее. Это тестовая страница; основные тексты NeXora не изменены.</p>
       <div className={styles.links}>
         <a href="/building-preview">Главная ↗</a>
         <a href="/building-preview/pricing">Стоимость ↗</a>
