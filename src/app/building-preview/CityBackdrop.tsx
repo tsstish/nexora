@@ -27,12 +27,25 @@ export function CityBackdrop({ time: _legacyTime }: { time?: CityTime }) {
           style={{backgroundImage:`url("${scene[state]}")`}}
         />
       ))}
-      {/* Separate, lightweight cloudlets. Each crosses the sky and fades out
-          before resetting so no edge or direction change is ever visible. */}
+      {/* Four horizontally tiled, self-matching cirrus strips.
+          The sky mask keeps every strip behind the buildings. */}
       <div className={styles.cloudMask}>
-        <div className={`${styles.cloud} ${styles.cloudA}`} />
-        <div className={`${styles.cloud} ${styles.cloudB}`} />
-        <div className={`${styles.cloud} ${styles.cloudC}`} />
+        <div className={`${styles.cloudTrack} ${styles.cloudTrackTop}`}>
+          <span className={styles.cloudBand} />
+          <span className={styles.cloudBand} />
+        </div>
+        <div className={`${styles.cloudTrack} ${styles.cloudTrackUpper}`}>
+          <span className={styles.cloudBand} />
+          <span className={styles.cloudBand} />
+        </div>
+        <div className={`${styles.cloudTrack} ${styles.cloudTrackMiddle}`}>
+          <span className={styles.cloudBand} />
+          <span className={styles.cloudBand} />
+        </div>
+        <div className={`${styles.cloudTrack} ${styles.cloudTrackLower}`}>
+          <span className={styles.cloudBand} />
+          <span className={styles.cloudBand} />
+        </div>
       </div>
       <div className={styles.light} />
       <div className={styles.vignette} />
