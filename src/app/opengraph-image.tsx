@@ -1,149 +1,61 @@
-import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import sharp from "sharp";
 
 export const runtime = "nodejs";
 export const alt = "NeXora — готовые сайты и разработка для бизнеса";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/**
- * Open Graph card, built from the actual approved NeXora brand asset.
- * IMPORTANT: never recreate the logo in typography or image generation.
- * Read its original PNG verbatim from public/brand/nexora-wordmark.png.
- */
+// This image uses the actual, unmodified GitHub logo, not generated lettering.
+// A PNG is generated at build time for consistent previews in messengers.
 export default async function OpenGraphImage() {
-  const [brand, panorama] = await Promise.all([
+  const [brand, skyline] = await Promise.all([
     readFile(join(process.cwd(), "public/brand/nexora-wordmark.png")),
     readFile(join(process.cwd(), "public/cities/new-york/new-york-sunset.webp")),
   ]);
-  const brandSrc = `data:image/png;base64,${brand.toString("base64")}`;
-  const citySrc = `data:image/webp;base64,${panorama.toString("base64")}`;
+  const originalLogo = await sharp(brand)
+    .resize(327, 115, { fit: "contain" })
+    .png()
+    .toBuffer();
 
-  return new ImageResponse(
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        position: "relative",
-        overflow: "hidden",
-        backgroundColor: "#09241c",
-        color: "#f6f3ed",
-      }}
-    >
-      {/* The exact approved New York view behind the new storefront. */}
-      <img
-        src={citySrc}
-        alt=""
-        style={{
-          display: "block",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: 1200,
-          height: 630,
-          objectFit: "cover",
-        }}
-      />
-      {/* Opaque left edge ensures white copy stays legible on a bright sky. */}
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-          width: 1000,
-          height: 630,
-          background:
-            "linear-gradient(90deg, rgba(3,27,21,0.98) 0%, rgba(3,27,21,0.96) 34%, rgba(3,27,21,0.83) 59%, rgba(3,27,21,0.0) 100%)",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          left: 62,
-          top: 36,
-          width: 344,
-          height: 132,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "11px 14px",
-          border: "1px solid rgba(232,199,146,0.86)",
-          borderRadius: 14,
-          backgroundColor: "rgba(246,243,237,0.97)",
-        }}
-      >
-        <img
-          src={brandSrc}
-          width={314}
-          height={110}
-          alt=""
-          style={{ display: "block", objectFit: "contain" }}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          position: "absolute",
-          left: 64,
-          top: 202,
-          width: 780,
-          flexDirection: "column",
-          gap: 1,
-          fontSize: 56,
-          fontWeight: 700,
-          letterSpacing: -1.5,
-          lineHeight: 1.12,
-          color: "#f7f1e7",
-        }}
-      >
-        <div>Готовые сайты</div>
-        <div>и разработка</div>
-        <div>для бизнеса</div>
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          display: "flex",
-          left: 66,
-          top: 411,
-          fontSize: 24,
-          color: "#e5e0d5",
-        }}
-      >
-        На кодовой базе — не конструктор
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          display: "flex",
-          left: 64,
-          top: 470,
-          padding: "13px 20px",
-          borderRadius: 999,
-          border: "1.5px solid #e9c28a",
-          color: "#f6e9d2",
-          fontSize: 23,
-          backgroundColor: "rgba(1,22,17,0.25)",
-        }}
-      >
-        Ready Monthly от 249 ₪ / мес
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          display: "flex",
-          left: 67,
-          top: 578,
-          fontSize: 20,
-          letterSpacing: 0.5,
-          color: "#eacaa1",
-        }}
-      >
-        nexoradesign.online
-      </div>
-    </div>,
-    size,
-  );
+  const foreground = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+    <defs>
+      <linearGradient id="shade" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#071f18" stop-opacity="0.99"/>
+        <stop offset="34%" stop-color="#071f18" stop-opacity="0.97"/>
+        <stop offset="65%" stop-color="#071f18" stop-opacity="0.62"/>
+        <stop offset="100%" stop-color="#071f18" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="fine" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#e3ba7a"/>
+        <stop offset="100%" stop-color="#e3ba7a" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="630" fill="url(#shade)"/>
+    <rect x="54" y="33" width="359" height="130" rx="11" fill="#f6f3ed" stroke="#e2b77a" stroke-width="1.8"/>
+    <g fill="#f9f4ea" font-family="DejaVu Sans, Arial, sans-serif" font-weight="600" font-size="48" letter-spacing="-0.8">
+      <text x="62" y="242">Готовые сайты</text>
+      <text x="62" y="306">и разработка</text>
+      <text x="62" y="370">для бизнеса</text>
+    </g>
+    <rect x="65" y="402" width="390" height="2" fill="url(#fine)"/>
+    <text x="64" y="446" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#f3eade">На кодовой базе — не конструктор</text>
+    <rect x="62" y="474" width="421" height="65" rx="32.5" fill="#091e17" fill-opacity="0.42" stroke="#e8c38c" stroke-width="2"/>
+    <text x="84" y="515" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" fill="#f7edda">Ready Monthly от 249 ₪ / мес</text>
+    <text x="65" y="588" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" letter-spacing="0.6" fill="#e9c695">nexoradesign.online</text>
+  </svg>`;
+
+  const png = await sharp(skyline)
+    .resize(1200, 630, { fit: "cover", position: "centre" })
+    .composite([
+      { input: Buffer.from(foreground), left: 0, top: 0 },
+      { input: originalLogo, left: 70, top: 40 },
+    ])
+    .png({ compressionLevel: 9 })
+    .toBuffer();
+
+  return new Response(new Uint8Array(png), {
+    headers: { "Content-Type": "image/png", "Cache-Control": "public, max-age=0, s-maxage=86400" },
+  });
 }
