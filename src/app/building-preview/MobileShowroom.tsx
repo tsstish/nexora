@@ -20,6 +20,7 @@ type Concept = {
 export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
   const [selected, setSelected] = useState(0);
   const [previewVisible, setPreviewVisible] = useState(false);
+  const [previewInteractive, setPreviewInteractive] = useState(false);
   if (!concepts.length) return null;
   const active = concepts[selected] ?? concepts[0];
 
@@ -41,7 +42,7 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
           {concepts.map((site, index) => (
             <button type="button" key={site.slug} aria-pressed={index === selected}
               className={index === selected ? styles.selected : ""}
-              onClick={() => { setSelected(index); setPreviewVisible(false); }}>
+              onClick={() => { setSelected(index); setPreviewVisible(false); setPreviewInteractive(false); }}>
               <span>{String(index + 1).padStart(2,"0")}</span>
               <strong>{site.heading}</strong>
             </button>
@@ -59,10 +60,25 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
 
           <div className={styles.preview}>
             <span className={styles.previewTag}>Работающий сайт · демонстрация</span>
-            <div className={styles.iframeClip}>
-              <iframe key={active.slug} src={active.demoUrl} loading="lazy" title={`Предпросмотр ${active.name}`}
-                tabIndex={-1} scrolling="no" />
+            <div className={`${styles.iframeClip} ${previewInteractive ? styles.isInteractive : ""}`}>
+              <iframe
+                key={active.slug}
+                src={active.demoUrl}
+                title={`Работающий сайт ${active.name} — мобильное демо`}
+                loading="eager"
+                scrolling={previewInteractive ? "yes" : "no"}
+                tabIndex={previewInteractive ? 0 : -1}
+              />
             </div>
+            <button
+              className={styles.previewInteraction}
+              type="button"
+              aria-pressed={previewInteractive}
+              onClick={() => setPreviewInteractive((current) => !current)}
+            >
+              {previewInteractive ? "Завершить просмотр внутри" : "Листать сайт прямо здесь"}
+              <span aria-hidden="true">{previewInteractive ? "✕" : "↕"}</span>
+            </button>
             <a href={active.demoUrl} target="_blank" rel="noopener noreferrer"
               data-analytics-event="ready_demo_open" data-concept={active.slug}>Открыть демо целиком ↗</a>
           </div>
