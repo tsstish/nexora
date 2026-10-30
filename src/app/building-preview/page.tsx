@@ -8,10 +8,9 @@ import { StudioHeader } from "./StudioHeader";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "NeXora / новая главная — витрина концепций",
-  robots: { index: false, follow: false },
-  alternates: { canonical: "/building-preview" },
-  description: "Экспериментальная витрина готовых сайтов NeXora.",
+  title: { absolute: "Готовые сайты и разработка сайтов для бизнеса | NeXora" },
+  alternates: { canonical: "/" },
+  description: "Готовые сайты для бизнеса с адаптацией под ваш бренд, подписка от 249 ₪/мес и индивидуальная разработка. NeXora — сайты на кодовой базе, не конструктор.",
 };
 
 const categoryNames: Record<string, string> = {
