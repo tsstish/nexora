@@ -6,20 +6,20 @@ import { siteConfig, whatsappUrl } from "@/data/site";
 import styles from "./StudioFooter.module.css";
 
 const links = [
-  { href: "/building-preview#collection", text: "Готовые сайты" },
-  { href: "/building-preview/pricing", text: "Услуги и стоимость" },
-  { href: "/building-preview/contacts", text: "Контакты" },
+  { href: "/#collection", text: "Готовые сайты" },
+  { href: "/pricing", text: "Услуги и стоимость" },
+  { href: "/contacts", text: "Контакты" },
 ];
 
 const legal = [
-  { href: "/building-preview/docs/terms", text: "Условия использования" },
-  { href: "/building-preview/docs/privacy", text: "Конфиденциальность" },
-  { href: "/building-preview/docs/accessibility", text: "Доступность" },
+  { href: "/docs/terms", text: "Условия использования" },
+  { href: "/docs/privacy", text: "Конфиденциальность" },
+  { href: "/docs/accessibility", text: "Доступность" },
 ];
 
 export function StudioFooter() {
   const pathname = usePathname();
-  const expanded = pathname === "/building-preview/contacts";
+  const expanded = pathname === "/contacts";
 
   return (
     <footer className={`${styles.footer} ${expanded ? "" : styles.compact}`}>
@@ -55,7 +55,7 @@ export function StudioFooter() {
         <span>© {new Date().getFullYear()} NeXora · {siteConfig.location}</span>
         <nav aria-label="Документы">
           {legal.map((x) => <Link key={x.href} href={x.href}>{x.text}</Link>)}
-          {!expanded && <Link href="/building-preview/contacts">Контакты</Link>}
+          {!expanded && <Link href="/contacts">Контакты</Link>}
         </nav>
       </div>
     </footer>
