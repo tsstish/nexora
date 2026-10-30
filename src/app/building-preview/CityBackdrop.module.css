@@ -43,8 +43,9 @@
   mix-blend-mode:screen;
 }
 
-/* Each strip contains two identical edge-matched SVG copies. The full-width
-   drift by -50% therefore loops without a seam, jump or direction reversal. */
+/* Four wide, soft alpha cloud panoramas, not brush-stroke SVGs. Every image
+   is horizontally periodic (left/right pixels match), so two identical panels
+   moving by one panel width form a seamless cinematic cloud timelapse. */
 .cloudTrack{
   position:absolute;
   left:0;
@@ -67,36 +68,36 @@
 }
 .cloudTrackTop{
   top:0%;
-  height:17%;
-  opacity:.79;
-  animation-duration:34s;
+  height:19%;
+  opacity:.98;
+  animation-duration:37s;
   animation-delay:-11s;
 }
-.cloudTrackTop .cloudBand{background-image:url("/cities/new-york/cirrus-top.svg")}
+.cloudTrackTop .cloudBand{background-image:url("/cities/new-york/real-cirrus-top.png")}
 .cloudTrackUpper{
-  top:10%;
-  height:15%;
-  opacity:.59;
-  animation-duration:41s;
+  top:8%;
+  height:16%;
+  opacity:.88;
+  animation-duration:46s;
   animation-delay:-23s;
 }
-.cloudTrackUpper .cloudBand{background-image:url("/cities/new-york/cirrus-upper.svg")}
+.cloudTrackUpper .cloudBand{background-image:url("/cities/new-york/real-cirrus-upper.png")}
 .cloudTrackMiddle{
-  top:21%;
-  height:12%;
-  opacity:.37;
-  animation-duration:48s;
+  top:18%;
+  height:13%;
+  opacity:.65;
+  animation-duration:54s;
   animation-delay:-16s;
 }
-.cloudTrackMiddle .cloudBand{background-image:url("/cities/new-york/cirrus-middle.svg")}
+.cloudTrackMiddle .cloudBand{background-image:url("/cities/new-york/real-cirrus-middle.png")}
 .cloudTrackLower{
-  top:31%;
-  height:9%;
-  opacity:.20;
-  animation-duration:56s;
+  top:28%;
+  height:10%;
+  opacity:.38;
+  animation-duration:61s;
   animation-delay:-37s;
 }
-.cloudTrackLower .cloudBand{background-image:url("/cities/new-york/cirrus-lower.svg")}
+.cloudTrackLower .cloudBand{background-image:url("/cities/new-york/real-cirrus-lower.png")}
 @keyframes cirrusFlow{
   from{transform:translate3d(0,0,0)}
   to{transform:translate3d(-50%,0,0)}
@@ -104,22 +105,22 @@
 
 /* Distinctly denser aloft, progressively thinner toward the skyline.
    Light cloud pixels do not introduce building-like shadows in the sky. */
-.backdrop[data-phase="morning"] .cloudTrackTop{opacity:.75}
-.backdrop[data-phase="morning"] .cloudTrackUpper{opacity:.56}
-.backdrop[data-phase="morning"] .cloudTrackMiddle{opacity:.35}
-.backdrop[data-phase="morning"] .cloudTrackLower{opacity:.19}
-.backdrop[data-phase="day"] .cloudTrackTop{opacity:.82}
-.backdrop[data-phase="day"] .cloudTrackUpper{opacity:.64}
-.backdrop[data-phase="day"] .cloudTrackMiddle{opacity:.41}
-.backdrop[data-phase="day"] .cloudTrackLower{opacity:.23}
-.backdrop[data-phase="sunset"] .cloudTrackTop{opacity:.68}
-.backdrop[data-phase="sunset"] .cloudTrackUpper{opacity:.49}
-.backdrop[data-phase="sunset"] .cloudTrackMiddle{opacity:.29}
-.backdrop[data-phase="sunset"] .cloudTrackLower{opacity:.15}
-.backdrop[data-phase="night"] .cloudTrackTop{opacity:.62}
-.backdrop[data-phase="night"] .cloudTrackUpper{opacity:.43}
-.backdrop[data-phase="night"] .cloudTrackMiddle{opacity:.25}
-.backdrop[data-phase="night"] .cloudTrackLower{opacity:.12}
+.backdrop[data-phase="morning"] .cloudTrackTop{opacity:.97}
+.backdrop[data-phase="morning"] .cloudTrackUpper{opacity:.87}
+.backdrop[data-phase="morning"] .cloudTrackMiddle{opacity:.63}
+.backdrop[data-phase="morning"] .cloudTrackLower{opacity:.37}
+.backdrop[data-phase="day"] .cloudTrackTop{opacity:1}
+.backdrop[data-phase="day"] .cloudTrackUpper{opacity:.93}
+.backdrop[data-phase="day"] .cloudTrackMiddle{opacity:.67}
+.backdrop[data-phase="day"] .cloudTrackLower{opacity:.4}
+.backdrop[data-phase="sunset"] .cloudTrackTop{opacity:.94}
+.backdrop[data-phase="sunset"] .cloudTrackUpper{opacity:.78}
+.backdrop[data-phase="sunset"] .cloudTrackMiddle{opacity:.54}
+.backdrop[data-phase="sunset"] .cloudTrackLower{opacity:.3}
+.backdrop[data-phase="night"] .cloudTrackTop{opacity:.86}
+.backdrop[data-phase="night"] .cloudTrackUpper{opacity:.75}
+.backdrop[data-phase="night"] .cloudTrackMiddle{opacity:.49}
+.backdrop[data-phase="night"] .cloudTrackLower{opacity:.27}
 
 .light,.vignette{position:absolute;inset:0;pointer-events:none}
 .light{
@@ -138,10 +139,10 @@
     -webkit-mask-position:var(--city-pos-mobile,50% 43%);
     mask-position:var(--city-pos-mobile,50% 43%);
   }
-  .cloudTrackTop{top:0%;height:16%}
-  .cloudTrackUpper{top:10%;height:14%}
-  .cloudTrackMiddle{top:20%;height:11%}
-  .cloudTrackLower{top:29%;height:8%}
+  .cloudTrackTop{top:0%;height:18%}
+  .cloudTrackUpper{top:8%;height:15%}
+  .cloudTrackMiddle{top:18%;height:12%}
+  .cloudTrackLower{top:27%;height:9%}
   .vignette{
     background:
       linear-gradient(90deg,rgba(5,19,16,.38),rgba(5,19,16,.09) 72%,transparent),
