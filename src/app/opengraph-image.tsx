@@ -3,70 +3,71 @@ import { join } from "node:path";
 import sharp from "sharp";
 
 export const runtime = "nodejs";
-export const alt = "NeXora — сайт, который не нужно собирать. Готовые сайты и разработка для бизнеса";
+export const alt = "NeXora — сайт, который не нужно собирать";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
- * NeXora link preview, 1200 × 630.
- * The photo and logo are the ORIGINAL assets used by the new NeXora website.
- * The logo is composited as-is (transparent PNG): no grayscale, no tint,
- * no redraw, no shadow, no glow, and no background behind the mark.
+ * NeXora share image: use the REAL sunset photograph from the live site's
+ * source and the REAL full-color brand mark, without redrawing or filtering.
+ * The city is subtle background texture, not the main subject.
  */
 export default async function OpenGraphImage() {
-  const [logoSource, newYorkPhoto] = await Promise.all([
+  const [logoSource, skylineSource] = await Promise.all([
     readFile(join(process.cwd(), "public/brand/nexora-wordmark.png")),
     readFile(join(process.cwd(), "public/cities/new-york/new-york-sunset.webp")),
   ]);
 
-  // Resize only to fit. Resizing does not change colors or logo geometry.
   const logo = await sharp(logoSource)
-    .resize(408, 143, { fit: "contain" })
+    .resize(452, 162, { fit: "contain", withoutEnlargement: true })
     .png()
     .toBuffer();
 
-  // Crop the ORIGINAL site's sunset image to the right-hand editorial panel.
-  // No synthetic skyline, generative repaint, or recoloring.
-  const skyline = await sharp(newYorkPhoto)
-    .resize(600, 630, { fit: "cover", position: "centre" })
+  const background = await sharp(skylineSource)
+    .resize(1200, 630, { fit: "cover", position: "centre" })
     .png()
     .toBuffer();
 
-  const typography = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <!-- The left-hand page is the NeXora pearl brand background, not a logo box. -->
-  <rect x="0" y="0" width="600" height="630" fill="#F6F3ED"/>
-  <rect x="599" y="0" width="1" height="630" fill="#C4BEAF"/>
-  <g fill="#13372F" font-family="DejaVu Serif, Georgia, serif" font-weight="400">
-    <text x="62" y="296" font-size="53">Сайт, который</text>
-    <text x="62" y="379" font-size="58">не нужно</text>
-    <text x="62" y="455" font-size="58">собирать.</text>
+  const overlay = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <!-- The skyline from the real NeXora website is kept as a quiet backdrop. -->
+    <linearGradient id="cityVeil" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F6F3ED" stop-opacity="0.985"/>
+      <stop offset="45%" stop-color="#F6F3ED" stop-opacity="0.95"/>
+      <stop offset="75%" stop-color="#F6F3ED" stop-opacity="0.87"/>
+      <stop offset="100%" stop-color="#F6F3ED" stop-opacity="0.79"/>
+    </linearGradient>
+    <linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F6F3ED" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#F6F3ED" stop-opacity="0.48"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#cityVeil)"/>
+  <rect y="370" width="1200" height="260" fill="url(#bottomFade)"/>
+
+  <g fill="#13372F" font-family="DejaVu Serif, Georgia, serif" font-weight="400" font-size="66">
+    <text x="64" y="285">Сайт, который</text>
+    <text x="64" y="369">не нужно</text>
+    <text x="64" y="453">собирать.</text>
   </g>
-  <rect x="62" y="488" width="83" height="3" fill="#0F715E"/>
-  <g fill="#53635F" font-family="DejaVu Sans, Arial, sans-serif" font-size="18">
-    <text x="62" y="519">Выбираете концепцию —</text>
-    <text x="62" y="546">мы адаптируем её под бизнес.</text>
+  <rect x="66" y="479" width="65" height="3" fill="#0F715E"/>
+  <g fill="#53635F" font-family="DejaVu Sans, Arial, sans-serif" font-size="19">
+    <text x="66" y="523">Выбираете концепцию —</text>
+    <text x="66" y="552">мы адаптируем её под бизнес.</text>
   </g>
-  <rect x="62" y="579" width="473" height="1" fill="#C7C6BE"/>
-  <text x="62" y="607" fill="#0F715E" font-family="DejaVu Sans, Arial, sans-serif" font-size="14">READY MONTHLY   ·   ОТ 249 ₪ / МЕС</text>
+  <rect x="66" y="581" width="1068" height="1" fill="#87928F" opacity="0.55"/>
+  <text x="66" y="607" font-family="DejaVu Sans, Arial, sans-serif" font-size="15.5" font-weight="500" fill="#0F715E">READY MONTHLY   ·   ОТ 249 ₪ / МЕС</text>
+  <text x="929" y="607" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" fill="#13372F">nexoradesign.online</text>
 </svg>`;
-
-  const output = await sharp({
-    create: {
-      width: 1200,
-      height: 630,
-      channels: 4,
-      background: "#F6F3ED",
-    },
-  })
+  const finalImage = await sharp(background)
     .composite([
-      { input: skyline, left: 600, top: 0 },
-      { input: Buffer.from(typography, "utf8"), left: 0, top: 0 },
-      { input: logo, left: 58, top: 70 },
+      { input: Buffer.from(overlay, "utf8"), left: 0, top: 0 },
+      { input: logo, left: 63, top: 36 },
     ])
     .png({ compressionLevel: 9 })
     .toBuffer();
 
-  return new Response(new Uint8Array(output), {
+  return new Response(new Uint8Array(finalImage), {
     headers: {
       "Content-Type": "image/png",
       "Cache-Control": "public, max-age=0, s-maxage=86400",
