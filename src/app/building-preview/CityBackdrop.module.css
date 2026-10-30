@@ -92,3 +92,57 @@
  .cloudA,.cloudB{animation:none;will-change:auto}
  .cloudMask{transition:none}
 }
+
+
+/* Timelapse clouds v3: small white formations, no dark fullscreen sheets. */
+.cloudMask{
+  mix-blend-mode:screen;
+  opacity:.88;
+  transition:opacity 1s ease;
+}
+.cloud{
+  top:8%;
+  left:18%;
+  width:clamp(220px,24vw,410px);
+  height:auto;
+  aspect-ratio:1536/570;
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  background-position:center;
+  filter:blur(1px);
+  -webkit-mask-image:radial-gradient(ellipse 70% 68% at 50% 50%,black 0%,rgba(0,0,0,.94) 34%,rgba(0,0,0,.45) 66%,transparent 98%);
+  mask-image:radial-gradient(ellipse 70% 68% at 50% 50%,black 0%,rgba(0,0,0,.94) 34%,rgba(0,0,0,.45) 66%,transparent 98%);
+}
+.cloudA{top:8%;left:16%;opacity:0;animation:flowCloudA 34s linear -8s infinite}
+.cloudB{top:18%;left:62%;width:clamp(200px,20vw,345px);opacity:0;animation:flowCloudB 43s linear -20s infinite}
+.cloudC{top:5%;left:46%;width:clamp(145px,14vw,235px);opacity:0;animation:flowCloudC 31s linear -14s infinite}
+.backdrop[data-phase="morning"] .cloudMask{opacity:.8}
+.backdrop[data-phase="day"] .cloudMask{opacity:.95}
+.backdrop[data-phase="sunset"] .cloudMask{opacity:.65}
+.backdrop[data-phase="night"] .cloudMask{opacity:.3}
+@keyframes flowCloudA{
+  0%{transform:translate3d(-190px,-6px,0);opacity:0}
+  12%{opacity:.83}
+  83%{opacity:.83}
+  100%{transform:translate3d(210px,0,0);opacity:0}
+}
+@keyframes flowCloudB{
+  0%{transform:translate3d(-185px,0,0);opacity:0}
+  12%{opacity:.74}
+  83%{opacity:.74}
+  100%{transform:translate3d(195px,-6px,0);opacity:0}
+}
+@keyframes flowCloudC{
+  0%{transform:translate3d(-145px,4px,0);opacity:0}
+  14%{opacity:.56}
+  82%{opacity:.56}
+  100%{transform:translate3d(160px,0,0);opacity:0}
+}
+@media(max-width:700px){
+  .cloudA{top:8%;left:12%}
+  .cloudB{top:16%;left:58%}
+  .cloudC{top:5%;left:44%}
+}
+@media(prefers-reduced-motion:reduce){
+  .cloudA,.cloudB,.cloudC{animation:none;opacity:.35;transform:none;will-change:auto}
+}
