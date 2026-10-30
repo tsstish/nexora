@@ -20,8 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: { absolute: `${product.title} — ${product.name} | NeXora` },
     description: product.shortDescription,
-    robots: { index: false, follow: false },
-    alternates: { canonical: `/building-preview/ready/${slug}` },
+      alternates: { canonical: `/ready/${slug}` },
   };
 }
 
@@ -40,8 +39,8 @@ export default async function ReadyConcept({ params }: Props) {
 
         <section className={styles.hero}>
           <div className={`${styles.heading} nx-hero-copy`}>
-            <Link className={`${styles.backToCollection} ${styles.backDesktop}`} href="/building-preview#collection">← Вернуться к коллекции</Link>
-            <Link className={`${styles.backToCollection} ${styles.backMobile}`} href="/building-preview#mobile-collection">← Вернуться к коллекции</Link>
+            <Link className={`${styles.backToCollection} ${styles.backDesktop}`} href="/#collection">← Вернуться к коллекции</Link>
+            <Link className={`${styles.backToCollection} ${styles.backMobile}`} href="/#mobile-collection">← Вернуться к коллекции</Link>
             <span className={styles.kicker}>NEXORA / READY COLLECTION / {site.name}</span>
             <span className={styles.conceptName}>{site.name} — демонстрационный бренд, который заменим вашим</span>
             <h1>{site.title}</h1>
