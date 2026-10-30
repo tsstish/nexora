@@ -50,7 +50,7 @@ export function CityAtmosphereProvider({ children }: { children: ReactNode }) {
 
   // The manual clock is strictly a debug feature on /atmospheres.
   useEffect(() => {
-    if (pathname !== "/building-preview/atmospheres") setManualPhase(null);
+    if (pathname !== "/atmospheres") setManualPhase(null);
   }, [pathname]);
 
   const chooseCity = (next: CityId) => {
