@@ -168,7 +168,7 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
               </div>
             </div>
           </div>
-          <a className={styles.conditionsLink} href="/building-preview/pricing">Стоимость и условия <span aria-hidden="true">↗</span></a>
+          <a className={styles.conditionsLink} href="/pricing">Стоимость и условия <span aria-hidden="true">↗</span></a>
 
           <a className={`${styles.demoButton} nx-action nx-action--primary`} href={active.demoUrl} target="_blank" rel="noopener noreferrer"
             data-analytics-event="ready_demo_open" data-concept={active.slug}>
