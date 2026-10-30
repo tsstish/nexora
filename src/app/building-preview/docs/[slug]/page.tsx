@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!(slug in documents)) return { title: "Документ не найден", robots: { index: false } };
   const doc = documents[slug as keyof typeof documents];
   return { title: { absolute: `${doc.label} | NeXora` },
-    robots: { index: false, follow: false }, alternates: { canonical: `/building-preview/docs/${slug}` } };
+    alternates: { canonical: `/docs/${slug}` } };
 }
 
 export default async function DocumentPreview({ params }: Props) {
@@ -35,7 +35,7 @@ export default async function DocumentPreview({ params }: Props) {
         <div className={styles.heading}>
           <span>NEXORA / DOCUMENT LIBRARY</span>
           <h1>{doc.label}</h1>
-          <Link href="/building-preview/contacts#documents">← Все документы</Link>
+          <Link href="/contacts#documents">← Все документы</Link>
         </div>
       </div>
       <div className={styles.body}><Component /></div>
