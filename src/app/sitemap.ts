@@ -1,24 +1,22 @@
 import type { MetadataRoute } from "next";
-import { services } from "@/data/services";
+import { readySites } from "@/data/readySites";
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://nexoradesign.online").replace(/\/$/, "");
 
+/** Public New York storefront URLs. Old /ready, /services and legal URLs redirect. */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = [
-    { url: `${siteUrl}/`, priority: 1, changeFrequency: "weekly" as const },
-    { url: `${siteUrl}/ready`, priority: 0.9, changeFrequency: "weekly" as const },
-    { url: `${siteUrl}/ready/monthly`, priority: 0.9, changeFrequency: "weekly" as const },
-    { url: `${siteUrl}/services`, priority: 0.9, changeFrequency: "weekly" as const },
-    { url: `${siteUrl}/privacy`, priority: 0.3, changeFrequency: "yearly" as const },
-    { url: `${siteUrl}/terms`, priority: 0.3, changeFrequency: "yearly" as const },
-    { url: `${siteUrl}/accessibility`, priority: 0.3, changeFrequency: "yearly" as const },
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: `${siteUrl}/`, priority: 1, changeFrequency: "weekly" },
+    { url: `${siteUrl}/pricing`, priority: 0.9, changeFrequency: "weekly" },
+    { url: `${siteUrl}/contacts`, priority: 0.7, changeFrequency: "monthly" },
+    { url: `${siteUrl}/docs/privacy`, priority: 0.3, changeFrequency: "yearly" },
+    { url: `${siteUrl}/docs/terms`, priority: 0.3, changeFrequency: "yearly" },
+    { url: `${siteUrl}/docs/accessibility`, priority: 0.3, changeFrequency: "yearly" },
   ];
 
-  const servicePages = services.map((service) => ({
-    url: `${siteUrl}/services/${service.slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-
-  return [...staticPages, ...servicePages];
+  const productPages: MetadataRoute.Sitemap = readySites.flatMap(({ slug }) => [
+    { url: `${siteUrl}/ready/${slug}`, priority: 0.8, changeFrequency: "monthly" },
+    { url: `${siteUrl}/ready/${slug}/story`, priority: 0.6, changeFrequency: "monthly" },
+  ]);
+  return [...staticPages, ...productPages];
 }
