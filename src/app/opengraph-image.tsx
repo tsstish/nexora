@@ -19,6 +19,46 @@ export default async function OpenGraphImage() {
     .png()
     .toBuffer();
 
+  // Keep the actual NeXora artwork untouched. Both white layers are generated
+  // solely from its alpha channel, giving the green lettering a soft white
+  // shadow without adding a solid card behind the logo.
+  const padding = 18;
+  const logoWidth = 327;
+  const logoHeight = 115;
+  const paddedLogo = await sharp(originalLogo)
+    .extend({
+      top: padding,
+      bottom: padding,
+      left: padding,
+      right: padding,
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    })
+    .png()
+    .toBuffer();
+
+  const alphaToWhite = async (kind: "glow" | "outline") => {
+    const mask = sharp(paddedLogo).extractChannel("alpha");
+    const { data, info } = await (kind === "glow" ? mask.blur(10) : mask.dilate(3))
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    const rgba = Buffer.alloc(info.width * info.height * 4);
+    const opacity = kind === "glow" ? 0.76 : 0.76;
+    for (let i = 0; i < data.length; i++) {
+      const j = i * 4;
+      rgba[j] = 255;
+      rgba[j + 1] = 255;
+      rgba[j + 2] = 255;
+      rgba[j + 3] = Math.round(data[i] * opacity);
+    }
+    return sharp(rgba, { raw: { width: info.width, height: info.height, channels: 4 } })
+      .png()
+      .toBuffer();
+  };
+  const [whiteGlow, whiteOutline] = await Promise.all([
+    alphaToWhite("glow"),
+    alphaToWhite("outline"),
+  ]);
+
   const foreground = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
     <defs>
       <linearGradient id="shade" x1="0" x2="1" y1="0" y2="0">
@@ -33,7 +73,6 @@ export default async function OpenGraphImage() {
       </linearGradient>
     </defs>
     <rect width="1200" height="630" fill="url(#shade)"/>
-    <rect x="54" y="33" width="359" height="130" rx="11" fill="#f6f3ed" stroke="#e2b77a" stroke-width="1.8"/>
     <g fill="#f9f4ea" font-family="DejaVu Sans, Arial, sans-serif" font-weight="600" font-size="48" letter-spacing="-0.8">
       <text x="62" y="242">Готовые сайты</text>
       <text x="62" y="306">и разработка</text>
@@ -50,6 +89,8 @@ export default async function OpenGraphImage() {
     .resize(1200, 630, { fit: "cover", position: "centre" })
     .composite([
       { input: Buffer.from(foreground), left: 0, top: 0 },
+      { input: whiteGlow, left: 70 - padding, top: 40 - padding },
+      { input: whiteOutline, left: 70 - padding, top: 40 - padding },
       { input: originalLogo, left: 70, top: 40 },
     ])
     .png({ compressionLevel: 9 })
