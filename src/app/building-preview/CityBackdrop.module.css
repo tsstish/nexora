@@ -1,109 +1,154 @@
-/* New York four-phase atmosphere. All 4 stills preserve the exact frame. */
+/* NeXora New York: four perfectly aligned photographic times of day. */
 .backdrop{
- position:absolute;inset:0 0 auto;height:var(--nx-city-stage-height);
- pointer-events:none;z-index:0;overflow:hidden;isolation:isolate;
- background:#11251e;opacity:0;transition:opacity .55s ease;
+  position:absolute;
+  inset:0 0 auto;
+  height:var(--nx-city-stage-height);
+  z-index:0;
+  pointer-events:none;
+  isolation:isolate;
+  overflow:hidden;
+  background:#11251e;
+  opacity:0;
+  transition:opacity .55s ease;
 }
 .ready{opacity:1}
 .image{
- position:absolute;inset:0;z-index:0;opacity:0;
- background-position:var(--city-pos-desktop,50% 43%);
- background-size:cover;background-repeat:no-repeat;
- transition:opacity 1.65s ease-in-out;
- transform:translateZ(0);
+  position:absolute;
+  inset:0;
+  z-index:0;
+  opacity:0;
+  background-position:var(--city-pos-desktop,50% 43%);
+  background-size:cover;
+  background-repeat:no-repeat;
+  transition:opacity 1.65s ease-in-out;
+  transform:translateZ(0);
 }
 .imageActive{opacity:1}
-/* Only sky pixels accept clouds: skyscrapers never receive cloud paint. */
-.cloudMask{
- position:absolute;inset:0;z-index:1;pointer-events:none;
- -webkit-mask-image:url("/cities/new-york/sky-mask.png");
- mask-image:url("/cities/new-york/sky-mask.png");
- -webkit-mask-size:cover;mask-size:cover;
- -webkit-mask-position:var(--city-pos-desktop,50% 43%);
- mask-position:var(--city-pos-desktop,50% 43%);
- -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-}
-.cloud{
- position:absolute;
- background-image:url("/cities/new-york/cloud-wisps.webp");
- background-repeat:no-repeat;
- will-change:transform,opacity;
-}
-.light,.vignette{position:absolute;inset:0;pointer-events:none}
-.light{z-index:2;background:linear-gradient(90deg,rgba(9,24,21,.04),transparent 78%)}
-.vignette{
- z-index:3;
- background:
- linear-gradient(90deg,rgba(4,20,15,.34) 0%,rgba(4,18,16,.12) 44%,transparent 83%),
- linear-gradient(180deg,rgba(8,19,17,.16) 0%,transparent 32%,rgba(11,29,23,.08) 62%,#11251e 100%);
-}
-@media(max-width:700px){
- .image{background-position:var(--city-pos-mobile,50% 43%)}
- .cloudMask{
-  -webkit-mask-position:var(--city-pos-mobile,50% 43%);
-  mask-position:var(--city-pos-mobile,50% 43%);
- }
- .vignette{
-  background:
-  linear-gradient(90deg,rgba(5,19,16,.38),rgba(5,19,16,.09) 72%,transparent),
-  linear-gradient(180deg,rgba(8,19,17,.15),rgba(10,27,22,.08) 30%,#11251e 100%);
- }
-}
-@media(prefers-reduced-motion:reduce){
- .backdrop,.image{transition:none}
- .cloudMask{transition:none}
-}
 
-
-/* Timelapse clouds v3: small white formations, no dark fullscreen sheets. */
+/* Mask follows the photographs' crop, preventing clouds in front of buildings. */
 .cloudMask{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  overflow:hidden;
+  pointer-events:none;
+  -webkit-mask-image:url("/cities/new-york/sky-mask.png");
+  mask-image:url("/cities/new-york/sky-mask.png");
+  -webkit-mask-size:cover;
+  mask-size:cover;
+  -webkit-mask-position:var(--city-pos-desktop,50% 43%);
+  mask-position:var(--city-pos-desktop,50% 43%);
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
   mix-blend-mode:screen;
-  opacity:.88;
-  transition:opacity 1s ease;
 }
-.cloud{
-  top:8%;
-  left:18%;
-  width:clamp(220px,24vw,410px);
-  height:auto;
-  aspect-ratio:1536/570;
+
+/* Each strip contains two identical edge-matched SVG copies. The full-width
+   drift by -50% therefore loops without a seam, jump or direction reversal. */
+.cloudTrack{
+  position:absolute;
+  left:0;
+  width:200%;
+  display:flex;
+  gap:0;
+  pointer-events:none;
+  will-change:transform;
+  animation-name:cirrusFlow;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+}
+.cloudBand{
+  flex:0 0 50%;
+  display:block;
+  height:100%;
+  background-position:center center;
   background-size:100% 100%;
   background-repeat:no-repeat;
-  background-position:center;
-  filter:blur(1px);
-  -webkit-mask-image:radial-gradient(ellipse 70% 68% at 50% 50%,black 0%,rgba(0,0,0,.94) 34%,rgba(0,0,0,.45) 66%,transparent 98%);
-  mask-image:radial-gradient(ellipse 70% 68% at 50% 50%,black 0%,rgba(0,0,0,.94) 34%,rgba(0,0,0,.45) 66%,transparent 98%);
 }
-.cloudA{top:8%;left:16%;opacity:0;filter:blur(.75px);animation:flowCloudA 34s linear -8s infinite}
-.cloudB{top:18%;left:62%;width:clamp(200px,20vw,345px);opacity:0;filter:blur(1.1px);animation:flowCloudB 43s linear -20s infinite}
-.cloudC{top:5%;left:46%;width:clamp(145px,14vw,235px);opacity:0;filter:blur(1.3px);animation:flowCloudC 31s linear -14s infinite}
-.backdrop[data-phase="morning"] .cloudMask{opacity:.8}
-.backdrop[data-phase="day"] .cloudMask{opacity:.95}
-.backdrop[data-phase="sunset"] .cloudMask{opacity:.65}
-.backdrop[data-phase="night"] .cloudMask{opacity:.3}
-@keyframes flowCloudA{
-  0%{transform:translate3d(-190px,-6px,0);opacity:0}
-  12%{opacity:.83}
-  83%{opacity:.83}
-  100%{transform:translate3d(210px,0,0);opacity:0}
+.cloudTrackTop{
+  top:0%;
+  height:17%;
+  opacity:.79;
+  animation-duration:34s;
+  animation-delay:-11s;
 }
-@keyframes flowCloudB{
-  0%{transform:translate3d(-185px,0,0);opacity:0}
-  12%{opacity:.74}
-  83%{opacity:.74}
-  100%{transform:translate3d(195px,-6px,0);opacity:0}
+.cloudTrackTop .cloudBand{background-image:url("/cities/new-york/cirrus-top.svg")}
+.cloudTrackUpper{
+  top:10%;
+  height:15%;
+  opacity:.59;
+  animation-duration:41s;
+  animation-delay:-23s;
 }
-@keyframes flowCloudC{
-  0%{transform:translate3d(-145px,4px,0);opacity:0}
-  14%{opacity:.56}
-  82%{opacity:.56}
-  100%{transform:translate3d(160px,0,0);opacity:0}
+.cloudTrackUpper .cloudBand{background-image:url("/cities/new-york/cirrus-upper.svg")}
+.cloudTrackMiddle{
+  top:21%;
+  height:12%;
+  opacity:.37;
+  animation-duration:48s;
+  animation-delay:-16s;
+}
+.cloudTrackMiddle .cloudBand{background-image:url("/cities/new-york/cirrus-middle.svg")}
+.cloudTrackLower{
+  top:31%;
+  height:9%;
+  opacity:.20;
+  animation-duration:56s;
+  animation-delay:-37s;
+}
+.cloudTrackLower .cloudBand{background-image:url("/cities/new-york/cirrus-lower.svg")}
+@keyframes cirrusFlow{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-50%,0,0)}
+}
+
+/* Distinctly denser aloft, progressively thinner toward the skyline.
+   Light cloud pixels do not introduce building-like shadows in the sky. */
+.backdrop[data-phase="morning"] .cloudTrackTop{opacity:.75}
+.backdrop[data-phase="morning"] .cloudTrackUpper{opacity:.56}
+.backdrop[data-phase="morning"] .cloudTrackMiddle{opacity:.35}
+.backdrop[data-phase="morning"] .cloudTrackLower{opacity:.19}
+.backdrop[data-phase="day"] .cloudTrackTop{opacity:.82}
+.backdrop[data-phase="day"] .cloudTrackUpper{opacity:.64}
+.backdrop[data-phase="day"] .cloudTrackMiddle{opacity:.41}
+.backdrop[data-phase="day"] .cloudTrackLower{opacity:.23}
+.backdrop[data-phase="sunset"] .cloudTrackTop{opacity:.68}
+.backdrop[data-phase="sunset"] .cloudTrackUpper{opacity:.49}
+.backdrop[data-phase="sunset"] .cloudTrackMiddle{opacity:.29}
+.backdrop[data-phase="sunset"] .cloudTrackLower{opacity:.15}
+.backdrop[data-phase="night"] .cloudTrackTop{opacity:.62}
+.backdrop[data-phase="night"] .cloudTrackUpper{opacity:.43}
+.backdrop[data-phase="night"] .cloudTrackMiddle{opacity:.25}
+.backdrop[data-phase="night"] .cloudTrackLower{opacity:.12}
+
+.light,.vignette{position:absolute;inset:0;pointer-events:none}
+.light{
+  z-index:2;
+  background:linear-gradient(90deg,rgba(9,24,21,.04),transparent 78%);
+}
+.vignette{
+  z-index:3;
+  background:
+    linear-gradient(90deg,rgba(4,20,15,.34) 0%,rgba(4,18,16,.12) 44%,transparent 83%),
+    linear-gradient(180deg,rgba(8,19,17,.16) 0%,transparent 32%,rgba(11,29,23,.08) 62%,#11251e 100%);
 }
 @media(max-width:700px){
-  .cloudA{top:8%;left:12%}
-  .cloudB{top:16%;left:58%}
-  .cloudC{top:5%;left:44%}
+  .image{background-position:var(--city-pos-mobile,50% 43%)}
+  .cloudMask{
+    -webkit-mask-position:var(--city-pos-mobile,50% 43%);
+    mask-position:var(--city-pos-mobile,50% 43%);
+  }
+  .cloudTrackTop{top:0%;height:16%}
+  .cloudTrackUpper{top:10%;height:14%}
+  .cloudTrackMiddle{top:20%;height:11%}
+  .cloudTrackLower{top:29%;height:8%}
+  .vignette{
+    background:
+      linear-gradient(90deg,rgba(5,19,16,.38),rgba(5,19,16,.09) 72%,transparent),
+      linear-gradient(180deg,rgba(8,19,17,.15),rgba(10,27,22,.08) 30%,#11251e 100%);
+  }
 }
 @media(prefers-reduced-motion:reduce){
-  .cloudA,.cloudB,.cloudC{animation:none;opacity:.35;transform:none;will-change:auto}
+  .backdrop,.image{transition:none}
+  .cloudTrack{animation:none;transform:none;will-change:auto}
 }
