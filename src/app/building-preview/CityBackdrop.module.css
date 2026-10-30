@@ -49,11 +49,15 @@
 .cloudTrack{
   position:absolute;
   left:0;
-  width:200%;
+  /* A stable cloud panorama scale is essential on phones: never compress
+     a 2048px cirrus texture down to a 390px-wide strip. Each tile is at
+     least 1440px; wider viewports use their full width. */
+  width:max(200%, 2880px);
   display:flex;
   gap:0;
   pointer-events:none;
   will-change:transform;
+  transition:opacity 1.35s ease-in-out;
   animation-name:cirrusFlow;
   animation-timing-function:linear;
   animation-iteration-count:infinite;
@@ -117,10 +121,11 @@
 .backdrop[data-phase="sunset"] .cloudTrackUpper{opacity:.78}
 .backdrop[data-phase="sunset"] .cloudTrackMiddle{opacity:.54}
 .backdrop[data-phase="sunset"] .cloudTrackLower{opacity:.3}
-.backdrop[data-phase="night"] .cloudTrackTop{opacity:.86}
-.backdrop[data-phase="night"] .cloudTrackUpper{opacity:.75}
-.backdrop[data-phase="night"] .cloudTrackMiddle{opacity:.49}
-.backdrop[data-phase="night"] .cloudTrackLower{opacity:.27}
+/* Night retains visible movement, without turning the deep sky into white fog. */
+.backdrop[data-phase="night"] .cloudTrackTop{opacity:.46}
+.backdrop[data-phase="night"] .cloudTrackUpper{opacity:.38}
+.backdrop[data-phase="night"] .cloudTrackMiddle{opacity:.27}
+.backdrop[data-phase="night"] .cloudTrackLower{opacity:.14}
 
 .light,.vignette{position:absolute;inset:0;pointer-events:none}
 .light{
@@ -151,5 +156,5 @@
 }
 @media(prefers-reduced-motion:reduce){
   .backdrop,.image{transition:none}
-  .cloudTrack{animation:none;transform:none;will-change:auto}
+  .cloudTrack{animation:none;transform:none;transition:none;will-change:auto}
 }
