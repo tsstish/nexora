@@ -82,7 +82,7 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
               <strong><CurrencyPrice group="ready" priceId={active.slug} ils={active.priceFrom} prefix="от " /></strong>
             </div>
           </div>
-          <Link href={`/building-preview/ready/${active.slug}`} className={styles.action}>
+          <Link href={`/ready/${active.slug}`} className={styles.action}>
             Подробнее о сайте и условиях <span aria-hidden="true">↗</span>
           </Link>
           <button className={styles.moreToggle} type="button" aria-expanded={previewVisible}
