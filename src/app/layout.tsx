@@ -33,13 +33,13 @@ description:
     siteName: "NeXora",
     locale: "ru_RU",
     type: "website",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "NeXora — Digital Presence Design" }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "NeXora — готовые сайты и разработка для бизнеса" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "NeXora — Digital Presence Design",
     description: "Сайты и цифровые продукты, которые умеют больше.",
-    images: ["/opengraph-image.png"],
+    images: ["/opengraph-image"],
   },
 };
 
