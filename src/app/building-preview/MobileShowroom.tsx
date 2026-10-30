@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { CurrencyPrice } from "./CurrencyControl";
 import styles from "./MobileShowroom.module.css";
@@ -20,7 +20,28 @@ type Concept = {
 export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
   const [selected, setSelected] = useState(0);
   const [previewVisible, setPreviewVisible] = useState(false);
-  const [previewInteractive, setPreviewInteractive] = useState(false);
+  const [previewMode, setPreviewMode] = useState<"mobile" | "desktop">("mobile");
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const [viewport, setViewport] = useState({ width: 390, height: 380 });
+
+  useEffect(() => {
+    const element = viewportRef.current;
+    if (!element) return;
+    const measure = () => setViewport({
+      width: Math.max(1, element.clientWidth),
+      height: Math.max(1, element.clientHeight),
+    });
+    measure();
+    const resizeObserver = new ResizeObserver(measure);
+    resizeObserver.observe(element);
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  // The iframe itself gets a real desktop/mobile viewport; CSS only scales
+  // its rendering to fit the narrow phone screen. Touch stays enabled.
+  const demoWidth = previewMode === "desktop" ? 1280 : 390;
+  const demoScale = Math.max(0.1, viewport.width / demoWidth);
+  const demoHeight = Math.max(300, Math.ceil(viewport.height / demoScale));
   if (!concepts.length) return null;
   const active = concepts[selected] ?? concepts[0];
 
@@ -42,7 +63,7 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
           {concepts.map((site, index) => (
             <button type="button" key={site.slug} aria-pressed={index === selected}
               className={index === selected ? styles.selected : ""}
-              onClick={() => { setSelected(index); setPreviewVisible(false); setPreviewInteractive(false); }}>
+              onClick={() => { setSelected(index); setPreviewVisible(false); setPreviewMode("mobile"); }}>
               <span>{String(index + 1).padStart(2,"0")}</span>
               <strong>{site.heading}</strong>
             </button>
@@ -59,26 +80,42 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
           </div>
 
           <div className={styles.preview}>
-            <span className={styles.previewTag}>Работающий сайт · демонстрация</span>
-            <div className={`${styles.iframeClip} ${previewInteractive ? styles.isInteractive : ""}`}>
+            <div className={styles.previewToolbar}>
+              <span className={styles.previewTag}>Живое демо / {active.name}</span>
+              <div className={styles.previewModes} role="group" aria-label="Версия демо-сайта">
+                <button
+                  type="button"
+                  aria-pressed={previewMode === "mobile"}
+                  onClick={() => setPreviewMode("mobile")}
+                >Телефон</button>
+                <button
+                  type="button"
+                  aria-pressed={previewMode === "desktop"}
+                  onClick={() => setPreviewMode("desktop")}
+                >Компьютер</button>
+              </div>
+            </div>
+            <div
+              ref={viewportRef}
+              className={styles.iframeClip}
+              aria-label={`Демо ${active.name}, ${previewMode === "mobile" ? "версия для телефона" : "версия для компьютера"}`}
+            >
               <iframe
-                key={active.slug}
+                key={`${active.slug}-${previewMode}`}
                 src={active.demoUrl}
-                title={`Работающий сайт ${active.name} — мобильное демо`}
+                title={`${active.name} — ${previewMode === "mobile" ? "мобильная" : "десктопная"} версия`}
                 loading="eager"
-                scrolling={previewInteractive ? "yes" : "no"}
-                tabIndex={previewInteractive ? 0 : -1}
+                scrolling="yes"
+                tabIndex={0}
+                style={{
+                  width: demoWidth,
+                  height: demoHeight,
+                  transform: `scale(${demoScale})`,
+                  transformOrigin: "top left",
+                }}
               />
             </div>
-            <button
-              className={styles.previewInteraction}
-              type="button"
-              aria-pressed={previewInteractive}
-              onClick={() => setPreviewInteractive((current) => !current)}
-            >
-              {previewInteractive ? "Завершить просмотр внутри" : "Листать сайт прямо здесь"}
-              <span aria-hidden="true">{previewInteractive ? "✕" : "↕"}</span>
-            </button>
+            <p className={styles.previewHint}>Листайте демо внутри окна ↕</p>
             <a href={active.demoUrl} target="_blank" rel="noopener noreferrer"
               data-analytics-event="ready_demo_open" data-concept={active.slug}>Открыть демо целиком ↗</a>
           </div>
