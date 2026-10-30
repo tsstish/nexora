@@ -14,8 +14,7 @@ import styles from "./pricing.module.css";
 export const metadata: Metadata = {
   title: { absolute: "Стоимость разработки сайтов и подписки | NeXora" },
   description: "Сколько стоит сайт для бизнеса: подписка от 249 ₪ в месяц, готовые сайты с адаптацией, индивидуальная разработка и поддержка NeXora.",
-  robots: { index: false, follow: false },
-  alternates: { canonical: "/building-preview/pricing" },
+  alternates: { canonical: "/pricing" },
 };
 
 const firstReady = readySites.reduce((lowest, current) =>
@@ -69,7 +68,7 @@ export default function LoftPricing() {
               <strong><CurrencyPrice group="monthly" priceId={firstMonthly.id} ils={firstMonthly.price} prefix="от " perMonth /></strong>
               <span className={styles.entryNote}>Без стартового взноса <span aria-hidden="true">↗</span></span>
             </a>
-            <Link href="/building-preview#collection" className={styles.entry}>
+            <Link href="/#collection" className={styles.entry}>
               <span className={styles.entryNumber}>02 / ГОТОВЫЙ САЙТ</span>
               <strong><CurrencyPrice group="ready" priceId={firstReady.slug} ils={firstReady.priceFrom} prefix="от " /></strong>
               <span className={styles.entryNote}>Выбрать концепцию <span aria-hidden="true">↗</span></span>
