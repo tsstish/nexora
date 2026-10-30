@@ -8,20 +8,20 @@ import { CurrencySelector } from "./CurrencyControl";
 import styles from "./StudioHeader.module.css";
 
 const menu = [
-  { label: "Готовые сайты", href: "/building-preview", section: "ready" },
-  { label: "Услуги и стоимость", href: "/building-preview/pricing", section: "pricing" },
-  { label: "Контакты", href: "/building-preview/contacts", section: "contacts" },
+  { label: "Готовые сайты", href: "/", section: "ready" },
+  { label: "Услуги и стоимость", href: "/pricing", section: "pricing" },
+  { label: "Контакты", href: "/contacts", section: "contacts" },
 ] as const;
 
 export function StudioHeader() {
   const pathname = usePathname();
-  const section = pathname.startsWith("/building-preview/pricing") ? "pricing"
-    : (pathname.startsWith("/building-preview/contacts") || pathname.startsWith("/building-preview/docs/")) ? "contacts"
+  const section = pathname.startsWith("/pricing") ? "pricing"
+    : (pathname.startsWith("/contacts") || pathname.startsWith("/docs/")) ? "contacts"
     : "ready";
 
   return (
     <header className={styles.header}>
-      <Link href="/building-preview" className={styles.logo} aria-label="NeXora — главная">
+      <Link href="/" className={styles.logo} aria-label="NeXora — главная">
         <Image src="/brand/nexora-wordmark.png" width={1254} height={439} alt="NeXora" priority />
         <span>DIGITAL PRESENCE DESIGN</span>
       </Link>
