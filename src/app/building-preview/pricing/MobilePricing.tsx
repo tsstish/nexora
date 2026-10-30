@@ -77,13 +77,13 @@ export function MobilePricing() {
               <p>Вы выбираете существующий сайт, мы заменяем бренд, фотографии, тексты и контакты</p>
               <div className={styles.priceRows}>
                 {readySites.map(site => (
-                  <Link href={`/building-preview/ready/${site.slug}`} key={site.slug} className={styles.priceRow}>
+                  <Link href={`/ready/${site.slug}`} key={site.slug} className={styles.priceRow}>
                     <div><strong>{site.title.split(",")[0]}</strong><small>Демо: {site.name}</small></div>
                     <span className={styles.amount}><CurrencyPrice group="ready" priceId={site.slug} ils={site.priceFrom} prefix="от " /></span>
                   </Link>
                 ))}
               </div>
-              <Link className={styles.action} href="/building-preview#mobile-collection">Посмотреть все сайты ↗</Link>
+              <Link className={styles.action} href="/#mobile-collection">Посмотреть все сайты ↗</Link>
             </>
           )}
           {format === "custom" && (
@@ -135,7 +135,7 @@ export function MobilePricing() {
             <small>Для сайтов вне Ready Monthly</small>
           </div>
         </details>
-        <Link href="/building-preview/contacts#brief" className={styles.contact}>Не знаете, что выбрать? <strong>Расскажите о задаче ↗</strong></Link>
+        <Link href="/contacts#brief" className={styles.contact}>Не знаете, что выбрать? <strong>Расскажите о задаче ↗</strong></Link>
       </section>
     </div>
   );
