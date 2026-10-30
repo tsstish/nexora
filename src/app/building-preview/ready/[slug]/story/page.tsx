@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${story.headline} | Готовый сайт NeXora`,
     description: story.lead,
-    robots: { index: false, follow: false },
-  };
+    alternates: { canonical: `/ready/${slug}/story` },
+    };
 }
 
 export default async function ReadyStoryPage({ params }: Props) {
@@ -42,8 +42,8 @@ export default async function ReadyStoryPage({ params }: Props) {
         <CityBackdrop time="morning" />
         <StudioHeader />
         <div className={`${styles.heroContent} nx-hero-copy`}>
-          <Link href="/building-preview#collection" className={`${styles.back} ${styles.backDesktop}`}>← Вернуться к коллекции</Link>
-          <Link href="/building-preview#mobile-collection" className={`${styles.back} ${styles.backMobile}`}>← Вернуться к коллекции</Link>
+          <Link href="/#collection" className={`${styles.back} ${styles.backDesktop}`}>← Вернуться к коллекции</Link>
+          <Link href="/#mobile-collection" className={`${styles.back} ${styles.backMobile}`}>← Вернуться к коллекции</Link>
           <div className={styles.heroEyebrow}>NEXORA / READY COLLECTION · {site.formatLabel}</div>
           <h1>{story.headline}</h1>
           <p>{story.lead}</p>
