@@ -71,3 +71,63 @@
 .modalHint{padding:10px 12px 13px;color:#D9DEDA;font-size:10px;line-height:1.4;margin:0}
 @media(max-height:570px){.modalViewport{height:45dvh;min-height:135px}.modalHeader{padding:7px 12px}}
 @media(prefers-reduced-motion:reduce){.modalScrim{backdrop-filter:none;-webkit-backdrop-filter:none}}
+
+
+/* November mobile polish — no native horizontal scrollbar, explicit pair arrows. */
+@media(max-width:1024px){
+  .intro{ text-shadow:none!important; }
+  .intro h1,.intro p,.intro .eyebrow,.intro .offerLine{
+    text-shadow:0 2px 8px rgba(5,22,18,.55);
+  }
+  .mobile .intro .pricingLink,
+  .mobile .intro .pricingLink span{
+    text-shadow:none!important;
+    box-shadow:none!important;
+    filter:none!important;
+    -webkit-filter:none!important;
+    -webkit-text-stroke:0!important;
+  }
+  .mobile .intro .pricingLink{
+    background:#E3C393!important;
+    border:1px solid #E3C393;
+    color:#13372F!important;
+    font:700 12px/1.3 Arial,Helvetica,sans-serif!important;
+    letter-spacing:0!important;
+    min-height:41px;
+    gap:16px;
+    padding:10px 14px;
+    transform:none!important;
+    border-radius:2px;
+  }
+  .choiceHeader{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:9px 0 11px;}
+  .choiceHeader h2{margin:0!important;font:400 clamp(21px,5.7vw,27px)/1.1 Georgia,serif;}
+  .pairControls{display:flex;gap:5px;flex:none;}
+  .pairControls button{
+    height:35px;width:35px;display:grid;place-items:center;
+    border:1px solid rgba(227,195,147,.62);border-radius:50%;
+    background:rgba(246,243,237,.06);
+    color:#F1D0A0;font-size:18px;cursor:pointer;
+  }
+  .pairControls button:active{background:rgba(255,115,95,.23)}
+  .pairControls button:disabled{opacity:.36;cursor:default}
+  .choices{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px;
+    margin:0!important;padding:0 0 11px!important;
+    overflow:visible!important;scroll-snap-type:none!important;
+    scrollbar-width:none!important;
+  }
+  .choices button{
+    width:100%;min-width:0;min-height:62px;flex:none!important;
+    padding:9px 8px!important;gap:8px!important;
+  }
+  .choices strong{font-size:11px!important;line-height:1.27}
+  .choices button>span{font-size:17px}
+}
+@media(max-width:360px){
+  .choiceHeader h2{font-size:20px}
+  .pairControls button{width:32px;height:32px}
+  .choices button{min-height:64px;padding:8px 7px!important}
+  .choices strong{font-size:10px!important}
+}
