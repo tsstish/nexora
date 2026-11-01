@@ -48,10 +48,15 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
   return (
     <div className={styles.mobile}>
       <section className={`${styles.intro} nx-hero-copy`} aria-labelledby="mobile-showroom-title">
-        <span className={styles.eyebrow}>NEXORA / READY COLLECTION</span>
-        <h1 id="mobile-showroom-title">Готовый сайт.<br/><em>Ваш бренд</em></h1>
-        <p>Выберите работающий сайт — мы заменим логотип, цвета, фотографии и тексты под ваш бизнес</p>
-        <div className={styles.introBottom}><span>Не макет и не конструктор</span><span>Адаптация до 7 рабочих дней*</span></div>
+        <span className={styles.eyebrow}>NEXORA / READY MONTHLY</span>
+        <h1 id="mobile-showroom-title">Сайт, который<br/><em>не нужно собирать.</em></h1>
+        <p>Выбираете готовую концепцию — мы адаптируем её под ваш бренд и задачи, запускаем и поддерживаем.</p>
+        <strong className={styles.introPrice}><CurrencyPrice group="monthly" priceId="compact" ils={249} prefix="от " perMonth /></strong>
+        <div className={styles.introActions}>
+          <a href="#mobile-collection">Выбрать сайт ↗</a>
+          <Link href="/pricing">Посмотреть цены ↗</Link>
+        </div>
+        <div className={styles.introBottom}><span>Без стартового взноса</span><span>До 7 рабочих дней после получения материалов*</span></div>
       </section>
 
       <section className={styles.catalog} id="mobile-collection" aria-label="Готовые концепции">
