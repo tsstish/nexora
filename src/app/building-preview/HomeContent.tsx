@@ -101,7 +101,7 @@ export function HomeContent() {
             ))}
           </div>
           <div className={styles.otherFormats}>
-            <div><span>Хотите владеть сайтом?</span><strong>Купите готовую концепцию с адаптацией</strong><Link href="/pricing#ready">Выкуп и условия ↗</Link></div>
+            <div><span>Хотите владеть сайтом?</span><strong>Купите готовую концепцию с адаптацией</strong><Link href="/pricing#monthly">Выкуп и условия ↗</Link></div>
             <div><span>Не подходит готовая структура?</span><strong>Разработаем сайт с нуля под вашу задачу</strong><Link href="/pricing#individual">Индивидуальная разработка ↗</Link></div>
           </div>
         </div>
