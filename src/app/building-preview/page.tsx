@@ -5,6 +5,9 @@ import { FeaturedGallery } from "./FeaturedGallery";
 import { MobileShowroom } from "./MobileShowroom";
 import { CityBackdrop } from "./CityBackdrop";
 import { StudioHeader } from "./StudioHeader";
+import { HomeContent } from "./HomeContent";
+import { CurrencyPrice } from "./CurrencyControl";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -43,16 +46,21 @@ export default function BuildingPreview() {
         <div className={styles.desktopShowroom}>
         <section className={styles.hero} aria-labelledby="loft-title">
           <div className={`${styles.glassPanel} nx-hero-copy`}>
-            <span className={styles.eyebrow}>NEXORA / READY COLLECTION</span>
-            <h1 id="loft-title">Готовые сайты<br />для реального<br />бизнеса</h1>
-            <p className={styles.heroDescription}>Это уже работающие сайты, а не макеты. Вы выбираете подходящий пример — мы превращаем его в сайт вашего бизнеса.</p>
+            <span className={styles.eyebrow}>NEXORA / ГОТОВЫЕ САЙТЫ ДЛЯ БИЗНЕСА</span>
+            <h1 id="loft-title">Сайт, который<br />не нужно<br />собирать.</h1>
+            <p className={styles.heroDescription}>Выбираете работающую концепцию — мы адаптируем её под ваш бренд, тексты и задачи. Хостинг и поддержка включены.</p>
+            <div className={styles.heroStartingPrice}>Подписка <strong><CurrencyPrice group="monthly" priceId="compact" ils={249} prefix="от " perMonth /></strong><span>Без стартового взноса</span></div>
+            <div className={styles.heroActions}>
+              <a href="#collection">Выбрать сайт <span aria-hidden="true">↗</span></a>
+              <Link href="/pricing">Посмотреть цены <span aria-hidden="true">↗</span></Link>
+            </div>
           </div>
           <FeaturedGallery concepts={concepts} />
         </section>
         </div>
         <MobileShowroom concepts={concepts} />
       </div>
-
+      <HomeContent />
     </main>
   );
 }
