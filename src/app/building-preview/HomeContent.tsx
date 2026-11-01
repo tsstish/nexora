@@ -86,8 +86,8 @@ export function HomeContent() {
           </div>
           <div className={styles.planGrid}>
             {monthlyPlanList.map((plan, index) => (
-              <article key={plan.id} className={styles.plan}>
-                <span className={styles.planIndex}>0{index+1} / READY MONTHLY</span>
+              <article key={plan.id} className={`${styles.plan} ${index === 1 ? styles.featuredPlan : ""}`}>
+                <div className={styles.planMeta}><span className={styles.planIndex}>0{index+1} / READY MONTHLY</span>{index === 1 && <span className={styles.popularBadge}>Чаще выбирают</span>}</div>
                 <h3>{plan.name}</h3>
                 <p>{plan.purpose}</p>
                 <strong><CurrencyPrice group="monthly" priceId={plan.id} ils={plan.price} perMonth /></strong>
@@ -101,8 +101,8 @@ export function HomeContent() {
             ))}
           </div>
           <div className={styles.otherFormats}>
-            <div><span>Хотите владеть сайтом?</span><strong>Купите готовую концепцию с адаптацией</strong><Link href="/pricing#monthly">Выкуп и условия ↗</Link></div>
-            <div><span>Не подходит готовая структура?</span><strong>Разработаем сайт с нуля под вашу задачу</strong><Link href="/pricing#individual">Индивидуальная разработка ↗</Link></div>
+            <div><span>ХОТИТЕ ВЛАДЕТЬ САЙТОМ?</span><strong>Готовый сайт можно выкупить</strong><Link href="/pricing#monthly">Условия покупки ↗</Link></div>
+            <div><span>НУЖНО БОЛЬШЕ, ЧЕМ ГОТОВАЯ КОНЦЕПЦИЯ?</span><strong>Индивидуальная разработка</strong><Link href="/pricing#individual">Посмотреть форматы ↗</Link></div>
           </div>
         </div>
       </section>
@@ -129,9 +129,11 @@ export function HomeContent() {
 
       <section className={styles.contactSection} aria-labelledby="contact-title">
         <div className={styles.wrap}>
-          <span className={styles.overline}>NEXORA / START A PROJECT</span>
-          <h2 id="contact-title">Расскажите, какой у вас бизнес</h2>
-          <p>Подберём готовую концепцию или предложим индивидуальную разработку. Начните с короткого сообщения.</p>
+          <div className={styles.contactCopy}>
+            <span className={styles.overline}>NEXORA / НАЧНЁМ С ВАШЕЙ ЗАДАЧИ</span>
+            <h2 id="contact-title">Расскажите о вашем бизнесе</h2>
+            <p>Подберём готовый сайт или обсудим индивидуальную разработку.</p>
+          </div>
           <a href={whatsappUrl("Здравствуйте! Хочу подобрать сайт NeXora для моего бизнеса.")} target="_blank" rel="noopener noreferrer" data-analytics-event="home_footer_whatsapp">Написать в WhatsApp ↗</a>
         </div>
       </section>
