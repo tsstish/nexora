@@ -53,7 +53,6 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
         <p>Выбираете готовую концепцию — мы адаптируем её под ваш бренд и задачи, запускаем и поддерживаем.</p>
         <strong className={styles.introPrice}><CurrencyPrice group="monthly" priceId="compact" ils={249} prefix="от " perMonth /></strong>
         <div className={styles.introActions}>
-          <a href="#mobile-collection">Выбрать сайт ↗</a>
           <Link href="/pricing">Посмотреть цены ↗</Link>
         </div>
         <div className={styles.introBottom}><span>Без стартового взноса</span><span>До 7 рабочих дней после получения материалов*</span></div>
