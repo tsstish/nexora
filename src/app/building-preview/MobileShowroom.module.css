@@ -67,3 +67,34 @@
  .intro h1 em{font-style:normal;color:#f4dab1}
  .introBottom{margin-top:16px}
 }
+
+
+/* Refinement parity with desktop: no redundant CTA, lighter glass and a
+   single clear action, while the real demo remains front-and-centre. */
+@media(max-width:1024px){
+ .intro{
+   background:linear-gradient(125deg,rgba(13,37,30,.87),rgba(23,52,42,.70));
+   -webkit-backdrop-filter:blur(8px);
+   backdrop-filter:blur(8px);
+ }
+ .catalog{
+   background:linear-gradient(135deg,rgba(22,46,37,.94),rgba(21,42,35,.91));
+ }
+ .introActions{max-width:260px}
+ .introActions a:only-child{
+   flex:0 0 100%;background:#E3C393;color:#153129;
+   border:1px solid #E3C393;box-shadow:none;text-shadow:none;
+   min-height:45px;
+ }
+ .catalog .choices button{background:rgba(255,251,236,.07)}
+ .catalog .choices .selected{
+   background:rgba(105,133,106,.37);
+   border-color:#E3C393;
+   box-shadow:inset 3px 0 #FF735F;
+ }
+}
+@media(max-width:390px){
+ .intro{padding:19px 17px}
+ .intro h1{font-size:clamp(35px,9.1vw,40px);overflow-wrap:break-word}
+ .introActions{max-width:none}
+}
