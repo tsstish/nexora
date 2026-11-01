@@ -264,3 +264,75 @@
  .featuredPlan h3{font-size:23px}
  .otherFormats strong{font-size:15px}
 }
+
+
+/* Four visible magazine cards. All content is immediately accessible:
+   no hidden swipe rail, no scrollbars, no extra interaction. */
+.mobileDetail{display:none}
+@media(max-width:700px){
+  .valueGrid{
+    display:grid!important;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin:0!important;
+    padding:0!important;
+    overflow:visible!important;
+    scroll-snap-type:none!important;
+    border:0;
+  }
+  .valueItem,
+  .valueItem:first-child,
+  .valueItem:nth-child(2),
+  .valueItem:nth-child(3),
+  .valueItem:last-child{
+    flex:none!important;
+    min-width:0;
+    width:auto;
+    min-height:143px;
+    padding:13px 12px 11px;
+    background:#FCFAF5;
+    border:1px solid rgba(19,55,47,.18);
+    border-top:3px solid #0F715E;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    box-shadow:0 6px 18px -17px rgba(19,55,47,.4);
+  }
+  .valueItem:first-child{
+    background:#14392E;
+    color:#F6F3ED;
+    border-color:#14392E;
+    border-top-color:#E3C393;
+  }
+  .valueItem:nth-child(2){
+    background:#FFF4EA;
+    border-top-color:#FF735F;
+  }
+  .valueItem:nth-child(3){
+    background:#EAF1ED;
+    border-top-color:#0F715E;
+  }
+  .valueItem:nth-child(4){
+    background:#F8F2E6;
+    border-top-color:#E3C393;
+  }
+  .valueItem .index{font:400 19px/1 Georgia,serif;margin:0}
+  .valueItem:first-child .index{color:#E3C393}
+  .valueItem h3{font:400 clamp(15px,4.2vw,18px)/1.15 Georgia,serif;margin:0}
+  .valueItem p{font:400 10.5px/1.42 Arial,Helvetica,sans-serif;margin:0}
+  .valueItem:first-child p{color:#DBE6DC}
+  .desktopDetail{display:none!important}
+  .mobileDetail{display:block!important}
+  .disclaimer{margin:9px 0 0}
+}
+@media(max-width:345px){
+  .valueItem,.valueItem:first-child,.valueItem:nth-child(2),.valueItem:nth-child(3),.valueItem:last-child{
+    padding:10px 9px;min-height:151px
+  }
+  .valueItem h3{font-size:14.5px}
+  .valueItem p{font-size:10px}
+}
+@media(min-width:1025px){
+  #home-faq{padding-top:37px;padding-bottom:35px}
+  .contactSection .wrap{padding-top:18px;padding-bottom:20px}
+}
