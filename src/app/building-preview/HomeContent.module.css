@@ -132,3 +132,41 @@
  .contactSection a{width:100%;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){.faqList details[open] summary span{transition:none}}
+
+
+/* 2026-11 / Atmospheric pearl paper. Soft sunrise warmth shifts into the
+   coolest suggestion of a sky near the legal footer; no cyan/blue panels. */
+.content{
+ background:
+ radial-gradient(ellipse 65% 30% at 98% 2%,rgba(240,210,162,.18),transparent 75%),
+ radial-gradient(ellipse 68% 42% at 2% 76%,rgba(207,221,219,.16),transparent 78%),
+ linear-gradient(166deg,#F6F3ED 0%,#FAF6EF 40%,#F7F6F0 69%,#F0F4F1 100%);
+}
+.section{padding:clamp(34px,3.7vw,53px) 0}
+.sectionHeader{margin-bottom:22px}
+.darkSection{background:transparent;padding:12px 0}
+.darkSection .wrap{
+ background:linear-gradient(125deg,#142E25,#214337 75%,#25483B);
+ box-shadow:0 12px 24px -22px rgba(8,32,24,.5);
+}
+.plan{background:rgba(255,253,249,.73)}
+.featuredPlan{background:#142F27}
+.contactSection{
+ background:linear-gradient(105deg,rgba(255,252,245,.56),rgba(225,236,231,.62));
+ border-top:1px solid rgba(19,55,47,.14);
+ border-bottom:3px solid rgba(227,195,147,.67);
+}
+.contactSection .wrap{
+ padding:19px 0 23px;
+ border-top:0;
+}
+.contactSection h2{font-size:clamp(27px,2.7vw,35px)}
+.contactSection a{box-shadow:0 8px 18px -13px rgba(19,55,47,.35)}
+.faqList details:last-child{border-bottom:0}
+@media(max-width:700px){
+ .section{padding:31px 0}
+ .sectionHeader{margin-bottom:17px}
+ .darkSection{padding:9px 0}
+ .contactSection .wrap{padding:18px 0 22px;gap:13px}
+ .contactSection h2{font-size:clamp(29px,8vw,35px)}
+}
