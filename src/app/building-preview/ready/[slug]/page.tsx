@@ -10,6 +10,29 @@ import { StudioHeader } from "../../StudioHeader";
 import { CityBackdrop } from "../../CityBackdrop";
 import styles from "./product.module.css";
 
+const readyOutcomes: Record<string, { audience: string; value: string; examples: string[] }> = {
+  "dental-clinic": {
+    audience: "Для стоматологий и частных клиник",
+    value: "Удобно представить процедуры, врачей, цены и результаты работ. Посетитель сможет разобраться в услугах и выбрать удобный способ обращения.",
+    examples: ["Услуги и процедуры", "Врач и клиника", "Работы «До и после»", "Контакты и запись"],
+  },
+  "private-teacher": {
+    audience: "Для преподавателей и экспертов",
+    value: "Сайт поможет познакомить потенциальных учеников с вашим подходом, занятиями и условиями, чтобы им было проще решиться на знакомство.",
+    examples: ["О преподавателе", "Форматы занятий", "Подход и отзывы", "Запись и связь"],
+  },
+  "brow-artist": {
+    audience: "Для beauty-мастеров",
+    value: "Аккуратно покажите услуги, работы, цены и информацию о себе, а клиент сможет быстро перейти к записи.",
+    examples: ["Портфолио работ", "Услуги и цены", "О мастере", "Быстрая запись"],
+  },
+  "media-kit": {
+    audience: "Для авторов и блогеров",
+    value: "Представьте брендам аудиторию, примеры контента, кейсы и форматы сотрудничества без длинной PDF-презентации.",
+    examples: ["Статистика аудитории", "Видео и кейсы", "Рекламные форматы", "Бриф для брендов"],
+  },
+};
+
 type Props = { params: Promise<{ slug: string }> };
 export function generateStaticParams() { return readySites.map(({ slug }) => ({ slug })); }
 
@@ -29,6 +52,7 @@ export default async function ReadyConcept({ params }: Props) {
   const site = readySites.find((x) => x.slug === slug);
   if (!site) notFound();
   const monthly = monthlyPlans[site.monthlyPlan];
+  const outcome = readyOutcomes[site.slug];
 
   return (
     <main className={`${styles.root} nx-city-stage`}>
@@ -48,6 +72,40 @@ export default async function ReadyConcept({ params }: Props) {
             <p className={styles.customBrandNote}>Сайт уже разработан. Перед запуском адаптируем логотип, цвета, фотографии, тексты и контакты под ваш бизнес</p>
             <a className={`${styles.demoLink} nx-action nx-action--outline`} href={site.demoUrl} target="_blank" rel="noopener noreferrer">Посмотреть работающий демо-сайт ↗</a>
           </div>
+        </section>
+
+        <section className={styles.productValue} aria-labelledby="ready-value-heading">
+          <div className={styles.valueIntro}>
+            <div>
+              <span className={styles.kicker}>ГОТОВАЯ СТРУКТУРА · ПОД ВАШУ НИШУ</span>
+              <h2 id="ready-value-heading">{outcome?.audience ?? site.title}</h2>
+            </div>
+            <p>{outcome?.value ?? site.description}</p>
+          </div>
+          <div className={styles.valueColumns}>
+            <article className={styles.valueCard}>
+              <span className={styles.valueIndex}>01 / УЖЕ СОЗДАНО</span>
+              <h3>Всё важное уже продумано</h3>
+              <ul>{(outcome?.examples ?? site.features.slice(0, 4)).map((item) => <li key={item}>{item}</li>)}</ul>
+              <p>Дизайн, структура и мобильная версия уже разработаны на кодовой базе.</p>
+            </article>
+            <article className={styles.valueCard}>
+              <span className={styles.valueIndex}>02 / АДАПТИРУЕМ ПОД ВАС</span>
+              <h3>Ваш бренд, ваши материалы</h3>
+              <ul>
+                <li>Логотип и фирменные цвета в рамках концепции</li>
+                <li>Фотографии, тексты и услуги</li>
+                <li>Цены, контакты и способы связи</li>
+                <li>Материалы для вашей ниши</li>
+              </ul>
+              <p>Вы передаёте материалы, мы берём на себя адаптацию и публикацию.</p>
+            </article>
+          </div>
+          <details className={styles.fullAdaptation}>
+            <summary>Полный состав адаптации именно этой концепции <span aria-hidden="true">+</span></summary>
+            <ul>{site.adaptationIncludes.map((item) => <li key={item}>{item}</li>)}</ul>
+            <p>Дополнительные страницы, функции и существенные изменения структуры согласуются отдельно.</p>
+          </details>
         </section>
 
         <section className={styles.purchaseGrid} aria-label="Выберите формат">
