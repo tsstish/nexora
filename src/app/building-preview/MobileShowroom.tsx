@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { CurrencyPrice } from "./CurrencyControl";
 import styles from "./MobileShowroom.module.css";
@@ -17,31 +18,73 @@ type Concept = {
   demoUrl: string;
 };
 
+type PreviewMode = "mobile" | "desktop";
+
+/** A real, scrollable website view at the selected virtual screen width. */
+function DemoFrame({ name, slug, url, mode, interactive }: {
+  name: string; slug: string; url: string; mode: PreviewMode; interactive: boolean;
+}) {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [frameSize, setFrameSize] = useState({ width: 340, height: 350 });
+  useEffect(() => {
+    const element = frameRef.current;
+    if (!element) return;
+    const update = () => {
+      setFrameSize({ width: Math.max(1, element.clientWidth), height: Math.max(1, element.clientHeight) });
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+  const virtualWidth = mode === "desktop" ? 1280 : 390;
+  const scale = Math.max(.1, frameSize.width / virtualWidth);
+  const virtualHeight = Math.ceil(frameSize.height / scale);
+  return (
+    <div ref={frameRef} className={interactive ? styles.modalViewport : styles.miniViewport}>
+      <iframe
+        key={slug + "-" + mode}
+        src={url}
+        title={name + " — " + (mode === "mobile" ? "телефон" : "компьютер")}
+        loading={interactive ? "eager" : "lazy"}
+        scrolling="yes"
+        tabIndex={interactive ? 0 : -1}
+        style={{
+          width: virtualWidth, height: Math.max(300, virtualHeight),
+          transform: "scale(" + scale + ")",
+          transformOrigin: "top left",
+          pointerEvents: interactive ? "auto" : "none",
+        }}
+      />
+    </div>
+  );
+}
+
 export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
   const [selected, setSelected] = useState(0);
-  const [previewVisible, setPreviewVisible] = useState(false);
-  const [previewMode, setPreviewMode] = useState<"mobile" | "desktop">("mobile");
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const [viewport, setViewport] = useState({ width: 390, height: 380 });
+  const [previewMode, setPreviewMode] = useState<PreviewMode>("mobile");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
+  useEffect(() => setMounted(true), []);
   useEffect(() => {
-    const element = viewportRef.current;
-    if (!element) return;
-    const measure = () => setViewport({
-      width: Math.max(1, element.clientWidth),
-      height: Math.max(1, element.clientHeight),
-    });
-    measure();
-    const resizeObserver = new ResizeObserver(measure);
-    resizeObserver.observe(element);
-    return () => resizeObserver.disconnect();
-  }, []);
+    if (!modalOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setModalOpen(false);
+    };
+    document.addEventListener("keydown", handleKey);
+    closeRef.current?.focus();
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKey);
+      triggerRef.current?.focus();
+    };
+  }, [modalOpen]);
 
-  // The iframe itself gets a real desktop/mobile viewport; CSS only scales
-  // its rendering to fit the narrow phone screen. Touch stays enabled.
-  const demoWidth = previewMode === "desktop" ? 1280 : 390;
-  const demoScale = Math.max(0.1, viewport.width / demoWidth);
-  const demoHeight = Math.max(300, Math.ceil(viewport.height / demoScale));
   if (!concepts.length) return null;
   const active = concepts[selected] ?? concepts[0];
 
@@ -50,108 +93,92 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
       <section className={`${styles.intro} nx-hero-copy`} aria-labelledby="mobile-showroom-title">
         <span className={styles.eyebrow}>NEXORA / READY MONTHLY</span>
         <h1 id="mobile-showroom-title">Сайт, который<br/><em>не нужно собирать.</em></h1>
-        <p>Выбираете готовую концепцию — мы адаптируем её под ваш бренд и задачи, запускаем и поддерживаем.</p>
-        <strong className={styles.introPrice}><CurrencyPrice group="monthly" priceId="compact" ils={249} prefix="от " perMonth /></strong>
-        <div className={styles.introActions}>
-          <Link href="/pricing">Посмотреть цены ↗</Link>
+        <p>Выберите концепцию — мы адаптируем её под ваш бизнес. Запустим и поддержим.</p>
+        <div className={styles.offerLine}>
+          <strong><CurrencyPrice group="monthly" priceId="compact" ils={249} prefix="от " perMonth /></strong>
+          <span>Без стартового взноса</span>
         </div>
-        <div className={styles.introBottom}><span>Без стартового взноса</span><span>До 7 рабочих дней после получения материалов*</span></div>
+        <Link className={styles.pricingLink} href="/pricing">Стоимость и условия <span aria-hidden="true">↗</span></Link>
       </section>
 
-      <section className={styles.catalog} id="mobile-collection" aria-label="Готовые концепции">
-        <div className={styles.sectionHead}>
-          <span>01 / КОЛЛЕКЦИЯ</span><span>{String(selected + 1).padStart(2,"0")} / {String(concepts.length).padStart(2,"0")}</span>
+      <section className={styles.catalog} id="mobile-collection" aria-label="Коллекция готовых сайтов">
+        <div className={styles.catalogTop}>
+          <span className={styles.eyebrow}>01 / READY COLLECTION</span>
+          <span className={styles.counter}>{String(selected + 1).padStart(2, "0")} / {String(concepts.length).padStart(2, "0")}</span>
         </div>
-        <h2>Для какого бизнеса?</h2>
-        <div className={styles.choices} role="group" aria-label="Направление готового сайта">
+        <h2>Выберите направление</h2>
+        <div className={styles.choices} role="group" aria-label="Тип готового сайта">
           {concepts.map((site, index) => (
-            <button type="button" key={site.slug} aria-pressed={index === selected}
+            <button
+              key={site.slug}
+              type="button"
+              aria-pressed={index === selected}
               className={index === selected ? styles.selected : ""}
-              onClick={() => { setSelected(index); setPreviewVisible(false); setPreviewMode("mobile"); }}>
-              <span>{String(index + 1).padStart(2,"0")}</span>
+              onClick={() => { setSelected(index); setPreviewMode("mobile"); }}
+            >
+              <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{site.heading}</strong>
             </button>
           ))}
         </div>
 
-        <article className={styles.product} aria-live="polite">
+        <article className={styles.product} aria-label={"Концепция " + active.name}>
           <div className={styles.productHeading}>
             <div>
-              <span className={styles.productEyebrow}>ГОТОВЫЙ САЙТ / {active.formatLabel}</span>
+              <span className={styles.productEyebrow}>ДЕМО / {active.name.toUpperCase()}</span>
               <h3>{active.heading}</h3>
             </div>
-            <span className={styles.demoBrand}>Демо: {active.name}</span>
+            <span className={styles.productFormat}>{active.formatLabel}</span>
           </div>
-
-          <div className={styles.preview}>
-            <div className={styles.previewToolbar}>
-              <span className={styles.previewTag}>Живое демо / {active.name}</span>
-              <div className={styles.previewModes} role="group" aria-label="Версия демо-сайта">
-                <button
-                  type="button"
-                  aria-pressed={previewMode === "mobile"}
-                  onClick={() => setPreviewMode("mobile")}
-                >Телефон</button>
-                <button
-                  type="button"
-                  aria-pressed={previewMode === "desktop"}
-                  onClick={() => setPreviewMode("desktop")}
-                >Компьютер</button>
-              </div>
-            </div>
-            <div
-              ref={viewportRef}
-              className={styles.iframeClip}
-              aria-label={`Демо ${active.name}, ${previewMode === "mobile" ? "версия для телефона" : "версия для компьютера"}`}
-            >
-              <iframe
-                key={`${active.slug}-${previewMode}`}
-                src={active.demoUrl}
-                title={`${active.name} — ${previewMode === "mobile" ? "мобильная" : "десктопная"} версия`}
-                loading="eager"
-                scrolling="yes"
-                tabIndex={0}
-                style={{
-                  width: demoWidth,
-                  height: demoHeight,
-                  transform: `scale(${demoScale})`,
-                  transformOrigin: "top left",
-                }}
-              />
-            </div>
-            <p className={styles.previewHint}>Листайте демо внутри окна ↕</p>
-            <a href={active.demoUrl} target="_blank" rel="noopener noreferrer"
-              data-analytics-event="ready_demo_open" data-concept={active.slug}>Открыть демо целиком ↗</a>
-          </div>
-
-          <div className={styles.brandLine}>
-            <span>{active.name} — пример оформления</span>
-            <strong>В вашем сайте будет ваш бренд</strong>
-          </div>
-
           <div className={styles.prices}>
-            <div>
-              <span>Сайт по подписке</span>
-              <strong><CurrencyPrice group="monthly" priceId={active.monthlyPlan} ils={active.monthlyPrice} perMonth /></strong>
-            </div>
-            <div>
-              <span>Покупка с адаптацией</span>
-              <strong><CurrencyPrice group="ready" priceId={active.slug} ils={active.priceFrom} prefix="от " /></strong>
-            </div>
+            <div><span>Подписка</span><strong><CurrencyPrice group="monthly" priceId={active.monthlyPlan} ils={active.monthlyPrice} perMonth /></strong></div>
+            <div><span>Выкуп с адаптацией</span><strong><CurrencyPrice group="ready" priceId={active.slug} ils={active.priceFrom} prefix="от " /></strong></div>
           </div>
-          <Link href={`/ready/${active.slug}`} className={styles.action}>
-            Подробнее о сайте и условиях <span aria-hidden="true">↗</span>
-          </Link>
-          <button className={styles.moreToggle} type="button" aria-expanded={previewVisible}
-            onClick={() => setPreviewVisible(v => !v)}>
-            {previewVisible ? "Скрыть описание" : "Что можно изменить и что входит"} <span aria-hidden="true">{previewVisible ? "−" : "+"}</span>
-          </button>
-          {previewVisible && <div className={styles.moreContent}>
-            <p>Заменим фирменные цвета, логотип, изображения, тексты и контакты в рамках выбранной концепции. Дополнительные функции оцениваются отдельно</p>
-            <p>* После получения всех материалов; сроки зависят от продукта</p>
-          </div>}
+          <div className={styles.preview}>
+            <DemoFrame name={active.name} slug={active.slug} url={active.demoUrl} mode="mobile" interactive={false} />
+            <button
+              ref={triggerRef}
+              className={styles.openPreview}
+              type="button"
+              onClick={() => setModalOpen(true)}
+              aria-haspopup="dialog"
+            >
+              <span aria-hidden="true">↗</span>
+              Смотреть и листать сайт
+            </button>
+          </div>
+          <div className={styles.productBottom}>
+            <span>{active.name} <span aria-hidden="true">→</span> ваш бренд</span>
+            <Link href={`/ready/${active.slug}`}>О сайте и условиях ↗</Link>
+          </div>
         </article>
       </section>
+
+      {mounted && modalOpen && createPortal(
+        <div className={styles.modalScrim} onMouseDown={event => {
+          if (event.target === event.currentTarget) setModalOpen(false);
+        }}>
+          <section className={styles.modal} role="dialog" aria-modal="true" aria-label={`Демо-сайт ${active.name}`}>
+            <header className={styles.modalHeader}>
+              <div>
+                <span>LIVE DEMO / {active.name}</span>
+                <strong>{active.heading}</strong>
+              </div>
+              <button ref={closeRef} type="button" className={styles.modalClose} aria-label="Закрыть демонстрацию" onClick={() => setModalOpen(false)}>×</button>
+            </header>
+            <div className={styles.modalTools}>
+              <div className={styles.modeSwitch} role="group" aria-label="Выберите версию сайта">
+                <button type="button" aria-pressed={previewMode === "mobile"} onClick={() => setPreviewMode("mobile")}>Телефон</button>
+                <button type="button" aria-pressed={previewMode === "desktop"} onClick={() => setPreviewMode("desktop")}>Компьютер</button>
+              </div>
+              <a href={active.demoUrl} target="_blank" rel="noopener noreferrer" data-analytics-event="ready_demo_open" data-concept={active.slug}>Во весь экран ↗</a>
+            </div>
+            <DemoFrame name={active.name} slug={active.slug} url={active.demoUrl} mode={previewMode} interactive />
+            <p className={styles.modalHint}>Листайте сайт прямо внутри окна. Закрыть — × вверху.</p>
+          </section>
+        </div>,
+        document.body
+      )}
     </div>
   );
 }
