@@ -774,3 +774,26 @@
   box-shadow:none!important;text-shadow:none!important;
  }
 }
+
+
+/* Editorial city hero: no tinted rectangle around the main headline. */
+@media(min-width:1025px){
+ .page .hero>.glassPanel{
+   background:transparent!important;
+   border:0!important;
+   -webkit-backdrop-filter:none!important;
+   backdrop-filter:none!important;
+   box-shadow:none!important;
+   padding-left:clamp(3px,1vw,16px)!important;
+   padding-right:clamp(8px,1.5vw,24px)!important;
+   text-shadow:0 2px 15px rgba(9,27,22,.67);
+ }
+ .page .hero>.glassPanel h1{text-shadow:0 3px 12px rgba(6,24,19,.82),0 0 24px rgba(6,24,19,.28)}
+ .page .hero>.glassPanel p{color:#F6F3ED;text-shadow:0 2px 10px rgba(5,22,18,.8)}
+ .page .hero>.glassPanel .heroStartingPrice strong{color:#F8DCAA}
+ .page .gallery .activeDetails{background:linear-gradient(137deg,rgba(20,51,40,.97),rgba(14,39,33,.96))!important}
+ .page .gallery .liveArea{background:linear-gradient(135deg,#3D5448,#2B4439)!important}
+ .page .gallery .selector{background:linear-gradient(125deg,rgba(29,69,53,.96),rgba(24,57,47,.94))!important}
+ .page .galleryHeading{background:rgba(26,62,48,.72)!important}
+ .page .gallery .activePanel{box-shadow:0 13px 28px rgba(5,23,16,.15)!important}
+}
