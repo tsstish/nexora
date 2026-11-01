@@ -5,10 +5,10 @@ import { CurrencyPrice } from "./CurrencyControl";
 import styles from "./HomeContent.module.css";
 
 const features = [
-  { index: "01", title: "Клиенту удобно найти вас", detail: "Продуманная структура, понятные услуги и подготовка страниц для поисковых систем." },
-  { index: "02", title: "Легко связаться и записаться", detail: "WhatsApp, телефон и формы обращения — в зависимости от выбранной концепции." },
-  { index: "03", title: "Удобно с любого устройства", detail: "Сайт адаптирован для телефона и компьютера. Дополнительные языки доступны по условиям концепции." },
-  { index: "04", title: "Есть кому поддерживать", detail: "Хостинг, технические проверки и два пакета правок в месяц включены в Ready Monthly." },
+  { index: "01", title: "Клиенту удобно найти вас", detail: "Продуманная структура, понятные услуги и подготовка страниц для поисковых систем.", mobileDetail: "Понятные услуги и подготовка к поиску." },
+  { index: "02", title: "Легко связаться и записаться", detail: "WhatsApp, телефон и формы обращения — в зависимости от выбранной концепции.", mobileDetail: "WhatsApp, телефон и формы обращений." },
+  { index: "03", title: "Удобно с любого устройства", detail: "Сайт адаптирован для телефона и компьютера. Дополнительные языки доступны по условиям концепции.", mobileDetail: "Телефон, планшет и компьютер." },
+  { index: "04", title: "Есть кому поддерживать", detail: "Хостинг, технические проверки и два пакета правок в месяц включены в Ready Monthly.", mobileDetail: "Хостинг, проверка и правки включены." },
 ] as const;
 
 const steps = [
@@ -49,7 +49,8 @@ export function HomeContent() {
               <article className={styles.valueItem} key={item.index}>
                 <span className={styles.index}>{item.index}</span>
                 <h3>{item.title}</h3>
-                <p>{item.detail}</p>
+                <p className={styles.desktopDetail}>{item.detail}</p>
+                <p className={styles.mobileDetail}>{item.mobileDetail}</p>
               </article>
             ))}
           </div>
