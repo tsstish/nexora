@@ -737,3 +737,40 @@
  .page .gallery .monthlyOffer,.page .gallery .buyOffer{padding:6px 8px}
  .page .gallery .monthlyOffer strong,.page .gallery .buyOffer strong{font-size:18px}
 }
+
+
+/* 2026-11 / Fine-tuning: more breathable studio display, not a dark slab.
+   The real skyline, atmosphere and the original demos remain untouched. */
+@media(min-width:1025px){
+ .page .hero>.glassPanel{
+  background:linear-gradient(115deg,rgba(11,34,28,.78),rgba(20,46,39,.57) 84%)!important;
+  border-color:rgba(238,214,181,.46);
+ }
+ .page .galleryHeading{
+  background:rgba(24,51,43,.76)!important;
+  border-color:rgba(231,212,184,.44);
+ }
+ .page .gallery .activePanel{
+  border-color:rgba(231,212,184,.48);
+  box-shadow:0 16px 38px rgba(10,28,21,.18);
+ }
+ .page .gallery .selector{
+  background:linear-gradient(130deg,rgba(24,53,43,.91),rgba(26,50,42,.85))!important;
+  border-color:rgba(231,212,184,.50);
+ }
+ .page .gallery .tab{
+  background:rgba(252,246,229,.075);
+  border-color:rgba(231,212,184,.28);
+ }
+ .page .gallery .tabActive{
+  background:rgba(100,132,108,.35);
+  border-color:#E3C393;
+ }
+ .page .heroActions{max-width:226px}
+ .page .heroActions a:only-child{
+  width:100%;flex:none;min-height:44px;
+  border:1px solid #E3C393;
+  background:#E3C393;color:#13372F;
+  box-shadow:none!important;text-shadow:none!important;
+ }
+}
