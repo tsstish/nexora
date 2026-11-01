@@ -18,7 +18,7 @@ export function MobileShowroom({ concepts }: { concepts: ReadyConcept[] }) {
         </div>
         <Link href="/pricing" className={styles.pricingLink}>Стоимость и условия <span aria-hidden="true">↗</span></Link>
       </section>
-      <ReadyShowcase concepts={concepts} />
+      <ReadyShowcase concepts={concepts} variant="mobile" />
     </div>
   );
 }
