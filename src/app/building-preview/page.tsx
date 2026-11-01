@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { readySites } from "@/data/readySites";
 import { monthlyPlans } from "@/data/readyMonthly";
-import { FeaturedGallery } from "./FeaturedGallery";
+import { ReadyShowcase } from "./ReadyShowcase";
 import { MobileShowroom } from "./MobileShowroom";
 import { CityBackdrop } from "./CityBackdrop";
 import { StudioHeader } from "./StudioHeader";
@@ -54,7 +54,7 @@ export default function BuildingPreview() {
               <Link href="/pricing">Посмотреть цены <span aria-hidden="true">↗</span></Link>
             </div>
           </div>
-          <FeaturedGallery concepts={concepts} />
+          <ReadyShowcase concepts={concepts} />
         </section>
         </div>
         <MobileShowroom concepts={concepts} />
