@@ -177,11 +177,9 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
         </div>
         <SitePreview name={active.name} slug={active.slug} url={active.demoUrl} />
       </section>
-
-      </div>
-      <div className={styles.selector} id="collection">
+      <div className={styles.selector} id="collection" aria-label="Выбор другого сайта для демонстрации">
         <div className={styles.selectorHeading}>
-          <div><span className={styles.selectorEyebrow}>THE READY COLLECTION</span><h3>Выберите направление</h3></div>
+          <div><span className={styles.selectorEyebrow}>ВЫ СМОТРИТЕ {number} / {String(total).padStart(2,"0")}</span><h3>Другие готовые сайты</h3></div>
           <div className={styles.arrowControls}>
             <button type="button" onClick={() => move(-1)} aria-label="Предыдущая концепция">←</button>
             <button type="button" onClick={() => move(1)} aria-label="Следующая концепция">→</button>
@@ -204,6 +202,7 @@ export function FeaturedGallery({ concepts }: { concepts: Concept[] }) {
             </button>
           ))}
         </div>
+      </div>
       </div>
     </>
   );
