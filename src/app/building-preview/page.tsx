@@ -51,7 +51,6 @@ export default function BuildingPreview() {
             <p className={styles.heroDescription}>Выбираете работающую концепцию — мы адаптируем её под ваш бренд, тексты и задачи. Хостинг и поддержка включены.</p>
             <div className={styles.heroStartingPrice}>Подписка <strong><CurrencyPrice group="monthly" priceId="compact" ils={249} prefix="от " perMonth /></strong><span>Без стартового взноса</span></div>
             <div className={styles.heroActions}>
-              <a href="#collection">Выбрать сайт <span aria-hidden="true">↗</span></a>
               <Link href="/pricing">Посмотреть цены <span aria-hidden="true">↗</span></Link>
             </div>
           </div>
