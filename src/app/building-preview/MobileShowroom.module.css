@@ -131,3 +131,60 @@
   .choices button{min-height:64px;padding:8px 7px!important}
   .choices strong{font-size:10px!important}
 }
+
+
+/* Final showcase polish — lighter glass, deliberate product hierarchy. 
+   Only this mobile showcase changes; the skyline and lower site remain intact. */
+@media(max-width:1024px){
+ .catalog{
+  background:linear-gradient(138deg,rgba(23,59,48,.83),rgba(19,45,38,.80))!important;
+  border:2px solid rgba(233,207,162,.87)!important;
+  box-shadow:0 14px 34px -24px rgba(3,22,17,.55),inset 0 1px rgba(255,255,255,.13);
+  -webkit-backdrop-filter:blur(13px);
+  backdrop-filter:blur(13px);
+  padding:13px 12px 12px;
+ }
+ .catalogTop{border-bottom:1px solid rgba(233,207,162,.32);padding-bottom:8px}
+ .catalog .eyebrow{color:#F2D4A6;font-size:9px}
+ .counter{color:#F4D7A8}
+ .choices button{background:rgba(246,243,237,.085);border-color:rgba(233,207,162,.46)}
+ .choices button[aria-pressed="true"]{
+   background:rgba(246,243,237,.17);
+   border-color:#E8C89B;
+   box-shadow:inset 3px 0 #FF735F;
+ }
+ .product{
+  margin-top:4px;
+  border-top:1px solid rgba(246,225,193,.52);
+  padding-top:11px;
+ }
+ .productHeading{margin-bottom:7px}
+ .productEyebrow{letter-spacing:.12em;color:#F2D3A2;font-size:9px}
+ .product h3{margin:4px 0 0}
+ .adaptationNote{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:8px 12px;flex-wrap:wrap;
+  padding:9px 11px 8px;
+  border:1px solid rgba(240,216,176,.36);
+  background:linear-gradient(112deg,rgba(255,248,230,.13),rgba(255,248,230,.045));
+ }
+ .adaptationFlow{display:flex;align-items:baseline;gap:11px;line-height:1.2;font:400 17px Georgia,serif;color:#F9EDDD}
+ .adaptationFlow b{font-weight:400}
+ .adaptationFlow>span{color:#FF947F;font-size:17px}
+ .adaptationNote p{
+  width:100%;
+  margin:0;
+  color:#E4EAE2;
+  font-size:11px;line-height:1.42;
+ }
+ .prices{margin:8px 0}
+ .prices>div{border-color:rgba(233,207,162,.42);background:rgba(255,250,235,.075)}
+ .productBottom{margin-top:8px}
+ .productBottom>span{color:#D9E0D8;font-size:10px}
+}
+@media(max-width:360px){
+ .catalog{padding:11px 9px}
+ .adaptationFlow{font-size:16px}
+ .adaptationNote{padding:8px}
+ .adaptationNote p{font-size:10px}
+}
