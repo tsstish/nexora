@@ -638,3 +638,17 @@
 /* One clear route to all commercial conditions instead of two tiny links. */
 .conditionsLink{display:inline-flex;align-items:center;gap:12px;align-self:flex-start;margin:13px 0 15px;min-height:38px;padding:6px 0;border-bottom:1px solid rgba(240,210,159,.7);font-size:12px;font-weight:700;color:#f2d1a0!important;text-decoration:none}
 .conditionsLink:hover{color:#fff5de!important}
+
+
+/* 2026-11: conversion-led hero, preserving the original animated skyline. */
+.heroStartingPrice{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 12px;margin:1px 0 20px;font-size:12px;color:#f5e9d3}
+.heroStartingPrice strong{font:400 clamp(24px,2.5vw,32px)/1.2 Georgia,serif;color:#f0d3a5}
+.heroStartingPrice>span{flex-basis:100%;color:#e1d4be;font-size:11px}
+.heroActions{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;width:100%}
+.page .heroActions a{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:13px;padding:10px 15px;font-size:12px;font-weight:700;background:#e4c597;color:#153129;border:1px solid #e4c597;text-decoration:none}
+.page .heroActions a:last-child{background:rgba(10,35,28,.28);color:#f6ecdb;border-color:rgba(246,232,205,.7)}
+.page .heroActions a:hover{filter:brightness(1.09)}
+@media(max-width:1300px){.heroActions{flex-direction:column;max-width:230px}}
+@media(max-width:1120px){.heroActions{flex-direction:row;max-width:none}}
+@media(min-width:1025px){.page .hero>.glassPanel{padding-top:clamp(44px,4.5vw,75px)!important;padding-bottom:30px}}
+@media(max-width:700px){.heroStartingPrice{font-size:12px}.heroActions a{flex:1}}
