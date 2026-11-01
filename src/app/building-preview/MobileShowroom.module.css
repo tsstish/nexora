@@ -55,3 +55,15 @@
 @media(max-width:360px){.mobile{width:calc(100% - 22px)}.catalog{padding:13px 10px}.choices button{padding:10px 7px}.choices strong{font-size:11px}.demoBrand{font-size:9px}.prices strong{font-size:21px}}
 @media(min-width:1025px){.mobile{display:none}}
 @media(prefers-reduced-motion:reduce){.action{transition:none}}
+
+
+/* 2026-11: the mobile hero states the offer before the live demo. */
+@media(max-width:1024px){
+ .introPrice{display:block;margin:18px 0 13px;font:400 30px/1.25 Georgia,serif;color:#f0d0a0}
+ .introActions{display:flex;flex-wrap:wrap;gap:8px}
+ .introActions a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 14px;font-size:12px;font-weight:700;background:#e8c898;color:#153129;text-align:center;flex:1 1 150px}
+ .introActions a:last-child{border:1px solid rgba(232,200,152,.75);background:rgba(10,30,24,.4);color:#f7e9d0}
+ .intro h1{font-size:clamp(35px,8.9vw,53px)}
+ .intro h1 em{font-style:normal;color:#f4dab1}
+ .introBottom{margin-top:16px}
+}
