@@ -126,3 +126,47 @@
  .backMobile{display:block!important}
 }
 @media(max-width:700px){.backToCollection{margin-bottom:24px!important}}
+
+
+/* Concept-specific sales story: light editorial surfaces on the existing skyline. */
+.productValue{
+ margin:0 0 clamp(23px,3.5vw,45px);padding:clamp(20px,3vw,38px);
+ color:#13372F;background:linear-gradient(145deg,rgba(250,247,239,.97),rgba(240,241,230,.94));
+ border:1px solid rgba(228,199,157,.75);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.valueIntro{display:grid;grid-template-columns:1fr 1fr;gap:22px 52px;align-items:end;padding-bottom:20px;border-bottom:1px solid rgba(19,55,47,.2)}
+.productValue .kicker{color:#0F715E;font-size:10px}
+.valueIntro h2{font:400 clamp(32px,3.5vw,49px)/1.07 Georgia,serif;letter-spacing:-.03em;margin:13px 0 0}
+.valueIntro>p{font-size:13px;line-height:1.68;color:#53635F;margin:0}
+.valueColumns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+.valueCard{padding:24px 28px 17px 0;min-width:0}
+.valueCard+ .valueCard{border-left:1px solid rgba(19,55,47,.17);padding-left:27px;padding-right:0}
+.valueIndex{color:#0F715E;font-size:9px;letter-spacing:.14em;font-weight:700}
+.valueCard h3{font:400 clamp(23px,2.5vw,34px)/1.14 Georgia,serif;margin:9px 0 15px}
+.valueCard ul{padding:0;margin:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.valueCard li{font-size:12px;line-height:1.4;color:#27493D;position:relative;padding-left:13px}
+.valueCard li:before{content:"";position:absolute;left:0;top:.6em;height:5px;width:5px;background:#FF735F;border-radius:50%}
+.valueCard p{color:#53635F;font-size:12px;line-height:1.6;margin:16px 0 0}
+.fullAdaptation{border-top:1px solid rgba(19,55,47,.22);margin-top:7px}
+.fullAdaptation summary{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;list-style:none;font-weight:700;color:#0F715E;padding:18px 0;font-size:12px}
+.fullAdaptation summary::-webkit-details-marker{display:none}
+.fullAdaptation summary span{font:400 20px Georgia,serif}
+.fullAdaptation[open] summary span{transform:rotate(45deg)}
+.fullAdaptation ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 25px;list-style:none;padding:0;margin:0 0 16px}
+.fullAdaptation li{font-size:12px;line-height:1.45;color:#27493D;border-bottom:1px solid rgba(19,55,47,.12);padding:4px 0 8px}
+.fullAdaptation p{font-size:11px;line-height:1.5;color:#53635F;margin:0 0 10px}
+@media(max-width:700px){
+ .productValue{padding:18px 15px;margin-bottom:16px}
+ .valueIntro{grid-template-columns:1fr;gap:9px;padding-bottom:13px}
+ .valueIntro h2{font-size:31px;margin-top:7px}
+ .valueIntro>p{font-size:12px;line-height:1.52}
+ .valueColumns{grid-template-columns:1fr}
+ .valueCard{padding:16px 0}
+ .valueCard + .valueCard{border-left:0;border-top:1px solid rgba(19,55,47,.17);padding:15px 0}
+ .valueCard h3{font-size:23px;margin:7px 0 10px}
+ .valueCard ul{gap:7px}
+ .valueCard li{font-size:11px}
+ .valueCard p{font-size:11px;line-height:1.5;margin-top:10px}
+ .fullAdaptation summary{font-size:11px}
+ .fullAdaptation ul{grid-template-columns:1fr;gap:0}
+}
