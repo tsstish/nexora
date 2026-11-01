@@ -114,7 +114,7 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
 
       <section className={styles.catalog} id="mobile-collection" aria-label="Коллекция готовых сайтов">
         <div className={styles.catalogTop}>
-          <span className={styles.eyebrow}>01 / READY COLLECTION</span>
+          <span className={styles.eyebrow}>01 / ГОТОВЫЕ САЙТЫ</span>
           <span className={styles.counter}>{String(selected + 1).padStart(2, "0")} / {String(concepts.length).padStart(2, "0")}</span>
         </div>
         <div className={styles.choiceHeader}>
@@ -142,10 +142,14 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
         <article className={styles.product} aria-label={"Концепция " + active.name}>
           <div className={styles.productHeading}>
             <div>
-              <span className={styles.productEyebrow}>ДЕМО / {active.name.toUpperCase()}</span>
+              <span className={styles.productEyebrow}>РАБОТАЮЩЕЕ ДЕМО · {active.name.toUpperCase()}</span>
               <h3>{active.heading}</h3>
             </div>
             <span className={styles.productFormat}>{active.formatLabel}</span>
+          </div>
+          <div className={styles.adaptationNote}>
+            <span className={styles.adaptationFlow}><b>{active.name}</b><span aria-hidden="true">→</span><b>ваш бренд</b></span>
+            <p>Готовая структура. Адаптируем оформление, тексты, услуги и контакты.</p>
           </div>
           <div className={styles.prices}>
             <div><span>Подписка</span><strong><CurrencyPrice group="monthly" priceId={active.monthlyPlan} ils={active.monthlyPrice} perMonth /></strong></div>
@@ -165,7 +169,7 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
             </button>
           </div>
           <div className={styles.productBottom}>
-            <span>{active.name} <span aria-hidden="true">→</span> ваш бренд</span>
+            <span>На кодовой базе — не конструктор</span>
             <Link href={`/ready/${active.slug}`}>О сайте и условиях ↗</Link>
           </div>
         </article>
