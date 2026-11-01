@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { CurrencyPrice } from "./CurrencyControl";
@@ -76,7 +76,7 @@ function LiveWindow({ name, slug, url, mode, interactive, enlarged = false }: {
   );
 }
 
-export function ReadyShowcase({ concepts }: { concepts: ReadyConcept[] }) {
+export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: ReadyConcept[]; variant?: "desktop" | "mobile" }) {
   const [selected, setSelected] = useState(0);
   const [pairIndex, setPairIndex] = useState(0);
   const [mode, setMode] = useState<PreviewMode>("desktop");
@@ -86,13 +86,16 @@ export function ReadyShowcase({ concepts }: { concepts: ReadyConcept[] }) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const openRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => setHydrated(true), []);
+  useEffect(() => {
+    setHydrated(true);
+    if (variant === "mobile") setMode("mobile");
+  }, [variant]);
   useEffect(() => {
     if (!opened) return;
     const original = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
-    const onKey = (e: globalThis.KeyboardEvent) => { if (e.key === "Escape") setOpened(false); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpened(false); };
     document.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = original;
@@ -122,7 +125,7 @@ export function ReadyShowcase({ concepts }: { concepts: ReadyConcept[] }) {
     setPairIndex(next);
     choose(next);
   }
-  function onKey(e: KeyboardEvent<HTMLButtonElement>, index: number) {
+  function onKey(e: ReactKeyboardEvent<HTMLButtonElement>, index: number) {
     const next = e.key === "ArrowRight" ? (index + 1) % concepts.length
       : e.key === "ArrowLeft" ? (index - 1 + concepts.length) % concepts.length
       : e.key === "Home" ? 0 : e.key === "End" ? concepts.length - 1 : null;
@@ -130,7 +133,7 @@ export function ReadyShowcase({ concepts }: { concepts: ReadyConcept[] }) {
     e.preventDefault();
     choose(next);
     setPairIndex(Math.floor(next / 2) * 2);
-    document.getElementById("ready-tab-" + concepts[next].slug)?.focus();
+    document.getElementById("ready-tab-" + variant + "-" + concepts[next].slug)?.focus();
   }
   const visibleMobile = Array.from({ length: Math.min(2, concepts.length) }, (_, offset) => {
     const index = (pairIndex + offset) % concepts.length;
@@ -138,7 +141,7 @@ export function ReadyShowcase({ concepts }: { concepts: ReadyConcept[] }) {
   });
 
   return (
-    <section className={styles.showcase} id="collection" aria-label="Коллекция готовых сайтов NeXora">
+    <section className={styles.showcase} id={variant === "mobile" ? "mobile-collection" : "collection"} aria-label="Коллекция готовых сайтов NeXora">
       <div className={styles.overline}>
         <span><i className={styles.overlineDot} aria-hidden="true" /> NEXORA / ГОТОВЫЕ САЙТЫ</span>
         <span className={styles.count}>{labelNumber} <span>/</span> {count}</span>
@@ -191,7 +194,7 @@ export function ReadyShowcase({ concepts }: { concepts: ReadyConcept[] }) {
         </div>
         <div className={styles.desktopNav} role="group" aria-label="Выберите сайт">
           {concepts.map((site, i) => (
-            <button id={"ready-tab-" + site.slug} key={site.slug} type="button"
+            <button id={"ready-tab-" + variant + "-" + site.slug} key={site.slug} type="button"
               aria-pressed={i === selected} onClick={() => choose(i)} onKeyDown={e => onKey(e, i)}>
               <small>{String(i + 1).padStart(2, "0")}</small><span>{stories[site.slug]?.label ?? site.heading}</span>
             </button>
