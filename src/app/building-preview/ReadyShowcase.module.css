@@ -1,0 +1,151 @@
+/* NeXora Ready / product-led editorial showcase.
+   Real responsive demo + warm translucent material; the skyline remains behind it. */
+.showcase{--ink:#13372F;--pearl:#F6F3ED;--gold:#D9B782;--coral:#FF735F;--emerald:#0F715E;
+  position:relative;isolation:isolate;min-width:0;align-self:start;
+  border:1.5px solid rgba(228,199,157,.9);
+  background:linear-gradient(137deg,rgba(249,246,239,.97),rgba(245,242,231,.91));
+  color:var(--ink);
+  box-shadow:0 22px 40px -37px rgba(5,24,17,.72);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  font-family:Arial,Helvetica,sans-serif;
+}
+.showcase *{box-sizing:border-box}
+.showcase a{color:inherit;text-decoration:none}
+.showcase :is(a,button):focus-visible{outline:2px solid #FF735F;outline-offset:3px}
+.overline{min-height:38px;padding:10px 17px;display:flex;gap:15px;justify-content:space-between;align-items:center;
+  color:#53635F;font-size:9px;letter-spacing:.14em;font-weight:700;border-bottom:1px solid rgba(19,55,47,.18)}
+.overline>span:first-child{display:flex;align-items:center;gap:8px}
+.overlineDot{width:6px;height:6px;border-radius:100%;background:#0F715E;box-shadow:0 0 0 3px rgba(15,113,94,.1)}
+.count{font:400 19px Georgia,serif;color:#13372F;letter-spacing:0;white-space:nowrap}
+.count span{color:#B89D79;padding:0 5px}
+.product{display:grid;grid-template-columns:minmax(0,39%) minmax(0,61%);min-width:0;min-height:358px}
+.details{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:19px clamp(13px,1.7vw,24px) 17px;border-right:1px solid rgba(19,55,47,.15)}
+.brand{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;min-height:25px}
+.demoPill{font-size:8px;letter-spacing:.10em;font-weight:700;background:#DDE8E0;color:#0F715E;padding:6px 7px;white-space:nowrap}
+.brandName{font:400 18px Georgia,serif;letter-spacing:.025em;color:#13372F}
+.title{font:400 clamp(22px,2.15vw,32px)/1.07 Georgia,serif;letter-spacing:-.034em;text-wrap:balance;margin:13px 0 9px;color:#13372F}
+.purpose{font-size:11px;line-height:1.5;color:#53635F;margin:0 0 13px}
+.priceRow{display:flex;align-items:flex-start;flex-direction:column;gap:3px;width:100%;padding:10px 0;border-top:1px solid rgba(19,55,47,.19);border-bottom:1px solid rgba(19,55,47,.15)}
+.priceRow>span{color:#6D7976;font-size:10px}
+.priceRow strong{font:400 clamp(23px,2.4vw,32px)/1.07 Georgia,serif;color:#0F715E;white-space:normal}
+.adaptation{font-size:10.5px;line-height:1.48;color:#53635F;margin:10px 0 12px}
+.adaptation b{color:#13372F;font-weight:700}
+.detailsLink{display:flex;align-items:center;gap:9px;margin-top:auto;min-height:36px;padding:10px 14px;background:#13372F;color:#F6F3ED!important;font-size:11px;font-weight:700;justify-content:space-between;width:100%}
+.detailsLink:hover{background:#0F715E}
+.preview{min-width:0;display:flex;flex-direction:column;padding:12px 13px 11px;background:rgba(222,230,220,.56)}
+.previewBar{min-height:31px;display:flex;align-items:center;justify-content:space-between;gap:9px;margin:0 0 8px}
+.previewBar>span{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;color:#27493C;white-space:nowrap}
+.previewBar>span i{width:6px;height:6px;border-radius:50%;background:#0F715E;flex:none}
+.modes{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid rgba(19,55,47,.24);border-radius:999px}
+.modes button{border:0;background:transparent;color:#53635F;border-radius:100px;padding:7px 9px;font-size:9px;cursor:pointer;white-space:nowrap}
+.modes button[aria-pressed="true"]{background:#D9B782;color:#13372F;font-weight:700}
+.frame,.expandedFrame{position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:230px;background:#F9F8F5;border:1px solid #CDD2C9;box-shadow:0 4px 15px -12px rgba(0,0,0,.3)}
+.frame iframe,.expandedFrame iframe{position:absolute;top:0;left:0;border:0;max-width:none;max-height:none;background:#F6F3ED}
+.previewBottom{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:37px;padding-top:8px}
+.previewBottom button,.previewBottom a{font-size:10px;color:#27493C;background:none;border:0;padding:6px 0;cursor:pointer;font-weight:600;text-align:left}
+.desktopScroll{white-space:nowrap}
+.previewBottom a{white-space:nowrap;color:#0F715E;font-weight:700}
+.expand{display:none}
+.navigator{border-top:1px solid rgba(19,55,47,.20);padding:11px 15px 15px;background:rgba(254,251,246,.32)}
+.navIntro{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 9px}
+.navIntro>div:first-child>span{font-size:8px;letter-spacing:.13em;color:#6D7976;font-weight:700}
+.navIntro h3{font:400 18px/1.15 Georgia,serif;color:#13372F;margin:2px 0 0}
+.arrows{display:flex;gap:5px}
+.arrows button,.mobileNavArrows button{border:1px solid rgba(19,55,47,.26);background:none;color:#13372F;width:29px;height:29px;border-radius:100px;cursor:pointer}
+.arrows button:hover,.mobileNavArrows button:hover{background:#F1E4CE}
+.desktopNav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+.desktopNav button,.mobileNavCards button{min-width:0;display:flex;align-items:flex-start;flex-direction:column;gap:5px;background:#F7F5EF;
+  border:1px solid rgba(19,55,47,.20);padding:9px 10px;text-align:left;cursor:pointer;color:#13372F}
+.desktopNav button small,.mobileNavCards button small{font:400 15px Georgia,serif;color:#0F715E}
+.desktopNav button>span,.mobileNavCards button>span{font-size:10px;line-height:1.25;font-weight:700}
+.desktopNav button[aria-pressed="true"],.mobileNavCards button[aria-pressed="true"]{
+  border-color:#0F715E;background:#E7EEE6;box-shadow:inset 0 3px #FF735F}
+.mobileNav{display:none}
+/* Modal is portaled to body to avoid clipping under the animated skyline. */
+.modalBackdrop{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:12px;
+  background:rgba(8,27,21,.8);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.modal{display:flex;flex-direction:column;overflow:hidden;width:min(740px,100%);max-height:calc(100dvh - 24px);border:1px solid #E3C393;
+  background:#F6F3ED;box-shadow:0 16px 54px rgba(0,0,0,.5);color:#13372F}
+.modalHeader{display:flex;justify-content:space-between;align-items:center;gap:15px;background:#13372F;color:#F6F3ED;padding:10px 15px}
+.modalHeader>div{display:flex;align-items:center;gap:12px}
+.modalHeader>div span{font-size:9px;letter-spacing:.12em;color:#D9B782}
+.modalHeader>div strong{font:400 20px Georgia,serif}
+.modalHeader>button{width:37px;height:37px;border:1px solid rgba(255,255,255,.65);background:none;color:#FFF;font-size:24px;cursor:pointer}
+.modalTools{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 12px}
+.modalTools a{font-size:11px;text-decoration:underline;color:#0F715E!important}
+.expandedFrame{margin:0 12px;height:min(64dvh,590px);min-height:190px;flex:1 1 auto}
+.modalHint{font-size:10px;color:#53635F;margin:0;padding:9px 12px 12px}
+@media(min-width:1025px){
+ .showcase{margin:12px 0 0}
+ .product{height:clamp(380px,33.6vw,465px)}
+ .details{padding:18px 14px}
+ .preview{padding:11px}
+ .frame{min-height:200px}
+ .navigator{padding:11px 12px 13px}
+ .desktopNav button{min-height:57px;padding:7px 7px}
+ .detailsLink{min-height:36px}
+}
+@media(min-width:1025px) and (max-width:1250px){
+ .product{grid-template-columns:41% 59%;height:445px}
+ .title{font-size:24px}
+ .purpose{font-size:10px}
+ .priceRow strong{font-size:25px}
+ .adaptation{font-size:10px}
+ .previewBottom{flex-wrap:wrap}
+}
+@media(max-width:1024px){
+ .showcase{width:100%;margin:0 auto 8px;background:linear-gradient(140deg,rgba(250,247,240,.97),rgba(249,246,237,.94));}
+ .overline{min-height:35px;padding:8px 13px;font-size:9px}
+ .product{display:flex;flex-direction:column;min-height:0}
+ .details{display:contents}
+ .brand{order:0;padding:13px 15px 0}
+ .title{order:1;font-size:clamp(26px,6.8vw,34px);margin:7px 15px 4px}
+ .purpose{order:2;font-size:11.5px;line-height:1.43;margin:0 15px 7px}
+ .priceRow{order:3;display:flex;flex-direction:row;align-items:baseline;justify-content:space-between;gap:8px;
+  padding:8px 15px;margin:0;border-top:1px solid rgba(19,55,47,.13);border-bottom:0;background:rgba(236,239,228,.5)}
+ .priceRow>span{font-size:10px}
+ .priceRow strong{font-size:clamp(23px,6.5vw,31px);white-space:nowrap}
+ .preview{order:4;padding:9px 10px 7px;background:rgba(228,232,221,.55)}
+ .previewBar{margin-bottom:7px}
+ .modes button{font-size:10px;min-height:30px}
+ .frame{height:clamp(158px,45vw,225px);min-height:158px;flex:none}
+ .previewBottom{min-height:35px;padding-top:7px;gap:10px}
+ .desktopScroll{display:none}
+ .expand{display:block!important;font-weight:700!important;color:#0F715E!important}
+ .previewBottom a{font-size:10px}
+ .adaptation{order:5;padding:11px 15px 4px;margin:0;font-size:11.5px;line-height:1.5}
+ .detailsLink{order:6;margin:7px 15px 13px;width:calc(100% - 30px);min-height:42px;font-size:12px}
+ .navigator{padding:10px 13px 13px}
+ .navIntro{margin:0 0 8px}
+ .navIntro>div:first-child>span{font-size:8px}
+ .navIntro h3{font-size:18px}
+ .arrows,.desktopNav{display:none}
+ .mobileNav{display:flex;flex-direction:column;gap:7px}
+ .mobileNavArrows{align-self:flex-end;display:flex;gap:5px;margin-top:-38px;position:relative}
+ .mobileNavArrows button{width:31px;height:31px}
+ .mobileNavCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .mobileNavCards button{min-height:55px;padding:8px 9px;display:flex;flex-direction:row;align-items:flex-start;gap:9px}
+ .mobileNavCards button>span{font-size:11px}
+ .mobileNavCards button small{font-size:17px;flex:none}
+ .modalBackdrop{padding:9px}
+ .modal{max-height:calc(100dvh - 18px)}
+ .expandedFrame{height:62dvh;min-height:210px}
+}
+@media(max-width:365px){
+ .overline{padding:8px 10px}
+ .title{font-size:25px}
+ .priceRow{padding:8px 10px}
+ .priceRow strong{font-size:24px}
+ .brand,.purpose,.adaptation{margin-left:0;margin-right:0}
+ .brand{padding:11px 11px 0}
+ .title{margin-left:11px;margin-right:11px}
+ .purpose{margin-left:11px;margin-right:11px}
+ .adaptation{padding-left:11px;padding-right:11px}
+ .detailsLink{margin-left:11px;margin-right:11px;width:calc(100% - 22px)}
+ .previewBar>span{font-size:8px}
+ .previewBar{gap:5px}
+ .modes button{padding:6px 7px;font-size:9px}
+ .mobileNavArrows{margin-top:-35px}
+ .navIntro h3{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){.showcase,.showcase *{scroll-behavior:auto!important}}
