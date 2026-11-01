@@ -62,6 +62,7 @@ function DemoFrame({ name, slug, url, mode, interactive }: {
 
 export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
   const [selected, setSelected] = useState(0);
+  const [visibleStart, setVisibleStart] = useState(0);
   const [previewMode, setPreviewMode] = useState<PreviewMode>("mobile");
   const [modalOpen, setModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -87,10 +88,20 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
 
   if (!concepts.length) return null;
   const active = concepts[selected] ?? concepts[0];
+  const displayed = Array.from({ length: Math.min(2, concepts.length) }, (_, i) => ({
+    index: (visibleStart + i) % concepts.length,
+    site: concepts[(visibleStart + i) % concepts.length],
+  }));
+  const changePair = (step: number) => {
+    const next = (visibleStart + step * 2 + concepts.length * 2) % concepts.length;
+    setVisibleStart(next);
+    setSelected(next);
+    setPreviewMode("mobile");
+  };
 
   return (
     <div className={styles.mobile}>
-      <section className={`${styles.intro} nx-hero-copy`} aria-labelledby="mobile-showroom-title">
+      <section className={styles.intro} aria-labelledby="mobile-showroom-title">
         <span className={styles.eyebrow}>NEXORA / READY MONTHLY</span>
         <h1 id="mobile-showroom-title">Сайт, который<br/><em>не нужно собирать.</em></h1>
         <p>Выберите концепцию — мы адаптируем её под ваш бизнес. Запустим и поддержим.</p>
@@ -106,9 +117,15 @@ export function MobileShowroom({ concepts }: { concepts: Concept[] }) {
           <span className={styles.eyebrow}>01 / READY COLLECTION</span>
           <span className={styles.counter}>{String(selected + 1).padStart(2, "0")} / {String(concepts.length).padStart(2, "0")}</span>
         </div>
-        <h2>Выберите направление</h2>
+        <div className={styles.choiceHeader}>
+          <h2>Выберите направление</h2>
+          <div className={styles.pairControls} aria-label="Листать направления">
+            <button type="button" aria-label="Предыдущие направления" disabled={concepts.length <= 2} onClick={() => changePair(-1)}>←</button>
+            <button type="button" aria-label="Следующие направления" disabled={concepts.length <= 2} onClick={() => changePair(1)}>→</button>
+          </div>
+        </div>
         <div className={styles.choices} role="group" aria-label="Тип готового сайта">
-          {concepts.map((site, index) => (
+          {displayed.map(({ site, index }) => (
             <button
               key={site.slug}
               type="button"
