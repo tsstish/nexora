@@ -652,3 +652,88 @@
 @media(max-width:1120px){.heroActions{flex-direction:row;max-width:none}}
 @media(min-width:1025px){.page .hero>.glassPanel{padding-top:clamp(44px,4.5vw,75px)!important;padding-bottom:30px}}
 @media(max-width:700px){.heroStartingPrice{font-size:12px}.heroActions a{flex:1}}
+
+
+/* 2026-11 / Showroom and navigation are ONE stage, not two oversized sections.
+   No changes to the approved New York panorama or time-of-day animations. */
+@media(min-width:1025px){
+ .page .hero{
+  grid-template-columns:minmax(290px,.37fr) minmax(0,.63fr);
+  grid-template-rows:auto;
+  align-items:start;
+  column-gap:clamp(18px,2.4vw,36px);
+  row-gap:0;
+  padding-bottom:clamp(16px,2.2vw,30px);
+ }
+ .page .hero>.glassPanel{
+  align-self:start;
+  padding:clamp(28px,3.2vw,46px) clamp(19px,2.4vw,34px) 24px!important;
+  background:linear-gradient(105deg,rgba(8,28,23,.88),rgba(12,33,28,.67) 85%);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+ }
+ .page .hero>.gallery{padding:12px 0 0;gap:0;display:flex;flex-direction:column}
+ .page .galleryHeading{min-height:36px;padding:7px 12px;margin:0;border:1px solid rgba(226,203,162,.28);border-bottom:0;background:rgba(13,34,28,.74)}
+ .page .gallery .activePanel{
+  flex:none;min-height:0;height:clamp(405px,34vw,480px);
+  grid-template-columns:minmax(205px,.42fr) minmax(0,.58fr);
+  box-shadow:0 12px 24px rgba(4,19,15,.15);
+ }
+ .page .gallery .activeDetails{min-height:0;padding:15px 17px;overflow:hidden}
+ .page .gallery .activeIndex{font-size:27px;line-height:1}
+ .page .gallery .conceptKicker{font-size:9px;margin:5px 0 0}
+ .page .gallery .activeDetails h2{font-size:clamp(23px,2vw,29px);margin:8px 0;line-height:1.05}
+ .page .gallery .activeDescription{font-size:10.5px;-webkit-line-clamp:2;line-height:1.4;margin-bottom:7px}
+ .page .gallery .brandTransformation{padding:7px 0;margin:0 0 7px}
+ .page .gallery .brandTransformation strong{font-size:15px}
+ .page .gallery .brandExplanation{margin:0 0 7px;font-size:10px;line-height:1.3}
+ .page .gallery .featureList{display:none}
+ .page .gallery .offers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:auto 0 8px}
+ .page .gallery .monthlyOffer,.page .gallery .buyOffer{min-width:0;padding:9px 8px;border-color:rgba(227,195,147,.5)}
+ .page .gallery .offerLabel{font-size:9px;line-height:1.2}
+ .page .gallery .monthlyOffer strong,.page .gallery .buyOffer strong{font-size:clamp(17px,1.6vw,22px);margin-top:4px;white-space:normal}
+ .page .gallery .monthlyOffer strong small{font-size:10px}
+ .page .gallery .conditionsLink{margin:0 0 7px;padding:0 0 3px;min-height:22px;font-size:10.5px}
+ .page .gallery .demoButton{
+  background:#E3C393!important;color:#13372F!important;
+  min-height:40px;padding:9px 12px;width:100%;
+  font-size:11px;font-weight:700;
+  text-shadow:none!important;box-shadow:none!important;
+ }
+ .page .gallery .liveArea{padding:10px}
+ .page .gallery .liveLabel{margin:0 0 7px}
+ .page .gallery .previewActions{margin-top:5px}
+ .page .gallery .selector{
+  min-width:0;margin:0;padding:12px 13px 13px;
+  background:rgba(11,31,26,.90);
+  border:1px solid rgba(226,203,162,.45);border-top:0;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:none;
+ }
+ .page .gallery .selectorHeading{margin-bottom:10px;align-items:center}
+ .page .gallery .selector h3{font-size:clamp(17px,1.6vw,22px);margin:3px 0 0}
+ .page .gallery .selectorEyebrow{font-size:9px;color:#E3C393}
+ .page .gallery .arrowControls button{width:29px;height:29px}
+ .page .gallery .tabRail{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+ .page .gallery .tab{min-height:62px;padding:9px 10px;gap:4px}
+ .page .gallery .tabName{font-size:10px;min-height:0}
+ .page .gallery .tabNumber{font-size:14px}
+ .page .gallery .tabActive{border-color:#E3C393;box-shadow:inset 0 2px #FF735F;background:rgba(58,80,66,.8)}
+ .page .heroActions{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;max-width:100%}
+ .page .heroActions a,.page .heroActions a:last-child{
+  flex:1 1 125px;width:auto;max-width:none;min-height:43px;
+  padding:8px 10px;font-size:11px;line-height:1.25;font-weight:700;
+  box-shadow:none!important;text-shadow:none!important;
+  filter:none;white-space:nowrap;
+ }
+ .page .heroActions a:first-child{background:#E3C393;color:#13372F;border:1px solid #E3C393}
+ .page .heroActions a:last-child{background:rgba(14,35,29,.5);color:#F6F3ED;border:1px solid rgba(246,243,237,.8)}
+}
+@media(min-width:1025px) and (max-width:1230px){
+ .page .gallery .activePanel{height:470px}
+ .page .gallery .activeDetails{padding:12px}
+ .page .gallery .brandExplanation{display:none}
+ .page .gallery .offers{grid-template-columns:1fr;margin-bottom:5px}
+ .page .gallery .monthlyOffer,.page .gallery .buyOffer{padding:6px 8px}
+ .page .gallery .monthlyOffer strong,.page .gallery .buyOffer strong{font-size:18px}
+}
