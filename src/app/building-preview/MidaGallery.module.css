@@ -75,3 +75,20 @@
  .phonesSmall{gap:2px;padding:1px}
  .phonesSmall>.phone,.phonesSmall>.phoneCenter{height:76%;max-width:28%}
 }
+
+/* Screen content is absolutely positioned rather than sized from the
+   screenshot's intrinsic 624×1408 dimensions. This keeps every bezel
+   proportional at desktop, mobile, thumbnail, and lightbox sizes. */
+.phoneScreenImage{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  max-height:none;
+  object-fit:cover;
+  object-position:center top;
+  filter:none!important;
+  transform:none!important;
+}
