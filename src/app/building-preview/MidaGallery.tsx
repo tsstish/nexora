@@ -16,7 +16,7 @@ const shots: Shot[] = [
 ];
 
 export function MidaGallery({ variant }: { variant: "desktop" | "mobile" }) {
-  const [activeIndex, setActiveIndex] = useState(variant === "mobile" ? 3 : 0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [enlarged, setEnlarged] = useState(false);
   const [mounted, setMounted] = useState(false);
   const active = shots[activeIndex];
