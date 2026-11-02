@@ -75,3 +75,18 @@
  .phonesSmall{gap:2px;padding:1px}
  .phonesSmall>.phone,.phonesSmall>.phoneCenter{height:76%;max-width:28%}
 }
+
+/* Phone screenshots are backgrounds to the clipped interior, never inline
+   images with intrinsic dimensions: no gallery overflow or white letterbox. */
+.phoneScreen{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  border-radius:inherit;
+  background-color:#F6F3ED;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center top;
+}
