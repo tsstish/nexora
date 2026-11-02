@@ -1,0 +1,36 @@
+name: Capture FACET Ready Screens
+on:
+  push:
+    branches:
+      - feature/stronger-home-2026-11
+    paths:
+      - .github/workflows/capture-facet-showcase.yml
+      - scripts/capture-facet-screens.py
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          python -m pip install playwright==1.58.0
+          PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64 python -m playwright install chromium
+      - run: python scripts/capture-facet-screens.py
+      - name: Commit original screenshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/ready/showcase/facet-*.png
+          if ! git diff --staged --quiet; then
+            git commit -m "assets(facet): add six unaltered live demo screenshots"
+            git pull --rebase
+            git push
+          fi
