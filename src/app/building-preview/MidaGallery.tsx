@@ -1,79 +1,114 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./MidaGallery.module.css";
 
-type Shot = { src: string; label: string; description: string; kind: "desktop" | "mobile"; };
+type Slide = { id: string; description: string; image?: string };
 
-const shots: Shot[] = [
-  { src: "/ready/showcase/mida-desktop-home.png", kind: "desktop", label: "Главная", description: "Первый экран MIDA" },
-  { src: "/ready/showcase/mida-desktop-services.png", kind: "desktop", label: "Услуги", description: "Процедуры и цены" },
-  { src: "/ready/showcase/mida-desktop-process.png", kind: "desktop", label: "Подход", description: "Восстановление улыбки" },
-  { src: "/ready/showcase/mida-mobile-home.png", kind: "mobile", label: "Главная · телефон", description: "Первый экран на телефоне" },
-  { src: "/ready/showcase/mida-mobile-process.png", kind: "mobile", label: "Подход · телефон", description: "Страница лечения на телефоне" },
-  { src: "/ready/showcase/mida-mobile-clinic.png", kind: "mobile", label: "Клиника · телефон", description: "Команда и клиника на телефоне" },
+const mobileScreens = [
+  { src: "/ready/showcase/mida-mobile-home.png", alt: "Главная страница MIDA на телефоне" },
+  { src: "/ready/showcase/mida-mobile-process.png", alt: "Страница восстановления улыбки на телефоне" },
+  { src: "/ready/showcase/mida-mobile-clinic.png", alt: "Страница клиники и команды на телефоне" },
+] as const;
+
+const slides: Slide[] = [
+  { id: "home", image: "/ready/showcase/mida-desktop-home.png", description: "Главная страница MIDA" },
+  { id: "services", image: "/ready/showcase/mida-desktop-services.png", description: "Процедуры и цены" },
+  { id: "approach", image: "/ready/showcase/mida-desktop-process.png", description: "Подход к лечению" },
+  { id: "phones", description: "Три мобильные страницы MIDA" },
 ];
 
-export function MidaGallery({ variant }: { variant: "desktop" | "mobile" }) {
+function PhoneTriptych({ miniature = false }: { miniature?: boolean }) {
+  return (
+    <div className={miniature ? styles.phonesSmall : styles.phones} aria-label="Три экрана мобильного сайта MIDA">
+      {mobileScreens.map(({ src, alt }, index) => (
+        <div className={[styles.phone, index === 1 ? styles.phoneCenter : ""].join(" ")} key={src}>
+          <div className={styles.phoneBezel} aria-hidden="true">
+            <span className={styles.phoneSpeaker} />
+            <img src={src} alt="" width={624} height={1408} loading={miniature ? "lazy" : "eager"} />
+          </div>
+          {!miniature && <span className={styles.visuallyHidden}>{alt}</span>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SlideImage({ slide, miniature = false }: { slide: Slide; miniature?: boolean }) {
+  return slide.id === "phones" ? (
+    <PhoneTriptych miniature={miniature} />
+  ) : (
+    <img
+      src={slide.image}
+      alt={miniature ? "" : slide.description}
+      width={2048}
+      height={1240}
+      loading={miniature ? "lazy" : "eager"}
+    />
+  );
+}
+
+export function MidaGallery({ variant: _variant }: { variant: "desktop" | "mobile" }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [enlarged, setEnlarged] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const active = shots[activeIndex];
-  const currentKind = active.kind;
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const active = slides[activeIndex];
 
   useEffect(() => setMounted(true), []);
   useEffect(() => {
     if (!enlarged) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const onEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setEnlarged(false); };
+    closeRef.current?.focus();
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setEnlarged(false);
+    };
     window.addEventListener("keydown", onEscape);
-    return () => { document.body.style.overflow = previous; window.removeEventListener("keydown", onEscape); };
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onEscape);
+      triggerRef.current?.focus();
+    };
   }, [enlarged]);
 
-  const changeKind = (kind: "desktop" | "mobile") => {
-    setActiveIndex(kind === "desktop" ? 0 : 3);
-    setEnlarged(false);
-  };
-
-  const next = (direction: number) => setActiveIndex((n) => (n + direction + shots.length) % shots.length);
+  const next = (direction: number) => setActiveIndex((index) => (index + direction + slides.length) % slides.length);
 
   return (
     <div className={styles.gallery}>
-      <div className={styles.galleryHead}>
-        <div className={styles.headCopy}>
-          <span className={styles.dots} aria-hidden="true"><i/><i/><i/></span>
-          <span>ЭКРАНЫ САЙТА / MIDA</span>
-        </div>
-        <div className={styles.switcher} role="group" aria-label="Версия сайта">
-          <button type="button" aria-pressed={currentKind === "desktop"} onClick={() => changeKind("desktop")}>Компьютер</button>
-          <button type="button" aria-pressed={currentKind === "mobile"} onClick={() => changeKind("mobile")}>Телефон</button>
-        </div>
-      </div>
-
-      <button className={styles.heroShot} type="button" onClick={() => setEnlarged(true)}
-        aria-label={"Увеличить: " + active.description} title="Открыть изображение крупно">
-        <img src={active.src} alt={"MIDA: " + active.description} width={active.kind === "desktop" ? 2048 : 624} height={active.kind === "desktop" ? 1240 : 1408} loading="eager" />
+      <button
+        ref={triggerRef}
+        className={[styles.heroShot, active.id === "phones" ? styles.heroPhones : ""].join(" ")}
+        type="button"
+        onClick={() => setEnlarged(true)}
+        aria-label={"Увеличить: " + active.description}
+        title="Посмотреть крупно"
+      >
+        <SlideImage slide={active} />
         <span className={styles.expandHint}>Увеличить ↗</span>
       </button>
 
-      <div className={styles.thumbnails} aria-label="Шесть экранов сайта MIDA">
-        {shots.map((shot, index) => (
-          <button type="button" key={shot.src} onClick={() => setActiveIndex(index)}
+      <div className={styles.thumbnails} role="group" aria-label="Четыре вида сайта MIDA">
+        {slides.map((slide, index) => (
+          <button
+            type="button"
+            key={slide.id}
+            onClick={() => setActiveIndex(index)}
             className={index === activeIndex ? styles.chosen : ""}
-            aria-label={String(index + 1) + ". " + shot.description}
-            aria-pressed={index === activeIndex}>
+            aria-label={(index + 1) + " из 4. " + slide.description}
+            aria-pressed={index === activeIndex}
+          >
             <span className={styles.thumbFrame}>
-              <img src={shot.src} alt="" width={shot.kind === "desktop" ? 2048 : 624} height={shot.kind === "desktop" ? 1240 : 1408} loading="lazy" />
+              <SlideImage slide={slide} miniature />
             </span>
-            <span className={styles.thumbLabel}>{shot.label}</span>
           </button>
         ))}
       </div>
 
       <div className={styles.galleryFoot}>
-        <span>{String(activeIndex + 1).padStart(2, "0")} / 06 <span className={styles.galleryCaption}>· {active.description}</span></span>
+        <span aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / 04</span>
         <div>
           <button type="button" onClick={() => next(-1)} aria-label="Предыдущий скриншот">←</button>
           <button type="button" onClick={() => next(1)} aria-label="Следующий скриншот">→</button>
@@ -81,18 +116,22 @@ export function MidaGallery({ variant }: { variant: "desktop" | "mobile" }) {
       </div>
 
       {mounted && enlarged && createPortal(
-        <div className={styles.lightbox} onMouseDown={(event) => { if (event.target === event.currentTarget) setEnlarged(false); }} role="presentation">
+        <div
+          className={styles.lightbox}
+          onMouseDown={(event) => { if (event.target === event.currentTarget) setEnlarged(false); }}
+          role="presentation"
+        >
           <div className={styles.lightboxPanel} role="dialog" aria-modal="true" aria-label={active.description}>
             <div className={styles.lightboxHeader}>
               <span>MIDA / {active.description}</span>
-              <button type="button" onClick={() => setEnlarged(false)} aria-label="Закрыть изображение">×</button>
+              <button ref={closeRef} type="button" onClick={() => setEnlarged(false)} aria-label="Закрыть изображение">×</button>
             </div>
-            <div className={styles.lightboxBody}>
-              <img src={active.src} alt={"MIDA: " + active.description} width={active.kind === "desktop" ? 2048 : 624} height={active.kind === "desktop" ? 1240 : 1408} />
+            <div className={[styles.lightboxBody, active.id === "phones" ? styles.lightboxPhones : ""].join(" ")}>
+              <SlideImage slide={active} />
             </div>
-            <p>Полный скриншот без обрезки. Закрыть — ×.</p>
           </div>
-        </div>, document.body
+        </div>,
+        document.body
       )}
     </div>
   );
