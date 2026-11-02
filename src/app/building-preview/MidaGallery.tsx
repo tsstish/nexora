@@ -77,7 +77,7 @@ function PhoneTriptych({ mobileScreens, miniature = false, fullResolution = fals
         <div className={[styles.phone, index === 1 ? styles.phoneCenter : ""].join(" ")} key={src}>
           <div className={styles.phoneBezel} aria-hidden="true">
             <span className={styles.phoneSpeaker} />
-            <img className={styles.phoneScreenImage} src={fullResolution ? src : fasterImage(src, miniature ? "thumb" : "preview")} alt="" width={624} height={1408} loading="eager" decoding="async" />
+            <img src={fullResolution ? src : fasterImage(src, miniature ? "thumb" : "preview")} alt="" width={624} height={1408} loading="eager" decoding="async" />
           </div>
           {!miniature && <span className={styles.visuallyHidden}>{alt}</span>}
         </div>

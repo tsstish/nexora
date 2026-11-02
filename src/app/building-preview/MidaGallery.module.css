@@ -7,13 +7,13 @@
 .heroShot>img{display:block;max-height:100%;width:100%;height:100%;object-fit:contain;object-position:center;filter:none!important;transform:none!important}
 .expandHint{position:absolute;bottom:9px;right:10px;padding:7px 10px;background:rgba(19,55,47,.93);color:#FFF;font-size:10px;letter-spacing:0;z-index:4}
 .heroPhones{background:transparent}
-/* Four concepts share one phone frame. The rounded screen clips only the
-   excess edges of each unaltered screenshot; no letterboxing or filters. */
+/* The fourth slide comprises three CSS phone frames. The original screenshots
+   are used as-is at proportional dimensions, without cropping or filtering. */
 .phones{display:flex;align-items:center;justify-content:center;gap:clamp(5px,1vw,15px);width:100%;height:100%;min-width:0;min-height:0}
 .phone{position:relative;width:auto;height:78%;flex:0 1 auto;aspect-ratio:0.475;padding:4px;border-radius:clamp(10px,1.7vw,22px);border:1px solid #8D958D;background:linear-gradient(145deg,#313936,#111715);box-shadow:0 6px 13px rgba(20,34,27,.17),inset 1px 1px rgba(255,255,255,.3)}
 .phoneCenter{height:78%;width:auto;z-index:1;box-shadow:0 10px 18px rgba(20,34,27,.23),inset 1px 1px rgba(255,255,255,.3)}
-.phoneBezel{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;overflow:hidden;border:1px solid #474D49;border-radius:clamp(7px,1.3vw,17px);background:#121916;padding:0;isolation:isolate
-.phoneBezel img{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center top;filter:none!important;transform:none!important}
+.phoneBezel{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;overflow:hidden;border:1px solid #474D49;border-radius:clamp(7px,1.3vw,17px);background:#FBF8F4;padding:5px 1px 2px}
+.phoneBezel img{display:block;width:100%;height:100%;max-height:100%;object-fit:contain;object-position:center;filter:none!important;transform:none!important}
 .phoneSpeaker{position:absolute;z-index:2;top:2px;left:50%;width:19%;height:3px;border-radius:5px;background:#262D28;transform:translateX(-50%)}
 .thumbnails{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:10px 0 8px}
 .thumbnails button{min-width:0;min-height:0;display:flex;flex-direction:column;padding:4px;border:1px solid transparent;background:transparent;cursor:pointer}
@@ -24,7 +24,7 @@
 .phonesSmall{display:flex;align-items:center;justify-content:center;gap:5px;height:100%;width:100%;background:transparent;padding:1px}
 .phonesSmall .phone{height:78%;width:auto;padding:1px;border-width:1px;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.12)}
 .phonesSmall .phoneCenter{height:78%;width:auto}
-.phonesSmall .phoneBezel{padding:0;border:0;border-radius:2px}
+.phonesSmall .phoneBezel{padding:1px 0 0;border:0;border-radius:2px}
 .phonesSmall .phoneSpeaker{width:22%;height:1px;top:0}
 .lightbox{position:fixed;inset:0;z-index:20000;background:rgba(9,26,21,.86);display:grid;place-items:center;padding:12px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .lightboxPanel{display:flex;flex-direction:column;max-width:min(1200px,100%);width:100%;max-height:calc(100dvh - 24px);background:#F6F3ED;overflow:hidden;border:1px solid #E3C393;box-shadow:0 20px 60px #0008}
@@ -35,7 +35,7 @@
 .lightboxPhones{background:transparent}
 .lightboxPhones .phones{height:min(68dvh,540px);max-width:min(760px,95%);gap:clamp(8px,1.5vw,20px)}
 .lightboxPhones .phone{padding:6px}
-.lightboxPhones .phoneBezel{padding:0}
+.lightboxPhones .phoneBezel{padding-top:9px}
 @media(max-width:1250px) and (min-width:1025px){.thumbFrame{height:51px}.thumbnails{gap:5px}}
 @media(max-width:1024px){
  .gallery{height:auto}
@@ -44,7 +44,7 @@
  .thumbnails button{padding:2px}
  .thumbFrame{height:47px}
  .phone{padding:3px;border-radius:12px}
- .phoneBezel{border-radius:9px;padding:0}
+ .phoneBezel{border-radius:9px;padding-top:4px}
  .lightboxPhones .phones{height:min(65dvh,500px);gap:clamp(5px,1.5vw,20px)}
 }
 @media(max-width:375px){
@@ -58,15 +58,15 @@
 }
 @media(prefers-reduced-motion:reduce){.gallery button{transition:none}}
 
-/* READY collection: one viewport and equal-height phones. Images are unchanged
-   source files; only the visible screen viewport clips overflow. */
+/* READY collection: one standard presentation viewport, three fully visible,
+   equal-height phones on every concept, no retouch/crop of actual screenshots. */
 .heroShot{aspect-ratio:8/5;isolation:isolate}
 .phones{overflow:visible;padding:8px 5px;gap:clamp(6px,1.15vw,16px)}
 .phones>.phone{height:78%;max-width:28%;width:auto;flex:0 1 auto}
 .phones>.phoneCenter{height:78%;max-width:28%;width:auto}
 .phonesSmall{overflow:hidden;gap:clamp(2px,.45vw,7px);padding:2px}
 .phonesSmall>.phone,.phonesSmall>.phoneCenter{height:78%;width:auto;max-width:29%;flex:0 1 auto}
-.phoneBezel img{object-fit:cover;object-position:center top;max-width:none;max-height:none}
+.phoneBezel img{object-fit:contain;object-position:center;max-width:100%;max-height:100%}
 .lightboxPhones .phones{height:min(65dvh,520px);width:min(95%,800px)}
 .lightboxPhones .phone,.lightboxPhones .phoneCenter{height:79%;width:auto;max-width:28%}
 @media(max-width:700px){
@@ -74,21 +74,4 @@
  .phones>.phone,.phones>.phoneCenter{height:77%;max-width:28%}
  .phonesSmall{gap:2px;padding:1px}
  .phonesSmall>.phone,.phonesSmall>.phoneCenter{height:76%;max-width:28%}
-}
-
-/* Screen content is absolutely positioned rather than sized from the
-   screenshot's intrinsic 624×1408 dimensions. This keeps every bezel
-   proportional at desktop, mobile, thumbnail, and lightbox sizes. */
-.phoneScreenImage{
-  position:absolute;
-  inset:0;
-  display:block;
-  width:100%;
-  height:100%;
-  max-width:none;
-  max-height:none;
-  object-fit:cover;
-  object-position:center top;
-  filter:none!important;
-  transform:none!important;
 }
