@@ -17,7 +17,7 @@ SHOTS = (
     ("lea-desktop-atmosphere.png", 1600, 900, 1, False, "Играть увереннее"),
     ("lea-mobile-home.png", 390, 890, 1.6, True, None),
     ("lea-mobile-benefits.png", 390, 890, 1.6, True, "Почему ученики любят занятия"),
-    ("lea-mobile-lessons.png", 390, 890, 1.6, True, "Как проходят занятия"),
+    ("lea-mobile-lessons.png", 390, 890, 1.6, True, "Структура есть"),
 )
 
 with sync_playwright() as playwright:
