@@ -205,3 +205,44 @@
  .productActions a{padding:9px 7px;font-size:10px}
  .priceRow{padding:8px 11px}
 }
+
+
+/* FACET-first product shelf / actions directly beneath imagery.
+   The animated city, sky, cloud layers and responsive hero are untouched. */
+.mediaColumn{display:flex;flex-direction:column;min-width:0}
+.product{grid-template-columns:minmax(0,40%) minmax(0,60%);height:auto!important;min-height:0!important;align-items:stretch}
+.mediaColumn .preview{flex:0 0 auto;padding:12px 12px 4px;min-width:0}
+.mediaColumn .productActions{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;
+  width:auto;flex:none;margin:0;padding:7px 12px 14px;
+  background:rgba(250,248,244,.45)
+}
+.mediaColumn .productActions a{min-height:43px;padding:10px 11px;font-size:11px}
+.mediaColumn .productActions .detailsLink{min-height:43px}
+.details{padding-bottom:14px}
+.navigator{padding-top:15px!important;border-top:1px solid rgba(19,55,47,.2)}
+.navIntro{align-items:end;min-height:42px}
+.navIntro .arrows{position:relative;transform:translateY(9px);margin-bottom:0}
+.mediaColumn .frame{height:270px;min-height:230px;flex:0 0 auto}
+@media(min-width:1025px) and (max-width:1250px){
+ .product{grid-template-columns:minmax(0,41%) minmax(0,59%)}
+ .mediaColumn .productActions{gap:7px}
+ .mediaColumn .productActions a{font-size:10px}
+}
+@media(max-width:1024px){
+ .product{display:flex;flex-direction:column}
+ .mediaColumn{display:contents}
+ .mediaColumn .preview{order:4;padding:9px 10px 6px}
+ .adaptation{order:5}
+ .mediaColumn .productActions{
+   order:6;grid-template-columns:repeat(2,minmax(0,1fr));
+   gap:7px;width:calc(100% - 28px);margin:9px 14px 13px;padding:0;
+   background:transparent
+ }
+ .mediaColumn .productActions a{min-height:44px;font-size:10px}
+ .navIntro .arrows{transform:none}
+}
+@media(max-width:365px){
+ .mediaColumn .productActions{width:calc(100% - 20px);margin-left:10px;margin-right:10px}
+ .mediaColumn .productActions a{font-size:10px;padding:8px}
+}
