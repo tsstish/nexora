@@ -4,22 +4,41 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./MidaGallery.module.css";
 
-type Slide = { id: string; description: string; image?: string };
+type GalleryKind = "mida" | "facet";
+type Slide = { id: string; description: string; image?: string; width: number; height: number };
 
-const mobileScreens = [
-  { src: "/ready/showcase/mida-mobile-home.png", alt: "Главная страница MIDA на телефоне" },
-  { src: "/ready/showcase/mida-mobile-process.png", alt: "Страница восстановления улыбки на телефоне" },
-  { src: "/ready/showcase/mida-mobile-clinic.png", alt: "Страница клиники и команды на телефоне" },
-] as const;
+const galleries: Record<GalleryKind, { name: string; slides: Slide[]; mobileScreens: { src: string; alt: string }[] }> = {
+  mida: {
+    name: "MIDA",
+    slides: [
+      { id: "home", image: "/ready/showcase/mida-desktop-home.png", description: "Главная страница MIDA", width: 2048, height: 1240 },
+      { id: "services", image: "/ready/showcase/mida-desktop-services.png", description: "Процедуры и цены", width: 2048, height: 1230 },
+      { id: "approach", image: "/ready/showcase/mida-desktop-process.png", description: "Подход к лечению", width: 2048, height: 1215 },
+      { id: "phones", description: "Три мобильные страницы MIDA", width: 2048, height: 1240 },
+    ],
+    mobileScreens: [
+      { src: "/ready/showcase/mida-mobile-home.png", alt: "Главная страница MIDA на телефоне" },
+      { src: "/ready/showcase/mida-mobile-process.png", alt: "Страница восстановления улыбки на телефоне" },
+      { src: "/ready/showcase/mida-mobile-clinic.png", alt: "Страница клиники и команды на телефоне" },
+    ],
+  },
+  facet: {
+    name: "FACET",
+    slides: [
+      { id: "home", image: "/ready/showcase/facet-desktop-home.png", description: "Главная страница FACET", width: 1600, height: 900 },
+      { id: "services", image: "/ready/showcase/facet-desktop-gallery.png", description: "Примеры работ и галерея", width: 1600, height: 1000 },
+      { id: "approach", image: "/ready/showcase/facet-desktop-about.png", description: "Мастер, подход и запись", width: 1600, height: 900 },
+      { id: "phones", description: "Три мобильные страницы FACET", width: 1600, height: 900 },
+    ],
+    mobileScreens: [
+      { src: "/ready/showcase/facet-mobile-home.png", alt: "FACET — главный экран на телефоне" },
+      { src: "/ready/showcase/facet-mobile-gallery.png", alt: "FACET — галерея на телефоне" },
+      { src: "/ready/showcase/facet-mobile-about.png", alt: "FACET — о мастере и запись на телефоне" },
+    ],
+  },
+};
 
-const slides: Slide[] = [
-  { id: "home", image: "/ready/showcase/mida-desktop-home.png", description: "Главная страница MIDA" },
-  { id: "services", image: "/ready/showcase/mida-desktop-services.png", description: "Процедуры и цены" },
-  { id: "approach", image: "/ready/showcase/mida-desktop-process.png", description: "Подход к лечению" },
-  { id: "phones", description: "Три мобильные страницы MIDA" },
-];
-
-function PhoneTriptych({ miniature = false }: { miniature?: boolean }) {
+function PhoneTriptych({ mobileScreens, miniature = false }: { mobileScreens: {src:string;alt:string}[]; miniature?: boolean }) {
   return (
     <div className={miniature ? styles.phonesSmall : styles.phones} aria-label="Три экрана мобильного сайта MIDA">
       {mobileScreens.map(({ src, alt }, index) => (
@@ -35,21 +54,22 @@ function PhoneTriptych({ miniature = false }: { miniature?: boolean }) {
   );
 }
 
-function SlideImage({ slide, miniature = false }: { slide: Slide; miniature?: boolean }) {
+function SlideImage({ slide, mobileScreens, miniature = false }: { slide: Slide; mobileScreens: {src:string;alt:string}[]; miniature?: boolean }) {
   return slide.id === "phones" ? (
-    <PhoneTriptych miniature={miniature} />
+    <PhoneTriptych mobileScreens={mobileScreens} miniature={miniature} />
   ) : (
     <img
       src={slide.image}
       alt={miniature ? "" : slide.description}
-      width={2048}
-      height={1240}
+      width={slide.width}
+      height={slide.height}
       loading={miniature ? "lazy" : "eager"}
     />
   );
 }
 
-export function MidaGallery({ variant: _variant }: { variant: "desktop" | "mobile" }) {
+export function MidaGallery({ variant: _variant, concept = "mida" }: { variant: "desktop" | "mobile"; concept?: GalleryKind }) {
+  const { slides, mobileScreens, name } = galleries[concept];
   const [activeIndex, setActiveIndex] = useState(0);
   const [enlarged, setEnlarged] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -79,17 +99,17 @@ export function MidaGallery({ variant: _variant }: { variant: "desktop" | "mobil
       <button
         ref={triggerRef}
         className={[styles.heroShot, active.id === "phones" ? styles.heroPhones : ""].join(" ")}
-        style={{ aspectRatio: active.id === "services" ? "2048 / 1230" : active.id === "approach" ? "2048 / 1215" : "2048 / 1240" }}
+        style={{ aspectRatio: active.width + " / " + active.height }}
         type="button"
         onClick={() => setEnlarged(true)}
         aria-label={"Увеличить: " + active.description}
         title="Посмотреть крупно"
       >
-        <SlideImage slide={active} />
+        <SlideImage slide={active} mobileScreens={mobileScreens} />
         <span className={styles.expandHint}>Увеличить ↗</span>
       </button>
 
-      <div className={styles.thumbnails} role="group" aria-label="Четыре вида сайта MIDA">
+      <div className={styles.thumbnails} role="group" aria-label={"Четыре вида сайта " + name}>
         {slides.map((slide, index) => (
           <button
             type="button"
@@ -100,7 +120,7 @@ export function MidaGallery({ variant: _variant }: { variant: "desktop" | "mobil
             aria-pressed={index === activeIndex}
           >
             <span className={styles.thumbFrame}>
-              <SlideImage slide={slide} miniature />
+              <SlideImage slide={slide} mobileScreens={mobileScreens} miniature />
             </span>
           </button>
         ))}
@@ -114,11 +134,11 @@ export function MidaGallery({ variant: _variant }: { variant: "desktop" | "mobil
         >
           <div className={styles.lightboxPanel} role="dialog" aria-modal="true" aria-label={active.description}>
             <div className={styles.lightboxHeader}>
-              <span>MIDA / {active.description}</span>
+              <span>{name} / {active.description}</span>
               <button ref={closeRef} type="button" onClick={() => setEnlarged(false)} aria-label="Закрыть изображение">×</button>
             </div>
             <div className={[styles.lightboxBody, active.id === "phones" ? styles.lightboxPhones : ""].join(" ")}>
-              <SlideImage slide={active} />
+              <SlideImage slide={active} mobileScreens={mobileScreens} />
             </div>
           </div>
         </div>,
