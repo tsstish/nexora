@@ -34,7 +34,7 @@ const stories: Record<string, { label: string; purpose: string }> = {
   },
   "media-kit": {
     label: "Авторы и блогеры",
-    purpose: "Ваш контент, аудитория и предложения брендам — в одной ссылке.",
+    purpose: "Готовый медиакит: контент, аудитория, кейсы и форматы сотрудничества с брендами в одной ссылке.",
   },
 };
 
@@ -111,7 +111,8 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
   const isMida = active.slug === "dental-clinic";
   const isFacet = active.slug === "brow-artist";
   const isLea = active.slug === "private-teacher";
-  const hasGallery = isMida || isFacet || isLea;
+  const isMaya = active.slug === "media-kit";
+  const hasGallery = isMida || isFacet || isLea || isMaya;
   const labelNumber = String(selected + 1).padStart(2, "0");
   const count = String(concepts.length).padStart(2, "0");
 
@@ -165,14 +166,14 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
             <strong><CurrencyPrice group="monthly" priceId={active.monthlyPlan} ils={active.monthlyPrice} prefix="от " perMonth /></strong>
           </div>
           <p className={styles.adaptation}>
-            <b>Структура уже готова.</b> Вы присылаете материалы — мы адаптируем логотип, цвета, фотографии, тексты, услуги и контакты под ваш бизнес.
+            <b>Структура уже готова.</b> {isMaya ? "Вы присылаете материалы — мы адаптируем фото, контент, статистику, кейсы, рекламные форматы и контакты под ваш бренд." : "Вы присылаете материалы — мы адаптируем логотип, цвета, фотографии, тексты, услуги и контакты под ваш бизнес."}
           </p>
         </div>
 
         <div className={styles.mediaColumn}>
         <div className={styles.preview}>
           {hasGallery ? (
-            <MidaGallery key={active.slug} concept={isFacet ? "facet" : isLea ? "lea" : "mida"} variant={variant} />
+            <MidaGallery key={active.slug} concept={isFacet ? "facet" : isLea ? "lea" : isMaya ? "maya" : "mida"} variant={variant} />
           ) : (
             <>
               <div className={styles.previewBar}>
