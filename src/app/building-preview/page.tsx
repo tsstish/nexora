@@ -39,6 +39,7 @@ export default function BuildingPreview() {
 
   return (
     <main className={styles.page} id="loft-preview">
+      <link rel="preload" as="image" href="/ready/showcase/facet-desktop-home-preview.webp" fetchPriority="high" />
       <div className={`${styles.scene} nx-city-stage`}>
         <CityBackdrop time="morning" />
         <StudioHeader />
