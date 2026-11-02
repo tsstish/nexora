@@ -26,7 +26,7 @@ const categoryNames: Record<string, string> = {
 export default function BuildingPreview() {
   const concepts = [...readySites].sort((a, b) => (a.slug === "brow-artist" ? -1 : b.slug === "brow-artist" ? 1 : 0)).map((site) => ({
     slug: site.slug,
-    name: site.name,
+    name: site.slug === "media-kit" ? "MAYA—LAVI" : site.name,
     heading: categoryNames[site.slug] ?? site.title,
     description: site.shortDescription,
     formatLabel: site.formatLabel,
