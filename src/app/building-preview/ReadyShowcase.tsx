@@ -109,6 +109,8 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
   const active = concepts[selected] ?? concepts[0];
   const story = stories[active.slug] ?? { label: active.heading, purpose: active.description };
   const isMida = active.slug === "dental-clinic";
+  const isFacet = active.slug === "brow-artist";
+  const hasGallery = isMida || isFacet;
   const labelNumber = String(selected + 1).padStart(2, "0");
   const count = String(concepts.length).padStart(2, "0");
 
@@ -155,7 +157,7 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
             <span className={styles.demoPill}>ГОТОВАЯ КОНЦЕПЦИЯ</span>
             <span className={styles.brandName}>«{active.name}»</span>
           </div>
-          <h2 className={styles.title}>Подходит для {isMida ? "клиник и стоматологий" : story.label.toLowerCase()}</h2>
+          <h2 className={styles.title}>Подходит для {isMida ? "клиник и стоматологий" : isFacet ? "бьюти-мастеров" : story.label.toLowerCase()}</h2>
           <p className={styles.purpose}>{isMida ? "Уже разработанный сайт с продуманной структурой услуг, специалистов, кейсов и обращений." : story.purpose}</p>
           <div className={styles.priceRow}>
             <span>Готовый сайт по подписке</span>
@@ -164,15 +166,12 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
           <p className={styles.adaptation}>
             <b>Структура уже готова.</b> Вы присылаете материалы — мы адаптируем логотип, цвета, фотографии, тексты, услуги и контакты под ваш бизнес.
           </p>
-          <div className={styles.productActions}>
-            <a className={styles.demoLink} href={active.demoUrl} target="_blank" rel="noopener noreferrer" data-analytics-event="ready_demo_open" data-concept={active.slug}>Открыть готовый сайт ↗</a>
-            <Link className={styles.detailsLink} href={"/ready/" + active.slug}>О сайте и условиях <span aria-hidden="true">↗</span></Link>
-          </div>
         </div>
 
+        <div className={styles.mediaColumn}>
         <div className={styles.preview}>
-          {isMida ? (
-            <MidaGallery variant={variant} />
+          {hasGallery ? (
+            <MidaGallery key={active.slug} concept={isFacet ? "facet" : "mida"} variant={variant} />
           ) : (
             <>
               <div className={styles.previewBar}>
@@ -192,6 +191,11 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
               </div>
             </>
           )}
+        </div>
+          <div className={styles.productActions}>
+            <a className={styles.demoLink} href={active.demoUrl} target="_blank" rel="noopener noreferrer" data-analytics-event="ready_demo_open" data-concept={active.slug}>Открыть готовый сайт ↗</a>
+            <Link className={styles.detailsLink} href={"/ready/" + active.slug}>О сайте и условиях <span aria-hidden="true">↗</span></Link>
+          </div>
         </div>
       </div>
 
