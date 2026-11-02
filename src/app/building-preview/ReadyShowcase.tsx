@@ -110,7 +110,8 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
   const story = stories[active.slug] ?? { label: active.heading, purpose: active.description };
   const isMida = active.slug === "dental-clinic";
   const isFacet = active.slug === "brow-artist";
-  const hasGallery = isMida || isFacet;
+  const isLea = active.slug === "private-teacher";
+  const hasGallery = isMida || isFacet || isLea;
   const labelNumber = String(selected + 1).padStart(2, "0");
   const count = String(concepts.length).padStart(2, "0");
 
@@ -171,7 +172,7 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
         <div className={styles.mediaColumn}>
         <div className={styles.preview}>
           {hasGallery ? (
-            <MidaGallery key={active.slug} concept={isFacet ? "facet" : "mida"} variant={variant} />
+            <MidaGallery key={active.slug} concept={isFacet ? "facet" : isLea ? "lea" : "mida"} variant={variant} />
           ) : (
             <>
               <div className={styles.previewBar}>
