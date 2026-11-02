@@ -91,6 +91,22 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
     setHydrated(true);
     if (variant === "mobile") setMode("mobile");
   }, [variant]);
+
+  // Warm the browser cache for the first screen of every concept.
+  // The initial FACET frame is also preloaded in server HTML, so it can
+  // start downloading before hydration. Never download the original PNG
+  // until a visitor opens the full-size view.
+  useEffect(() => {
+    const names = ["facet", "mida", "lea", "maya"];
+    const images = names.map((name) => {
+      const image = new window.Image();
+      image.decoding = "async";
+      image.fetchPriority = "low";
+      image.src = "/ready/showcase/" + name + "-desktop-home-preview.webp";
+      return image;
+    });
+    return () => { images.forEach((image) => { image.onload = null; }); };
+  }, []);
   useEffect(() => {
     if (!opened) return;
     const original = document.body.style.overflow;
