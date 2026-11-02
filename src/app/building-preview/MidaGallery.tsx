@@ -74,13 +74,12 @@ export function MidaGallery({ variant: _variant }: { variant: "desktop" | "mobil
     };
   }, [enlarged]);
 
-  const next = (direction: number) => setActiveIndex((index) => (index + direction + slides.length) % slides.length);
-
   return (
     <div className={styles.gallery}>
       <button
         ref={triggerRef}
         className={[styles.heroShot, active.id === "phones" ? styles.heroPhones : ""].join(" ")}
+        style={{ aspectRatio: active.id === "services" ? "2048 / 1230" : active.id === "approach" ? "2048 / 1215" : "2048 / 1240" }}
         type="button"
         onClick={() => setEnlarged(true)}
         aria-label={"Увеличить: " + active.description}
@@ -105,14 +104,6 @@ export function MidaGallery({ variant: _variant }: { variant: "desktop" | "mobil
             </span>
           </button>
         ))}
-      </div>
-
-      <div className={styles.galleryFoot}>
-        <span aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / 04</span>
-        <div>
-          <button type="button" onClick={() => next(-1)} aria-label="Предыдущий скриншот">←</button>
-          <button type="button" onClick={() => next(1)} aria-label="Следующий скриншот">→</button>
-        </div>
       </div>
 
       {mounted && enlarged && createPortal(
