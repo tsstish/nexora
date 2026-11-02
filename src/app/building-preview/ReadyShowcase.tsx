@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { CurrencyPrice } from "./CurrencyControl";
 import styles from "./ReadyShowcase.module.css";
+import { MidaGallery } from "./MidaGallery";
 
 export type ReadyConcept = {
   slug: string;
@@ -107,6 +108,7 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
   if (!concepts.length) return null;
   const active = concepts[selected] ?? concepts[0];
   const story = stories[active.slug] ?? { label: active.heading, purpose: active.description };
+  const isMida = active.slug === "dental-clinic";
   const labelNumber = String(selected + 1).padStart(2, "0");
   const count = String(concepts.length).padStart(2, "0");
 
@@ -150,11 +152,11 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
       <div className={styles.product}>
         <div className={styles.details}>
           <div className={styles.brand}>
-            <span className={styles.demoPill}>ЖИВОЕ ДЕМО</span>
-            <span className={styles.brandName}>{active.name}</span>
+            <span className={styles.demoPill}>ГОТОВАЯ КОНЦЕПЦИЯ</span>
+            <span className={styles.brandName}>«{active.name}»</span>
           </div>
-          <h2 className={styles.title}>{story.label}</h2>
-          <p className={styles.purpose}>{story.purpose}</p>
+          <h2 className={styles.title}>Подходит для {isMida ? "клиник и стоматологий" : story.label.toLowerCase()}</h2>
+          <p className={styles.purpose}>{isMida ? "Уже разработанный сайт с продуманной структурой услуг, специалистов, кейсов и обращений." : story.purpose}</p>
           <div className={styles.priceRow}>
             <span>Готовый сайт по подписке</span>
             <strong><CurrencyPrice group="monthly" priceId={active.monthlyPlan} ils={active.monthlyPrice} prefix="от " perMonth /></strong>
@@ -162,25 +164,34 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
           <p className={styles.adaptation}>
             <b>Структура уже готова.</b> Вы присылаете материалы — мы адаптируем логотип, цвета, фотографии, тексты, услуги и контакты под ваш бизнес.
           </p>
-          <Link className={styles.detailsLink} href={"/ready/" + active.slug}>О сайте и условиях <span aria-hidden="true">↗</span></Link>
+          <div className={styles.productActions}>
+            <a className={styles.demoLink} href={active.demoUrl} target="_blank" rel="noopener noreferrer" data-analytics-event="ready_demo_open" data-concept={active.slug}>Открыть готовый сайт ↗</a>
+            <Link className={styles.detailsLink} href={"/ready/" + active.slug}>О сайте и условиях <span aria-hidden="true">↗</span></Link>
+          </div>
         </div>
 
         <div className={styles.preview}>
-          <div className={styles.previewBar}>
-            <span><i aria-hidden="true" /> ДЕМО / {active.name}</span>
-            <div className={styles.modes} role="group" aria-label="Размер предпросмотра">
-              <button type="button" aria-pressed={mode === "desktop"} onClick={() => { setMode("desktop"); setInteractive(false); }}>Компьютер</button>
-              <button type="button" aria-pressed={mode === "mobile"} onClick={() => { setMode("mobile"); setInteractive(false); }}>Телефон</button>
-            </div>
-          </div>
-          <LiveWindow name={active.name} slug={active.slug} url={active.demoUrl} mode={mode} interactive={interactive} />
-          <div className={styles.previewBottom}>
-            <button type="button" className={styles.desktopScroll} aria-pressed={interactive} onClick={() => setInteractive(v => !v)}>
-              {interactive ? "Завершить просмотр" : "Листать демо внутри"} <span aria-hidden="true">↕</span>
-            </button>
-            <button ref={openRef} type="button" className={styles.expand} onClick={() => setOpened(true)} aria-haspopup="dialog">Увеличить и листать <span aria-hidden="true">↗</span></button>
-            <a href={active.demoUrl} target="_blank" rel="noopener noreferrer" data-analytics-event="ready_demo_open" data-concept={active.slug}>Открыть демо ↗</a>
-          </div>
+          {isMida ? (
+            <MidaGallery variant={variant} />
+          ) : (
+            <>
+              <div className={styles.previewBar}>
+                <span><i aria-hidden="true" /> ДЕМО / {active.name}</span>
+                <div className={styles.modes} role="group" aria-label="Размер предпросмотра">
+                  <button type="button" aria-pressed={mode === "desktop"} onClick={() => { setMode("desktop"); setInteractive(false); }}>Компьютер</button>
+                  <button type="button" aria-pressed={mode === "mobile"} onClick={() => { setMode("mobile"); setInteractive(false); }}>Телефон</button>
+                </div>
+              </div>
+              <LiveWindow name={active.name} slug={active.slug} url={active.demoUrl} mode={mode} interactive={interactive} />
+              <div className={styles.previewBottom}>
+                <button type="button" className={styles.desktopScroll} aria-pressed={interactive} onClick={() => setInteractive(v => !v)}>
+                  {interactive ? "Завершить просмотр" : "Листать демо внутри"} <span aria-hidden="true">↕</span>
+                </button>
+                <button ref={openRef} type="button" className={styles.expand} onClick={() => setOpened(true)} aria-haspopup="dialog">Увеличить и листать <span aria-hidden="true">↗</span></button>
+                <a href={active.demoUrl} target="_blank" rel="noopener noreferrer" data-analytics-event="ready_demo_open" data-concept={active.slug}>Открыть демо ↗</a>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
