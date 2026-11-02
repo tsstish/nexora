@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./MidaGallery.module.css";
 
-type GalleryKind = "mida" | "facet";
+type GalleryKind = "mida" | "facet" | "lea";
 type Slide = { id: string; description: string; image?: string; width: number; height: number };
 
 const galleries: Record<GalleryKind, { name: string; slides: Slide[]; mobileScreens: { src: string; alt: string }[] }> = {
@@ -36,11 +36,25 @@ const galleries: Record<GalleryKind, { name: string; slides: Slide[]; mobileScre
       { src: "/ready/showcase/facet-mobile-about.png", alt: "FACET — о мастере и запись на телефоне" },
     ],
   },
+  lea: {
+    name: "LEA NORD",
+    slides: [
+      { id: "home", image: "/ready/showcase/lea-desktop-home.png", description: "Главная страница LEA NORD", width: 1600, height: 900 },
+      { id: "students", image: "/ready/showcase/lea-desktop-students.png", description: "Занятия для детей и взрослых", width: 1600, height: 900 },
+      { id: "atmosphere", image: "/ready/showcase/lea-desktop-atmosphere.png", description: "Атмосфера и результаты занятий", width: 1600, height: 900 },
+      { id: "phones", description: "Три мобильные страницы LEA NORD", width: 1600, height: 1000 },
+    ],
+    mobileScreens: [
+      { src: "/ready/showcase/lea-mobile-home.png", alt: "Главная страница LEA NORD на телефоне" },
+      { src: "/ready/showcase/lea-mobile-benefits.png", alt: "Почему ученики любят занятия — мобильная страница" },
+      { src: "/ready/showcase/lea-mobile-lessons.png", alt: "Как проходят занятия — мобильная страница" },
+    ],
+  },
 };
 
 function PhoneTriptych({ mobileScreens, miniature = false }: { mobileScreens: {src:string;alt:string}[]; miniature?: boolean }) {
   return (
-    <div className={miniature ? styles.phonesSmall : styles.phones} aria-label="Три экрана мобильного сайта MIDA">
+    <div className={miniature ? styles.phonesSmall : styles.phones} aria-label="Три экранa мобильного сайта">
       {mobileScreens.map(({ src, alt }, index) => (
         <div className={[styles.phone, index === 1 ? styles.phoneCenter : ""].join(" ")} key={src}>
           <div className={styles.phoneBezel} aria-hidden="true">
@@ -99,7 +113,7 @@ export function MidaGallery({ variant: _variant, concept = "mida" }: { variant: 
       <button
         ref={triggerRef}
         className={[styles.heroShot, active.id === "phones" ? styles.heroPhones : ""].join(" ")}
-        style={{ aspectRatio: active.width + " / " + active.height }}
+        style={{ aspectRatio: "8 / 5" }}
         type="button"
         onClick={() => setEnlarged(true)}
         aria-label={"Увеличить: " + active.description}
