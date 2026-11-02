@@ -1,27 +1,31 @@
 .gallery{display:flex;flex-direction:column;min-width:0;height:100%;color:#13372F;font-family:Arial,Helvetica,sans-serif}
 .gallery *{box-sizing:border-box}
 .gallery button{font-family:inherit}
-.galleryHead{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:8px;min-height:32px}
-.headCopy{display:flex;align-items:center;gap:8px;min-width:0;font-size:9px;font-weight:700;letter-spacing:.1em;color:#53635F}
-.headCopy>span:last-child{white-space:nowrap}
-.dots{display:flex;gap:3px}
-.dots i{height:6px;width:6px;display:block;border-radius:50%;border:1px solid #A98D75}
-.dots i:nth-child(1){background:#FF735F;border-color:#FF735F}
-.dots i:nth-child(2){background:#D9B782}
-.dots i:nth-child(3){background:#0F715E;border-color:#0F715E}
-.switcher{display:flex;gap:2px;border:1px solid rgba(19,55,47,.19);border-radius:30px;padding:3px}
-.switcher button{cursor:pointer;color:#53635F;background:transparent;border:0;border-radius:30px;min-height:28px;padding:6px 9px;font-size:10px}
-.switcher button[aria-pressed="true"]{background:#13372F;color:#F6F3ED}
-.heroShot{position:relative;display:grid;place-items:center;min-height:0;flex:1 0 auto;height:clamp(183px,21vw,285px);border:1px solid rgba(19,55,47,.14);background:#FFFEFA;padding:5px;overflow:hidden;cursor:zoom-in;box-shadow:0 7px 15px -14px rgba(0,0,0,.5)}
-.heroShot img{height:100%;width:100%;object-fit:contain;object-position:center;display:block;filter:none!important;transform:none!important}
-.expandHint{position:absolute;bottom:9px;right:10px;padding:7px 10px;background:rgba(19,55,47,.93);color:#FFF;font-size:10px;letter-spacing:0}
-.thumbnails{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;padding:8px 0}
-.thumbnails button{min-width:0;display:flex;flex-direction:column;gap:4px;padding:3px;border:1px solid transparent;background:transparent;color:#53635F;cursor:pointer}
-.thumbnails button:hover{border-color:rgba(19,55,47,.28)}
-.thumbnails .chosen{border-color:#0F715E;background:#E9EEE8}
-.thumbFrame{height:45px;display:grid;place-items:center;background:#FBF9F4;width:100%;overflow:hidden}
-.thumbFrame img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;filter:none!important;transform:none!important}
-.thumbLabel{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;width:100%;text-align:center;font-size:8px}
+.gallery button:focus-visible{outline:2px solid #FF735F;outline-offset:3px}
+.visuallyHidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.heroShot{position:relative;display:flex;justify-content:center;align-items:center;min-width:0;min-height:0;flex:1 0 auto;width:100%;height:clamp(183px,21vw,285px);padding:8px;border:1px solid rgba(19,55,47,.14);background:#FFFEFA;overflow:hidden;cursor:zoom-in;box-shadow:0 7px 15px -14px rgba(0,0,0,.5)}
+.heroShot>img{display:block;max-height:100%;width:100%;height:100%;object-fit:contain;object-position:center;filter:none!important;transform:none!important}
+.expandHint{position:absolute;bottom:9px;right:10px;padding:7px 10px;background:rgba(19,55,47,.93);color:#FFF;font-size:10px;letter-spacing:0;z-index:4}
+.heroPhones{background:linear-gradient(150deg,#f9f7f2,#eee9df)}
+/* The fourth slide comprises three CSS phone frames. The original screenshots
+   are used as-is at proportional dimensions, without cropping or filtering. */
+.phones{display:flex;align-items:center;justify-content:center;gap:clamp(9px,1.4vw,24px);width:100%;height:100%;min-width:0;min-height:0}
+.phone{position:relative;height:88%;flex:0 0 auto;aspect-ratio:0.475;padding:4px;border-radius:clamp(10px,1.7vw,22px);border:1px solid #8D958D;background:linear-gradient(145deg,#313936,#111715);box-shadow:0 6px 13px rgba(20,34,27,.17),inset 1px 1px rgba(255,255,255,.3)}
+.phoneCenter{height:98%;z-index:1;box-shadow:0 10px 18px rgba(20,34,27,.23),inset 1px 1px rgba(255,255,255,.3)}
+.phoneBezel{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;overflow:hidden;border:1px solid #474D49;border-radius:clamp(7px,1.3vw,17px);background:#FBF8F4;padding:5px 1px 2px}
+.phoneBezel img{display:block;width:100%;height:100%;max-height:100%;object-fit:contain;object-position:center;filter:none!important;transform:none!important}
+.phoneSpeaker{position:absolute;z-index:2;top:2px;left:50%;width:19%;height:3px;border-radius:5px;background:#262D28;transform:translateX(-50%)}
+.thumbnails{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:10px 0 8px}
+.thumbnails button{min-width:0;min-height:0;display:flex;flex-direction:column;padding:4px;border:1px solid transparent;background:transparent;cursor:pointer}
+.thumbnails button:hover{border-color:rgba(19,55,47,.35)}
+.thumbnails button[aria-pressed="true"]{border-color:#0F715E;background:#E9EEE8}
+.thumbFrame{height:62px;display:flex;align-items:center;justify-content:center;background:#FBF9F4;width:100%;overflow:hidden}
+.thumbFrame>img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;filter:none!important;transform:none!important}
+.phonesSmall{display:flex;align-items:center;justify-content:center;gap:5px;height:100%;width:100%;background:#F2EEE8;padding:2px}
+.phonesSmall .phone{height:80%;padding:1px;border-width:1px;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.12)}
+.phonesSmall .phoneCenter{height:95%}
+.phonesSmall .phoneBezel{padding:1px 0 0;border:0;border-radius:2px}
+.phonesSmall .phoneSpeaker{width:22%;height:1px;top:0}
 .galleryFoot{display:flex;justify-content:space-between;align-items:center;gap:6px;color:#53635F;font-size:10px;margin-top:auto}
 .galleryFoot>div{display:flex;gap:6px}
 .galleryFoot button{height:29px;width:29px;cursor:pointer;border:1px solid rgba(19,55,47,.35);border-radius:50%;background:transparent;color:#13372F;font-size:15px}
@@ -31,45 +35,31 @@
 .lightboxHeader{background:#13372F;color:#F6F3ED;display:flex;align-items:center;justify-content:space-between;gap:9px;padding:8px 14px;font-size:12px}
 .lightboxHeader button{height:34px;width:34px;border:1px solid rgba(255,255,255,.7);background:transparent;color:#FFF;font-size:24px;cursor:pointer}
 .lightboxBody{min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto;background:#FEFCF9;padding:10px;flex:1}
-.lightboxBody img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 126px);object-fit:contain;filter:none!important;transform:none!important}
-.lightboxPanel>p{padding:9px 14px;font-size:10px;color:#53635F;margin:0}
-@media(max-width:1250px) and (min-width:1025px){
- .headCopy{font-size:8px}
- .heroShot{height:230px}
- .thumbFrame{height:40px}
- .thumbLabel{font-size:7px}
-}
+.lightboxBody>img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 126px);object-fit:contain;filter:none!important;transform:none!important}
+.lightboxPhones{background:linear-gradient(150deg,#FAF8F2,#EBE6DB)}
+.lightboxPhones .phones{height:min(68dvh,620px);max-width:95%;gap:clamp(12px,2vw,36px)}
+.lightboxPhones .phone{padding:6px}
+.lightboxPhones .phoneBezel{padding-top:9px}
+@media(max-width:1250px) and (min-width:1025px){.heroShot{height:230px}.thumbFrame{height:51px}.thumbnails{gap:5px}}
 @media(max-width:1024px){
  .gallery{height:auto}
- .heroShot{height:clamp(162px,52vw,260px);flex:0 0 auto}
- .thumbFrame{height:42px}
- .thumbnails{gap:3px}
+ .heroShot{height:clamp(160px,47vw,245px);flex:0 0 auto;padding:5px}
+ .thumbnails{padding:7px 0 6px;gap:5px}
  .thumbnails button{padding:2px}
- .thumbLabel{font-size:8px}
- .galleryFoot{margin:2px 0 0}
+ .thumbFrame{height:47px}
+ .galleryFoot{margin:1px 0 0}
+ .phone{padding:3px;border-radius:12px}
+ .phoneBezel{border-radius:9px;padding-top:4px}
+ .lightboxPhones .phones{height:min(65dvh,500px);gap:clamp(5px,1.5vw,20px)}
 }
 @media(max-width:375px){
- .heroShot{height:190px}
- .headCopy{font-size:8px}
- .headCopy .dots{display:none}
- .switcher button{padding:6px 7px;font-size:9px}
- .thumbFrame{height:36px}
- .thumbLabel{font-size:7px}
- .galleryCaption{display:none}
+ .heroShot{height:169px}
+ .thumbFrame{height:39px}
+ .galleryFoot button{width:27px;height:27px}
+ .phone{padding:2px;border-radius:9px}
+ .phoneBezel{border-radius:6px}
+ .phones{gap:7px}
+ .phonesSmall{gap:2px}
+ .phonesSmall .phone{padding:1px}
 }
 @media(prefers-reduced-motion:reduce){.gallery button{transition:none}}
-
-
-/* Mobile product view stays compact, with a complete landscape capture first. */
-@media(max-width:700px){
- .galleryHead{min-height:29px;margin-bottom:6px}
- .heroShot{height:clamp(155px,45vw,195px);padding:4px}
- .thumbFrame{height:35px}
- .thumbnails{padding:5px 0}
- .thumbLabel{font-size:7px}
- .galleryFoot button{width:27px;height:27px}
-}
-@media(max-width:360px){
- .heroShot{height:155px}
- .thumbFrame{height:30px}
-}
