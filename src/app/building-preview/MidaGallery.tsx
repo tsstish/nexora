@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./MidaGallery.module.css";
 
-type GalleryKind = "mida" | "facet" | "lea";
+type GalleryKind = "mida" | "facet" | "lea" | "maya";
 type Slide = { id: string; description: string; image?: string; width: number; height: number };
 
 const galleries: Record<GalleryKind, { name: string; slides: Slide[]; mobileScreens: { src: string; alt: string }[] }> = {
@@ -48,6 +48,20 @@ const galleries: Record<GalleryKind, { name: string; slides: Slide[]; mobileScre
       { src: "/ready/showcase/lea-mobile-home.png", alt: "Главная страница LEA NORD на телефоне" },
       { src: "/ready/showcase/lea-mobile-benefits.png", alt: "Почему ученики любят занятия — мобильная страница" },
       { src: "/ready/showcase/lea-mobile-lessons.png", alt: "Как проходят занятия — мобильная страница" },
+    ],
+  },
+  maya: {
+    name: "MAYA—LAVI",
+    slides: [
+      { id: "home", image: "/ready/showcase/maya-desktop-home.png", description: "Главная страница MAYA—LAVI", width: 1600, height: 900 },
+      { id: "audience", image: "/ready/showcase/maya-desktop-audience.png", description: "Аудитория, охваты и показатели", width: 1600, height: 900 },
+      { id: "cases", image: "/ready/showcase/maya-desktop-cases.png", description: "Кейсы и результаты сотрудничества", width: 1600, height: 900 },
+      { id: "phones", description: "Три мобильные страницы MAYA—LAVI", width: 1600, height: 900 },
+    ],
+    mobileScreens: [
+      { src: "/ready/showcase/maya-mobile-home.png", alt: "Главная страница MAYA—LAVI на телефоне" },
+      { src: "/ready/showcase/maya-mobile-audience.png", alt: "Мобильная страница с показателями аудитории" },
+      { src: "/ready/showcase/maya-mobile-cases.png", alt: "Мобильные кейсы и сотрудничество" },
     ],
   },
 };
