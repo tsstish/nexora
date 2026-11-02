@@ -33,13 +33,13 @@ description:
     siteName: "NeXora",
     locale: "ru_RU",
     type: "website",
-    images: [{ url: "/opengraph-image?v=20261030-soft-city-v2", width: 1200, height: 630, alt: "NeXora — оригинальный логотип и лёгкий фон Нью-Йорка" }],
+    images: [{ url: "/og-image?v=20261102-8ils-v1", width: 1200, height: 630, alt: "NeXora — профессиональный сайт, который работает на ваш бизнес. От 8 ₪ в день." }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NeXora — Digital Presence Design",
-    description: "Сайты и цифровые продукты, которые умеют больше.",
-    images: ["/opengraph-image?v=20261030-soft-city-v2"],
+    title: "NeXora — профессиональный сайт для бизнеса",
+    description: "Сайты для бизнеса. Подписка от 249 ₪ в месяц, или индивидуальная разработка.",
+    images: ["/og-image?v=20261102-8ils-v1"],
   },
 };
 
