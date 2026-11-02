@@ -66,14 +66,18 @@ const galleries: Record<GalleryKind, { name: string; slides: Slide[]; mobileScre
   },
 };
 
-function PhoneTriptych({ mobileScreens, miniature = false }: { mobileScreens: {src:string;alt:string}[]; miniature?: boolean }) {
+function fasterImage(src: string, type: "preview" | "thumb") {
+  return src.replace(/\.png$/, "-" + type + ".webp");
+}
+
+function PhoneTriptych({ mobileScreens, miniature = false, fullResolution = false }: { mobileScreens: {src:string;alt:string}[]; miniature?: boolean; fullResolution?: boolean }) {
   return (
     <div className={miniature ? styles.phonesSmall : styles.phones} aria-label="Три экранa мобильного сайта">
       {mobileScreens.map(({ src, alt }, index) => (
         <div className={[styles.phone, index === 1 ? styles.phoneCenter : ""].join(" ")} key={src}>
           <div className={styles.phoneBezel} aria-hidden="true">
             <span className={styles.phoneSpeaker} />
-            <img src={src} alt="" width={624} height={1408} loading={miniature ? "lazy" : "eager"} />
+            <img src={fullResolution ? src : fasterImage(src, miniature ? "thumb" : "preview")} alt="" width={624} height={1408} loading="eager" decoding="async" />
           </div>
           {!miniature && <span className={styles.visuallyHidden}>{alt}</span>}
         </div>
@@ -82,16 +86,18 @@ function PhoneTriptych({ mobileScreens, miniature = false }: { mobileScreens: {s
   );
 }
 
-function SlideImage({ slide, mobileScreens, miniature = false }: { slide: Slide; mobileScreens: {src:string;alt:string}[]; miniature?: boolean }) {
+function SlideImage({ slide, mobileScreens, miniature = false, fullResolution = false }: { slide: Slide; mobileScreens: {src:string;alt:string}[]; miniature?: boolean; fullResolution?: boolean }) {
   return slide.id === "phones" ? (
-    <PhoneTriptych mobileScreens={mobileScreens} miniature={miniature} />
+    <PhoneTriptych mobileScreens={mobileScreens} miniature={miniature} fullResolution={fullResolution} />
   ) : (
     <img
-      src={slide.image}
+      src={fullResolution ? slide.image : fasterImage(slide.image!, miniature ? "thumb" : "preview")}
       alt={miniature ? "" : slide.description}
       width={slide.width}
       height={slide.height}
-      loading={miniature ? "lazy" : "eager"}
+      loading="eager"
+      decoding="async"
+      fetchPriority={miniature ? "low" : "high"}
     />
   );
 }
@@ -166,7 +172,7 @@ export function MidaGallery({ variant: _variant, concept = "mida" }: { variant: 
               <button ref={closeRef} type="button" onClick={() => setEnlarged(false)} aria-label="Закрыть изображение">×</button>
             </div>
             <div className={[styles.lightboxBody, active.id === "phones" ? styles.lightboxPhones : ""].join(" ")}>
-              <SlideImage slide={active} mobileScreens={mobileScreens} />
+              <SlideImage slide={active} mobileScreens={mobileScreens} fullResolution />
             </div>
           </div>
         </div>,
