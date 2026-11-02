@@ -157,7 +157,7 @@ export function ReadyShowcase({ concepts, variant = "desktop" }: { concepts: Rea
             <span className={styles.demoPill}>ГОТОВАЯ КОНЦЕПЦИЯ</span>
             <span className={styles.brandName}>«{active.name}»</span>
           </div>
-          <h2 className={styles.title}>Подходит для {isMida ? "клиник и стоматологий" : isFacet ? "бьюти-мастеров" : story.label.toLowerCase()}</h2>
+          <h2 className={styles.title}>Подходит для {isMida ? "клиник и стоматологий" : isFacet ? "бьюти-мастеров" : active.slug === "private-teacher" ? "преподавателей и экспертов" : active.slug === "media-kit" ? "авторов и блогеров" : story.label.toLowerCase()}</h2>
           <p className={styles.purpose}>{isMida ? "Уже разработанный сайт с продуманной структурой услуг, специалистов, кейсов и обращений." : story.purpose}</p>
           <div className={styles.priceRow}>
             <span>Готовый сайт по подписке</span>
