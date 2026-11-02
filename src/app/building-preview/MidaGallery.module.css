@@ -10,8 +10,8 @@
 /* The fourth slide comprises three CSS phone frames. The original screenshots
    are used as-is at proportional dimensions, without cropping or filtering. */
 .phones{display:flex;align-items:center;justify-content:center;gap:clamp(5px,1vw,15px);width:100%;height:100%;min-width:0;min-height:0}
-.phone{position:relative;width:25%;height:auto;flex:0 0 auto;aspect-ratio:0.475;padding:4px;border-radius:clamp(10px,1.7vw,22px);border:1px solid #8D958D;background:linear-gradient(145deg,#313936,#111715);box-shadow:0 6px 13px rgba(20,34,27,.17),inset 1px 1px rgba(255,255,255,.3)}
-.phoneCenter{width:27%;z-index:1;box-shadow:0 10px 18px rgba(20,34,27,.23),inset 1px 1px rgba(255,255,255,.3)}
+.phone{position:relative;width:auto;height:78%;flex:0 1 auto;aspect-ratio:0.475;padding:4px;border-radius:clamp(10px,1.7vw,22px);border:1px solid #8D958D;background:linear-gradient(145deg,#313936,#111715);box-shadow:0 6px 13px rgba(20,34,27,.17),inset 1px 1px rgba(255,255,255,.3)}
+.phoneCenter{height:78%;width:auto;z-index:1;box-shadow:0 10px 18px rgba(20,34,27,.23),inset 1px 1px rgba(255,255,255,.3)}
 .phoneBezel{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;overflow:hidden;border:1px solid #474D49;border-radius:clamp(7px,1.3vw,17px);background:#FBF8F4;padding:5px 1px 2px}
 .phoneBezel img{display:block;width:100%;height:100%;max-height:100%;object-fit:contain;object-position:center;filter:none!important;transform:none!important}
 .phoneSpeaker{position:absolute;z-index:2;top:2px;left:50%;width:19%;height:3px;border-radius:5px;background:#262D28;transform:translateX(-50%)}
@@ -22,8 +22,8 @@
 .thumbFrame{height:62px;display:flex;align-items:center;justify-content:center;background:transparent;width:100%;overflow:hidden}
 .thumbFrame>img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;filter:none!important;transform:none!important}
 .phonesSmall{display:flex;align-items:center;justify-content:center;gap:5px;height:100%;width:100%;background:transparent;padding:1px}
-.phonesSmall .phone{height:auto;width:23%;padding:1px;border-width:1px;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.12)}
-.phonesSmall .phoneCenter{width:25%}
+.phonesSmall .phone{height:78%;width:auto;padding:1px;border-width:1px;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.12)}
+.phonesSmall .phoneCenter{height:78%;width:auto}
 .phonesSmall .phoneBezel{padding:1px 0 0;border:0;border-radius:2px}
 .phonesSmall .phoneSpeaker{width:22%;height:1px;top:0}
 .lightbox{position:fixed;inset:0;z-index:20000;background:rgba(9,26,21,.86);display:grid;place-items:center;padding:12px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -57,3 +57,21 @@
  .phonesSmall .phone{padding:1px}
 }
 @media(prefers-reduced-motion:reduce){.gallery button{transition:none}}
+
+/* READY collection: one standard presentation viewport, three fully visible,
+   equal-height phones on every concept, no retouch/crop of actual screenshots. */
+.heroShot{aspect-ratio:8/5;isolation:isolate}
+.phones{overflow:visible;padding:8px 5px;gap:clamp(6px,1.15vw,16px)}
+.phones>.phone{height:78%;max-width:28%;width:auto;flex:0 1 auto}
+.phones>.phoneCenter{height:78%;max-width:28%;width:auto}
+.phonesSmall{overflow:hidden;gap:clamp(2px,.45vw,7px);padding:2px}
+.phonesSmall>.phone,.phonesSmall>.phoneCenter{height:78%;width:auto;max-width:29%;flex:0 1 auto}
+.phoneBezel img{object-fit:contain;object-position:center;max-width:100%;max-height:100%}
+.lightboxPhones .phones{height:min(65dvh,520px);width:min(95%,800px)}
+.lightboxPhones .phone,.lightboxPhones .phoneCenter{height:79%;width:auto;max-width:28%}
+@media(max-width:700px){
+ .phones{padding:3px;gap:6px}
+ .phones>.phone,.phones>.phoneCenter{height:77%;max-width:28%}
+ .phonesSmall{gap:2px;padding:1px}
+ .phonesSmall>.phone,.phonesSmall>.phoneCenter{height:76%;max-width:28%}
+}
