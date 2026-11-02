@@ -58,3 +58,18 @@
  .galleryCaption{display:none}
 }
 @media(prefers-reduced-motion:reduce){.gallery button{transition:none}}
+
+
+/* Mobile product view stays compact, with a complete landscape capture first. */
+@media(max-width:700px){
+ .galleryHead{min-height:29px;margin-bottom:6px}
+ .heroShot{height:clamp(155px,45vw,195px);padding:4px}
+ .thumbFrame{height:35px}
+ .thumbnails{padding:5px 0}
+ .thumbLabel{font-size:7px}
+ .galleryFoot button{width:27px;height:27px}
+}
+@media(max-width:360px){
+ .heroShot{height:155px}
+ .thumbFrame{height:30px}
+}
