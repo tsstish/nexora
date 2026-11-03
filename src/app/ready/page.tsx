@@ -169,12 +169,12 @@ export default function ReadyPage() {
 
 
         <nav aria-label="Навигация">
-          <Link href="/#projects">Пример работы</Link>
-          <Link href="/#solutions">Решения</Link>
+          <Link href="/#catalog">Каталог Ready</Link>
+          <Link href="/#catalog">Как работает</Link>
           <Link href="/ready" aria-current="page">Ready</Link>
           <Link href="/ready/monthly">Monthly</Link>
-          <Link href="/#process">Процесс</Link>
-          <Link href="/services">Стоимость</Link>
+          <Link href="/#how-it-works">Процесс</Link>
+          <Link href="/services">Индивидуальная разработка</Link>
         </nav>
 
 
@@ -196,12 +196,12 @@ export default function ReadyPage() {
           </summary>
 
           <div className="ready-mobile-menu-panel">
-            <Link href="/#projects">Пример работы</Link>
-            <Link href="/#solutions">Решения</Link>
+            <Link href="/#catalog">Каталог Ready</Link>
+            <Link href="/#catalog">Как работает</Link>
             <Link href="/ready">Ready</Link>
             <Link href="/ready/monthly">Monthly</Link>
-            <Link href="/#process">Процесс</Link>
-            <Link href="/services">Стоимость</Link>
+            <Link href="/#how-it-works">Процесс</Link>
+            <Link href="/services">Индивидуальная разработка</Link>
 
             <a
               className="cta"
@@ -682,12 +682,12 @@ export default function ReadyPage() {
           className="footer-links footer-links-v2"
           aria-label="Навигация в футере"
         >
-          <Link href="/#projects">Пример работы</Link>
-          <Link href="/#solutions">Решения</Link>
+          <Link href="/#catalog">Каталог Ready</Link>
+          <Link href="/#catalog">Как работает</Link>
           <Link href="/ready">Ready</Link>
             <Link href="/ready/monthly">Monthly</Link>
-          <Link href="/#process">Процесс</Link>
-          <Link href="/services">Стоимость</Link>
+          <Link href="/#how-it-works">Процесс</Link>
+          <Link href="/services">Индивидуальная разработка</Link>
         </nav>
 
 

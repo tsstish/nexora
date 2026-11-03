@@ -119,11 +119,11 @@ export function ServicesHub() {
         </Link>
 
         <nav aria-label="Основная навигация">
-          <Link href="/#projects">Пример работы</Link>
-          <Link href="/#solutions">Решения</Link>
+          <Link href="/#catalog">Каталог Ready</Link>
+          <Link href="/#catalog">Как работает</Link>
           <Link href="/ready">Ready</Link>
           <Link href="/ready/monthly">Monthly</Link>
-          <Link href="/#process">Процесс</Link>
+          <Link href="/#how-it-works">Процесс</Link>
           <Link href="/services" aria-current="page">
             Стоимость
           </Link>
@@ -141,12 +141,12 @@ export function ServicesHub() {
           </summary>
 
           <div className="site-mobile-menu-panel">
-            <Link href="/#projects">Пример работы</Link>
-            <Link href="/#solutions">Решения</Link>
+            <Link href="/#catalog">Каталог Ready</Link>
+            <Link href="/#catalog">Как работает</Link>
             <Link href="/ready">Ready</Link>
             <Link href="/ready/monthly">Monthly</Link>
-            <Link href="/#process">Процесс</Link>
-            <Link href="/services">Стоимость</Link>
+            <Link href="/#how-it-works">Процесс</Link>
+            <Link href="/services">Индивидуальная разработка</Link>
 
             <a className="cta" href="#services-contact">
               Обсудить проект <span>→</span>
@@ -575,12 +575,12 @@ export function ServicesHub() {
 
 
         <nav className="footer-links footer-links-v2" aria-label="Навигация в футере">
-          <Link href="/#projects">Пример работы</Link>
-          <Link href="/#solutions">Решения</Link>
+          <Link href="/#catalog">Каталог Ready</Link>
+          <Link href="/#catalog">Как работает</Link>
           <Link href="/ready">Ready</Link>
           <Link href="/ready/monthly">Monthly</Link>
-          <Link href="/#process">Процесс</Link>
-          <Link href="/services">Стоимость</Link>
+          <Link href="/#how-it-works">Процесс</Link>
+          <Link href="/services">Индивидуальная разработка</Link>
         </nav>
 
 

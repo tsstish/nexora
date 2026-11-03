@@ -1,0 +1,10 @@
+/* Storefront color direction carried through to Ready pages. */
+.ready-v2{
+  background:radial-gradient(circle at 86% 5%,rgba(232,190,69,.13),transparent 28%),radial-gradient(circle at 9% 38%,rgba(131,223,200,.14),transparent 30%),linear-gradient(180deg,#f8f6f0 0%,#f4f2eb 100%);
+}
+.ready-topbar{background:rgba(249,248,242,.9);border-color:rgba(255,255,255,.9);box-shadow:0 13px 30px rgba(24,53,46,.07),inset 0 1px 0 rgba(255,255,255,.95)}
+.ready-topbar nav a[aria-current="page"]{color:#0f715e}
+.ready-showcase-card{background:radial-gradient(circle at 18% 28%,rgba(232,190,69,.11),transparent 34%),linear-gradient(120deg,rgba(255,255,255,.8),rgba(235,240,230,.74));box-shadow:0 24px 52px rgba(27,63,55,.08),inset 0 1px 0 rgba(255,255,255,.98)}
+.ready-showcase-stage{background:radial-gradient(circle at 78% 17%,rgba(237,190,67,.19),transparent 25%),linear-gradient(140deg,rgba(22,58,53,.055),rgba(131,223,200,.13));border-color:rgba(27,63,55,.12)}
+.ready-showcase-number{color:rgba(19,55,47,.35)}
+.ready-v2-copy h1 em{color:#0f715e}
